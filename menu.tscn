@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cw0k7ilht52a"]
+
+[ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://menu.gd" id="1_lti8b"]
+
+[node name="Menu" type="Control" unique_id=14681704]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 210.0
+offset_top = 341.0
+offset_right = 270.0
+offset_bottom = 381.0
+script = ExtResource("1_lti8b")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=623834596]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.5
+offset_top = -360.5
+offset_right = 1043.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.22745098, 0.101960786, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=872113476]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.81666666
+anchor_top = -6.1375
+anchor_right = 8.333333
+anchor_bottom = 7.2875
+offset_left = -148.0
+offset_top = -83.5
+offset_right = 148.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1102679148]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Recolectores"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=132114443]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Jugar"

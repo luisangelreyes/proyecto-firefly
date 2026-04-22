@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c0afqsllhtymw"]
+
+[ext_resource type="Script" uid="uid://jwqrla0gney0" path="res://gabinete_arcade.gd" id="1_gc4af"]
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://nivel.tscn" id="2_41rnk"]
+[ext_resource type="PackedScene" uid="uid://cw0k7ilht52a" path="res://menu.tscn" id="3_3hqsg"]
+
+[node name="GabineteArcade" type="Control" unique_id=1251733925]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gc4af")
+escena_nivel = ExtResource("2_41rnk")
+escena_menu = ExtResource("3_3hqsg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=595768718]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0.12659627, 0.6005609, 0.7400745, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=726591214]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 1680.0
+offset_bottom = 1080.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1749723676]
+handle_input_locally = false
+size = Vector2i(1440, 1080)
+render_target_update_mode = 4
