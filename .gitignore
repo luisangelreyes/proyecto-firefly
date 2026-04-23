@@ -13,6 +13,8 @@ export_presets.cfg
 .DS_Store
 Thumbs.db
 Desktop.ini
+*.exe
+
 
 # Archivos de usuario (El progreso aislado y analytics que definimos)
 user/
