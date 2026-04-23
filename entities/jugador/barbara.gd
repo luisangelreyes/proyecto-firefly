@@ -11,7 +11,7 @@ var vidas = 3
 var bote_activo = 0 # 0 = Orgánico (Verde), 1 = Inorgánico (Azul)
 
 # Límite de la pantalla para que no se salga (480px de ancho)
-var limite_pantalla_x = 960
+var limite_pantalla_x = 1440 	
 
 func _ready():
 	# Esta función se ejecuta una sola vez al nacer la escena.

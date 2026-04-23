@@ -1,57 +1,189 @@
 [gd_scene format=3 uid="uid://cw0k7ilht52a"]
 
-[ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scenes/menu/menu.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scripts/menu.gd" id="1_lti8b"]
+
+[sub_resource type="FontVariation" id="FontVariation_klgdb"]
 
 [node name="Menu" type="Control" unique_id=14681704]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 210.0
-offset_top = 341.0
-offset_right = 270.0
-offset_bottom = 381.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_lti8b")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=623834596]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.45
+anchor_top = -8.5
+anchor_right = 28.692001
+anchor_bottom = 18.387001
+offset_left = 6.0
+offset_top = -13.0
+offset_right = 5.9804688
+offset_bottom = -12.980469
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.22745098, 0.101960786, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1102679148]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 285.0
+offset_right = 953.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 48
+text = "Recolectores: El Legado de lo Olvidado"
+vertical_alignment = 3
+
+[node name="BotonJugar" type="Button" parent="." unique_id=2048951022]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -242.5
-offset_top = -360.5
-offset_right = 1043.0
-offset_bottom = 363.0
+offset_left = -791.0
+offset_top = -147.0
+offset_right = -695.0
+offset_bottom = -89.99884
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.101960786, 0.22745098, 0.101960786, 1)
+theme_override_font_sizes/font_size = 35
+text = "Jugar"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=872113476]
+[node name="CajaBienvenida" type="VBoxContainer" parent="." unique_id=872113476]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.81666666
-anchor_top = -6.1375
-anchor_right = 8.333333
-anchor_bottom = 7.2875
-offset_left = -148.0
-offset_top = -83.5
-offset_right = 148.0
-offset_bottom = 83.5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -470.0
+offset_top = -635.0
+offset_right = 418.0
+offset_bottom = -289.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1102679148]
+[node name="TextoNombre" type="Label" parent="CajaBienvenida" unique_id=276903915]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Recolectores"
+theme_override_fonts/font = SubResource("FontVariation_klgdb")
+theme_override_font_sizes/font_size = 45
+text = "¡ Bienvenido, Jugador!"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=132114443]
-custom_minimum_size = Vector2(200, 60)
+[node name="BotonCambiar" type="Button" parent="CajaBienvenida" unique_id=556695261]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
-text = "Jugar"
+theme_override_font_sizes/font_size = 20
+text = "¿No eres tú? Haz clic aquí"
+flat = true
+
+[node name="VentanaPerfiles" type="Panel" parent="." unique_id=239884790]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.5
+offset_top = -297.0
+offset_right = 528.5
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="VentanaPerfiles" unique_id=1710653568]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 32.0
+offset_right = 742.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 47
+text = "Selecciona tu perfil"
+horizontal_alignment = 1
+
+[node name="ListaPerfiles" type="ItemList" parent="VentanaPerfiles" unique_id=1890280634]
+layout_mode = 0
+offset_left = 191.5
+offset_top = 259.0
+offset_right = 849.5
+offset_bottom = 565.0
+
+[node name="CajaBotones" type="HBoxContainer" parent="VentanaPerfiles" unique_id=359723658]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 327.0
+offset_bottom = 31.0
+
+[node name="BotonSeleccionar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=375787620]
+layout_mode = 2
+text = "Seleccionar"
+
+[node name="BotonNuevo" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=856684522]
+layout_mode = 2
+text = "Nuevo"
+
+[node name="BotonBorrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1913930430]
+layout_mode = 2
+text = "Borrar"
+
+[node name="BotonCerrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1215941046]
+layout_mode = 2
+text = "Cerrar"
+
+[node name="VentanaNuevo" type="Panel" parent="." unique_id=256666432]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.5
+offset_top = -316.5
+offset_right = 551.5
+offset_bottom = 316.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="VentanaNuevo" unique_id=1923516526]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 49.0
+offset_right = 667.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 41
+text = "Crear perfil"
+horizontal_alignment = 1
+
+[node name="EntradaNombre" type="LineEdit" parent="VentanaNuevo" unique_id=792161574]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 156.0
+offset_right = 699.0
+offset_bottom = 202.0
+placeholder_text = "Escribe tu nombre:"
+
+[node name="CajaBotones" type="HBoxContainer" parent="VentanaNuevo" unique_id=1964655178]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 238.0
+offset_right = 757.0
+offset_bottom = 302.0
+alignment = 1
+
+[node name="BotonAceptar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=199225387]
+layout_mode = 2
+text = "Aceptar"
+flat = true
+
+[node name="BotonCancelar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=1267034720]
+layout_mode = 2
+text = "Cancelar"
+alignment = 2

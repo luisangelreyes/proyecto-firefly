@@ -30,8 +30,8 @@ func _ready():
 
 func _process(delta):
 	position.y += velocidad_caida * delta
-	
-	if position.y > 800:
+	# Ahora la destruimos más abajo de 1080
+	if position.y > 1200: 
 		queue_free()
 		
 func configurar_textura():
