@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Recolectores"
-run/main_scene="uid://c0afqsllhtymw"
+config/name="Recolectores Nivel Caida de basura"
+run/main_scene="uid://5x6p7ilfmg33"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/ui/icon.svg"
 

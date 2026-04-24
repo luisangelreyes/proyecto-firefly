@@ -137,6 +137,5 @@ func _on_seleccionar_perfil():
 		actualizar_bienvenida()
 
 func _on_boton_jugar():
-	var director_gabinete = get_parent().get_parent().get_parent()
-	if director_gabinete.has_method("iniciar_juego"):
-		director_gabinete.iniciar_juego()
+	# El menú ahora es el jefe, así que simplemente teletransporta al jugador al Gabinete
+	get_tree().change_scene_to_file("res://scenes/menu/gabinete_arcade.tscn")

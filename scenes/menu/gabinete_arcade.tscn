@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://jwqrla0gney0" path="res://scripts/gabinete_arcade.gd" id="1_xo55o"]
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/nivel.tscn" id="2_yvim4"]
-[ext_resource type="PackedScene" uid="uid://cw0k7ilht52a" path="res://scenes/menu/menu.tscn" id="3_djejt"]
 
 [node name="GabineteArcade" type="Control" unique_id=1251733925]
 layout_mode = 3
@@ -13,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xo55o")
 escena_nivel = ExtResource("2_yvim4")
-escena_menu = ExtResource("3_djejt")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=595768718]
 custom_minimum_size = Vector2(1920, 1080)
