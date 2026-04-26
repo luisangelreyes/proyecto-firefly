@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://heefgaptok3k"]
+
+[ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scripts/Nivel2.gd" id="1_qrsul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nen"]
+size = Vector2(260, 320)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrsul"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.7482163, 0.5628441, 0.28525728, 1)
+corner_detail = 10
+
+[node name="Nivel2" type="Node2D" unique_id=1972288213]
+script = ExtResource("1_qrsul")
+
+[node name="PanelMorral" type="ColorRect" parent="." unique_id=631864937]
+custom_minimum_size = Vector2(20, 80)
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.08627451, 0.39607844, 0.20392157, 1)
+
+[node name="LblTituloMorral" type="Label" parent="." unique_id=157226254]
+offset_left = -20.0
+offset_top = 100.0
+offset_right = 349.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 50
+text = "   🎒 Morral 🎒"
+
+[node name="GridMorral" type="GridContainer" parent="." unique_id=1065731555]
+offset_left = 55.0
+offset_top = 280.0
+offset_right = 475.0
+offset_bottom = 880.0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
+
+[node name="BotePET" type="Area2D" parent="." unique_id=622439365]
+position = Vector2(800, 650)
+metadata/tipo = "pet"
+
+[node name="FondoPET" type="ColorRect" parent="BotePET" unique_id=159224821]
+offset_left = -130.0
+offset_top = -160.0
+offset_right = 130.0
+offset_bottom = 160.0
+color = Color(0.14509805, 0.3882353, 0.92156863, 1)
+
+[node name="LabelPET" type="Label" parent="BotePET" unique_id=1809294741]
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 68.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+text = "♻️ PLASTICO♻️
+"
+
+[node name="ContadorPET" type="Label" parent="BotePET" unique_id=1915570623]
+offset_left = 85.0
+offset_top = -155.0
+offset_right = 125.0
+offset_bottom = -106.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+text = "0
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BotePET" unique_id=1009350023]
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="BoteALU" type="Area2D" parent="." unique_id=193919060]
+position = Vector2(1100, 650)
+metadata/tipo = "alu"
+
+[node name="FondoALU" type="ColorRect" parent="BoteALU" unique_id=1928023416]
+offset_left = -130.0
+offset_top = -160.0
+offset_right = 130.0
+offset_bottom = 160.0
+color = Color(0.29411766, 0.33333334, 0.3882353, 1)
+
+[node name="LabelALU" type="Label" parent="BoteALU" unique_id=1021679814]
+offset_left = -75.0
+offset_top = -150.0
+offset_right = 102.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+text = "♻️ METAL♻️
+"
+
+[node name="ContadorALU" type="Label" parent="BoteALU" unique_id=1142876456]
+offset_left = 85.0
+offset_top = -155.0
+offset_right = 125.0
+offset_bottom = -106.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+text = "0
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoteALU" unique_id=1527460319]
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="BoteCARTON" type="Area2D" parent="." unique_id=1069856128]
+position = Vector2(1400, 650)
+metadata/tipo = "org"
+
+[node name="FondoCARTON" type="ColorRect" parent="BoteCARTON" unique_id=292648338]
+offset_left = -130.0
+offset_top = -160.0
+offset_right = 130.0
+offset_bottom = 160.0
+color = Color(0.5647059, 0.93333334, 0.5647059, 1)
+
+[node name="LabelCARTON" type="Label" parent="BoteCARTON" unique_id=10529352]
+offset_left = -115.0
+offset_top = -150.0
+offset_right = 68.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+text = "♻️ ORGÁNICO♻️
+"
+
+[node name="ContadorCarton" type="Label" parent="BoteCARTON" unique_id=672386663]
+offset_left = 85.0
+offset_top = -155.0
+offset_right = 125.0
+offset_bottom = -106.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+text = "0
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoteCARTON" unique_id=1837932526]
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="Labelpuntos" type="Label" parent="." unique_id=930952704]
+offset_left = 700.0
+offset_top = 30.0
+offset_right = 944.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 40
+text = "⭐ Puntos: 0"
+
+[node name="LabelVidas" type="Label" parent="." unique_id=170874925]
+visible = false
+offset_left = 1200.0
+offset_top = 30.0
+offset_right = 1475.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 40
+text = "❤️❤️❤️"
+
+[node name="LabelFeedBack" type="Label" parent="." unique_id=746849514]
+visible = false
+offset_left = 700.0
+offset_top = 900.0
+offset_right = 740.0
+offset_bottom = 945.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="Mesa" type="ColorRect" parent="." unique_id=315242823]
+offset_left = 560.0
+offset_top = 820.0
+offset_right = 1625.0
+offset_bottom = 892.0
+color = Color(0.36078432, 0.22745098, 0.11764706, 1)
+
+[node name="Pata izq" type="ColorRect" parent="." unique_id=1406733990]
+offset_left = 560.0
+offset_top = 880.0
+offset_right = 635.0
+offset_bottom = 1080.0
+color = Color(0.36078432, 0.22745098, 0.11764706, 1)
+
+[node name="Pata der" type="ColorRect" parent="." unique_id=1901829631]
+offset_left = 1550.0
+offset_top = 880.0
+offset_right = 1625.0
+offset_bottom = 1080.0
+color = Color(0.36078432, 0.22745098, 0.11764706, 1)
+
+[node name="LabelZonaBotes" type="Label" parent="." unique_id=61205302]
+offset_left = 927.0
+offset_top = 228.0
+offset_right = 1286.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(0.5803922, 0.6392157, 0.72156864, 1)
+theme_override_font_sizes/font_size = 30
+text = "ZONA DE CLASIFICACIÓN"
+
+[node name="InterfazUI" type="CanvasLayer" parent="." unique_id=198814979]
+
+[node name="PopUpAyuda" type="PanelContainer" parent="InterfazUI" unique_id=690235555]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrsul")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfazUI/PopUpAyuda" unique_id=1057737066]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="LblExplicacion" type="Label" parent="InterfazUI/PopUpAyuda/VBoxContainer" unique_id=22164179]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15920928, 5.7756904e-07, 0.77604544, 1)
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="IconoBote" type="TextureRect" parent="InterfazUI/PopUpAyuda/VBoxContainer" unique_id=252613345]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Button" type="Button" parent="InterfazUI/PopUpAyuda/VBoxContainer" unique_id=1440313491]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97802454, 0.84211916, 0.7863519, 1)
+text = "Entendido, sigamos"
+
+[connection signal="pressed" from="InterfazUI/PopUpAyuda/VBoxContainer/Button" to="." method="_on_popup_entendido_pressed"]

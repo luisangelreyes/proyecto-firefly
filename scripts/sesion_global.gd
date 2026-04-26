@@ -68,3 +68,30 @@ func cargar_partida(nombre_jugador: String) -> bool:
 		return true
 		
 	return false
+	
+	# --- FUNCIONES PARA EL JUEGO ---
+
+func registrar_acierto(cantidad: int):
+	puntaje += cantidad
+	# Opcional: imprimir en consola para depurar
+	print("Puntaje actualizado: ", puntaje)
+
+func registrar_error():
+	vidas -= 1
+	print("Vidas restantes: ", vidas)
+
+func guardar_sesion():
+	# Esta función debe guardar los cambios en el archivo o diccionario global
+	var datos_totales = cargar_todos_los_perfiles()
+	
+	# Actualizamos los datos del jugador actual en el diccionario
+	datos_totales[perfil_actual] = {
+		"puntaje": puntaje,
+		"vidas": vidas,
+		"combo": combo,
+		"nivel_actual": nivel_actual
+	}
+	
+	# Aquí deberías llamar a tu función que escribe el archivo en el disco
+	# (Por ejemplo: guardar_archivo_perfiles(datos_totales))
+	print("Datos guardados para: ", perfil_actual)
