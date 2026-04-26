@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://cv3nsj3e8tyq6"]
+
+[ext_resource type="Script" uid="uid://bjpun4ra07oqt" path="res://scripts/nvl_tetris.gd" id="1_6hwam"]
+[ext_resource type="Texture2D" uid="uid://dosffj4ocwewu" path="res://scenes/niveles/tetris/fondo_prueba.jpg" id="2_7e71k"]
+[ext_resource type="Texture2D" uid="uid://gl3aw5gxf0m7" path="res://entities/contenedores/tacho_prueba.png" id="2_76xlf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edu6a"]
+size = Vector2(239.875, 189.5)
+
+[node name="NvlTetris" type="Node2D" unique_id=1031930382]
+script = ExtResource("1_6hwam")
+
+[node name="fondo" type="Sprite2D" parent="." unique_id=3156602]
+z_index = -5
+position = Vector2(960, 539.75)
+scale = Vector2(0.96, 0.96387154)
+texture = ExtResource("2_7e71k")
+
+[node name="fondo2" type="Sprite2D" parent="." unique_id=334091986]
+z_index = 5
+position = Vector2(960, 1000)
+scale = Vector2(0.96, 0.14272967)
+texture = ExtResource("2_7e71k")
+
+[node name="T_organico" type="Area2D" parent="." unique_id=1681369834]
+z_index = 5
+
+[node name="bote" type="Sprite2D" parent="T_organico" unique_id=1492862315]
+position = Vector2(120, 953.5853)
+scale = Vector2(0.6936882, 0.47257835)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_organico" unique_id=1094331190]
+position = Vector2(120.0625, 982.75)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_inorganico" type="Area2D" parent="." unique_id=1034464518]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_inorganico" unique_id=1500741284]
+position = Vector2(360.00003, 954.6913)
+scale = Vector2(0.69364166, 0.4684437)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_inorganico" unique_id=2029430889]
+position = Vector2(360, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_papel" type="Area2D" parent="." unique_id=1568178888]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_papel" unique_id=1656069467]
+position = Vector2(600, 953.40497)
+scale = Vector2(0.69364166, 0.47325256)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_papel" unique_id=367311636]
+position = Vector2(600, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_plastico" type="Area2D" parent="." unique_id=2045352493]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_plastico" unique_id=1116906728]
+position = Vector2(840.00006, 954)
+scale = Vector2(0.694, 0.47102782)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_plastico" unique_id=882781805]
+position = Vector2(840, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_metal" type="Area2D" parent="." unique_id=807386618]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_metal" unique_id=1990746189]
+position = Vector2(1080, 954)
+scale = Vector2(0.69364166, 0.47102788)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_metal" unique_id=1851622930]
+position = Vector2(1080, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_vidrio" type="Area2D" parent="." unique_id=1548099959]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_vidrio" unique_id=1294365129]
+position = Vector2(1320, 951.99994)
+scale = Vector2(0.694, 0.4785045)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_vidrio" unique_id=2026779619]
+position = Vector2(1320, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_madera" type="Area2D" parent="." unique_id=1474276803]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_madera" unique_id=56284204]
+position = Vector2(1560, 952)
+scale = Vector2(0.69364125, 0.4785047)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_madera" unique_id=536930097]
+position = Vector2(1560, 984)
+shape = SubResource("RectangleShape2D_edu6a")
+
+[node name="T_tela" type="Area2D" parent="." unique_id=1984442650]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="T_tela" unique_id=1240336601]
+position = Vector2(1800, 952.00006)
+scale = Vector2(0.69581497, 0.4785046)
+texture = ExtResource("2_76xlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="T_tela" unique_id=1181795078]
+position = Vector2(1800, 984)
+shape = SubResource("RectangleShape2D_edu6a")

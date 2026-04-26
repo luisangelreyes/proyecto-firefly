@@ -138,4 +138,4 @@ func _on_seleccionar_perfil():
 
 func _on_boton_jugar():
 	# El menú ahora es el jefe, así que simplemente teletransporta al jugador al Gabinete
-	get_tree().change_scene_to_file("res://scenes/menu/gabinete_arcade.tscn")
+	get_tree().change_scene_to_file("res://scenes/niveles/tetris/gabinete_tetris.tscn")

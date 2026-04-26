@@ -1,6 +1,6 @@
 extends Area2D
 
-var velocidad_caida = 590 
+#var velocidad_caida = 590 
 var tipo_basura = 0 # 0 = Orgánico, 1 = Inorgánico, 2 = Peligroso
 # --- NUEVO: Cargamos las imágenes en la memoria ---
 var texturas_organicas = [
@@ -28,12 +28,13 @@ func _ready():
 	else:
 		$Sprite2D.modulate = Color(1.0, 0.2, 0.2) # Rojo (Peligroso)
 
-func _process(delta):
-	position.y += velocidad_caida * delta
-	# Ahora la destruimos más abajo de 1080
-	if position.y > 1200: 
-		queue_free()
-		
+##quite esta funcion para mover la basura desde el juego y no desde aqui
+#func _process(delta):
+#	position.y += velocidad_caida * delta
+#	# Ahora la destruimos más abajo de 1080
+#	if position.y > 1200: 
+#		queue_free()
+
 func configurar_textura():
 	# Primero, nos aseguramos de quitar cualquier color tintado que hayamos usado antes
 	$Sprite2D.modulate = Color(1, 1, 1, 1) # Blanco puro (sin tinte)
