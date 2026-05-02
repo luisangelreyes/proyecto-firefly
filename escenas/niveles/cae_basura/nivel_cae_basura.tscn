@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c601praiasd6j"]
+
+[ext_resource type="Script" uid="uid://wp574wsyfugx" path="res://scripts/niveles/cae_basura/nivel_cae_basura.gd" id="1_58jl0"]
+[ext_resource type="PackedScene" uid="uid://be7pb25waefas" path="res://escenas/jugador/barbara.tscn" id="2_ptalj"]
+[ext_resource type="AudioStream" uid="uid://di2lftqfx86fe" path="res://activos/audio/sfx/GameOver.ogg" id="3_qwh1b"]
+
+[node name="Nivel_CaeBasura" type="Node2D" unique_id=766283313]
+process_mode = 3
+script = ExtResource("1_58jl0")
+
+[node name="Pausa_botton" type="Control" parent="." unique_id=175987731]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pausa" type="Button" parent="Pausa_botton" unique_id=134434700]
+layout_mode = 0
+offset_left = 1004.0
+offset_top = 8.0
+offset_right = 1128.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 30
+text = "Pausa"
+
+[node name="Barbara" parent="." unique_id=1800587545 instance=ExtResource("2_ptalj")]
+process_mode = 1
+position = Vector2(990, 655)
+
+[node name="Timer" type="Timer" parent="." unique_id=449807207]
+process_mode = 1
+wait_time = 0.5
+autostart = true
+
+[node name="TextoPuntos" type="Label" parent="." unique_id=1482604488]
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 136.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 27
+text = "Puntos: 0"
+
+[node name="TextoVidas" type="Label" parent="." unique_id=11144515]
+offset_left = 186.0
+offset_top = 5.0
+offset_right = 297.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 30
+text = "Vidas: 3"
+
+[node name="TextoGameOver" type="Label" parent="." unique_id=1589723103]
+visible = false
+offset_left = 286.0
+offset_top = 217.0
+offset_right = 873.0
+offset_bottom = 361.0
+theme_override_font_sizes/font_size = 20
+text = "¡JUEGO TERMINADO!
+
+(Presiona 'Enter' o 'Start' para intentar de nuevo)"
+horizontal_alignment = 1
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=248121803]
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=602996145]
+stream = ExtResource("3_qwh1b")
+
+[connection signal="pressed" from="Pausa_botton/Pausa" to="." method="_on_pausa_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

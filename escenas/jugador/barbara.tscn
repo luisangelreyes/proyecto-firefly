@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://be7pb25waefas"]
+
+[ext_resource type="Script" uid="uid://8qwyofhlq3qp" path="res://scripts/jugador/barbara.gd" id="1_e87rb"]
+[ext_resource type="Texture2D" uid="uid://bkrig28cjogrs" path="res://entidades/sprites/jugador/tacho.png" id="2_vss5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28ixh"]
+size = Vector2(158, 159)
+
+[node name="Barbara" type="Area2D" unique_id=1800587545]
+position = Vector2(0, 650)
+script = ExtResource("1_e87rb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1935906153]
+position = Vector2(87, -90.00002)
+scale = Vector2(2.6499999, 2.6666672)
+texture = ExtResource("2_vss5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455544391]
+position = Vector2(77, -91)
+shape = SubResource("RectangleShape2D_28ixh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dim51aef1gw4i"]
+
+[ext_resource type="Script" uid="uid://4dx8l70fj4g2" path="res://scripts/menus/menu_pausa.gd" id="1_s7iyn"]
+
+[node name="MenuPausa" type="CanvasLayer" unique_id=975139457]
+script = ExtResource("1_s7iyn")
+
+[node name="Control" type="Control" parent="." unique_id=447126961]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2116172173]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2513081
+anchor_top = 0.04372428
+anchor_right = 0.79905117
+anchor_bottom = 1.0591563
+offset_left = -41.506943
+offset_top = -25.333334
+offset_right = -41.506943
+offset_bottom = -25.333332
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.68235296)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect" unique_id=1777900914]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -239.99997
+offset_right = 171.0
+offset_bottom = 258.00003
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Reanudar" type="Button" parent="Control/ColorRect/VBoxContainer" unique_id=700455505]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "REANUDAR"
+
+[node name="Volumen" type="Button" parent="Control/ColorRect/VBoxContainer" unique_id=1410087554]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "VOLUMEN"
+
+[node name="volumen" type="HSlider" parent="Control/ColorRect/VBoxContainer/Volumen" unique_id=1074655031]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.008
+anchor_top = 1.0
+anchor_right = -0.008
+anchor_bottom = 1.0
+offset_left = -0.032030344
+offset_top = 6.0
+offset_right = 345.236
+offset_bottom = 22.0
+grow_vertical = 2
+max_value = 1.5
+step = 0.001
+
+[node name="Configuracion" type="Button" parent="Control/ColorRect/VBoxContainer" unique_id=1499691946]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "CONFIGURACION
+"
+
+[node name="Salir" type="Button" parent="Control/ColorRect/VBoxContainer" unique_id=2146986569]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "SALIR"
+
+[node name="MenuPrincipal" type="Button" parent="Control/ColorRect/VBoxContainer" unique_id=1426347907]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 40
+text = "MENU PRINCIPAL"
+
+[connection signal="pressed" from="Control/ColorRect/VBoxContainer/Reanudar" to="." method="_on_reanudar_pressed"]
+[connection signal="value_changed" from="Control/ColorRect/VBoxContainer/Volumen/volumen" to="." method="_on_volumen_value_changed"]
+[connection signal="pressed" from="Control/ColorRect/VBoxContainer/Configuracion" to="." method="_on_configuracion_pressed"]
+[connection signal="pressed" from="Control/ColorRect/VBoxContainer/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Control/ColorRect/VBoxContainer/MenuPrincipal" to="." method="_on_menu_principal_pressed"]

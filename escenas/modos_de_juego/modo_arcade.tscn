@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dmjpibirx3eyp"]
+
+[ext_resource type="Script" uid="uid://smptombholwt" path="res://scripts/modos_de_juego/modo_arcade.gd" id="1_uxvwy"]
+
+[node name="Arcade" type="Control" unique_id=642867512]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uxvwy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=180197105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect" unique_id=1003688323]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.062000003
+offset_left = 190.0
+offset_top = 244.0
+offset_right = 966.416
+offset_bottom = 372.824
+
+[node name="Cae_Basura" type="Button" parent="ColorRect/HBoxContainer" unique_id=1560107260]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Cae 
+Basura"
+
+[node name="Button2" type="Button" parent="ColorRect/HBoxContainer" unique_id=2102391402]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 40
+text = "Pacman"
+
+[node name="Button3" type="Button" parent="ColorRect/HBoxContainer" unique_id=204035582]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 40
+text = "Separar
+ Basura"
+
+[connection signal="pressed" from="ColorRect/HBoxContainer/Cae_Basura" to="." method="_on_cae_basura_pressed"]

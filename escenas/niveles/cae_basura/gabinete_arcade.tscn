@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c0afqsllhtymw"]
+
+[ext_resource type="Script" uid="uid://jwqrla0gney0" path="res://scripts/niveles/cae_basura/gabinete_arcade.gd" id="1_ph47u"]
+[ext_resource type="PackedScene" uid="uid://dim51aef1gw4i" path="res://escenas/menus/menu_pausa.tscn" id="2_0ceob"]
+
+[sub_resource type="PackedScene" id="PackedScene_hun3p"]
+
+[node name="GabineteArcade" type="Control" unique_id=1251733925]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = -11.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ph47u")
+escena_nivel = SubResource("PackedScene_hun3p")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=595768718]
+process_mode = 1
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_left = -386.0
+offset_top = -2.0
+offset_right = 1534.0
+offset_bottom = 1078.0
+mouse_filter = 2
+color = Color(0.12659627, 0.6005609, 0.7400745, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=726591214]
+process_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -5.0
+offset_right = 212.0
+offset_bottom = 435.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1749723676]
+handle_input_locally = false
+size = Vector2i(1533, 1058)
+render_target_update_mode = 4
+
+[node name="MenuPausa" parent="." unique_id=975139457 instance=ExtResource("2_0ceob")]
+process_mode = 3
+layer = 100

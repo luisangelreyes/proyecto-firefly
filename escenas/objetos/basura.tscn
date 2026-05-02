@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://m4t4mkwgylux"]
+
+[ext_resource type="Script" uid="uid://flgehkt6wri6" path="res://scripts/objetos/basura.gd" id="1_uw0o7"]
+[ext_resource type="Texture2D" uid="uid://d1ojb5evf288d" path="res://activos/ui/icon.svg" id="2_847we"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jasq"]
+size = Vector2(127, 129)
+
+[node name="basura" type="Area2D" unique_id=2023222528 groups=["basura_caida"]]
+script = ExtResource("1_uw0o7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=513962450]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_847we")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404098192]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_6jasq")

@@ -1,0 +1,15 @@
+# Archivos temporales e importaciones de Godot 4
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Archivos de exportación (tus juegos ya compilados)
+export_presets.cfg
+*.apk
+*.exe
+*.pck
+*.zip
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db

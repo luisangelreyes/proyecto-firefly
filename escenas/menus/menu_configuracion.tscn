@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://0mx14r7tgfi8"]
+
+[sub_resource type="FontVariation" id="FontVariation_sx3ww"]
+
+[node name="Configuracion" type="Control" unique_id=657714084]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1516728499]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=38063152]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 40.0
+offset_right = 251.0
+offset_bottom = 123.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.043137256, 0.12156863, 0.09803922, 1)
+theme_override_fonts/font = SubResource("FontVariation_sx3ww")
+theme_override_font_sizes/font_size = 60
+text = "CONFIGURACION"
