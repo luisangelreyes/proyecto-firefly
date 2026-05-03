@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b8lc1c5kd3rcl"]
+
+[ext_resource type="Script" uid="uid://cn7g61fu82r7n" path="res://scripts/ItemMorral.gd" id="1_wqup3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0l7f"]
+size = Vector2(80, 80)
+
+[node name="ItemMorral" type="Area2D" unique_id=1378553819]
+script = ExtResource("1_wqup3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=108715709]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2065985310]
+shape = SubResource("RectangleShape2D_d0l7f")
+
+[node name="LabelNombre" type="Label" parent="." unique_id=290528607]
+offset_left = -50.0
+offset_top = 45.0
+offset_right = 50.0
+offset_bottom = 75.0
+horizontal_alignment = 1
