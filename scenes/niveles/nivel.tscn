@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c601praiasd6j"]
+[gd_scene format=3 uid="uid://c6evb4pgxhoow"]
 
 [ext_resource type="Script" uid="uid://wp574wsyfugx" path="res://scripts/nivel.gd" id="1_h06de"]
 [ext_resource type="PackedScene" uid="uid://be7pb25waefas" path="res://entities/jugador/barbara.tscn" id="2_7gdj4"]

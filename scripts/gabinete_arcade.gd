@@ -4,7 +4,6 @@ extends Control
 @export var escena_nivel: PackedScene
 
 func _ready():
-	# 1. Buscamos la "pantalla" del televisor
 	var pantalla = $SubViewportContainer/SubViewport
 	
 	# 2. Limpiamos cualquier cosa vieja que pudiera haber adentro
