@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://heefgaptok3k"]
 
 [ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scripts/Nivel2.gd" id="1_qrsul"]
+[ext_resource type="Texture2D" uid="uid://dxd6inhmvlia4" path="res://scripts/tacho vista izquierda 3-4.webp" id="2_fqim2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nen"]
 size = Vector2(260, 320)
@@ -109,12 +110,10 @@ shape = SubResource("RectangleShape2D_s6nen")
 position = Vector2(1400, 650)
 metadata/tipo = "org"
 
-[node name="FondoCARTON" type="ColorRect" parent="BoteCARTON" unique_id=292648338]
-offset_left = -130.0
-offset_top = -160.0
-offset_right = 130.0
-offset_bottom = 160.0
-color = Color(0.5647059, 0.93333334, 0.5647059, 1)
+[node name="FondoCARTON" type="Sprite2D" parent="BoteCARTON" unique_id=1875041136]
+position = Vector2(2, 25)
+scale = Vector2(0.3333333, 0.41601563)
+texture = ExtResource("2_fqim2")
 
 [node name="LabelCARTON" type="Label" parent="BoteCARTON" unique_id=10529352]
 offset_left = -115.0
