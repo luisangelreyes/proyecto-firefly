@@ -10,12 +10,32 @@ func mostrar_resultados(
 	racha: int,
 	fallos: int,
 	desglose: Dictionary,
-	total: int
+	total: int,
+	faltaron: int 
 ):
 	visible = true
 
-	$Fondo/LabelTitulo.text = "¡Jornada terminada!"
 
+
+	if faltaron == 0:
+		$Fondo/LabelTitulo.text = "¡Jornada terminada!"
+		$Fondo/LabelTitulo.add_theme_color_override("font_color", Color("#86efac"))
+	else:
+		$Fondo/LabelTitulo.text = "¡Se acabó el tiempo!"
+		$Fondo/LabelTitulo.add_theme_color_override("font_color", Color("#f87171"))
+
+	$Fondo/LabelClasificados.text = "✓ Clasificados: %d / %d" % [clasificados, total]
+
+	# Faltaron — solo si se acabó el tiempo
+	if faltaron > 0:
+		$Fondo/LabelFaltaron.text = "✗ Sin clasificar: %d objeto%s" % [
+			faltaron,
+			"s" if faltaron > 1 else ""
+		]
+		$Fondo/LabelFaltaron.visible = true
+	else:
+		$Fondo/LabelFaltaron.visible = false
+		
 	$Fondo/LabelClasificados.text = "✓ Clasificados correctamente: %d / %d" % [clasificados, total]
 
 	# Primera vez

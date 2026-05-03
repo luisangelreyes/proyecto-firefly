@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scripts/Nivel2.gd" id="1_qrsul"]
 [ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="2_fqim2"]
+[ext_resource type="Texture2D" uid="uid://dkt4p2pgn471s" path="res://entities/UI/cursor.png" id="3_62nbq"]
 [ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scripts/pantalla_resultados_n2.gd" id="3_vrnrg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nen"]
@@ -58,8 +59,6 @@ offset_top = -150.0
 offset_right = 68.0
 offset_bottom = -85.0
 theme_override_font_sizes/font_size = 22
-text = "♻️ PLASTICO♻️
-"
 metadata/_edit_use_anchors_ = true
 
 [node name="ContadorPET" type="Label" parent="BotePAPEL" unique_id=1915570623]
@@ -69,8 +68,6 @@ offset_right = -30.0
 offset_bottom = -204.0
 theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
 theme_override_font_sizes/font_size = 26
-text = "0
-"
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BotePAPEL" unique_id=1009350023]
@@ -93,8 +90,6 @@ offset_top = -150.0
 offset_right = 102.0
 offset_bottom = -85.0
 theme_override_font_sizes/font_size = 22
-text = "♻️ METAL♻️
-"
 
 [node name="ContadorALU" type="Label" parent="BoteVIDRIO" unique_id=1142876456]
 offset_left = -41.0
@@ -103,8 +98,6 @@ offset_right = -1.0
 offset_bottom = -210.0
 theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
 theme_override_font_sizes/font_size = 26
-text = "0
-"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoteVIDRIO" unique_id=1527460319]
 position = Vector2(-40, -6.5)
@@ -127,8 +120,6 @@ offset_top = -150.0
 offset_right = 68.0
 offset_bottom = -85.0
 theme_override_font_sizes/font_size = 22
-text = "♻️ ORGÁNICO♻️
-"
 
 [node name="ContadorCarton" type="Label" parent="BotePLASTICO" unique_id=672386663]
 offset_top = -296.0
@@ -136,8 +127,6 @@ offset_right = 40.0
 offset_bottom = -221.0
 theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
 theme_override_font_sizes/font_size = 26
-text = "0
-"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BotePLASTICO" unique_id=1837932526]
 position = Vector2(-3, -28)
@@ -207,6 +196,21 @@ offset_bottom = 270.0
 theme_override_colors/font_color = Color(0.5803922, 0.6392157, 0.72156864, 1)
 theme_override_font_sizes/font_size = 30
 text = "ZONA DE CLASIFICACIÓN"
+
+[node name="CursorMando" type="TextureRect" parent="." unique_id=1793456115]
+z_index = 20
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 97.99999
+offset_top = -188.0
+offset_right = 221.8097
+offset_bottom = -55.49994
+grow_vertical = 2
+scale = Vector2(0.8399986, 0.7999996)
+size_flags_horizontal = 4
+texture = ExtResource("3_62nbq")
+expand_mode = 1
 
 [node name="InterfazUI" type="CanvasLayer" parent="." unique_id=198814979]
 
@@ -289,6 +293,11 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Clasificados"
 horizontal_alignment = 1
+
+[node name="LabelFaltaron" type="Label" parent="PantallaResultados/Fondo" unique_id=1541508105]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="LabelPrimera" type="Label" parent="PantallaResultados/Fondo" unique_id=953865366]
 layout_mode = 1
@@ -380,5 +389,17 @@ offset_bottom = 23.0
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="BarraTiempo" type="ProgressBar" parent="." unique_id=815905070]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 944.0
+offset_right = 1898.0
+offset_bottom = 1038.0
+grow_vertical = 2
+max_value = 30.0
+value = 30.0
+show_percentage = false
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/VBoxContainer/Button" to="." method="_on_popup_entendido_pressed"]

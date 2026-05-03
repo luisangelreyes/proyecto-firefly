@@ -11,6 +11,20 @@ var nivel_ref = null
 var pos_origen: Vector2 = Vector2.ZERO
 var arrastrando: bool = false
 var offset_arrastre: Vector2 = Vector2.ZERO
+var siendo_arrastrado_por_cursor: bool = false  # ← arrastre por mando
+
+func mover_a(pos: Vector2):
+	if siendo_arrastrado_por_cursor:
+		global_position = pos
+
+func agarrar():
+	siendo_arrastrado_por_cursor = true
+	z_index = 10
+
+func soltar():
+	siendo_arrastrado_por_cursor = false
+	z_index = 0
+	nivel_ref.intentar_clasificar(self, global_position)
 
 @onready var sprite = $Sprite2D
 #@onready var col_shape = $Area2D/CollisionShape2D

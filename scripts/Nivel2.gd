@@ -1,8 +1,16 @@
 extends Node2D
+# ── CURSOR VIRTUAL PARA MANDO ─────────────────────────────────────────────
+var cursor_pos: Vector2 = Vector2(720, 540)
+var cursor_spd: float = 900.0
+var item_agarrado = null
+var usando_mando: bool = false
+
+@onready var cursor_visual = $CursorMando   # ← nodo TextureRect o ColorRect
 
 const SPRITESHEET = preload("res://entities/basura/sprites/basura_nivel2.png")
 const COLS = 9   # columnas del sheet
 const FILAS = 4  # filas del sheet
+
 
 # Cada entrada: frame (fila*9+columna), tipo, nombre, explicacion
 const OBJETOS = [
@@ -58,9 +66,9 @@ var desglose: Dictionary = {
 }
 var objeto_fallado: bool = false    # flag: este objeto ya tuvo un fallo/timeout
 
-# ── TEMPORIZADOR POR OBJETO ───────────────────────────────────────────────
-var tiempo_limite: float = 5.0
-var tiempo_restante: float = 5.0
+# ── TEMPORIZADOR GENERAL ──────────────────────────────────────────────────
+var tiempo_limite: float = 30.0
+var tiempo_restante: float = 30.0
 var timer_activo: bool = false
 
 @onready var bote_papel   = $BotePAPEL
@@ -80,6 +88,8 @@ func _ready():
 	popup.visible = false
 	_preparar_cola()
 	_actualizar_hud()
+	tiempo_restante = tiempo_limite
+	timer_activo = true
 	_siguiente_objeto()
 
 func _preparar_cola():
@@ -91,27 +101,22 @@ func _preparar_cola():
 func _siguiente_objeto():
 	if not juego_activo:
 		return
-	objeto_fallado = false  
-	# Destruir el objeto anterior si sigue en pantalla
+	objeto_fallado = false
+
 	if is_instance_valid(objeto_actual):
 		objeto_actual.queue_free()
 		objeto_actual = null
-	
+
 	if cola_objetos.is_empty():
 		_victoria()
 		return
-	
-	# Instanciar el siguiente de la cola
+
 	var datos = cola_objetos.pop_front()
 	objeto_actual = ItemScene.instantiate()
 	add_child(objeto_actual)
 	objeto_actual.global_position = GRID_ORIGEN
 	objeto_actual.pos_origen = GRID_ORIGEN
 	objeto_actual.inicializar(datos, self)
-	
-	# Arrancar el temporizador
-	tiempo_restante = tiempo_limite
-	timer_activo = true
 
 func _process(delta):
 	# Feedback label
@@ -120,35 +125,84 @@ func _process(delta):
 		if fb_timer <= 0:
 			lbl_feedback.visible = false
 	
-	# Temporizador por objeto
 	if timer_activo and juego_activo:
 		tiempo_restante -= delta
+		tiempo_restante = max(0, tiempo_restante)
+
+		# Actualizar label numérico
 		lbl_timer.text = "%d" % ceil(tiempo_restante)
-		
+
+		# Actualizar barra de progreso
+		$BarraTiempo.value = tiempo_restante
+
+		# Cambiar color de barra según urgencia
+		if tiempo_restante <= 10:
+			$BarraTiempo.modulate = Color("#f87171")  # rojo
+		elif tiempo_restante <= 20:
+			$BarraTiempo.modulate = Color("#fbbf24")  # amarillo
+		else:
+			$BarraTiempo.modulate = Color("#86efac")  # verde
+
 		if tiempo_restante <= 0:
 			_tiempo_agotado()
 
+	# ── MANDO ─────────────────────────────────────────────────────────────────
+	var joy_x = Input.get_axis("ui_left", "ui_right")
+	var joy_y = Input.get_axis("ui_up", "ui_down")
+
+	if (abs(joy_x) > 0.15) or (abs(joy_y) > 0.15):
+		usando_mando = true
+		cursor_visual.visible = true
+	
+	if usando_mando:
+		cursor_pos.x += joy_x * cursor_spd * delta
+		cursor_pos.y += joy_y * cursor_spd * delta
+		cursor_pos.x = clamp(cursor_pos.x, 0, 1440)
+		cursor_pos.y = clamp(cursor_pos.y, 0, 1080)
+		cursor_visual.global_position = cursor_pos - cursor_visual.size / 2
+
+		if item_agarrado and is_instance_valid(item_agarrado):
+			item_agarrado.mover_a(cursor_pos)
+
+# Ocultar cursor si mueve el mouse
+	if Input.get_last_mouse_velocity().length() > 10:
+		usando_mando = false
+		cursor_visual.visible = false
+		if item_agarrado:
+			item_agarrado.soltar()
+			item_agarrado = null
+
 func _tiempo_agotado():
 	timer_activo = false
-	fallos += 1
-	racha_actual = 0
-	objeto_fallado = true
+	juego_activo = false
 
-	SesionGlobal.vidas -= 1
-	_actualizar_hud()
-	_feedback("¡Se acabó el tiempo! -1 vida", Color("#f87171"))
-	
-	if SesionGlobal.vidas <= 0:
-		await get_tree().create_timer(1.0).timeout
-		if is_inside_tree():
-			_game_over()
+	# Destruir objeto actual si sigue en pantalla
+	if is_instance_valid(objeto_actual):
+		objeto_actual.queue_free()
+		objeto_actual = null
+
+	# Mensaje dramático
+	var faltaron = cola_objetos.size() + 1  # pendientes + el actual
+	# Si ya no había objeto activo, solo los de la cola
+	if not is_instance_valid(objeto_actual):
+		faltaron = cola_objetos.size()
+
+	_feedback("¡TIEMPO!", Color("#f87171"))
+
+	await get_tree().create_timer(1.8).timeout
+	if not is_inside_tree():
 		return
-	
-	# Misma oportunidad — reiniciamos el timer con el mismo objeto
-	await get_tree().create_timer(1.2).timeout
-	if is_inside_tree() and juego_activo:
-		tiempo_restante = tiempo_limite
-		timer_activo = true
+
+	SesionGlobal.completar_nivel(1, 2)
+	$PantallaResultados.mostrar_resultados(
+		clasificados,
+		clasificados_primera,
+		racha_maxima,
+		fallos,
+		desglose,
+		total,
+		faltaron
+	)
 
 func intentar_clasificar(item, pos_soltar: Vector2 = Vector2.ZERO):
 	if not juego_activo:
@@ -180,7 +234,7 @@ func _get_bote_en(pos: Vector2):
 	return null
 
 func _correcto(_item):
-	timer_activo = false
+
 	SesionGlobal.puntaje += 10
 	clasificados += 1
 
@@ -241,7 +295,8 @@ func _victoria():
 		racha_maxima,
 		fallos,
 		desglose,
-		total
+		total,
+		0   # ← faltaron = 0 porque los clasificó todos
 	)
 	
 func _game_over():
@@ -259,9 +314,7 @@ func _on_popup_entendido_pressed():
 		item_pausado.volver_origen()
 		item_pausado.set_process_input(true)
 		item_pausado = null
-	# Reiniciar timer con el mismo objeto
-	tiempo_restante = tiempo_limite
-	timer_activo = true
+
 
 func _input(event: InputEvent):
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -275,3 +328,28 @@ func _input(event: InputEvent):
 		if event is InputEventJoypadButton and event.pressed:
 			if event.button_index == JOY_BUTTON_A:
 				$PantallaResultados._on_boton_siguiente()
+func _unhandled_input(event):
+	if not juego_activo or not usando_mando:
+		return
+
+	if event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_A:
+			if item_agarrado == null:
+				# Intentar agarrar el objeto actual si el cursor está cerca
+				if is_instance_valid(objeto_actual):
+					var dist = cursor_pos.distance_to(objeto_actual.global_position)
+					if dist < 120:
+						item_agarrado = objeto_actual
+						item_agarrado.agarrar()
+			else:
+				# Soltar sobre el bote
+				item_agarrado.soltar()
+				item_agarrado = null
+		
+		if event.button_index == JOY_BUTTON_B:
+			# Cancelar agarre y volver al origen
+			if item_agarrado and is_instance_valid(item_agarrado):
+				item_agarrado.siendo_arrastrado_por_cursor = false
+				item_agarrado.z_index = 0
+				item_agarrado.volver_origen()
+				item_agarrado = null
