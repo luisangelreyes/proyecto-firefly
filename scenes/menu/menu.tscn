@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://cw0k7ilht52a"]
+
+[ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgdb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcvr8"]
+bg_color = Color(0.21906003, 0.36, 0.0468, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_037ec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1o0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8yej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y2rt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0a87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo0fc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k48pe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2fum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaijy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4i35"]
+
+[node name="Menu" type="Control" unique_id=14681704]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=1506846067]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=623834596]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CajaBienvenida" type="VBoxContainer" parent="." unique_id=872113476]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -444.0
+offset_top = -111.0
+offset_right = 444.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="TextoNombre" type="Label" parent="CajaBienvenida" unique_id=276903915]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("2_mcvr8")
+theme_override_font_sizes/font_size = 55
+text = "RECOLECTORES"
+horizontal_alignment = 1
+
+[node name="ContenedorMenu" type="VBoxContainer" parent="." unique_id=98927045]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 129.0
+offset_top = -341.0
+offset_right = 816.0
+offset_bottom = 151.0
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="LabelBienvenida" type="Label" parent="ContenedorMenu" unique_id=1459043045]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="BotonCambiar" type="Button" parent="ContenedorMenu" unique_id=556695261]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 1
+theme_override_fonts/font = ExtResource("2_mcvr8")
+theme_override_font_sizes/font_size = 34
+text = "¿No eres tú? Haz clic aquí para cambiar usuario"
+flat = true
+alignment = 0
+
+[node name="Separador" type="HSeparator" parent="ContenedorMenu" unique_id=1446848692]
+layout_mode = 2
+
+[node name="LabelModoAventura" type="Label" parent="ContenedorMenu" unique_id=2144259332]
+layout_mode = 2
+mouse_filter = 0
+text = "Modo Aventura"
+
+[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
+layout_mode = 2
+mouse_filter = 0
+text = "Modo Arcade"
+
+[node name="LabelLogros" type="Label" parent="ContenedorMenu" unique_id=1700984155]
+layout_mode = 2
+mouse_filter = 0
+text = "Logros"
+
+[node name="LabelOpciones" type="Label" parent="ContenedorMenu" unique_id=20191685]
+layout_mode = 2
+mouse_filter = 0
+text = "Opciones"
+
+[node name="LabelSalir" type="Label" parent="ContenedorMenu" unique_id=1923470005]
+layout_mode = 2
+mouse_filter = 0
+text = "Salir a Escritorio"
+
+[node name="VentanaPerfiles" type="Panel" parent="." unique_id=239884790]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.375
+offset_top = -356.0
+offset_right = 249.375
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_klgdb")
+
+[node name="Titulo" type="Label" parent="VentanaPerfiles" unique_id=1710653568]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_right = 216.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 47
+text = "Selecciona un usuario"
+horizontal_alignment = 1
+
+[node name="ListaPerfiles" type="ItemList" parent="VentanaPerfiles" unique_id=1890280634]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -193.0
+offset_right = 130.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_mode = 0
+
+[node name="CajaBotones" type="GridContainer" parent="VentanaPerfiles" unique_id=84327750]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -194.0
+offset_right = 160.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="BotonNuevo" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=856684522]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Nuevo Perfil"
+
+[node name="BotonBorrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1913930430]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Borrar Perfil"
+
+[node name="BotonSeleccionar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=375787620]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Seleccionar"
+
+[node name="BotonCerrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1215941046]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Cancelar"
+
+[node name="VentanaNuevo" type="Panel" parent="." unique_id=256666432]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -118.25
+offset_right = 331.0
+offset_bottom = 118.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mcvr8")
+
+[node name="Titulo" type="Label" parent="VentanaNuevo" unique_id=1923516526]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.0
+offset_top = 32.0
+offset_right = 181.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_mcvr8")
+theme_override_font_sizes/font_size = 50
+text = "Escribe tu nombre:"
+horizontal_alignment = 1
+
+[node name="EntradaNombre" type="LineEdit" parent="VentanaNuevo" unique_id=792161574]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.25
+offset_top = -15.5
+offset_right = 34.25
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Tu nombre:"
+
+[node name="CajaBotones" type="HBoxContainer" parent="VentanaNuevo" unique_id=1964655178]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.5
+offset_top = -55.0
+offset_right = 66.5
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="BotonAceptar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=199225387]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_037ec")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y1o0p")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_r8yej")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3y2rt")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_t0a87")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_qo0fc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_k48pe")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f2fum")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kaijy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y4i35")
+text = "Aceptar"
+
+[node name="BotonCancelar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=1267034720]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_037ec")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y1o0p")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_r8yej")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3y2rt")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_t0a87")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_qo0fc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_k48pe")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f2fum")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kaijy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y4i35")
+text = "Cancelar"
+alignment = 2
+
+[node name="LabelDescripcion" type="Label" parent="." unique_id=341529883]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -67.0
+offset_right = 318.0
+offset_bottom = -44.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30

@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://c601praiasd6j"]
+
+[ext_resource type="Script" uid="uid://wp574wsyfugx" path="res://scripts/nivel.gd" id="1_h06de"]
+[ext_resource type="PackedScene" uid="uid://be7pb25waefas" path="res://entities/jugador/barbara.tscn" id="2_7gdj4"]
+[ext_resource type="Texture2D" uid="uid://8dm2fu4cun8f" path="res://entities/fondos/Gemini_Generated_Image_3ahtee3ahtee3aht.png" id="2_bnor3"]
+[ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="4_doau0"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="5_bnor3"]
+[ext_resource type="AudioStream" uid="uid://biwkee6sh2fbe" path="res://assets/audio/sfx/Tee-Lopes-Big-Apple_-3-PM-_-TMNT_-Shredder_s-Revenge-Official-Soundtrack.ogg" id="5_o6cdr"]
+[ext_resource type="Script" uid="uid://wavbtv4qfktp" path="res://scripts/pantalla_resultados.gd" id="6_bnor3"]
+
+[node name="Nivel" type="Node2D" unique_id=784809779]
+script = ExtResource("1_h06de")
+lista_canciones = Array[AudioStream]([ExtResource("5_o6cdr")])
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=1396352973]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -5.0
+offset_top = -1225.0
+offset_right = 1901.0
+offset_bottom = 1303.0
+grow_horizontal = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_bnor3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Barbara" parent="." unique_id=1800587545 instance=ExtResource("2_7gdj4")]
+modulate = Color(0.7233511, 0.7233511, 0.7233511, 1)
+position = Vector2(278, 882)
+
+[node name="Timer" type="Timer" parent="." unique_id=449807207]
+wait_time = 0.5
+autostart = true
+
+[node name="TextoPuntos" type="Label" parent="." unique_id=1482604488]
+offset_left = 57.0
+offset_top = 10.0
+offset_right = 241.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("4_doau0")
+theme_override_font_sizes/font_size = 60
+text = "Puntos: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextoVidas" type="Label" parent="." unique_id=11144515]
+offset_left = 343.0
+offset_top = 12.0
+offset_right = 471.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("4_doau0")
+theme_override_font_sizes/font_size = 60
+text = "Vidas: 3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextoGameOver" type="Label" parent="." unique_id=1589723103]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 471.0
+offset_top = 406.0
+offset_right = 1450.0
+offset_bottom = 568.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_doau0")
+theme_override_font_sizes/font_size = 60
+text = "¡JUEGO TERMINADO!
+
+(Presiona 'Enter' o 'Start' para intentar de nuevo)"
+horizontal_alignment = 1
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=248121803]
+stream = ExtResource("5_o6cdr")
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=602996145]
+stream = ExtResource("5_bnor3")
+
+[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=196954291]
+layer = 10
+script = ExtResource("6_bnor3")
+
+[node name="Fondo" type="Panel" parent="PantallaResultados" unique_id=1777660455]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=564744415]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.06481481
+anchor_right = 0.5
+anchor_bottom = 0.10555556
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelAtrapados" type="Label" parent="PantallaResultados/Fondo" unique_id=780269860]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelEscapados" type="Label" parent="PantallaResultados/Fondo" unique_id=249579302]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.813
+anchor_right = 0.517
+anchor_bottom = 0.813
+offset_left = -51.788025
+offset_top = -69.14801
+offset_right = -11.788025
+offset_bottom = -46.14801
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelPuntos" type="Label" parent="PantallaResultados/Fondo" unique_id=1506918904]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = -22.5
+offset_right = -106.0
+offset_bottom = 22.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=530706264]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -120.0
+offset_right = 151.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Confirmar"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

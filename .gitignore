@@ -1,0 +1,20 @@
+# Godot 4+ specific ignores
+.godot/
+!res://.godot/
+
+# Godot 3 specific ignores (por si acaso)
+.import/
+export.cfg
+export_presets.cfg
+
+# Archivos del sistema operativo
+*.translation
+*.pyc
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.exe
+
+
+# Archivos de usuario (El progreso aislado y analytics que definimos)
+user/
