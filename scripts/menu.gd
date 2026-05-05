@@ -107,8 +107,8 @@ func _confirmar_seleccion():
 	match indice_actual:
 		0: _iniciar_modo_aventura()
 		1: _iniciar_arcade()
-		2: pass  # Logros — pendiente
-		3: pass  # Opciones — pendiente
+		2: _abrir_logros() 
+		3: _abrir_opciones() 
 		4: get_tree().quit()
 
 # ── ACCIONES DEL MENÚ ────────────────────────────────────────────────────────
@@ -124,6 +124,18 @@ func _iniciar_arcade():
 		abrir_ventana_perfiles()
 		return
 	get_tree().change_scene_to_file("res://scenes/niveles/Nivel.tscn")
+
+func _abrir_opciones():
+	if SesionGlobal.perfil_actual == "":
+		abrir_ventana_perfiles()
+		return
+	get_tree().change_scene_to_file("res://scenes/opciones/opciones.tscn")
+	
+func _abrir_logros():
+	if SesionGlobal.perfil_actual == "":
+		abrir_ventana_perfiles()
+		return
+	get_tree().change_scene_to_file("res://scenes/logros/logros.tscn")
 
 # ── LÓGICA DE ARRANQUE (RF-05) ────────────────────────────────────────────────
 func inicializar_sistema():

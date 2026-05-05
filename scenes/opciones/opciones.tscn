@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bvrjymt6qm8uk"]
+
+[ext_resource type="Script" uid="uid://bmwa74rk33t3j" path="res://scripts/opciones.gd" id="1_2qbtr"]
+[ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="1_ycng2"]
+
+[node name="Opciones" type="Control" unique_id=384793349]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2qbtr")
+
+[node name="Button" type="Button" parent="." unique_id=392828683]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("1_ycng2")
+theme_override_font_sizes/font_size = 55
+text = "Salir"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

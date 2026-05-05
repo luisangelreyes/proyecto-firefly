@@ -117,15 +117,15 @@ layout_mode = 2
 mouse_filter = 0
 text = "Modo Aventura"
 
-[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
-layout_mode = 2
-mouse_filter = 0
-text = "Modo Arcade"
-
 [node name="LabelLogros" type="Label" parent="ContenedorMenu" unique_id=1700984155]
 layout_mode = 2
 mouse_filter = 0
 text = "Logros"
+
+[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
+layout_mode = 2
+mouse_filter = 0
+text = "Modo Arcade"
 
 [node name="LabelOpciones" type="Label" parent="ContenedorMenu" unique_id=20191685]
 layout_mode = 2
