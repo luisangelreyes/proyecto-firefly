@@ -2,21 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_hd5p7"]
 [ext_resource type="Script" uid="uid://dbjxcadr3tkvo" path="res://scripts/nivel_tutorial_1.gd" id="2_ew45k"]
-[ext_resource type="AudioStream" uid="uid://dul5uab8f4ao2" path="res://assets/audio/music/musica_2.ogg" id="3_5gv3t"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="3_hm1ko"]
 [ext_resource type="Texture2D" uid="uid://cpwjt7enecra6" path="res://entities/fondos/4.png" id="4_5gv3t"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_hd5p7")]
 process_mode = 3
 script = ExtResource("2_ew45k")
-lista_canciones = Array[AudioStream]([ExtResource("3_5gv3t")])
 
 [node name="Fondo" parent="." index="0" unique_id=1396352973]
 texture_filter = 1
-offset_left = -9.0
-offset_top = -1591.0
-offset_right = 1916.0
-offset_bottom = 1293.0
+offset_left = -10.0
+offset_top = -1486.0
+offset_right = 1915.0
+offset_bottom = 1398.0
 expand_mode = 1
 
 [node name="TextureRect4" type="TextureRect" parent="." index="1" unique_id=1203933642]
@@ -45,9 +43,11 @@ process_mode = 3
 [node name="Panel" type="Panel" parent="TutorialUI" index="0" unique_id=1742417212]
 process_mode = 3
 texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.030208332
+anchor_top = -0.0175
+anchor_right = 1.0458333
+anchor_bottom = 1.025
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1

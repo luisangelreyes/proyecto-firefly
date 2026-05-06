@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://o131vxt373ht"]
+
+[ext_resource type="Script" uid="uid://cgemxhykwo88u" path="res://scenes/niveles/NivelTetris.gd" id="1_0x3m6"]
+
+[node name="NivelTetris" type="Node2D" unique_id=1552365202]
+script = ExtResource("1_0x3m6")
+
+[node name="Tablero" type="Node2D" parent="." unique_id=1701779489]
+
+[node name="PildoraActual" type="Node2D" parent="." unique_id=337450690]
+
+[node name="HUD" type="Node2D" parent="." unique_id=556380205]
+
+[node name="LabelPuntos" type="Label" parent="HUD" unique_id=686369925]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelVidas" type="Label" parent="HUD" unique_id=278049314]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LabelNivel" type="Label" parent="HUD" unique_id=1955362547]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ContenedorBotes" type="HBoxContainer" parent="HUD" unique_id=1100720769]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BotesPapel" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=1199856226]
+layout_mode = 2
+
+[node name="BotesVidrio" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=950784732]
+layout_mode = 2
+
+[node name="BotesPlastico" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=466908337]
+layout_mode = 2
+
+[node name="BotesAluminio" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=1343661469]
+layout_mode = 2
+
+[node name="PantallaGameOver" type="CanvasLayer" parent="." unique_id=2023749978]
+
+[node name="Fondo" type="ColorRect" parent="PantallaGameOver" unique_id=820411391]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelTitulo" type="Label" parent="PantallaGameOver/Fondo" unique_id=358630203]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BotonReiniciar" type="Button" parent="PantallaGameOver/Fondo" unique_id=1078504380]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="PantallaVictoria" type="CanvasLayer" parent="." unique_id=1339710180]
+
+[node name="Fondo" type="ColorRect" parent="PantallaVictoria" unique_id=1282232513]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelTitulo" type="Label" parent="PantallaVictoria/Fondo" unique_id=1177948639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BotonSiguiente" type="Button" parent="PantallaVictoria/Fondo" unique_id=72299247]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
