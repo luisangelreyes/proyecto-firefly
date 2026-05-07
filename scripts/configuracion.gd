@@ -8,8 +8,8 @@ enum TamañoFuente { NORMAL, MEDIANO, GRANDE }
 # Tamaños base para cada opción
 const TAMAÑOS = {
 	TamañoFuente.NORMAL:  {"activo": 32, "inactivo": 26},
-	TamañoFuente.MEDIANO: {"activo": 37, "inactivo": 31},  # +5
-	TamañoFuente.GRANDE:  {"activo": 42, "inactivo": 36}   # +5 más
+	TamañoFuente.MEDIANO: {"activo": 42, "inactivo": 36},  # +10
+	TamañoFuente.GRANDE:  {"activo": 47, "inactivo": 41}   # +10 más
 }
 
 var tamaño_actual: int = TamañoFuente.NORMAL
