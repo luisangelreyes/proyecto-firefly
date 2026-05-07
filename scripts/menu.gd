@@ -21,8 +21,10 @@ const DESCRIPCIONES = [
 
 const COLOR_ACTIVO   = Color(1.0, 1.0, 1.0, 1.0)
 const COLOR_INACTIVO = Color(0.40, 0.40, 0.40, 1.0)
-const SIZE_ACTIVO    = 32
-const SIZE_INACTIVO  = 26
+
+# Tamaños dinámicos que se actualizarán desde Configuración
+var size_activo: int = 32
+var size_inactivo: int = 26
 
 var items: Array = []
 var indice_actual: int = 0
@@ -39,6 +41,12 @@ func _ready():
 		$ContenedorMenu/BotonCambiar
 	]
 
+	# Cargar tamaños iniciales desde Configuración
+	_cargar_tamaños_iniciales()
+	
+	# Conectar señal de cambio de tamaño
+	_conectar_signal_configuracion()
+
 	# Conectar ventana perfiles (igual que antes)
 	$VentanaPerfiles/CajaBotones/BotonSeleccionar.pressed.connect(_on_seleccionar_perfil)
 	$VentanaPerfiles/CajaBotones/BotonNuevo.pressed.connect(abrir_ventana_nuevo)
@@ -52,12 +60,46 @@ func _ready():
 	cerrar_ventanas()
 	inicializar_sistema()
 	_actualizar_seleccion()
+	_actualizar_todos_los_tamaños()
+	
 	for i in range(items.size()):
 		var label = items[i]
 		# Necesitamos pasar el índice al closure
 		label.mouse_entered.connect(_on_label_hover.bind(i))
 		label.gui_input.connect(_on_label_click.bind(i))
 
+# ── FUNCIONES DE CONFIGURACIÓN DE TAMAÑOS ──────────────────────────────────
+func _cargar_tamaños_iniciales():
+	if has_node("/root/Configuracion"):
+		size_activo = Configuracion.get_tamaño_activo()
+		size_inactivo = Configuracion.get_tamaño_inactivo()
+
+func _conectar_signal_configuracion():
+	if has_node("/root/Configuracion"):
+		if not Configuracion.tamaño_cambiado.is_connected(_on_tamaño_configuracion_cambiado):
+			Configuracion.tamaño_cambiado.connect(_on_tamaño_configuracion_cambiado)
+
+func _on_tamaño_configuracion_cambiado(nombre: String, activo: int, inactivo: int):
+	size_activo = activo
+	size_inactivo = inactivo
+	_actualizar_seleccion()
+	_actualizar_todos_los_tamaños()
+
+func _actualizar_todos_los_tamaños():
+	# Actualizar label de bienvenida
+	label_bienvenida.add_theme_font_size_override("font_size", int(size_activo * 1.2))
+	
+	# Actualizar label de descripción
+	label_descripcion.add_theme_font_size_override("font_size", int(size_inactivo * 0.7))
+	
+	# Actualizar otros labels que no están en items
+	if has_node("CajaBienvenida/TextoNombre"):
+		$CajaBienvenida/TextoNombre.add_theme_font_size_override("font_size", int(size_activo * 1.5))
+	
+	if has_node("ContenedorMenu/LabelBienvenida"):
+		$ContenedorMenu/LabelBienvenida.add_theme_font_size_override("font_size", int(size_activo * 1.3))
+
+# ── INTERACCIÓN CON MOUSE ──────────────────────────────────────────────────
 func _on_label_hover(indice: int):
 	if menu_bloqueado:
 		return
@@ -70,7 +112,8 @@ func _on_label_click(event: InputEvent, indice: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		indice_actual = indice
 		_confirmar_seleccion()
-		
+
+# ── INPUT DE TECLADO Y MANDO ───────────────────────────────────────────────
 func _unhandled_input(event):
 	if menu_bloqueado:
 		return
@@ -91,18 +134,20 @@ func _unhandled_input(event):
 
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		_confirmar_seleccion()
-		
+
+# ── ACTUALIZACIÓN VISUAL ───────────────────────────────────────────────────
 func _actualizar_seleccion():
 	for i in range(items.size()):
 		if i == indice_actual:
 			items[i].add_theme_color_override("font_color", COLOR_ACTIVO)
-			items[i].add_theme_font_size_override("font_size", SIZE_ACTIVO)
+			items[i].add_theme_font_size_override("font_size", size_activo)
 		else:
 			items[i].add_theme_color_override("font_color", COLOR_INACTIVO)
-			items[i].add_theme_font_size_override("font_size", SIZE_INACTIVO)
+			items[i].add_theme_font_size_override("font_size", size_inactivo)
 
 	label_descripcion.text = DESCRIPCIONES[indice_actual]
 
+# ── CONFIRMACIÓN DE SELECCIÓN ──────────────────────────────────────────────
 func _confirmar_seleccion():
 	match indice_actual:
 		0: _iniciar_modo_aventura()

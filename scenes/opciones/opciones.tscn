@@ -24,4 +24,37 @@ theme_override_fonts/font = ExtResource("1_ycng2")
 theme_override_font_sizes/font_size = 55
 text = "Salir"
 
+[node name="LabelTamañoActual" type="Label" parent="." unique_id=1569145187]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 157.0
+offset_right = 344.0
+offset_bottom = 215.0
+theme_override_font_sizes/font_size = 25
+text = "Tamaño de fuente:"
+
+[node name="BotonNormal" type="Button" parent="." unique_id=1060949477]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 139.0
+offset_right = 562.0
+offset_bottom = 211.0
+text = "Normal"
+
+[node name="BotonMediano" type="Button" parent="." unique_id=363001533]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 141.0
+offset_right = 769.0
+offset_bottom = 211.0
+text = "Mediano"
+
+[node name="BotonGrande" type="Button" parent="." unique_id=459269473]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 143.0
+offset_right = 975.0
+offset_bottom = 212.0
+text = "Grande"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

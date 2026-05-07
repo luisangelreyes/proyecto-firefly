@@ -112,6 +112,11 @@ alignment = 0
 [node name="Separador" type="HSeparator" parent="ContenedorMenu" unique_id=1446848692]
 layout_mode = 2
 
+[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
+layout_mode = 2
+mouse_filter = 0
+text = "Modo Arcade"
+
 [node name="LabelModoAventura" type="Label" parent="ContenedorMenu" unique_id=2144259332]
 layout_mode = 2
 mouse_filter = 0
@@ -121,11 +126,6 @@ text = "Modo Aventura"
 layout_mode = 2
 mouse_filter = 0
 text = "Logros"
-
-[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
-layout_mode = 2
-mouse_filter = 0
-text = "Modo Arcade"
 
 [node name="LabelOpciones" type="Label" parent="ContenedorMenu" unique_id=20191685]
 layout_mode = 2

@@ -18,6 +18,7 @@ config/icon="res://assets/ui/icon.svg"
 [autoload]
 
 SesionGlobal="*uid://dx15cat8lmch7"
+Configuracion="*uid://m0np537jnk2e"
 
 [display]
 
