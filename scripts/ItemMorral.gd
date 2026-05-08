@@ -1,57 +1,72 @@
-extends Area2D
+extends Node2D
 
-var tipo          : String  = ""
-var nombre      : String = ""   # ← nueva
-var explicacion : String = ""   # ← nueva
-var arrastrando   : bool    = false
-var offset_drag   : Vector2 = Vector2.ZERO
-var posicion_orig : Vector2 = Vector2.ZERO
-var nivel_ref     : Node    = null
+const SPRITESHEET = preload("res://entities/basura/sprites/basura_nivel2.png")
+const COLS = 9
 
-@onready var sprite     = $Sprite2D
-@onready var lbl_nombre = $LabelNombre
+var tipo: String = ""
+var nombre: String = ""
+var explicacion: String = ""
+var frame_idx: int = 0
+var nivel_ref = null
+var pos_origen: Vector2 = Vector2.ZERO
+var arrastrando: bool = false
+var offset_arrastre: Vector2 = Vector2.ZERO
+var siendo_arrastrado_por_cursor: bool = false  # ← arrastre por mando
 
+func mover_a(pos: Vector2):
+	if siendo_arrastrado_por_cursor:
+		global_position = pos
 
-func inicializar(datos: Dictionary, p_nivel: Node):
+func agarrar():
+	siendo_arrastrado_por_cursor = true
+	z_index = 10
+
+func soltar():
+	siendo_arrastrado_por_cursor = false
+	z_index = 0
+	nivel_ref.intentar_clasificar(self, global_position)
+
+@onready var sprite = $Sprite2D
+#@onready var col_shape = $Area2D/CollisionShape2D
+
+func inicializar(datos: Dictionary, ref_nivel):
+	nivel_ref   = ref_nivel
 	tipo        = datos["tipo"]
-	nombre      = datos["nombre"]       # ← nueva
-	explicacion = datos["explicacion"]  # ← nueva
-	nivel_ref   = p_nivel
-	explicacion = datos["explicacion"]   # ← nueva línea
-	lbl_nombre.text = datos["nombre"]
-	sprite.texture  = datos["textura"]
-	if sprite.texture:
-		var tam = max(sprite.texture.get_width(), sprite.texture.get_height())
-		sprite.scale = Vector2(80.0 / tam, 80.0 / tam)
+	nombre      = datos["nombre"]
+	explicacion = datos["explicacion"]
+	frame_idx   = datos["frame"]
+	
+	# Configurar el sprite sheet
+	var atlas = AtlasTexture.new()
+	atlas.atlas = SPRITESHEET
+	# Calculamos la región del frame en el sheet
+	# Cada celda mide ancho_total/9 × alto_total/4
+	var cell_w = SPRITESHEET.get_width()  / 9.0
+	var cell_h = SPRITESHEET.get_height() / 4.0
+	var col = frame_idx % COLS
+	var row = frame_idx / COLS
+	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
+	sprite.texture = atlas
+	sprite.scale = Vector2(0.30, 0.30)  # ajusta según el tamaño que quieras
 
+func volver_origen():
+	global_position = pos_origen
+	arrastrando = false
 
-func _input(event: InputEvent):
-	if not visible: return
-
+func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			var rect = Rect2(global_position - Vector2(45, 45), Vector2(90, 90))
-			if rect.has_point(event.global_position):
-				arrastrando   = true
-				posicion_orig = global_position
-				offset_drag   = event.global_position - global_position
-				z_index       = 50
-				modulate.a    = 0.75
+			var local = to_local(get_global_mouse_position())
+			if sprite.get_rect().has_point(local):
+				arrastrando = true
+				offset_arrastre = global_position - get_global_mouse_position()
+				z_index = 10
 		else:
 			if arrastrando:
 				arrastrando = false
-				z_index     = 0
-				modulate.a  = 1.0
-				if nivel_ref:
-					# Pasar el centro del item, no la esquina
-					nivel_ref.intentar_clasificar(self, global_position)
-
+				z_index = 0
+				# ← usamos la posición del sprite, no del mouse
+				nivel_ref.intentar_clasificar(self, global_position)
+	
 	if event is InputEventMouseMotion and arrastrando:
-		global_position = event.global_position - offset_drag
-
-
-func volver_origen():
-	var tw = create_tween()
-	tw.tween_property(self, "global_position", posicion_orig, 0.35) \
-	  .set_ease(Tween.EASE_OUT) \
-	  .set_trans(Tween.TRANS_BACK)
+		global_position = get_global_mouse_position() + offset_arrastre

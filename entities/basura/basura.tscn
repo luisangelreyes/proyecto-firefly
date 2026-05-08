@@ -1,18 +1,33 @@
 [gd_scene format=3 uid="uid://m4t4mkwgylux"]
 
-[ext_resource type="Texture2D" uid="uid://d1ojb5evf288d" path="res://assets/ui/icon.svg" id="1_1bfvv"]
 [ext_resource type="Script" uid="uid://flgehkt6wri6" path="res://entities/basura/basura.gd" id="1_6jasq"]
+[ext_resource type="Shader" uid="uid://dmi8ojmbc7e06" path="res://entities/basura/basura.gdshader" id="2_su0lg"]
+[ext_resource type="Texture2D" uid="uid://c4vjrufwvxncw" path="res://entities/basura/sprites/basura_in_or_pelirgo.png" id="3_su0lg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_su0lg"]
+shader = ExtResource("2_su0lg")
+shader_parameter/color_borde = Color(1, 1, 1, 1)
+shader_parameter/grosor = 5.0
+shader_parameter/activar_borde = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jasq"]
-size = Vector2(127, 129)
+size = Vector2(36.75, 39.0625)
 
 [node name="basura" type="Area2D" unique_id=2023222528 groups=["basura_caida"]]
+position = Vector2(19, 14)
+scale = Vector2(2, 2)
 script = ExtResource("1_6jasq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=513962450]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("1_1bfvv")
+texture_filter = 1
+material = SubResource("ShaderMaterial_su0lg")
+position = Vector2(-9, -9.5)
+scale = Vector2(0.08903564, 0.088197015)
+texture = ExtResource("3_su0lg")
+hframes = 7
+vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404098192]
-position = Vector2(-0.5, -1.5)
+position = Vector2(-9.375, -7.5)
 shape = SubResource("RectangleShape2D_6jasq")
