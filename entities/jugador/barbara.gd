@@ -1,5 +1,6 @@
 extends Area2D
 
+
 # --- SEÑALES ---
 signal resultado_tutorial(acierto: bool)
 signal juego_terminado()
@@ -8,7 +9,9 @@ signal tension_musical(activa: bool)
 signal residuo_clasificado(acierto: bool)
 @onready var audio_acierto = $AudioAcierto
 @onready var audio_error = $AudioError
-@onready var audio_derrota = $AudioDerrota # <--- EL NUEVO NODO
+@onready var audio_derrota = $AudioDerrota
+@onready var audio_victoria = $AudioVictoria
+
 # --- NODOS ---
 # Ahora usamos exclusivamente tu nuevo AnimatedSprite2D
 @onready var anim_sprite = $AnimatedSprite2D
@@ -159,6 +162,7 @@ func recibir_dano():
 # --- NUEVA FUNCIÓN: VICTORIA ---
 func celebrar_victoria():
 	nivel_terminado = true
+	audio_victoria.play()
 	
 	
 	# Reproduce la animación de baile. 
@@ -169,8 +173,7 @@ func ejecutar_derrota():
 	# 1. Bloqueamos los controles
 	nivel_terminado = true
 	esta_aturdida = true 
-	
-	# 2. Reproducimos EL SONIDO y la caída al mismo tiempo
+	$"../MusicaFondo".stop()
 	audio_derrota.play() # <--- SONIDO REPRODUCIÉNDOSE
 	anim_sprite.play("derrota")
 	

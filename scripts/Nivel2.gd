@@ -5,7 +5,7 @@ var cursor_spd: float = 900.0
 var item_agarrado = null
 var usando_mando: bool = false
 
-@onready var cursor_visual = $CursorMando   # ← nodo TextureRect o ColorRect
+@onready var cursor_visual = $CursorMando  
 
 const SPRITESHEET = preload("res://entities/basura/sprites/basura_nivel2.png")
 const COLS = 9   # columnas del sheet

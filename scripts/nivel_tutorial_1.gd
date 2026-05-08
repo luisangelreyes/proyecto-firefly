@@ -50,7 +50,7 @@ func lanzar_basura_tutorial():
 		
 	elif paso_tutorial == 2:
 		basura_actual.categoria = "Peligroso"
-		basura_actual.get_node("Sprite2D").frame = 39
+		basura_actual.get_node("Sprite2D").frame = 42
 		material.set_shader_parameter("color_borde", Color(1, 0, 0, 1))
 		%TextoTutorial.text = "¡PELIGRO!\n¡Esquiva esto a toda costa!"
 		# Barbara se mueve, la basura cae de verdad

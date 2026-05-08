@@ -14,7 +14,7 @@ var prob_peligroso: float = 0
 
 const INDICES_INORGANICO   = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 const INDICES_ORGANICO = [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
-const INDICES_PELIGROSO  = [39]
+const INDICES_PELIGROSO  = [40,41,42,43,45,46,47,48,49]
 
 const CATALOGO_NIVEL_1 = {
 	0: "Inorganico",    
@@ -56,7 +56,18 @@ const CATALOGO_NIVEL_1 = {
 	36: "Organico",
 	37: "Organico",
 	38: "Organico",
-	39: "Organico"
+	39: "Organico",
+	40: "Peligroso",   
+	41: "Peligroso",
+	42: "Peligroso",
+	43: "Peligroso",
+	44: "Peligroso",
+	45: "Peligroso",
+	46: "Peligroso",
+	47: "Peligroso",
+	48: "Peligroso",
+	49: "Peligroso",
+	
 }
 
 func _ready():
