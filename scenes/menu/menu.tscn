@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cw0k7ilht52a"]
 
 [ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_e0arn"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgdb"]
@@ -46,10 +47,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_e0arn")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=623834596]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,6 +75,7 @@ theme_override_constants/separation = 40
 alignment = 1
 
 [node name="TextoNombre" type="Label" parent="CajaBienvenida" unique_id=276903915]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -115,27 +119,27 @@ layout_mode = 2
 [node name="LabelModoAventura" type="Label" parent="ContenedorMenu" unique_id=2144259332]
 layout_mode = 2
 mouse_filter = 0
-text = "Modo Aventura"
+text = "MODO AVENTURA"
 
 [node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
 layout_mode = 2
 mouse_filter = 0
-text = "Modo Arcade"
+text = "MODO ARCADE"
 
 [node name="LabelLogros" type="Label" parent="ContenedorMenu" unique_id=1700984155]
 layout_mode = 2
 mouse_filter = 0
-text = "Logros"
+text = "LOGROS"
 
 [node name="LabelOpciones" type="Label" parent="ContenedorMenu" unique_id=20191685]
 layout_mode = 2
 mouse_filter = 0
-text = "Opciones"
+text = "OPCIONES"
 
 [node name="LabelSalir" type="Label" parent="ContenedorMenu" unique_id=1923470005]
 layout_mode = 2
 mouse_filter = 0
-text = "Salir a Escritorio"
+text = "SALIR A ESCRITORIO"
 
 [node name="VentanaPerfiles" type="Panel" parent="." unique_id=239884790]
 visible = false

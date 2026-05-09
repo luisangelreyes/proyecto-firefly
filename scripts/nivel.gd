@@ -11,7 +11,7 @@ var escena_basura = preload("res://entities/basura/basura.tscn")
 
 # Cada número es la cantidad de residuos de esa oleada
 # Sobreescribe esta variable en niveles hijos para cambiar la dificultad
-var oleadas: Array = [2, 6,8,8]
+var oleadas: Array = [2,8,8]
 var oleada_actual: int = 0
 var residuos_en_oleada: int = 0      # cuántos spawneó esta oleada
 var residuos_pendientes: int = 0     # cuántos siguen vivos en pantalla
@@ -26,6 +26,8 @@ var nivel_activo: bool = false
 var tiempo_entre_residuos: float = 1.0
 
 func _ready():
+	SesionGlobal.vidas = 3    # ← agregar esta línea
+	SesionGlobal.puntaje = 0  # ← opcional: también resetear puntos por nivel
 	$MusicaFondo.pitch_scale = 1.0
 	if lista_canciones.size() > 0:
 		var indice = randi() % lista_canciones.size()
@@ -37,6 +39,7 @@ func _ready():
 	$Barbara.tension_musical.connect(_on_tension_musical)
 	nivel_completado.connect($PantallaResultados.mostrar_resultados)
 	$Barbara.residuo_clasificado.connect(_on_residuo_clasificado)  
+	
 
 	
 	
@@ -47,6 +50,26 @@ func _ready():
 		total_residuos += cantidad
 	
 	_iniciar_oleada()
+	$Barbara.combo_actualizado.connect(_on_combo_actualizado)
+
+func _on_combo_actualizado(racha: int, multiplicador: int):
+	# HitCounter
+	if racha > 0:
+		$HitCounter.registrar_acierto(racha)
+	else:
+		$HitCounter.registrar_fallo()
+
+	# Label de multiplicador — solo si hay x2 o más
+	if multiplicador > 1:
+		$TextoCombo.text = "x%d" % multiplicador
+		$TextoCombo.visible = true
+		match multiplicador:
+			2: $TextoCombo.add_theme_color_override("font_color", Color("#fbbf24"))
+			3: $TextoCombo.add_theme_color_override("font_color", Color("#f97316"))
+			4: $TextoCombo.add_theme_color_override("font_color", Color("#ef4444"))
+	else:
+		$TextoCombo.visible = false
+		
 func _on_residuo_clasificado(acierto: bool):
 	if acierto:
 		residuos_atrapados += 1
@@ -161,7 +184,9 @@ func _on_juego_terminado():
 	
 	$MusicaFondo.stop()
 	$SonidoGameOver.play()
-	$TextoGameOver.visible = true
+	$GameOver.visible = true
+	$GameOver/TextoGameOver.visible = true
+	
 	$Timer.stop()
 	SesionGlobal.guardar_sesion()
 	$Barbara.queue_free()
@@ -169,7 +194,7 @@ func _on_juego_terminado():
 	
 
 func _process(_delta):
-	if $TextoGameOver.visible:
+	if $GameOver/TextoGameOver.visible:
 		if Input.is_action_just_pressed("reiniciar"):
 			SesionGlobal.vidas = 3
 			SesionGlobal.puntaje = 0

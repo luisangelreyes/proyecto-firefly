@@ -6,19 +6,28 @@ var tutorial_activo = true
 var _intento_peligroso = 0  # cancela timers viejos del paso peligroso
 
 func _ready():
+	SesionGlobal.vidas = 3
+	SesionGlobal.puntaje = 0
 	super()
 	$Timer.stop()
 	%TutorialUI.visible = false
 	
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	# El tutorial SÍ se pausa — se congela limpiamente
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	# Solo la UI del tutorial responde durante la pausa
+	# para que el jugador pueda leer el texto pero no interactuar
 	%TutorialUI.process_mode = Node.PROCESS_MODE_ALWAYS
 	%BotonEntendido.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Barbara también se pausa
+	$Barbara.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	$Barbara.resultado_tutorial.connect(_evaluar_resultado_jugador)
 	
 	await get_tree().create_timer(1.0).timeout
 	lanzar_basura_tutorial()
-
+	
 func lanzar_basura_tutorial():
 	# Solo reseteamos vidas en el tutorial, no entre reintentos del mismo paso
 	if paso_tutorial == 0:

@@ -2,7 +2,7 @@ extends Area2D
 signal tutorial_completado(acierto: bool)
 signal residuo_escapado()
 
-var velocidad_caida = 290
+var velocidad_caida = 490
 var categoria = ""
 var velocidad_rotacion = 0.0
 var mostrar_ayuda_visual = true

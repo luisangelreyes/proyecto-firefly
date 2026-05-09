@@ -1,0 +1,18 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d31ro6vbeubld"
+valid=false
+
+[deps]
+
+source_file="res://assets/audio/Finish Line 2nd to 4th Place - Mario Kart 64 OST.mp3"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

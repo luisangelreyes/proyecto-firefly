@@ -3,10 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_hd5p7"]
 [ext_resource type="Script" uid="uid://dbjxcadr3tkvo" path="res://scripts/nivel_tutorial_1.gd" id="2_ew45k"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="3_hm1ko"]
-[ext_resource type="Texture2D" uid="uid://cpwjt7enecra6" path="res://entities/fondos/4.png" id="4_5gv3t"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_hd5p7")]
-process_mode = 3
 script = ExtResource("2_ew45k")
 
 [node name="Fondo" parent="." index="0" unique_id=1396352973]
@@ -17,26 +15,16 @@ offset_right = 1915.0
 offset_bottom = 1398.0
 expand_mode = 1
 
-[node name="TextureRect4" type="TextureRect" parent="." index="1" unique_id=1203933642]
-visible = false
-modulate = Color(1, 1, 1, 0.5254902)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 450.0
-offset_top = 186.0
-offset_right = 1422.0
-offset_bottom = 828.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_5gv3t")
-expand_mode = 1
-
-[node name="Barbara" parent="." index="2" unique_id=1800587545]
+[node name="Barbara" parent="." index="1" unique_id=1800587545]
 process_mode = 1
 position = Vector2(287, 920)
 
-[node name="TutorialUI" type="CanvasLayer" parent="." index="9" unique_id=443607960]
+[node name="TextoGameOver" parent="GameOver" parent_id_path=PackedInt32Array(1619123488) index="0" unique_id=1589723103]
+text = "¡JUEGO TERMINADO!
+
+(Presiona 'Enter' o '    ' para intentar de nuevo)"
+
+[node name="TutorialUI" type="CanvasLayer" parent="." index="8" unique_id=443607960]
 unique_name_in_owner = true
 process_mode = 3
 
@@ -114,5 +102,8 @@ anchor_left = 0.48014018
 anchor_top = 1.0475352
 anchor_right = 0.48014018
 anchor_bottom = 1.0475352
+
+[node name="PantallaPausa" parent="." index="10" unique_id=1921388617]
+visible = false
 
 [connection signal="pressed" from="TutorialUI/Panel/BotonEntendido" to="." method="_on_boton_entendido_pressed"]

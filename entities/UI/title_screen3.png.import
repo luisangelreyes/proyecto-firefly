@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4fxus7vlkh24"
-path="res://.godot/imported/Arcade - Teenage Mutant Ninja Turtles - Backgrounds - Stage 3.png-1760ff013aeaab045d044313eccfb21d.ctex"
+uid="uid://blb1qbdstf68c"
+path="res://.godot/imported/title_screen3.png-467ae6bef318c1bd3bb5bbdc05b2c126.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/fondos/Arcade - Teenage Mutant Ninja Turtles - Backgrounds - Stage 3.png"
-dest_files=["res://.godot/imported/Arcade - Teenage Mutant Ninja Turtles - Backgrounds - Stage 3.png-1760ff013aeaab045d044313eccfb21d.ctex"]
+source_file="res://entities/UI/title_screen3.png"
+dest_files=["res://.godot/imported/title_screen3.png-467ae6bef318c1bd3bb5bbdc05b2c126.ctex"]
 
 [params]
 

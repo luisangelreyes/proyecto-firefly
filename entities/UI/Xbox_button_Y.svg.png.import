@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dffaa3pjmkih"
-path="res://.godot/imported/parque.png-e6129adf714b8007c47503f5bf05c5d0.ctex"
+uid="uid://d11r0yprfqgp5"
+path="res://.godot/imported/Xbox_button_Y.svg.png-ec37ef4be4f3a3a63b0698132321abfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/fondos/parque.png"
-dest_files=["res://.godot/imported/parque.png-e6129adf714b8007c47503f5bf05c5d0.ctex"]
+source_file="res://entities/UI/Xbox_button_Y.svg.png"
+dest_files=["res://.godot/imported/Xbox_button_Y.svg.png-ec37ef4be4f3a3a63b0698132321abfa.ctex"]
 
 [params]
 

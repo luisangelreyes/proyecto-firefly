@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cha4yjqbyvdl6"
-path="res://.godot/imported/parallax-forest-back-treels.png-05185632665acc5656f9813304f77878.ctex"
+uid="uid://cayarvanfh103"
+path="res://.godot/imported/logo_vertical_monochrome_dark.png-17ef912f4c468928ed429331934952eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/fondos/parallax-forest-back-treels.png"
-dest_files=["res://.godot/imported/parallax-forest-back-treels.png-05185632665acc5656f9813304f77878.ctex"]
+source_file="res://entities/UI/logo_vertical_monochrome_dark.png"
+dest_files=["res://.godot/imported/logo_vertical_monochrome_dark.png-17ef912f4c468928ed429331934952eb.ctex"]
 
 [params]
 

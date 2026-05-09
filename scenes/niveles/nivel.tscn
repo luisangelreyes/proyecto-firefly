@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://c6evb4pgxhoow"]
+[gd_scene format=3 uid="uid://dbr2x46a00nsv"]
 
 [ext_resource type="Script" uid="uid://wp574wsyfugx" path="res://scripts/nivel.gd" id="1_h06de"]
 [ext_resource type="PackedScene" uid="uid://be7pb25waefas" path="res://entities/jugador/barbara.tscn" id="2_7gdj4"]
-[ext_resource type="AudioStream" uid="uid://di2lftqfx86fe" path="res://assets/audio/sfx/GameOver.ogg" id="3_7gdj4"]
+[ext_resource type="AudioStream" uid="uid://bxpyv770u52h8" path="res://assets/audio/music/Big-Apple_-3-PM.ogg" id="3_mqld1"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="4_mqld1"]
 
 [node name="Nivel" type="Node2D" unique_id=784809779]
 script = ExtResource("1_h06de")
@@ -43,8 +44,9 @@ text = "¡JUEGO TERMINADO!
 horizontal_alignment = 1
 
 [node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=248121803]
+stream = ExtResource("3_mqld1")
 
 [node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=602996145]
-stream = ExtResource("3_7gdj4")
+stream = ExtResource("4_mqld1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
