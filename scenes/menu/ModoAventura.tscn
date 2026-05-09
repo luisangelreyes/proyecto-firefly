@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://d24aq6kneg27o"]
+
+[ext_resource type="Script" uid="uid://dvgne3yocujmf" path="res://scenes/menu/ModoAventura.gd" id="1_4iea3"]
+
+[node name="ModoAventura" type="Control" unique_id=1620023844]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4iea3")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=2068332965]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.38700426, 0.6605058, 0.38604653, 1)
+
+[node name="LabelMundo" type="Label" parent="." unique_id=1636017224]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_right = 115.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 49
+text = "MUNDO 1 — Las Vías del Tren"
+
+[node name="Camino" type="Line2D" parent="." unique_id=1996330790]
+points = PackedVector2Array(180, 540, 540, 380, 900, 540, 1260, 380)
+width = 6.0
+default_color = Color(0.003921569, 0.003921569, 0.003921569, 1)
+
+[node name="Nodo1" type="Control" parent="." unique_id=1614098217]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 540.0
+offset_right = 261.0
+offset_bottom = 621.0
+
+[node name="BtnNodo" type="Button" parent="Nodo1" unique_id=160856677]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo1" unique_id=1396752240]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo1" unique_id=1732806126]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -11.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tutorial"
+
+[node name="Nodo2" type="Control" parent="." unique_id=1837385859]
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 380.0
+offset_right = 620.0
+offset_bottom = 460.0
+
+[node name="BtnNodo" type="Button" parent="Nodo2" unique_id=997400723]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo2" unique_id=1220118938]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo2" unique_id=823952483]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nivel 1-2"
+horizontal_alignment = 1
+
+[node name="Nodo3" type="Control" parent="." unique_id=1876067938]
+anchors_preset = 0
+offset_left = 900.0
+offset_top = 540.0
+offset_right = 981.0
+offset_bottom = 620.0
+
+[node name="BtnNodo" type="Button" parent="Nodo3" unique_id=829238196]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo3" unique_id=1154300193]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo3" unique_id=1887219144]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nivel 1-3"
+
+[node name="Nodo4" type="Control" parent="." unique_id=1097666117]
+anchors_preset = 0
+offset_left = 1260.0
+offset_top = 380.0
+offset_right = 1341.0
+offset_bottom = 458.0
+
+[node name="BtnNodo" type="Button" parent="Nodo4" unique_id=155445211]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo4" unique_id=738965260]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo4" unique_id=2130271264]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nivel 1-4"
+
+[node name="LabelDescripcion" type="Label" parent="." unique_id=1541862360]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BotonVolver" type="Button" parent="." unique_id=1642407252]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

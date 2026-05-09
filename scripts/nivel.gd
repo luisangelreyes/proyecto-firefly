@@ -3,10 +3,16 @@ extends Node2D
 signal oleada_terminada(oleada_actual: int, total_oleadas: int)
 signal nivel_completado(atrapados: int, escapados: int, total: int)
 
-@export var lista_canciones: Array[AudioStream] = [
-	
+@export var lista_canciones: Array[AudioStream] = [	
 ]
-
+# ── CONFIGURACIÓN DE DIFICULTAD POR OLEADA ───────────────────────────────
+# Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
+var DIFICULTAD_OLEADAS = [
+	[290.0, 0.50, 0.10],   # Oleada 1 — fácil, pocos peligrosos
+	[340.0, 0.42, 0.15],   # Oleada 2 — un poco más rápido
+	[400.0, 0.35, 0.22],   # Oleada 3 — notablemente más difícil
+	[460.0, 0.28, 0.28],   # Oleada 4 — presión máxima
+]
 var escena_basura = preload("res://entities/basura/basura.tscn")
 
 # Cada número es la cantidad de residuos de esa oleada
@@ -51,6 +57,8 @@ func _ready():
 	
 	_iniciar_oleada()
 	$Barbara.combo_actualizado.connect(_on_combo_actualizado)
+	oleada_terminada.connect(_on_oleada_terminada)
+
 
 func _on_combo_actualizado(racha: int, multiplicador: int):
 	# HitCounter
@@ -102,12 +110,20 @@ func lanzar_basura_normal():
 		return
 
 	var posicion_eli = $Barbara.position.x
+	if posicion_eli <= 0 or posicion_eli >= 1440:
+		posicion_eli = 720
+
 	var nuevo_x = posicion_eli + randf_range(-400, 400)
 	nuevo_x = clamp(nuevo_x, 50, 1390)
 
 	var basura = escena_basura.instantiate()
 	basura.position = Vector2(nuevo_x, -50)
-	basura.prob_peligroso = probabilidad_peligroso  # ← asignamos antes de add_child
+	basura.prob_peligroso = probabilidad_peligroso
+
+	# Aplicar velocidad de la oleada actual
+	var config = DIFICULTAD_OLEADAS[min(oleada_actual, DIFICULTAD_OLEADAS.size() - 1)]
+	basura.velocidad_caida = config[0]
+
 	basura.tree_exited.connect(_on_residuo_salio)
 	basura.residuo_escapado.connect(_on_residuo_escapado)
 	add_child(basura)
@@ -203,3 +219,30 @@ func _process(_delta):
 	if $PantallaResultados.visible:
 		if Input.is_action_just_pressed("reiniciar"):
 			$PantallaResultados._on_boton_siguiente_pressed()
+func _on_oleada_terminada(oleada: int, _total: int):
+	# oleada ya viene incrementada desde _verificar_oleada_completa
+	# así que oleada 1 significa que terminó la primera y arranca la segunda
+	if oleada >= DIFICULTAD_OLEADAS.size():
+		return
+
+	var config = DIFICULTAD_OLEADAS[oleada]
+	tiempo_entre_residuos  = config[1]
+	probabilidad_peligroso = config[2]
+
+	# Actualizar velocidad en todas las basuras que ya están en pantalla
+	for basura in get_tree().get_nodes_in_group("basura_caida"):
+		basura.velocidad_caida = config[0]
+
+	# Feedback visual al jugador
+	_mostrar_aviso_oleada(oleada + 1)
+
+func _mostrar_aviso_oleada(numero: int):
+	if not has_node("TextoOleada"):
+		return
+	$TextoOleada.text = "Oleada %d" % numero
+	$TextoOleada.visible = true
+	$TextoOleada.modulate.a = 1.0
+	var tween = create_tween()
+	tween.tween_interval(1.2)
+	tween.tween_property($TextoOleada, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(func(): $TextoOleada.visible = false)

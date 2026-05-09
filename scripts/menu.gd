@@ -165,7 +165,7 @@ func _confirmar_seleccion():
 
 # ── ACCIONES DEL MENÚ ────────────────────────────────────────────────────────
 func _iniciar_modo_aventura():
-	get_tree().change_scene_to_file("res://scenes/niveles/NivelTutorial1.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/ModoAventura.tscn")
 
 func _iniciar_arcade():
 	get_tree().change_scene_to_file("res://scenes/niveles/NivelBase.tscn")

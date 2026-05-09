@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cksbfdmmh7m2o"]
 
 [ext_resource type="Script" uid="uid://tr0bu2jib6o7" path="res://scenes/ui/HitCounter.gd" id="1_6i3qc"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="2_4qtew"]
+
+[sub_resource type="FontVariation" id="FontVariation_7v8v5"]
+base_font = ExtResource("2_4qtew")
 
 [node name="HitCounter" type="CanvasLayer" unique_id=794794625]
 script = ExtResource("1_6i3qc")
@@ -17,6 +21,11 @@ offset_left = 81.0
 offset_top = 321.0
 offset_right = 121.0
 offset_bottom = 376.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("2_4qtew")
 theme_override_font_sizes/font_size = 40
 
 [node name="LabelHits" type="Label" parent="Contenedor" unique_id=1191567772]
@@ -25,4 +34,7 @@ offset_left = 80.0
 offset_top = 400.0
 offset_right = 120.0
 offset_bottom = 455.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_7v8v5")
 theme_override_font_sizes/font_size = 40

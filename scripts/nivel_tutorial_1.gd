@@ -8,6 +8,14 @@ var _intento_peligroso = 0  # cancela timers viejos del paso peligroso
 func _ready():
 	SesionGlobal.vidas = 3
 	SesionGlobal.puntaje = 0
+	oleadas = [3, 3, 3] 
+	tiempo_entre_residuos = 0.8  # más lento que el nivel normal
+	probabilidad_peligroso = 0.0 # sin peligrosos en oleadas normales
+	DIFICULTAD_OLEADAS = [
+		[200.0, 0.80, 0.0],
+		[220.0, 0.75, 0.0],
+		[240.0, 0.70, 0.0],
+	]
 	super()
 	$Timer.stop()
 	%TutorialUI.visible = false

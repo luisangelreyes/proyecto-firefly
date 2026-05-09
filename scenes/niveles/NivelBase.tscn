@@ -51,6 +51,16 @@ theme_override_font_sizes/font_size = 60
 text = "Puntos: 0"
 metadata/_edit_use_anchors_ = true
 
+[node name="TextoOleada" type="Label" parent="." unique_id=793852983]
+visible = false
+offset_left = 870.0
+offset_top = 10.0
+offset_right = 1054.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("4_doau0")
+theme_override_font_sizes/font_size = 60
+metadata/_edit_use_anchors_ = true
+
 [node name="TextoVidas" type="Label" parent="." unique_id=11144515]
 offset_left = 343.0
 offset_top = 12.0

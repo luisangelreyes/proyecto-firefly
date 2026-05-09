@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7jxwetbuflp2" path="res://scenes/menu/PantallaIntro.gd" id="1_skeq3"]
 [ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_4p353"]
+[ext_resource type="FontFile" uid="uid://bnx37nwur2oe" path="res://assets/ui/fonts/GraffitiStreamExtrude-OGL5A.otf" id="3_45du3"]
 
 [node name="PantallaIntro" type="Control" unique_id=840015892]
 layout_mode = 3
@@ -31,6 +32,7 @@ offset_top = 71.0
 offset_right = -183.0
 offset_bottom = 204.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_45du3")
 theme_override_font_sizes/font_size = 67
 text = "*RECOLECTORES"
 horizontal_alignment = 1
