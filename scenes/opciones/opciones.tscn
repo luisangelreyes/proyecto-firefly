@@ -30,7 +30,7 @@ layout_mode = 0
 offset_left = 170.0
 offset_top = 160.0
 offset_right = 417.0
-offset_bottom = 218.0
+offset_bottom = 235.0
 theme_override_font_sizes/font_size = 25
 text = "Tamaño de fuente:"
 script = ExtResource("3_vhjlx")
@@ -58,5 +58,54 @@ offset_top = 143.0
 offset_right = 1437.0
 offset_bottom = 212.0
 text = "Grande"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1882694300]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 271.0
+offset_right = 1608.0
+offset_bottom = 308.0
+
+[node name="LabelFiltroColor" type="Label" parent="." unique_id=596991252]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 371.0
+offset_right = 384.0
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 25
+text = "Filtro de color:"
+script = ExtResource("3_vhjlx")
+
+[node name="BotonNinguno" type="Button" parent="." unique_id=1597386703]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 356.0
+offset_right = 1027.0
+offset_bottom = 428.0
+text = "Ninguno"
+
+[node name="BotonDeuteranopia" type="Button" parent="." unique_id=995045577]
+layout_mode = 0
+offset_left = 1063.0
+offset_top = 358.0
+offset_right = 1234.0
+offset_bottom = 428.0
+text = "Deuteranopia"
+
+[node name="BotonProtanopia" type="Button" parent="." unique_id=1384107133]
+layout_mode = 0
+offset_left = 1271.0
+offset_top = 360.0
+offset_right = 1440.0
+offset_bottom = 429.0
+text = "Protanopia"
+
+[node name="BotonTritanopia" type="Button" parent="." unique_id=38091205]
+layout_mode = 0
+offset_left = 1480.0
+offset_top = 366.0
+offset_right = 1649.0
+offset_bottom = 435.0
+text = "Tritanopia"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,3 @@
-# opciones.gd - En tu escena de opciones
 extends Control
 
 @onready var label_tamaño_actual = $LabelTamañoActual  # Muestra "Normal", "Mediano", "Grande"
@@ -12,21 +11,24 @@ func _ready():
 	boton_mediano.pressed.connect(func(): _cambiar_tamaño(Configuracion.TamañoFuente.MEDIANO))
 	boton_grande.pressed.connect(func(): _cambiar_tamaño(Configuracion.TamañoFuente.GRANDE))
 	
-	# Mostrar tamaño actual
-	_actualizar_label_tamaño()
-	
-	# Conectar para actualizar cuando cambie
-	if Configuracion.tamaño_cambiado.is_connected(_on_tamaño_cambiado):
+	# Conectar la señal para actualizar cuando cambie el tamaño
+	# ¡IMPORTANTE! Conectar ANTES de mostrar el valor inicial
+	if not Configuracion.tamaño_cambiado.is_connected(_on_tamaño_cambiado):
 		Configuracion.tamaño_cambiado.connect(_on_tamaño_cambiado)
+	
+	# Mostrar tamaño actual y resaltar botón activo
+	_actualizar_ui_tamaño()
 
 func _cambiar_tamaño(nuevo_tamaño: int):
 	Configuracion.set_tamaño_fuente(nuevo_tamaño)
+	# La UI se actualizará automáticamente cuando la señal "tamaño_cambiado" se emita
 
-@warning_ignore("unused_parameter")
 func _on_tamaño_cambiado(nombre: String, activo: int, inactivo: int):
-	_actualizar_label_tamaño()
+	# Esta función se llama cuando cambia el tamaño en cualquier lugar
+	_actualizar_ui_tamaño()
 
-func _actualizar_label_tamaño():
+func _actualizar_ui_tamaño():
+	# Actualizar el texto del label
 	label_tamaño_actual.text = "Tamaño actual: " + Configuracion.get_nombre_tamaño()
 	
 	# Resaltar el botón activo
