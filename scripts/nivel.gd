@@ -11,7 +11,7 @@ var escena_basura = preload("res://entities/basura/basura.tscn")
 
 # Cada número es la cantidad de residuos de esa oleada
 # Sobreescribe esta variable en niveles hijos para cambiar la dificultad
-var oleadas: Array = [2,8,8]
+var oleadas: Array = [2,30,8]
 var oleada_actual: int = 0
 var residuos_en_oleada: int = 0      # cuántos spawneó esta oleada
 var residuos_pendientes: int = 0     # cuántos siguen vivos en pantalla

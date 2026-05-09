@@ -13,10 +13,10 @@ offset_bottom = 40.0
 
 [node name="LabelNumero" type="Label" parent="Contenedor" unique_id=909399399]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 400.0
-offset_right = 100.0
-offset_bottom = 455.0
+offset_left = 81.0
+offset_top = 321.0
+offset_right = 121.0
+offset_bottom = 376.0
 theme_override_font_sizes/font_size = 40
 
 [node name="LabelHits" type="Label" parent="Contenedor" unique_id=1191567772]
