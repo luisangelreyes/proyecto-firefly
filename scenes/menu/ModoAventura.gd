@@ -1,6 +1,10 @@
 extends Control
+var tween_idle: Tween = null   # ← agregar esta variable
 
 const CLAVES  = ["1-1", "1-2", "1-3", "1-4"]
+@onready var icono = $IconoJugador
+var icono_moviendose: bool = false
+
 
 const NOMBRES = {
 	"1-1": "Tutorial",
@@ -49,6 +53,32 @@ func _ready():
 
 	_actualizar_mapa()
 	_seleccionar_primer_disponible()
+	_posicionar_icono_inicial()
+	_animar_idle()
+
+func _animar_idle():
+	if tween_idle:
+		tween_idle.kill()
+	var pos_base = icono.position.y
+	tween_idle = create_tween().set_loops()
+	tween_idle.tween_property(icono, "position:y", pos_base - 8, 0.6)\
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween_idle.tween_property(icono, "position:y", pos_base, 0.6)\
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+		
+		
+func _posicionar_icono_inicial():
+	# El ícono arranca en el último nivel completado
+	var ultimo_idx = 0
+	for i in range(CLAVES.size()):
+		var clave = CLAVES[i]
+		var mundo = int(clave.split("-")[0])
+		var nivel = int(clave.split("-")[1])
+		if SesionGlobal.nivel_disponible(mundo, nivel):
+			ultimo_idx = i
+	
+	var nodo_destino = nodos[CLAVES[ultimo_idx]]
+	icono.position = nodo_destino.position - icono.size / 2 + Vector2(40, -50)
 
 func _actualizar_mapa():
 	for clave in CLAVES:
@@ -103,6 +133,7 @@ func _on_nodo_enfocado(indice: int):
 	indice_actual = indice
 	lbl_descripcion.text = DESCRIPCIONES[CLAVES[indice]]
 	_resaltar_nodo(indice)
+	_mover_icono_a(indice) 
 
 func _resaltar_nodo(indice: int):
 	for i in range(CLAVES.size()):
@@ -142,11 +173,11 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
 		indice_actual = max(0, indice_actual - 1)
-		_enfocar_nodo(indice_actual)
+		_on_nodo_enfocado(indice_actual)
 
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
 		indice_actual = min(CLAVES.size() - 1, indice_actual + 1)
-		_enfocar_nodo(indice_actual)
+		_on_nodo_enfocado(indice_actual)
 
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		_on_nivel_presionado(CLAVES[indice_actual])
@@ -154,21 +185,36 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_cancel"):
 		_on_volver()
 
-func _enfocar_nodo(indice: int):
-	var btn = nodos[CLAVES[indice]].get_node("BtnNodo")
-	if not btn.disabled:
-		btn.grab_focus()
-		lbl_descripcion.text = DESCRIPCIONES[CLAVES[indice]]
-		_resaltar_nodo(indice)
-	else:
-		# Si está bloqueado buscamos el más cercano disponible
-		for offset in [1, -1, 2, -2]:
-			var idx = indice + offset
-			if idx >= 0 and idx < CLAVES.size():
-				var b = nodos[CLAVES[idx]].get_node("BtnNodo")
-				if not b.disabled:
-					indice_actual = idx
-					b.grab_focus()
-					lbl_descripcion.text = DESCRIPCIONES[CLAVES[idx]]
-					_resaltar_nodo(idx)
-					break
+func _mover_icono_a(indice: int):
+	if icono_moviendose:
+		return
+
+	var nodo_destino = nodos[CLAVES[indice]]
+	var pos_destino = nodo_destino.position - icono.size / 2 + Vector2(40, -50)
+
+	var distancia = icono.position.distance_to(pos_destino)
+	if distancia < 10:
+		return
+
+	icono_moviendose = true
+
+	# Detener idle mientras salta
+	if tween_idle:
+		tween_idle.kill()
+		tween_idle = null
+
+	var punto_medio = (icono.position + pos_destino) / 2.0
+	punto_medio.y -= 80.0
+
+	var duracion = clamp(distancia / 800.0, 0.25, 0.55)
+
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(icono, "position", punto_medio, duracion * 0.5)
+	tween.tween_property(icono, "position", pos_destino, duracion * 0.5)\
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BOUNCE)
+
+	# Al aterrizar, reanudar idle desde la nueva posición
+	tween.tween_callback(func():
+		icono_moviendose = false
+		_animar_idle()   # ← reinicia el idle desde la posición actual
+	)
