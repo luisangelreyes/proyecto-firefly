@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bmynto8pwkqv2"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_iqib7"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_l81vg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrj0g"]
+atlas = ExtResource("1_l81vg")
+region = Rect2(362, 6.5, 49, 52)
+
+[resource]
+script = ExtResource("1_iqib7")
+nombre = "Hueso"
+imagen = SubResource("AtlasTexture_mrj0g")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 10 a 50 años (dependiendo del tamaño y el tipo de animal)
+
+Consejo De Disposicion: En un entorno doméstico, es mejor no incluirlos en compost casero a menos que estén triturados, ya que atraen fauna nociva; deben depositarse en el contenedor de orgánicos para tratamiento industrial
+
+Impacto Ambiental: Son una fuente rica en calcio y fósforo para el suelo, aunque su descomposición es muy lenta en comparación con otros desechos biológicos"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

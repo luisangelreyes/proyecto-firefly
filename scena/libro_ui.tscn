@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://dp4xkdbx2hcxr"]
+
+[ext_resource type="Script" uid="uid://b08g3t7njgj3" path="res://scena/libro_ui.gd" id="1_2ym2i"]
+[ext_resource type="Texture2D" uid="uid://bqpdwm1h73swq" path="res://imagenes/Libro_abierto-removebg-preview.png" id="2_iutyl"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="2_owi5b"]
+[ext_resource type="Resource" uid="uid://c8cumsooohudi" path="res://datos_residuo/organicos/cascara_platano.tres" id="3_5cuoq"]
+[ext_resource type="Resource" uid="uid://b8njgeowo3ye0" path="res://datos_residuo/organicos/cascara_de_huevo.tres" id="3_g0h7d"]
+[ext_resource type="Texture2D" uid="uid://cywx3in0xyyfh" path="res://imagenes/Portada_trasera-removebg-preview.png" id="3_wn3ty"]
+[ext_resource type="Resource" uid="uid://cryqjdbrn56se" path="res://datos_residuo/organicos/hoja_seca.tres" id="4_38mgg"]
+[ext_resource type="Texture2D" uid="uid://dlwlkul7asyph" path="res://imagenes/portaada_de_libro-removebg-preview.png" id="4_ajoj5"]
+[ext_resource type="Resource" uid="uid://c4uldnxm10xik" path="res://datos_residuo/organicos/hoja_verde.tres" id="5_8hsbl"]
+[ext_resource type="Resource" uid="uid://bvww4cn0cyt3d" path="res://datos_residuo/organicos/corazon_de_manzana.tres" id="5_81jil"]
+[ext_resource type="Shader" uid="uid://bvsjkst1ch78m" path="res://imagenes/portada_izquierda.gdshader" id="7_5cuoq"]
+[ext_resource type="Resource" uid="uid://bmynto8pwkqv2" path="res://datos_residuo/organicos/hueso.tres" id="8_uodw4"]
+[ext_resource type="Resource" uid="uid://bn45uk0oyngub" path="res://datos_residuo/organicos/rama_con_hojas.tres" id="9_0lm74"]
+[ext_resource type="Resource" uid="uid://dbt3xpro8mjpe" path="res://datos_residuo/inorganicos/esponja_de_trastas.tres" id="10_3abme"]
+[ext_resource type="Resource" uid="uid://6qppnwgisij3" path="res://datos_residuo/inorganicos/fibra_para_trastes.tres" id="11_xyu4y"]
+[ext_resource type="Resource" uid="uid://c0qgin1768ji5" path="res://datos_residuo/inorganicos/foco_roto.tres" id="12_j4qiq"]
+[ext_resource type="Resource" uid="uid://dkli52r5al0ql" path="res://datos_residuo/inorganicos/plato_de_ceramica_roto.tres" id="13_hp48d"]
+[ext_resource type="Resource" uid="uid://cjtm3mc3uatr3" path="res://datos_residuo/inorganicos/vaso_de_descechable.tres" id="14_cvb52"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38mgg"]
+shader = ExtResource("7_5cuoq")
+shader_parameter/progress = 0.0
+shader_parameter/radius = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iutyl"]
+atlas = ExtResource("2_iutyl")
+region = Rect2(302.8711, 0, 309.1289, 408)
+
+[node name="LibroUI" type="CanvasLayer" unique_id=1619831041]
+script = ExtResource("1_2ym2i")
+base_datos = Array[ExtResource("2_owi5b")]([ExtResource("3_g0h7d"), ExtResource("3_5cuoq"), ExtResource("5_81jil"), ExtResource("4_38mgg"), ExtResource("5_8hsbl"), ExtResource("8_uodw4"), ExtResource("9_0lm74"), ExtResource("10_3abme"), ExtResource("11_xyu4y"), ExtResource("12_j4qiq"), ExtResource("13_hp48d"), ExtResource("14_cvb52")])
+
+[node name="Residuoario" type="Control" parent="." unique_id=226761247]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LibroAbierto" type="TextureRect" parent="Residuoario" unique_id=1681345500]
+layout_mode = 1
+offset_right = 1159.0
+offset_bottom = 652.0
+texture = ExtResource("2_iutyl")
+
+[node name="ContenidoEstatico" type="Control" parent="Residuoario" unique_id=675197240]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PaginaIzquierda" type="Control" parent="Residuoario/ContenidoEstatico" unique_id=590212970]
+anchors_preset = 0
+offset_right = 574.0
+offset_bottom = 652.0
+
+[node name="NombreResiduo" type="Label" parent="Residuoario/ContenidoEstatico/PaginaIzquierda" unique_id=2059251162]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 96.0
+offset_right = 521.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+horizontal_alignment = 1
+
+[node name="Residuo" type="TextureRect" parent="Residuoario/ContenidoEstatico/PaginaIzquierda" unique_id=1188161021]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 155.0
+offset_right = 443.0
+offset_bottom = 210.0
+
+[node name="Descripcion" type="RichTextLabel" parent="Residuoario/ContenidoEstatico/PaginaIzquierda" unique_id=1641429253]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 257.0
+offset_right = 547.0
+offset_bottom = 486.0
+theme_override_colors/default_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
+[node name="PaginaDerecha" type="Control" parent="Residuoario/ContenidoEstatico" unique_id=146521791]
+anchors_preset = 0
+offset_left = 574.0
+offset_right = 1159.0
+offset_bottom = 652.0
+
+[node name="NombreResiduo" type="Label" parent="Residuoario/ContenidoEstatico/PaginaDerecha" unique_id=250783095]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.98100007
+anchor_right = -0.98100007
+offset_left = 637.885
+offset_top = 96.0
+offset_right = 888.88525
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+horizontal_alignment = 1
+
+[node name="Residuo" type="TextureRect" parent="Residuoario/ContenidoEstatico/PaginaDerecha" unique_id=1931390491]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.98100007
+anchor_right = -0.98100007
+offset_left = 727.885
+offset_top = 155.0
+offset_right = 797.885
+offset_bottom = 214.0
+
+[node name="Descripcion" type="RichTextLabel" parent="Residuoario/ContenidoEstatico/PaginaDerecha" unique_id=632558227]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.98100007
+anchor_top = -0.018000001
+anchor_right = -0.98100007
+anchor_bottom = -0.018000001
+offset_left = 598.885
+offset_top = 268.736
+offset_right = 910.885
+offset_bottom = 497.736
+theme_override_colors/default_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[node name="ContenidoAnimado" type="SubViewportContainer" parent="Residuoario" unique_id=626632265]
+material = SubResource("ShaderMaterial_38mgg")
+layout_mode = 1
+offset_right = 1159.0
+offset_bottom = 652.0
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="Residuoario/ContenidoAnimado" unique_id=814450912]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="PaginaSuelta" type="TextureRect" parent="Residuoario/ContenidoAnimado/SubViewport" unique_id=78678566]
+offset_left = 574.0
+offset_right = 1159.0
+offset_bottom = 652.0
+texture = SubResource("AtlasTexture_iutyl")
+
+[node name="ContenidoPagina" type="Control" parent="Residuoario/ContenidoAnimado/SubViewport" unique_id=1478661441]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1159.0
+offset_bottom = 640.0
+
+[node name="NombreResiduo" type="Label" parent="Residuoario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=1941937966]
+layout_mode = 0
+offset_left = 599.0
+offset_top = 96.0
+offset_right = 911.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+horizontal_alignment = 1
+
+[node name="Residuo" type="TextureRect" parent="Residuoario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=102488514]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 155.0
+offset_right = 792.0
+offset_bottom = 202.0
+
+[node name="Descripcion" type="RichTextLabel" parent="Residuoario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=1599424596]
+layout_mode = 0
+offset_left = 599.0
+offset_top = 241.0
+offset_right = 911.0
+offset_bottom = 486.0
+theme_override_colors/default_color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+
+[node name="PortadaTrasera" type="TextureRect" parent="Residuoario" unique_id=300974266]
+visible = false
+layout_mode = 0
+offset_left = -140.0
+offset_right = 896.0
+offset_bottom = 652.0
+texture = ExtResource("3_wn3ty")
+
+[node name="PortadaFrontal" type="TextureRect" parent="Residuoario" unique_id=1505025980]
+visible = false
+layout_mode = 0
+offset_left = 240.0
+offset_top = -12.0
+offset_right = 1323.0
+offset_bottom = 640.0
+texture = ExtResource("4_ajoj5")
+
+[node name="ButtonAtras" type="Button" parent="Residuoario" unique_id=150602237]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 257.0
+offset_right = 167.0
+offset_bottom = 327.0
+text = "Atras"
+
+[node name="ButtonSiguiente" type="Button" parent="Residuoario" unique_id=2091611648]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 257.0
+offset_right = 1080.0
+offset_bottom = 327.0
+text = "Siguiente
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Residuoario" unique_id=1378243963]
+
+[connection signal="pressed" from="Residuoario/ButtonAtras" to="." method="_on_button_atras_pressed"]
+[connection signal="pressed" from="Residuoario/ButtonSiguiente" to="." method="_on_button_siguiente_pressed"]

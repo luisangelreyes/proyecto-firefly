@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://cryqjdbrn56se"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_4tfwg"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_yxc6p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hci0"]
+atlas = ExtResource("1_yxc6p")
+region = Rect2(213.71982, 13.651292, 53.02243, 40.360344)
+
+[resource]
+script = ExtResource("1_4tfwg")
+nombre = "Hoja Seca"
+imagen = SubResource("AtlasTexture_6hci0")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 6 meses a 1 año (tardan más que las verdes por la falta de humedad).
+
+Consejo De Disposicion: Se pueden usar como cobertura para proteger el suelo de la erosión o mezclarse con residuos verdes para equilibrar el compost.
+
+Impacto Ambiental: Al descomponerse, aportan materia orgánica rica en carbono que mejora la porosidad y la vida microbiana del suelo."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

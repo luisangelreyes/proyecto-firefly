@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://b8njgeowo3ye0"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_4x1e7"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_6ytcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g050n"]
+atlas = ExtResource("1_6ytcd")
+region = Rect2(471.30188, 15.048254, 72.867676, 40.096504)
+
+[resource]
+script = ExtResource("1_4x1e7")
+nombre = "Cascara De Huevo"
+imagen = SubResource("AtlasTexture_g050n")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 1 a 12 meses (dependiendo de si se tritura o se deja entera)
+
+Consejo De Disposicion: Se recomienda lavarlas y triturarlas antes de añadirlas a las plantas o al compost para facilitar la absorción de sus minerales
+
+Impacto Ambiental: Es una excelente fuente natural de calcio para el suelo, ayudando a reducir la acidez de la tierra y fortaleciendo el crecimiento celular de las plantas"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

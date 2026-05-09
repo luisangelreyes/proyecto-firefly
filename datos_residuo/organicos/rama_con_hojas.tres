@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bn45uk0oyngub"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_62k3j"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_s5hs0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62k3j"]
+atlas = ExtResource("1_62k3j")
+region = Rect2(272, 8, 32, 46)
+
+[resource]
+script = ExtResource("1_s5hs0")
+nombre = "Roma Con Hojas"
+imagen = SubResource("AtlasTexture_62k3j")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 6 meses a 2 años o más (las hojas se degradan rápido, pero la rama leñosa tarda mucho más).
+
+Consejo De Disposicion: Triturar o cortar en trozos pequeños para acelerar la descomposición. Son excelentes para la base de una pila de compostaje.
+
+Impacto Ambiental: Proporciona nutrientes al suelo y carbono a largo plazo. Ayuda a crear hábitat para pequeños insectos y microorganismos beneficiosos."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

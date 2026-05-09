@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://c4uldnxm10xik"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_o763w"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_wgexy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbfao"]
+atlas = ExtResource("1_wgexy")
+region = Rect2(168.50838, 11.3456, 42.35675, 42.086964)
+
+[resource]
+script = ExtResource("1_o763w")
+nombre = "Hoja Verde"
+imagen = SubResource("AtlasTexture_fbfao")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 1 a 3 meses (dependiendo de la humedad y el clima).
+
+Consejo De Disposicion: Triturar o picar antes de depositar en el contenedor orgánico para acelerar su descomposición; excelente para crear mantillo (mulch) en plantas.
+
+Impacto Ambiental: Reintegra nitrógeno y carbono al suelo, mejorando la estructura de la tierra y favoreciendo el crecimiento de nueva vegetación."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

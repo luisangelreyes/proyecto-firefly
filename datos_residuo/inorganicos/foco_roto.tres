@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://c0qgin1768ji5"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_klxi6"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_y5ll4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy0xs"]
+atlas = ExtResource("1_klxi6")
+region = Rect2(471, 63, 36, 46)
+
+[resource]
+script = ExtResource("1_y5ll4")
+nombre = "Foco Roto"
+imagen = SubResource("AtlasTexture_oy0xs")
+descripcion = "Tipo De Residuo: Peligrosos
+
+Tiempo De Degradacion: El vidrio tarda 4,000 años, pero los componentes internos (como el mercurio en focos ahorradores) nunca desaparecen y contaminan el entorno.
+
+Consejo De Disposicion: Colocar los restos en una caja de cartón o envolverlos en papel grueso y sellar con cinta; marcar el paquete como \"vidrio roto\" o \"peligroso\" para proteger al personal de limpieza.
+
+Impacto Ambiental: Los focos (especialmente los fluorescentes y de vapor de mercurio) contienen gases y metales pesados que pueden filtrar sustancias tóxicas al suelo y al agua subterránea si se rompen en un vertedero común."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

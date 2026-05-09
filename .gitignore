@@ -1,0 +1,21 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+
+# Archivos de configuración local (anclajes de ventanas, escenas abiertas, etc.)
+.import/
+export_preset.cfg
+
+# Binarios exportados (para que no se suban tus .exe o .apk)
+build/
+dist/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de respaldo de editores externos
+*.tmp
+*.bak
+*.swp

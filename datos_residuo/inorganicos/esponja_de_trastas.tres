@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://dbt3xpro8mjpe"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_47f4b"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_dtcim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0je1"]
+atlas = ExtResource("1_dtcim")
+region = Rect2(105.47229, 67.83687, 47.190063, 41.60176)
+
+[resource]
+script = ExtResource("1_47f4b")
+nombre = "Esponja De Trastes"
+imagen = SubResource("AtlasTexture_o0je1")
+descripcion = "Tipo De Residuo: Inorgánicos
+
+Tiempo De Degradacion: 200 a 500 años.
+
+Consejo De Disposicion: Desechar en el contenedor de basura general; se recomienda desinfectarlas para prolongar su uso.
+
+Impacto Ambiental: Se fragmenta en microplásticos que pueden terminar en los océanos."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

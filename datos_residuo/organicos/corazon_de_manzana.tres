@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bvww4cn0cyt3d"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_hwa2i"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_of4cw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjjjx"]
+atlas = ExtResource("1_hwa2i")
+region = Rect2(555.01355, 7.906537, 32.32898, 47.92246)
+
+[resource]
+script = ExtResource("1_of4cw")
+nombre = "Corazón De Manzana"
+imagen = SubResource("AtlasTexture_xjjjx")
+descripcion = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 2 a 4 meses
+
+Consejo De Disposicion: Depositar en el contenedor de orgánicos; si es posible, retirar las semillas si se va a compostar en grandes cantidades, aunque en el juego puede ir directo al depósito de restos de comida.
+
+Impacto Ambiental: Se descompone rápidamente devolviendo nutrientes esenciales y materia orgánica al suelo."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

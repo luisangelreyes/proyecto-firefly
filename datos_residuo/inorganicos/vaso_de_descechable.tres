@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://cjtm3mc3uatr3"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_6h3wv"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_ekq36"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr2fs"]
+atlas = ExtResource("1_6h3wv")
+region = Rect2(205, 64, 74, 42)
+
+[resource]
+script = ExtResource("1_ekq36")
+nombre = "Vaso Desechable"
+imagen = SubResource("AtlasTexture_gr2fs")
+descripcion = "Tipo De Residuo: Plastico
+
+Tiempo De Degradacion: 50 a 500 años (dependiendo de si es polipropileno o poliestireno).
+
+Consejo De Disposicion: Enjuagar para eliminar residuos de líquidos antes de depositarlo en el contenedor correspondiente para facilitar su reciclaje.
+
+Impacto Ambiental: Su acumulación masiva satura los vertederos y, al fragmentarse, los microplásticos resultantes son altamente dañinos para la fauna terrestre y marina."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

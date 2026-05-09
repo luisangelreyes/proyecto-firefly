@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://dkli52r5al0ql"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_wfcsg"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_y7dht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykr1y"]
+atlas = ExtResource("1_y7dht")
+region = Rect2(291, 65, 65, 40)
+
+[resource]
+script = ExtResource("1_wfcsg")
+nombre = "Plato De Ceramica Roto"
+imagen = SubResource("AtlasTexture_ykr1y")
+descripcion = "Tipo De Residuo: Inorgánicos
+
+Tiempo De Degradacion: No se biodegrada (puede durar miles de años en forma de fragmentos)
+
+Consejo De Disposicion: Envolver los trozos en papel periódico o cartón grueso antes de depositarlos para evitar que los recolectores se corten
+
+Impacto Ambiental: Es un residuo inerte que no contamina químicamente el suelo, pero ocupa espacio en los vertederos de manera permanente"
+metadata/_custom_type_script = "uid://k43gd28ijhr"
