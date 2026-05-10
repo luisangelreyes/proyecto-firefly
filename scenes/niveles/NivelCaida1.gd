@@ -20,8 +20,7 @@ func _ready():
 	super()
 
 	# ── Música específica de este nivel ───────────────────────────────────
-	$MusicaFondo.stream = preload("res://assets/audio/music/musica_1.ogg")
-	$MusicaFondo.play()
+
 
 	# ── Fondo placeholder hasta que llegue el arte ────────────────────────
 	$Fondo.color = Color("#1a2e1a")   # verde oscuro

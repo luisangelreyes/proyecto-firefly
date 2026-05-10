@@ -215,27 +215,27 @@ func _process(_delta):
 			SesionGlobal.vidas = 3
 			SesionGlobal.puntaje = 0
 			get_tree().reload_current_scene()
+		return
 	
 	if $PantallaResultados.visible:
-		if Input.is_action_just_pressed("reiniciar"):
+		if Input.is_action_just_pressed("confirmar"):
 			$PantallaResultados._on_boton_siguiente_pressed()
+		return
 func _on_oleada_terminada(oleada: int, _total: int):
-	# oleada ya viene incrementada desde _verificar_oleada_completa
-	# así que oleada 1 significa que terminó la primera y arranca la segunda
 	if oleada >= DIFICULTAD_OLEADAS.size():
 		return
-
+	
+	if not is_inside_tree():
+		return
+		
 	var config = DIFICULTAD_OLEADAS[oleada]
 	tiempo_entre_residuos  = config[1]
 	probabilidad_peligroso = config[2]
 
-	# Actualizar velocidad en todas las basuras que ya están en pantalla
 	for basura in get_tree().get_nodes_in_group("basura_caida"):
 		basura.velocidad_caida = config[0]
 
-	# Feedback visual al jugador
 	_mostrar_aviso_oleada(oleada + 1)
-
 func _mostrar_aviso_oleada(numero: int):
 	if not has_node("TextoOleada"):
 		return

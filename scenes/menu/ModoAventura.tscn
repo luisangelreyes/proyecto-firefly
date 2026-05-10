@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvgne3yocujmf" path="res://scenes/menu/ModoAventura.gd" id="1_4iea3"]
 [ext_resource type="Texture2D" uid="uid://btwnw3u6vdqjx" path="res://entities/fondos/FONDO_MUNDO_TREN.png" id="2_lp1uh"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_0fhu4"]
 
 [node name="ModoAventura" type="Control" unique_id=1620023844]
 layout_mode = 3
@@ -26,10 +27,16 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -115.0
-offset_right = 115.0
-offset_bottom = 23.0
+offset_left = -238.5
+offset_top = 47.0
+offset_right = 238.5
+offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_constants/shadow_outline_size = 14
+theme_override_fonts/font = ExtResource("3_0fhu4")
 theme_override_font_sizes/font_size = 49
 text = "MUNDO 1 — Las Vías del Tren"
 
