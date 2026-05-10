@@ -24,8 +24,9 @@ var niveles_desbloqueados: Dictionary = {
 # Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
 const RUTAS_NIVELES: Dictionary = {
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
-	"1-2": "res://scenes/niveles/NivelBase.tscn",
-	"1-3": "res://scenes/niveles/Nivel2.tscn",
+	"1-2": "res://scenes/niveles/NivelCaida1.tscn",
+	"1-3": "res://scenes/niveles/NivelCaida2.tscn",
+	"1-4": "res://scenes/niveles/Nivel2.tscn",
 }
 
 # Ruta del archivo de guardado

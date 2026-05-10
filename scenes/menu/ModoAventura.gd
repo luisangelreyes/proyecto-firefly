@@ -88,14 +88,12 @@ func _actualizar_mapa():
 			else:
 				# Es el último nivel — completado si nivel_actual lo superó
 				completado = SesionGlobal.nivel_actual > nivel
-
 			if completado:
 				btn.modulate   = COLOR_COMPLETADO
-				lbl_n.text     = "✓"
+				lbl_n.text     = "✅"
 			else:
 				btn.modulate   = COLOR_DISPONIBLE
 				lbl_n.text     = str(nivel)
-
 			btn.disabled = false
 		else:
 			btn.modulate   = COLOR_BLOQUEADO

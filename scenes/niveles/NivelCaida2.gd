@@ -23,7 +23,6 @@ func _ready():
 	$MusicaFondo.stream = preload("res://assets/audio/music/musica_2.ogg")
 	$MusicaFondo.play()
 
-	# ── Fondo placeholder ─────────────────────────────────────────────────
 	$Fondo.color = Color("#1a1a2e")   # azul oscuro
 
 func _mostrar_pantalla_crash():
