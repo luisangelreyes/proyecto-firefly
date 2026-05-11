@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://b2wcmjxvy0kxe"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_8i4yi"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_lacje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlxbn"]
+atlas = ExtResource("1_8i4yi")
+region = Rect2(217, 232, 61, 52)
+
+[resource]
+script = ExtResource("1_lacje")
+nombre = "Periodico"
+imagen = SubResource("AtlasTexture_rlxbn")
+descripcion = "Tipo De Residuo: Papel
+
+Tiempo De Degradacion: 6 semanas a 2 meses
+
+Consejo De Disposicion: Mantener seco y libre de restos de comida; se recomienda apilar y amarrar con cordel de fibra natural para facilitar su recolección
+
+Impacto Ambiental: El papel de periódico es altamente reciclable; su reutilización evita la saturación de rellenos sanitarios y disminuye la demanda de pulpa de madera virgen"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

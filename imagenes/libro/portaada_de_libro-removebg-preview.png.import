@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjo0540xivluj"
-path="res://.godot/imported/Cambio_de_pagina-removebg-preview.png-d821f93a1da3bc66a2ffa449c68511d3.ctex"
+uid="uid://dlwlkul7asyph"
+path="res://.godot/imported/portaada_de_libro-removebg-preview.png-3669ad66f99250b3abd6b09733292416.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/Cambio_de_pagina-removebg-preview.png"
-dest_files=["res://.godot/imported/Cambio_de_pagina-removebg-preview.png-d821f93a1da3bc66a2ffa449c68511d3.ctex"]
+source_file="res://imagenes/libro/portaada_de_libro-removebg-preview.png"
+dest_files=["res://.godot/imported/portaada_de_libro-removebg-preview.png-3669ad66f99250b3abd6b09733292416.ctex"]
 
 [params]
 

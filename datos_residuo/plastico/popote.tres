@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://q3llgkb61tw2"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_5irx7"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_uu587"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk0e4"]
+atlas = ExtResource("1_5irx7")
+region = Rect2(485, 180, 34, 47)
+
+[resource]
+script = ExtResource("1_uu587")
+nombre = "Popote"
+imagen = SubResource("AtlasTexture_lk0e4")
+descripcion = "Tipo De Residuo: Plastico
+
+Tiempo De Degradacion: 200 a 500 años.
+
+Consejo De Disposicion: Evitar su uso siempre que sea posible; en caso de desecharlo, asegúrate de que no contenga residuos de líquidos y deposítalo en el contenedor de plásticos.
+
+Impacto Ambiental: Debido a su tamaño pequeño y ligereza, terminan fácilmente en los océanos, donde representan un peligro mortal para las tortugas y otras especies marinas que pueden ingerirlos o quedar heridos por ellos."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

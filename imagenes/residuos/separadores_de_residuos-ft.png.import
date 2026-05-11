@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpf0reff4eb7m"
-path="res://.godot/imported/Pagina_izquierda-removebg-preview.png-7cd30cf18c5a9c59108114f55bf3f197.ctex"
+uid="uid://b6lbrsj1d61ga"
+path="res://.godot/imported/separadores_de_residuos-ft.png-625214b41ddef59fcad2b3c268e0e3bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/Pagina_izquierda-removebg-preview.png"
-dest_files=["res://.godot/imported/Pagina_izquierda-removebg-preview.png-7cd30cf18c5a9c59108114f55bf3f197.ctex"]
+source_file="res://imagenes/residuos/separadores_de_residuos-ft.png"
+dest_files=["res://.godot/imported/separadores_de_residuos-ft.png-625214b41ddef59fcad2b3c268e0e3bd.ctex"]
 
 [params]
 

@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://dp4xkdbx2hcxr"]
+
+[ext_resource type="Script" uid="uid://b08g3t7njgj3" path="res://scena/libro_ui.gd" id="1_2ym2i"]
+[ext_resource type="Texture2D" uid="uid://bqpdwm1h73swq" path="res://imagenes/Libro_abierto-removebg-preview.png" id="2_iutyl"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="3_ajoj5"]
+[ext_resource type="Texture2D" uid="uid://cywx3in0xyyfh" path="res://imagenes/Portada_trasera-removebg-preview.png" id="3_wn3ty"]
+[ext_resource type="Shader" uid="uid://bvsjkst1ch78m" path="res://imagenes/portada_izquierda.gdshader" id="4_4ssdo"]
+[ext_resource type="Texture2D" uid="uid://dlwlkul7asyph" path="res://imagenes/portaada_de_libro-removebg-preview.png" id="4_ajoj5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owi5b"]
+atlas = ExtResource("3_ajoj5")
+region = Rect2(107.1702, 9.052142, 56.583572, 48.96654)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cuoq"]
+atlas = ExtResource("3_ajoj5")
+region = Rect2(168.82272, 8.830543, 41.025635, 43.92418)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38mgg"]
+shader = ExtResource("4_4ssdo")
+shader_parameter/progress = 0.0
+shader_parameter/radius = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owi5b"]
+load_path = "res://.godot/imported/Libro_PD_png.png-1ccbf1d81bba850b497c3acbe4759cd0.ctex"
+
+[node name="LibroUI" type="CanvasLayer" unique_id=883948733]
+script = ExtResource("1_2ym2i")
+
+[node name="Residouario" type="Control" parent="." unique_id=913979116]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LibroAbierto" type="TextureRect" parent="Residouario" unique_id=601869920]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 1113.0
+offset_bottom = 644.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_iutyl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Control" type="Control" parent="Residouario" unique_id=2113331745]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PaginaDerecha" type="Control" parent="Residouario/Control" unique_id=536945831]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Residouario/Control/PaginaDerecha" unique_id=1280859454]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 0
+offset_left = 663.0
+offset_top = 120.0
+offset_right = 739.0
+offset_bottom = 184.0
+texture = SubResource("AtlasTexture_owi5b")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Residouario/Control/PaginaDerecha" unique_id=1608827890]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 198.0
+offset_right = 794.0
+offset_bottom = 221.0
+theme_override_colors/font_color = Color(0.09239707, 0.09239706, 0.09239706, 1)
+text = "Cascara De Platano"
+horizontal_alignment = 1
+
+[node name="DatosResiduo" type="RichTextLabel" parent="Residouario/Control/PaginaDerecha" unique_id=1077886958]
+modulate = Color(0.06666667, 0.011764706, 0.023529412, 0.8980392)
+layout_mode = 0
+offset_left = 557.0
+offset_top = 265.0
+offset_right = 842.0
+offset_bottom = 481.0
+theme_override_font_sizes/normal_font_size = 12
+text = "Tipo De Residuo: Organico
+
+Tiempo De Degradacion: 2 a 10 días
+
+Consejo De Disposicion:Depositar en el contenedor de orgánicos; es ideal para procesos de compostaje casero.
+
+Impacto Ambiental:Al ser biodegradable, se convierte en nutrientes para el suelo, aunque en vertederos cerrados puede generar gas metano si no se gestiona correctamente."
+
+[node name="PaginaIzquierda" type="Control" parent="Residouario/Control" unique_id=198492006]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="Residouario/Control/PaginaIzquierda" unique_id=422254413]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 100.0
+offset_right = 449.0
+offset_bottom = 184.0
+texture = SubResource("AtlasTexture_5cuoq")
+
+[node name="Label2" type="Label" parent="Residouario/Control/PaginaIzquierda" unique_id=1236653885]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 198.0
+offset_right = 466.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0.047058824, 0.05882353, 0.02745098, 1)
+theme_override_font_sizes/font_size = 20
+text = "Hoja verde"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Residouario/Control/PaginaIzquierda" unique_id=231967242]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 246.0
+offset_right = 507.0
+offset_bottom = 498.0
+theme_override_colors/default_color = Color(0.14044744, 0.14044744, 0.14044744, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 1 a 3 meses (dependiendo de la humedad y el clima).
+
+Consejo De Disposicion: Triturar o picar antes de depositar en el contenedor orgánico para acelerar su descomposición; excelente para crear mantillo (mulch) en plantas.
+
+Impacto Ambiental: Reintegra nitrógeno y carbono al suelo, mejorando la estructura de la tierra y favoreciendo el crecimiento de nueva vegetación."
+
+[node name="ContenidoAnimado" type="SubViewportContainer" parent="Residouario" unique_id=648369796]
+visible = false
+material = SubResource("ShaderMaterial_38mgg")
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 498.0
+offset_right = 1113.0
+offset_bottom = 607.0
+grow_horizontal = 0
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Residouario/ContenidoAnimado" unique_id=48209135]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(615, 647)
+render_target_update_mode = 0
+
+[node name="PaginaSuelta" type="TextureRect" parent="Residouario/ContenidoAnimado/SubViewport" unique_id=1052375668]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0120001
+offset_top = -30.0
+offset_right = -56.0
+offset_bottom = 29.235962
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_owi5b")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ContenidoPagina" type="Control" parent="Residouario/ContenidoAnimado/SubViewport" unique_id=2140494575]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="Residouario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=1604188048]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 100.0
+offset_right = 449.0
+offset_bottom = 184.0
+texture = SubResource("AtlasTexture_5cuoq")
+
+[node name="Label2" type="Label" parent="Residouario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=1778356013]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 198.0
+offset_right = 466.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0.047058824, 0.05882353, 0.02745098, 1)
+theme_override_font_sizes/font_size = 20
+text = "Hoja verde"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Residouario/ContenidoAnimado/SubViewport/ContenidoPagina" unique_id=1694930303]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 246.0
+offset_right = 507.0
+offset_bottom = 498.0
+theme_override_colors/default_color = Color(0.14044744, 0.14044744, 0.14044744, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Tipo De Residuo: Orgánico
+
+Tiempo De Degradacion: 1 a 3 meses (dependiendo de la humedad y el clima).
+
+Consejo De Disposicion: Triturar o picar antes de depositar en el contenedor orgánico para acelerar su descomposición; excelente para crear mantillo (mulch) en plantas.
+
+Impacto Ambiental: Reintegra nitrógeno y carbono al suelo, mejorando la estructura de la tierra y favoreciendo el crecimiento de nueva vegetación."
+
+[node name="PortadaTrasera" type="TextureRect" parent="Residouario" unique_id=612908122]
+visible = false
+layout_mode = 0
+offset_left = -36.0
+offset_top = -30.0
+offset_right = 981.0
+offset_bottom = 701.0
+texture = ExtResource("3_wn3ty")
+expand_mode = 1
+
+[node name="PortadaFrontal" type="TextureRect" parent="Residouario" unique_id=1461846616]
+visible = false
+layout_mode = 0
+offset_left = 321.0
+offset_top = -49.0
+offset_right = 1331.0
+offset_bottom = 647.0
+texture = ExtResource("4_ajoj5")
+expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Residouario" unique_id=428946217]
+
+[node name="Atras" type="Button" parent="Residouario" unique_id=271876699]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 295.0
+offset_right = 150.0
+offset_bottom = 334.0
+text = "Atras"
+
+[node name="Siguiente" type="Button" parent="Residouario" unique_id=1295821254]
+layout_mode = 0
+offset_left = 887.0
+offset_top = 295.0
+offset_right = 967.0
+offset_bottom = 331.0
+text = "Siguiente"

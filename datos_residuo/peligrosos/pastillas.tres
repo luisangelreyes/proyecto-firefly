@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bew3mt302jfa"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_6cody"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_7mxl4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psc3f"]
+atlas = ExtResource("1_6cody")
+region = Rect2(531, 126, 46, 42)
+
+[resource]
+script = ExtResource("1_7mxl4")
+nombre = "Pastillas"
+imagen = SubResource("AtlasTexture_psc3f")
+descripcion = "Tipo De Residuo: Peligrosos
+
+Tiempo De Degradacion: 10 a 30 años (dependiendo de su composición química y recubrimiento)
+
+Consejo De Disposicion: No deben tirarse al drenaje ni a la basura común; se deben depositar en contenedores especiales (como los de SINGREM) para su incineración controlada
+
+Impacto Ambiental: Pueden contaminar mantos acuíferos y afectar la fauna acuática, además de contribuir al desarrollo de bacterias resistentes si se liberan al medio ambiente"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

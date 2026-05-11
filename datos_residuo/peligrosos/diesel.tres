@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://d1iy1hreor2ag"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_3oxge"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="2_ufs7j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp6n6"]
+atlas = ExtResource("1_3oxge")
+region = Rect2(426, 118, 37, 52)
+
+[resource]
+script = ExtResource("2_ufs7j")
+nombre = "Diesel"
+imagen = SubResource("AtlasTexture_yp6n6")
+descripcion = "Tipo De Residuo: Peligrosos
+
+Tiempo De Degradacion: 1 a 10 años (dependiendo de las condiciones del suelo y la presencia de bacterias degradadoras)
+
+Consejo De Disposicion: Nunca debe verterse en el drenaje ni directamente en la tierra; debe ser recolectado en recipientes herméticos y entregado a centros de manejo de residuos especiales o talleres que cuenten con sistemas de reciclaje de aceites y combustibles
+
+Impacto Ambiental: Es altamente tóxico para la vida acuática y puede impermeabilizar el suelo, matando la microfauna y contaminando los mantos freáticos por periodos prolongados"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

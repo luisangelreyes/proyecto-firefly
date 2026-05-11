@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://ridihm13fi2g"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_s2w5d"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_tk5e1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aphgt"]
+atlas = ExtResource("1_tk5e1")
+region = Rect2(489, 288, 38, 46)
+
+[resource]
+script = ExtResource("1_s2w5d")
+nombre = "Llaves"
+imagen = SubResource("AtlasTexture_aphgt")
+descripcion = "Tipo De Residuo: Metal
+
+Tiempo De Degradacion: 30 a 100 años
+
+Consejo De Disposicion: Si ya no funcionan, lo ideal es llevarlas a centros de reciclaje de metales o chatarra; también pueden agruparse en un contenedor metálico pequeño para asegurar que no se pierdan durante el proceso de recolección y facilitar su fundición
+
+Impacto Ambiental: La mayoría de las llaves están hechas de latón, bronce o acero, materiales que son 100% reciclables. Al recuperarlas, se evita la extracción de nuevos minerales y se reduce significativamente la contaminación generada por la minería y el refinamiento de metales"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

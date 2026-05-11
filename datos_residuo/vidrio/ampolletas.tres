@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://fyy8sirg0hbo"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_vik3k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vik3k"]
+
+[resource]
+script = ExtResource("1_vik3k")
+nombre = "Ampolletas de medicina"
+imagen = SubResource("AtlasTexture_vik3k")
+descripcion = "Tipo De Residuo: Vidrio
+
+Tiempo De Degradacion: 4,000 años
+
+Consejo De Disposicion: Deben estar completamente vacías y sin restos de medicamentos. Si la ampolleta fue abierta y tiene bordes cortantes, es recomendable colocarla dentro de un frasco de vidrio más grande o un contenedor rígido antes de depositarla en el contenedor turquesa para evitar accidentes.
+
+Impacto Ambiental: El vidrio utilizado en farmacéutica es de una pureza muy alta (generalmente vidrio neutro), lo que lo hace excelente para el reciclaje. Al recuperarlas, se reduce la necesidad de extraer arenas vírgenes y se aprovecha un material que, de otro modo, permanecería en el ambiente por milenios."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

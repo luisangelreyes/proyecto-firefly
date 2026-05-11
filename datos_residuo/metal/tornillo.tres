@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://cbu8cg2d2kqxq"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_djw7v"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="2_nfmxn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f32q3"]
+atlas = ExtResource("1_djw7v")
+region = Rect2(347, 294, 21, 35)
+
+[resource]
+script = ExtResource("2_nfmxn")
+nombre = "Tornillo"
+imagen = SubResource("AtlasTexture_f32q3")
+descripcion = "Tipo De Residuo: Metal
+
+Tiempo De Degradacion: 10 a 30 años
+
+Consejo De Disposicion: Al igual que con los clavos, es recomendable colocarlos dentro de un recipiente rígido o una lata con tapa antes de desecharlos; esto previene que perforen las bolsas de basura y protege la integridad física de los recolectores.
+
+Impacto Ambiental: Al estar fabricados comúnmente de acero o hierro, son materiales totalmente reciclables. Su correcta disposición permite que se fundan para crear nuevos productos metálicos, reduciendo la explotación minera y el consumo energético."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

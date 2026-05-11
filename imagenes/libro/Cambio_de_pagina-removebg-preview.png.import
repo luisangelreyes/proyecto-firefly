@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhh0634iacfp"
-path="res://.godot/imported/residuos-removebg-preview.png-64e00ecd8f5f243ec58e72d9218ffa9e.ctex"
+uid="uid://bjo0540xivluj"
+path="res://.godot/imported/Cambio_de_pagina-removebg-preview.png-fee1a9eec99f93304926ded274519f33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/residuos-removebg-preview.png"
-dest_files=["res://.godot/imported/residuos-removebg-preview.png-64e00ecd8f5f243ec58e72d9218ffa9e.ctex"]
+source_file="res://imagenes/libro/Cambio_de_pagina-removebg-preview.png"
+dest_files=["res://.godot/imported/Cambio_de_pagina-removebg-preview.png-fee1a9eec99f93304926ded274519f33.ctex"]
 
 [params]
 

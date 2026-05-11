@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://47n6y8et7hnn"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_tdixw"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_wbp8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yneg3"]
+atlas = ExtResource("1_wbp8c")
+region = Rect2(422, 188, 54, 40)
+
+[resource]
+script = ExtResource("1_tdixw")
+nombre = "Toper De Plastico"
+imagen = SubResource("AtlasTexture_yneg3")
+descripcion = "Tipo De Residuo: Plastico
+
+Tiempo De Degradacion: 450 a 500 años
+
+Consejo De Disposicion: Lavar para eliminar restos de comida o grasa; si el recipiente tiene el símbolo de reciclaje (generalmente un triángulo con un número), depositarlo en el contenedor correspondiente tras retirar tapas de otros materiales si fuera el caso
+
+Impacto Ambiental: Al degradarse, se convierte en microplásticos que contaminan el suelo y el agua; su reutilización prolongada es la mejor forma de reducir la demanda de nuevos productos derivados del petróleo"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

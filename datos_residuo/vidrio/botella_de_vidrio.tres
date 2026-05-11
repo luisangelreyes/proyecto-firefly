@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://3n2ycycwhuae"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_jpa07"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_khkg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grlg1"]
+atlas = ExtResource("1_jpa07")
+region = Rect2(94, 337, 23, 58)
+
+[resource]
+script = ExtResource("1_khkg7")
+nombre = "Botella De Vidrio"
+imagen = SubResource("AtlasTexture_grlg1")
+descripcion = "Tipo De Residuo: Vidrio
+
+Tiempo De Degradacion: 4,000 años.
+
+Consejo De Disposicion: Enjuagar para eliminar residuos orgánicos, retirar etiquetas si es posible y quitar tapas de plástico o metal para depositarlas en sus contenedores respectivos.
+
+Impacto Ambiental: El vidrio es 100% reciclable y puede procesarse infinitas veces sin perder calidad; su reciclaje reduce significativamente la erosión del suelo al no requerir la extracción de nueva arena de sílice y ahorra un 40% de energía en comparación con la fabricación de vidrio virgen."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

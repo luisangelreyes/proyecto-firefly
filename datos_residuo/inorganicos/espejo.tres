@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://dnih17s4qwwor"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_3lley"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x782j"]
+
+[resource]
+script = ExtResource("1_3lley")
+nombre = "Espejo"
+imagen = SubResource("AtlasTexture_x782j")
+descripcion = "Tipo De Residuo: Inorganicos
+
+Tiempo De Degradacion: 4,000 años
+
+Consejo De Disposicion: Si está roto, envuelve los trozos en papel periódico grueso o cartón y asegúralos con cinta adhesiva; rotula el paquete con la leyenda \"Vidrio roto\" para proteger a los recolectores. Debido a que contiene metales y químicos para el reflejo, debe ir al contenedor de inorgánicos no reciclables.
+
+Impacto Ambiental: Los espejos no pueden reciclarse junto con el vidrio común (envases) porque tienen un punto de fusión diferente y contienen una capa de plata o aluminio que contaminaría el proceso. Su correcta disposición evita accidentes físicos y la acumulación de residuos que no se reintegran al ciclo natural.
+"
+metadata/_custom_type_script = "uid://k43gd28ijhr"

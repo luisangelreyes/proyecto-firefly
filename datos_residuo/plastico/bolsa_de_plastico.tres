@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://c5acuanhp5150"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_81qsy"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_ehgpw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oif78"]
+atlas = ExtResource("1_81qsy")
+region = Rect2(365, 180, 40, 47)
+
+[resource]
+script = ExtResource("1_ehgpw")
+nombre = "Bolsa De Plastico"
+imagen = SubResource("AtlasTexture_oif78")
+descripcion = "Tipo De Residuo: Plastico
+
+Tiempo De Degradacion: 150 a 400 años
+
+Consejo De Disposicion: Reutilizar tantas veces como sea posible; si ya no es funcional, asegúrate de que esté limpia y seca antes de depositarla en el contenedor de reciclaje de plásticos suaves.
+
+Impacto Ambiental: Su ligereza facilita que lleguen a mares y ríos, donde son ingeridas por animales marinos que las confunden con alimento, provocando su muerte por asfixia o inanición."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

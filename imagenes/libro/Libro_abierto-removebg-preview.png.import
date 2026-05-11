@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byxtht1skxa2k"
-path="res://.godot/imported/Libro_PD_png.png-1ccbf1d81bba850b497c3acbe4759cd0.ctex"
+uid="uid://bqpdwm1h73swq"
+path="res://.godot/imported/Libro_abierto-removebg-preview.png-4b368b8455e07db46ac0085798370c6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/Libro_PD_png.png"
-dest_files=["res://.godot/imported/Libro_PD_png.png-1ccbf1d81bba850b497c3acbe4759cd0.ctex"]
+source_file="res://imagenes/libro/Libro_abierto-removebg-preview.png"
+dest_files=["res://.godot/imported/Libro_abierto-removebg-preview.png-4b368b8455e07db46ac0085798370c6b.ctex"]
 
 [params]
 

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bq63urauj0t26"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_5y5sc"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_ke5ug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3he"]
+atlas = ExtResource("1_ke5ug")
+region = Rect2(96, 287, 26, 44)
+
+[resource]
+script = ExtResource("1_5y5sc")
+nombre = "Lata De Refresco"
+imagen = SubResource("AtlasTexture_dp3he")
+descripcion = "Tipo De Residuo: Metal
+
+Tiempo De Degradacion: 10 a 100 años.
+
+Consejo De Disposicion: Vaciar cualquier residuo de líquido, enjuagar con un poco de agua y compactar la lata para que ocupe menos espacio en el contenedor de reciclaje; si es posible, no separes la anilla de la lata para asegurar que ambos componentes se reciclen juntos.
+
+Impacto Ambiental: El aluminio es 100% reciclable de forma infinita sin perder sus propiedades; reciclar una lata ahorra el 95% de la energía necesaria para fabricar una nueva a partir de bauxita virgen."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

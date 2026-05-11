@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://c4uldnxm10xik"]
 
 [ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_o763w"]
-[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos-removebg-preview.png" id="1_wgexy"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_wgexy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbfao"]
 atlas = ExtResource("1_wgexy")

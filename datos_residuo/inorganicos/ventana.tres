@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://d0ysu0l7i87ct"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_qcdge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ep7"]
+
+[resource]
+script = ExtResource("1_qcdge")
+nombre = "Ventana"
+imagen = SubResource("AtlasTexture_f2ep7")
+descripcion = "Tipo De Residuo: Inorganicos
+
+Tiempo De Degradacion: 4,000 años
+
+Consejo De Disposicion: Si el vidrio está entero, lo ideal es buscar centros de acopio especializados en vidrio plano o construcción. Si está roto, debe envolverse cuidadosamente en cartón o papel periódico grueso, sellarse con cinta y marcarse claramente como \"Vidrio Roto\" para evitar cortes a los trabajadores de limpia. No debe depositarse en el contenedor de botellas de vidrio.
+
+Impacto Ambiental: El vidrio de ventana contiene aditivos para mayor resistencia que lo hacen incompatible con el proceso de reciclaje de botellas y frascos. Si se mezcla con el vidrio de envases, puede arruinar lotes enteros de reciclaje. Su correcta disposición previene riesgos físicos y permite que sea procesado en plantas que manejan escombros o áridos."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

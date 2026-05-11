@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://b8an6fn3h1eoi"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_7t4qi"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_idl7s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxwsf"]
+atlas = ExtResource("1_7t4qi")
+region = Rect2(145, 116, 39, 53)
+
+[resource]
+script = ExtResource("1_idl7s")
+nombre = "Jeringas"
+imagen = SubResource("AtlasTexture_wxwsf")
+descripcion = "Tipo De Residuo: Peligrosos
+
+Tiempo De Degradacion: El plástico puede tardar hasta 500 años y el metal de la aguja décadas, pero su peligrosidad biológica es inmediata.
+
+Consejo De Disposicion: Deben colocarse en contenedores rígidos de polipropileno resistentes a perforaciones con tapa de seguridad y entregarse en centros de salud o puntos de recolección de residuos biológico-infecciosos.
+
+Impacto Ambiental: Si se desechan incorrectamente, pueden causar lesiones accidentales y propagar enfermedades infecciosas, además de que los materiales plásticos terminan contaminando ecosistemas por siglos."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

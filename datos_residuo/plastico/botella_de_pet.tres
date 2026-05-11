@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://be7ejoeg154r5"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_wore8"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_xhhlh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvckc"]
+atlas = ExtResource("1_wore8")
+region = Rect2(104, 173, 24, 55)
+
+[resource]
+script = ExtResource("1_xhhlh")
+nombre = "PET"
+imagen = SubResource("AtlasTexture_rvckc")
+descripcion = "Tipo De Residuo: Plastico
+
+Tiempo De Degradacion: 450 a 500 años
+
+Consejo De Disposicion: Vaciar el contenido, lavar, aplastar para reducir volumen y colocar la tapa antes de depositar en el contenedor correspondiente.
+
+Impacto Ambiental: Es uno de los residuos más reciclables, pero si termina en el océano, se fragmenta en microplásticos que son ingeridos por la fauna marina, entrando en la cadena alimenticia humana."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

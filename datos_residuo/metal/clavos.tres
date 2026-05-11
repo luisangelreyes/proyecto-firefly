@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://dd0nstyed45ho"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_rnnnq"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_tbcnq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6dr3"]
+atlas = ExtResource("1_rnnnq")
+region = Rect2(298, 295, 37, 34)
+
+[resource]
+script = ExtResource("1_tbcnq")
+nombre = "Clavos"
+imagen = SubResource("AtlasTexture_r6dr3")
+descripcion = "Tipo De Residuo: Metal
+
+Tiempo De Degradacion: 10 a 30 años
+
+Consejo De Disposicion: Deben colocarse dentro de un recipiente rígido (como una lata o frasco con tapa) para evitar perforaciones en las bolsas de basura y prevenir lesiones a los trabajadores de recolección.
+
+Impacto Ambiental: Al ser de acero o hierro, son materiales altamente reciclables; su recuperación evita la necesidad de extraer más mineral de hierro y reduce el impacto ambiental de la minería."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

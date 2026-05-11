@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://bmgfcpofbw8tk"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_2sln4"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_ugdma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vtvm"]
+atlas = ExtResource("1_2sln4")
+region = Rect2(344, 120, 19, 47)
+
+[resource]
+script = ExtResource("1_ugdma")
+nombre = "Pila AA"
+imagen = SubResource("AtlasTexture_8vtvm")
+descripcion = "Tipo De Residuo: Peligrosos
+
+Tiempo De Degradacion: 500 a 1,000 años
+
+Consejo De Disposicion: No se deben tirar a la basura común; es fundamental llevarlas a centros de acopio especializados o depositarlas en contenedores exclusivos para pilas para evitar fugas de componentes químicos.
+
+Impacto Ambiental: Contienen metales pesados y sustancias tóxicas que pueden filtrar y contaminar gravemente el suelo y miles de litros de agua si no se gestionan adecuadamente."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

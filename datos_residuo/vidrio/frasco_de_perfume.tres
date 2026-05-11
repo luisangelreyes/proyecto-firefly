@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://i34bbksdbthe"]
+
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_avs3r"]
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_t6upk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rjhp"]
+atlas = ExtResource("1_t6upk")
+region = Rect2(367, 342, 29, 53)
+
+[resource]
+script = ExtResource("1_avs3r")
+nombre = "Frasco De Perfume"
+imagen = SubResource("AtlasTexture_5rjhp")
+descripcion = "Tipo De Residuo: Vidrio
+
+Tiempo De Degradacion: 4,000 años
+
+Consejo De Disposicion: Si es posible, retira el atomizador (que suele ser una mezcla de plástico y metal) con unas pinzas para separarlo como residuo plástico/metal; enjuaga el interior si el aroma es muy fuerte y deposita el envase de vidrio en el contenedor correspondiente.
+
+Impacto Ambiental: El vidrio de los perfumes es de alta calidad y totalmente reciclable, pero el pequeño tamaño de los componentes del atomizador dificulta su procesamiento; separarlos asegura que la mayor parte del envase regrese al ciclo productivo sin contaminar otros materiales."
+metadata/_custom_type_script = "uid://k43gd28ijhr"

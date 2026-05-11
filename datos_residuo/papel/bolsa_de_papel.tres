@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EntradaResiduoario" format=3 uid="uid://b8ig66rxdtwbe"]
+
+[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="1_bepve"]
+[ext_resource type="Script" uid="uid://k43gd28ijhr" path="res://entrada_residuoario.gd" id="1_r7k4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxluy"]
+atlas = ExtResource("1_bepve")
+region = Rect2(424, 235, 42, 51)
+
+[resource]
+script = ExtResource("1_r7k4m")
+nombre = "Bolsa De Papel"
+imagen = SubResource("AtlasTexture_xxluy")
+descripcion = "Tipo De Residuo: Papel
+
+Tiempo De Degradacion: 1 a 5 meses.
+
+Consejo De Disposicion: Asegúrate de que esté vacía y sin restos de grasa; si tiene asas de otro material (como plástico o tela), retíralas antes de reciclarla.
+
+Impacto Ambiental: Es una alternativa biodegradable al plástico que, al reciclarse, ayuda a conservar los recursos forestales y requiere menos energía para su procesamiento."
+metadata/_custom_type_script = "uid://k43gd28ijhr"
