@@ -14,28 +14,41 @@
 [ext_resource type="Resource" uid="uid://bmynto8pwkqv2" path="res://datos_residuo/organicos/hueso.tres" id="8_uodw4"]
 [ext_resource type="Resource" uid="uid://bn45uk0oyngub" path="res://datos_residuo/organicos/rama_con_hojas.tres" id="9_0lm74"]
 [ext_resource type="Resource" uid="uid://dbt3xpro8mjpe" path="res://datos_residuo/inorganicos/esponja_de_trastas.tres" id="10_3abme"]
+[ext_resource type="Resource" uid="uid://dnih17s4qwwor" path="res://datos_residuo/inorganicos/espejo.tres" id="10_wkrb8"]
 [ext_resource type="Resource" uid="uid://6qppnwgisij3" path="res://datos_residuo/inorganicos/fibra_para_trastes.tres" id="11_xyu4y"]
 [ext_resource type="Resource" uid="uid://c0qgin1768ji5" path="res://datos_residuo/peligrosos/foco_roto.tres" id="12_j4qiq"]
 [ext_resource type="Resource" uid="uid://dkli52r5al0ql" path="res://datos_residuo/inorganicos/plato_de_ceramica_roto.tres" id="13_hp48d"]
-[ext_resource type="Texture2D" uid="uid://blhh0634iacfp" path="res://imagenes/residuos/residuos-removebg-preview.png" id="14_3abme"]
+[ext_resource type="Resource" uid="uid://d0ysu0l7i87ct" path="res://datos_residuo/inorganicos/ventana.tres" id="14_omad2"]
+[ext_resource type="Resource" uid="uid://b8ig66rxdtwbe" path="res://datos_residuo/papel/bolsa_de_papel.tres" id="15_3uc2q"]
+[ext_resource type="Resource" uid="uid://b1x2mequj4iu4" path="res://datos_residuo/papel/caja_de_carton.tres" id="16_8v38i"]
+[ext_resource type="Resource" uid="uid://bitnnrgvm83k1" path="res://datos_residuo/papel/carton.tres" id="17_qrrtc"]
+[ext_resource type="Resource" uid="uid://bkp3fehkn3ibc" path="res://datos_residuo/papel/hoja_de_papel.tres" id="18_ie2g0"]
+[ext_resource type="Resource" uid="uid://37gxw4ah8rtk" path="res://datos_residuo/papel/libreta.tres" id="19_7426p"]
 [ext_resource type="Texture2D" uid="uid://b6lbrsj1d61ga" path="res://imagenes/residuos/separadores_de_residuos-ft.png" id="19_xyu4y"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gr2fs"]
-atlas = ExtResource("14_3abme")
-region = Rect2(205, 64, 74, 42)
-
-[sub_resource type="Resource" id="Resource_xyu4y"]
-script = ExtResource("2_owi5b")
-nombre = "Vaso Desechable"
-imagen = SubResource("AtlasTexture_gr2fs")
-descripcion = "Tipo De Residuo: Plastico
-
-Tiempo De Degradacion: 50 a 500 años (dependiendo de si es polipropileno o poliestireno).
-
-Consejo De Disposicion: Enjuagar para eliminar residuos de líquidos antes de depositarlo en el contenedor correspondiente para facilitar su reciclaje.
-
-Impacto Ambiental: Su acumulación masiva satura los vertederos y, al fragmentarse, los microplásticos resultantes son altamente dañinos para la fauna terrestre y marina."
-metadata/_custom_type_script = "uid://k43gd28ijhr"
+[ext_resource type="Resource" uid="uid://b2wcmjxvy0kxe" path="res://datos_residuo/papel/periodico.tres" id="20_lk8nr"]
+[ext_resource type="Resource" uid="uid://biu6tf462j1pd" path="res://datos_residuo/papel/tubo_de_carton.tres" id="21_5jwkq"]
+[ext_resource type="Resource" uid="uid://c5acuanhp5150" path="res://datos_residuo/plastico/bolsa_de_plastico.tres" id="22_23lsy"]
+[ext_resource type="Resource" uid="uid://chrfi6j0gbv1g" path="res://datos_residuo/plastico/botella_de_detergente.tres" id="23_ygjg7"]
+[ext_resource type="Resource" uid="uid://be7ejoeg154r5" path="res://datos_residuo/plastico/botella_de_pet.tres" id="24_dfon3"]
+[ext_resource type="Resource" uid="uid://q3llgkb61tw2" path="res://datos_residuo/plastico/popote.tres" id="25_jktv2"]
+[ext_resource type="Resource" uid="uid://47n6y8et7hnn" path="res://datos_residuo/plastico/toper_de_plastico.tres" id="26_5mffa"]
+[ext_resource type="Resource" uid="uid://chw6cvm2pid8f" path="res://datos_residuo/plastico/vaso_desechable.tres" id="27_4p8sy"]
+[ext_resource type="Resource" uid="uid://dd0nstyed45ho" path="res://datos_residuo/metal/clavos.tres" id="28_nbywb"]
+[ext_resource type="Resource" uid="uid://b6tyjb231jy7o" path="res://datos_residuo/metal/corcholatas.tres" id="29_j6xdb"]
+[ext_resource type="Resource" uid="uid://21rjxxm6ld5i" path="res://datos_residuo/metal/lata_de_conserva.tres" id="30_dr1k1"]
+[ext_resource type="Resource" uid="uid://bq63urauj0t26" path="res://datos_residuo/metal/lata_de_refresco.tres" id="31_6biqs"]
+[ext_resource type="Resource" uid="uid://ridihm13fi2g" path="res://datos_residuo/metal/llaves.tres" id="32_d5eml"]
+[ext_resource type="Resource" uid="uid://cbu8cg2d2kqxq" path="res://datos_residuo/metal/tornillo.tres" id="33_mjjc8"]
+[ext_resource type="Resource" uid="uid://fyy8sirg0hbo" path="res://datos_residuo/vidrio/ampolletas.tres" id="34_cw825"]
+[ext_resource type="Resource" uid="uid://3n2ycycwhuae" path="res://datos_residuo/vidrio/botella_de_vidrio.tres" id="35_7ae2d"]
+[ext_resource type="Resource" uid="uid://cx1sw2knb72s2" path="res://datos_residuo/vidrio/frasco.tres" id="36_6josb"]
+[ext_resource type="Resource" uid="uid://i34bbksdbthe" path="res://datos_residuo/vidrio/frasco_de_perfume.tres" id="37_o7hae"]
+[ext_resource type="Resource" uid="uid://d1iy1hreor2ag" path="res://datos_residuo/peligrosos/diesel.tres" id="38_ivf33"]
+[ext_resource type="Resource" uid="uid://b8an6fn3h1eoi" path="res://datos_residuo/peligrosos/geringas.tres" id="40_r13lr"]
+[ext_resource type="Resource" uid="uid://bew3mt302jfa" path="res://datos_residuo/peligrosos/pastillas.tres" id="41_r0qfp"]
+[ext_resource type="Resource" uid="uid://djn2e35tynagq" path="res://datos_residuo/peligrosos/pila_9v.tres" id="42_4s3lt"]
+[ext_resource type="Resource" uid="uid://bmgfcpofbw8tk" path="res://datos_residuo/peligrosos/pila_aa.tres" id="43_u2l0j"]
+[ext_resource type="Resource" uid="uid://d2414uqqmhqwe" path="res://datos_residuo/peligrosos/pila_aaa.tres" id="44_k8edr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3abme"]
 shader = ExtResource("7_5cuoq")
@@ -76,19 +89,20 @@ region = Rect2(395, 278, 92, 94)
 
 [node name="LibroUI" type="CanvasLayer" unique_id=1619831041]
 script = ExtResource("1_2ym2i")
-base_datos = Array[ExtResource("2_owi5b")]([ExtResource("3_g0h7d"), ExtResource("3_5cuoq"), ExtResource("5_81jil"), ExtResource("4_38mgg"), ExtResource("5_8hsbl"), ExtResource("8_uodw4"), ExtResource("9_0lm74"), ExtResource("10_3abme"), ExtResource("11_xyu4y"), ExtResource("12_j4qiq"), ExtResource("13_hp48d"), SubResource("Resource_xyu4y")])
+base_datos = Array[ExtResource("2_owi5b")]([ExtResource("3_g0h7d"), ExtResource("3_5cuoq"), ExtResource("5_81jil"), ExtResource("4_38mgg"), ExtResource("5_8hsbl"), ExtResource("8_uodw4"), ExtResource("9_0lm74"), ExtResource("10_wkrb8"), ExtResource("10_3abme"), ExtResource("11_xyu4y"), ExtResource("13_hp48d"), ExtResource("14_omad2"), ExtResource("15_3uc2q"), ExtResource("16_8v38i"), ExtResource("17_qrrtc"), ExtResource("18_ie2g0"), ExtResource("19_7426p"), ExtResource("20_lk8nr"), ExtResource("21_5jwkq"), ExtResource("22_23lsy"), ExtResource("23_ygjg7"), ExtResource("24_dfon3"), ExtResource("25_jktv2"), ExtResource("26_5mffa"), ExtResource("27_4p8sy"), ExtResource("28_nbywb"), ExtResource("29_j6xdb"), ExtResource("30_dr1k1"), ExtResource("31_6biqs"), ExtResource("32_d5eml"), ExtResource("33_mjjc8"), ExtResource("34_cw825"), ExtResource("35_7ae2d"), ExtResource("36_6josb"), ExtResource("37_o7hae"), ExtResource("38_ivf33"), ExtResource("12_j4qiq"), ExtResource("40_r13lr"), ExtResource("41_r0qfp"), ExtResource("42_4s3lt"), ExtResource("43_u2l0j"), ExtResource("44_k8edr")])
 
 [node name="Residuoario" type="Control" parent="." unique_id=226761247]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 49.0
+offset_top = -1.0
 offset_right = 40.0
-offset_bottom = 89.0
+offset_bottom = 39.0
 
 [node name="LibroAbierto" type="TextureRect" parent="Residuoario" unique_id=1681345500]
 layout_mode = 1
 offset_right = 1159.0
 offset_bottom = 652.0
+mouse_filter = 2
 texture = ExtResource("2_iutyl")
 
 [node name="ContenidoEstatico" type="Control" parent="Residuoario" unique_id=675197240]
@@ -97,9 +111,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PaginaIzquierda" type="Control" parent="Residuoario/ContenidoEstatico" unique_id=590212970]
-anchors_preset = 0
-offset_right = 574.0
-offset_bottom = 652.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NombreResiduo" type="Label" parent="Residuoario/ContenidoEstatico/PaginaIzquierda" unique_id=2059251162]
 layout_mode = 0
@@ -126,19 +143,21 @@ offset_bottom = 486.0
 theme_override_colors/default_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
 
 [node name="PaginaDerecha" type="Control" parent="Residuoario/ContenidoEstatico" unique_id=146521791]
-anchors_preset = 0
-offset_left = 574.0
-offset_right = 1159.0
-offset_bottom = 652.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NombreResiduo" type="Label" parent="Residuoario/ContenidoEstatico/PaginaDerecha" unique_id=250783095]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.98100007
 anchor_right = -0.98100007
-offset_left = 637.885
+offset_left = 669.24
 offset_top = 96.0
-offset_right = 888.88525
+offset_right = 920.24023
 offset_bottom = 131.0
 theme_override_colors/font_color = Color(0.051970966, 0.05197096, 0.05197095, 1)
 horizontal_alignment = 1
@@ -148,9 +167,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.98100007
 anchor_right = -0.98100007
-offset_left = 727.885
+offset_left = 765.24
 offset_top = 155.0
-offset_right = 797.885
+offset_right = 835.24
 offset_bottom = 214.0
 
 [node name="Descripcion" type="RichTextLabel" parent="Residuoario/ContenidoEstatico/PaginaDerecha" unique_id=632558227]
@@ -160,10 +179,10 @@ anchor_left = -0.98100007
 anchor_top = -0.018000001
 anchor_right = -0.98100007
 anchor_bottom = -0.018000001
-offset_left = 598.885
-offset_top = 268.736
-offset_right = 910.885
-offset_bottom = 497.736
+offset_left = 638.24
+offset_top = 257.72
+offset_right = 950.24
+offset_bottom = 486.72
 theme_override_colors/default_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
 
 [node name="ContenidoAnimado" type="SubViewportContainer" parent="Residuoario" unique_id=626632265]
@@ -221,6 +240,7 @@ layout_mode = 0
 offset_left = -140.0
 offset_right = 896.0
 offset_bottom = 652.0
+mouse_filter = 2
 texture = ExtResource("3_wn3ty")
 
 [node name="PortadaFrontal" type="TextureRect" parent="Residuoario" unique_id=1505025980]
@@ -230,6 +250,7 @@ offset_left = 240.0
 offset_top = -12.0
 offset_right = 1323.0
 offset_bottom = 640.0
+mouse_filter = 2
 texture = ExtResource("4_ajoj5")
 
 [node name="ButtonAtras" type="Button" parent="Residuoario" unique_id=150602237]
@@ -251,61 +272,41 @@ text = "Siguiente
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Residuoario" unique_id=1378243963]
 
-[node name="ButtonOrganico" type="TextureButton" parent="Residuoario" unique_id=1411382966]
+[node name="Categorias" type="HBoxContainer" parent="Residuoario" unique_id=1948099401]
 layout_mode = 0
-offset_left = 270.0
-offset_top = -41.0
-offset_right = 362.0
-offset_bottom = 53.0
+offset_left = 250.0
+offset_top = -23.0
+offset_right = 918.0
+offset_bottom = 71.0
+
+[node name="ButtonOrganico" type="TextureButton" parent="Residuoario/Categorias" unique_id=1411382966]
+layout_mode = 2
+action_mode = 0
 texture_normal = SubResource("AtlasTexture_j4qiq")
 stretch_mode = 0
 
-[node name="ButtonInorganico" type="TextureButton" parent="Residuoario" unique_id=642560682]
-layout_mode = 0
-offset_left = 362.0
-offset_top = -41.0
-offset_right = 454.0
-offset_bottom = 55.0
+[node name="ButtonInorganico" type="TextureButton" parent="Residuoario/Categorias" unique_id=642560682]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_hp48d")
 
-[node name="ButtonPapel" type="TextureButton" parent="Residuoario" unique_id=1759214671]
-layout_mode = 0
-offset_left = 454.0
-offset_top = -41.0
-offset_right = 546.0
-offset_bottom = 55.0
+[node name="ButtonPapel" type="TextureButton" parent="Residuoario/Categorias" unique_id=1759214671]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_cvb52")
 
-[node name="ButtonPlastico" type="TextureButton" parent="Residuoario" unique_id=518662436]
-layout_mode = 0
-offset_left = 546.0
-offset_top = -41.0
-offset_right = 638.0
-offset_bottom = 53.0
+[node name="ButtonPlastico" type="TextureButton" parent="Residuoario/Categorias" unique_id=518662436]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_pnxjr")
 
-[node name="ButtonMetal" type="TextureButton" parent="Residuoario" unique_id=483076594]
-layout_mode = 0
-offset_left = 635.0
-offset_top = -41.0
-offset_right = 727.0
-offset_bottom = 55.0
+[node name="ButtonMetal" type="TextureButton" parent="Residuoario/Categorias" unique_id=483076594]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_t77ga")
 
-[node name="ButtonVidrio" type="TextureButton" parent="Residuoario" unique_id=925430082]
-layout_mode = 0
-offset_left = 727.0
-offset_top = -41.0
-offset_right = 819.0
-offset_bottom = 55.0
+[node name="ButtonVidrio" type="TextureButton" parent="Residuoario/Categorias" unique_id=925430082]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_tj5ic")
 
-[node name="ButtonPeligrosos" type="TextureButton" parent="Residuoario" unique_id=883661130]
-layout_mode = 0
-offset_left = 819.0
-offset_top = -41.0
-offset_right = 911.0
-offset_bottom = 53.0
+[node name="ButtonPeligrosos" type="TextureButton" parent="Residuoario/Categorias" unique_id=883661130]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_lqhvk")
 
 [connection signal="pressed" from="Residuoario/ButtonAtras" to="." method="_on_button_atras_pressed"]

@@ -21,10 +21,25 @@ var indice_actual: int = 0
 @onready var contenedor_animado = $Residuoario/ContenidoAnimado
 
 func _ready():
+	
+	# 1. Obtenemos todos los botones dentro de tu contenedor de categorías
+	# Reemplaza $Categorias por la ruta real a tu contenedor de botones
+	for boton in $Residuoario/Categorias.get_children():
+		if boton is Button:
+			# Tomamos el nombre del botón (ej: "ButtonOrganico") 
+			# y le quitamos el prefijo "Button" para que quede "Organico"
+			var nombre_categoria = boton.name.replace("Button", "")
+			
+			# Conectamos la señal y pasamos ese nombre como argumento
+			boton.pressed.connect(saltar_a_categoria.bind(nombre_categoria))
+	
+	actualizar_paginas()
+	
 	# Ocultamos el contenedor animado ya que no se usará
 	if has_node("Residuoario/ContinadoAnimado"):
 		$Residuoario/ContinadoAnimado.hide()
 	actualizar_paginas()
+
 
 func actualizar_paginas():
 	_limpiar_campos()
@@ -64,3 +79,18 @@ func _reproducir_sonido():
 func _limpiar_campos():
 	nombre_izq.text = ""; foto_izq.texture = null; desc_izq.text = ""
 	nombre_der.text = ""; foto_der.texture = null; desc_der.text = ""
+	
+
+func saltar_a_categoria(nombre_buscado: String):
+	# ¡Ojo aquí! Debe haber un espacio (Tab) al inicio de esta línea
+	print("¡Clic detectado! Buscando categoría: ", nombre_buscado) 
+	
+	# Recorremos la base de datos
+	for i in range(base_datos.size()):
+		if base_datos[i].categoria == nombre_buscado:
+			# Ajustamos el índice
+			indice_actual = i if i % 2 == 0 else i - 1
+			
+			_reproducir_sonido()
+			actualizar_paginas()
+			return # Salimos del ciclo
