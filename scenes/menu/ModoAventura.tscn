@@ -208,8 +208,11 @@ text = "Nivel 1-4"
 
 [node name="LabelDescripcion" type="Label" parent="." unique_id=1541862360]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 35.0
+offset_top = 970.0
+offset_right = 77.0
+offset_bottom = 1039.0
+theme_override_font_sizes/font_size = 26
 
 [node name="BotonVolver" type="Button" parent="." unique_id=1642407252]
 layout_mode = 0

@@ -11,14 +11,11 @@ var combo: int = 1
 var mundo_actual: int = 1
 var nivel_actual: int = 1
 
-# Mapa de niveles desbloqueados — clave "mundo-nivel"
-# 1-1: Tutorial
-# 1-2: Caída de residuos (NivelBase)
-# 1-3: Dr. Mario de residuos
 var niveles_desbloqueados: Dictionary = {
 	"1-1": true,
 	"1-2": false,
 	"1-3": false,
+	"1-4": false
 }
 
 # Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
@@ -45,12 +42,13 @@ func iniciar_nueva_partida(nombre_jugador: String):
 		"1-1": true,
 		"1-2": false,
 		"1-3": false,
+		"1-4":false
 	}
 	guardar_progreso()
 
 # ── DESBLOQUEAR SIGUIENTE NIVEL ───────────────────────────────────────────────
 func completar_nivel(mundo: int, nivel: int):
-	var clave_actual   = "%d-%d" % [mundo, nivel]
+	var _clave_actual   = "%d-%d" % [mundo, nivel]
 	var clave_siguiente = "%d-%d" % [mundo, nivel + 1]
 
 	# Si existe el siguiente nivel en el mapa, lo desbloqueamos
@@ -124,7 +122,7 @@ func cargar_partida(nombre_jugador: String) -> bool:
 	mundo_actual      = d.get("mundo_actual", 1)
 	nivel_actual      = d.get("nivel_actual", 1)
 	niveles_desbloqueados = d.get("niveles_desbloqueados", {
-		"1-1": true, "1-2": false, "1-3": false
+		"1-1": true, "1-2": false, "1-3": false, "1-4":false
 	})
 
 	# Guardar que este fue el último perfil usado

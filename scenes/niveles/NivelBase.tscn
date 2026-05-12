@@ -111,6 +111,7 @@ grow_vertical = 2
 color = Color(0.12298488, 0.12298488, 0.12298488, 1)
 
 [node name="TextoGameOver" type="Label" parent="GameOver" unique_id=1589723103]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

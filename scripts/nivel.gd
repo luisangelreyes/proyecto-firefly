@@ -8,10 +8,10 @@ signal nivel_completado(atrapados: int, escapados: int, total: int)
 # ── CONFIGURACIÓN DE DIFICULTAD POR OLEADA ───────────────────────────────
 # Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
 var DIFICULTAD_OLEADAS = [
-	[290.0, 0.50, 0.10],   # Oleada 1 — fácil, pocos peligrosos
-	[340.0, 0.42, 0.15],   # Oleada 2 — un poco más rápido
-	[400.0, 0.35, 0.22],   # Oleada 3 — notablemente más difícil
-	[460.0, 0.28, 0.28],   # Oleada 4 — presión máxima
+		[200.0, 1, 0.02],   # Oleada 1 — primer contacto con peligrosos
+		[240.0, 1, 0.08],   # Oleada 2 — más frecuentes
+		[275.0, 1, 0.02],   # Oleada 3 — presión real
+		[310.0, 1, 0.06],   # Oleada 4 — desafío del mundo 1
 ]
 var escena_basura = preload("res://entities/basura/basura.tscn")
 
@@ -29,7 +29,7 @@ var residuos_escapados: int = 0
 
 # ── ESTADO ───────────────────────────────────────────────────────────────
 var nivel_activo: bool = false
-var tiempo_entre_residuos: float = 1.0
+var tiempo_entre_residuos: float = 2.0
 
 func _ready():
 	SesionGlobal.vidas = 3    # ← agregar esta línea
@@ -211,6 +211,7 @@ func _on_juego_terminado():
 
 func _process(_delta):
 	if $GameOver/TextoGameOver.visible:
+		print("es visible")
 		if Input.is_action_just_pressed("reiniciar"):
 			SesionGlobal.vidas = 3
 			SesionGlobal.puntaje = 0
@@ -221,6 +222,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("confirmar"):
 			$PantallaResultados._on_boton_siguiente_pressed()
 		return
+	
 func _on_oleada_terminada(oleada: int, _total: int):
 	if oleada >= DIFICULTAD_OLEADAS.size():
 		return
