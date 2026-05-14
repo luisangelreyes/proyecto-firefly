@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bvrjymt6qm8uk"]
 
-[ext_resource type="Script" uid="uid://bmwa74rk33t3j" path="res://scripts/opciones.gd" id="1_2qbtr"]
+[ext_resource type="Script" uid="uid://bo87lrgajatk5" path="res://scripts/opciones.gd" id="1_2qbtr"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="1_ycng2"]
-[ext_resource type="Script" uid="uid://gisndu1bw2an" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
+[ext_resource type="Script" uid="uid://d3ln0thjvgds3" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
 
 [node name="Opciones" type="Control" unique_id=384793349]
 layout_mode = 3

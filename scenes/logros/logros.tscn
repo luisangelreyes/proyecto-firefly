@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cik2h6iqmhcv5"]
 
-[ext_resource type="Script" uid="uid://cg545plf8g6ib" path="res://scripts/logros.gd" id="1_blyse"]
+[ext_resource type="Script" uid="uid://dv652wpu1qkk4" path="res://scripts/logros.gd" id="1_blyse"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="1_f4k3q"]
 
 [node name="Logros" type="Control" unique_id=1230117961]

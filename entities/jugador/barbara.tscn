@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://be7pb25waefas"]
 
-[ext_resource type="Script" uid="uid://8qwyofhlq3qp" path="res://entities/jugador/barbara.gd" id="1_e87rb"]
+[ext_resource type="Script" uid="uid://drtnovl22b1id" path="res://entities/jugador/barbara.gd" id="1_e87rb"]
 [ext_resource type="Texture2D" uid="uid://cbsko3sqpi5hy" path="res://entities/jugador/sprites/liz_bote_azul.png" id="2_e87rb"]
 [ext_resource type="Texture2D" uid="uid://ce5vntcui65dm" path="res://entities/basura/sprites/trash_apple.png" id="2_vss5t"]
 [ext_resource type="Texture2D" uid="uid://bibqqr2n7vvb7" path="res://entities/jugador/sprites/liz_bote_verde.png" id="4_rhkl5"]

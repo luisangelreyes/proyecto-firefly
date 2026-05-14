@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d24aq6kneg27o"]
 
-[ext_resource type="Script" uid="uid://dvgne3yocujmf" path="res://scenes/menu/ModoAventura.gd" id="1_4iea3"]
+[ext_resource type="Script" uid="uid://dnrav77x0gy5u" path="res://scenes/menu/ModoAventura.gd" id="1_4iea3"]
 [ext_resource type="Texture2D" uid="uid://btwnw3u6vdqjx" path="res://entities/fondos/FONDO_MUNDO_TREN.png" id="2_lp1uh"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_0fhu4"]
 

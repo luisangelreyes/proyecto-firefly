@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0afqsllhtymw"]
 
-[ext_resource type="Script" uid="uid://jwqrla0gney0" path="res://scripts/gabinete_arcade.gd" id="1_xo55o"]
-[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/nivel.tscn" id="2_yvim4"]
+[ext_resource type="Script" uid="uid://dy8p2a7vegosu" path="res://scripts/gabinete_arcade.gd" id="1_xo55o"]
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="2_yvim4"]
 
 [node name="GabineteArcade" type="Control" unique_id=1251733925]
 layout_mode = 3

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://heefgaptok3k"]
 
-[ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scripts/Nivel2.gd" id="1_qrsul"]
+[ext_resource type="Script" uid="uid://064pecmpkcr6" path="res://scripts/Nivel2.gd" id="1_qrsul"]
 [ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="2_fqim2"]
 [ext_resource type="Texture2D" uid="uid://dkt4p2pgn471s" path="res://entities/UI/cursor.png" id="3_62nbq"]
-[ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scripts/pantalla_resultados_n2.gd" id="3_vrnrg"]
+[ext_resource type="Script" uid="uid://dcslpwgdlf4m3" path="res://scripts/pantalla_resultados_n2.gd" id="3_vrnrg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nen"]
 size = Vector2(260, 412.5)

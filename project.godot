@@ -17,8 +17,8 @@ config/icon="res://assets/ui/icon.svg"
 
 [autoload]
 
-SesionGlobal="*uid://dx15cat8lmch7"
-Configuracion="*uid://dy8axcpdisst0"
+SesionGlobal="*res://scripts/sesion_global.gd"
+Configuracion="*res://scripts/configuracion.gd"
 
 [display]
 

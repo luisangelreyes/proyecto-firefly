@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cw0k7ilht52a"]
 
-[ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://yogrix110kdk" path="res://scripts/menu.gd" id="1_lti8b"]
 [ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_e0arn"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
 
@@ -126,7 +126,7 @@ layout_mode = 2
 mouse_filter = 0
 text = "MODO AVENTURA"
 
-[node name="LabelArcade" type="Label" parent="ContenedorMenu" unique_id=1775888854]
+[node name="LabelArcade2" type="Label" parent="ContenedorMenu" unique_id=17557079]
 layout_mode = 2
 mouse_filter = 0
 text = "MODO ARCADE"

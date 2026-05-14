@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c601praiasd6j"]
 
-[ext_resource type="Script" uid="uid://wp574wsyfugx" path="res://scripts/nivel.gd" id="1_h06de"]
+[ext_resource type="Script" uid="uid://j221vbwflb6r" path="res://scripts/nivel.gd" id="1_h06de"]
 [ext_resource type="PackedScene" uid="uid://be7pb25waefas" path="res://entities/jugador/barbara.tscn" id="2_7gdj4"]
 [ext_resource type="Texture2D" uid="uid://8dm2fu4cun8f" path="res://entities/fondos/Gemini_Generated_Image_3ahtee3ahtee3aht.png" id="2_bnor3"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="4_doau0"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="5_bnor3"]
 [ext_resource type="AudioStream" uid="uid://biwkee6sh2fbe" path="res://assets/audio/sfx/Tee-Lopes-Big-Apple_-3-PM-_-TMNT_-Shredder_s-Revenge-Official-Soundtrack.ogg" id="5_o6cdr"]
 [ext_resource type="Texture2D" uid="uid://d11r0yprfqgp5" path="res://entities/UI/Xbox_button_Y.svg.png" id="6_6hkwo"]
-[ext_resource type="Script" uid="uid://wavbtv4qfktp" path="res://scripts/pantalla_resultados.gd" id="6_bnor3"]
+[ext_resource type="Script" uid="uid://u6qf41ln0t4a" path="res://scripts/pantalla_resultados.gd" id="6_bnor3"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="8_hfh3j"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="11_3ej5d"]
 

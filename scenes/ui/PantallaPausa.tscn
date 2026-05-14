@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://btt4ojnnu2aka"]
 
-[ext_resource type="Script" uid="uid://1oam4e0lud05" path="res://scenes/ui/PantallaPausa.gd" id="1_qq7xk"]
+[ext_resource type="Script" uid="uid://gs004ht7nfc0" path="res://scenes/ui/PantallaPausa.gd" id="1_qq7xk"]
 
 [node name="PantallaPausa" type="CanvasLayer" unique_id=1921388617]
 process_mode = 3

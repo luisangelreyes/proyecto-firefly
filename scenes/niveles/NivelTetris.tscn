@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://o131vxt373ht"]
 
-[ext_resource type="Script" uid="uid://cgemxhykwo88u" path="res://scenes/niveles/NivelTetris.gd" id="1_0x3m6"]
+[ext_resource type="Script" uid="uid://1kvseykhodic" path="res://scenes/niveles/NivelTetris.gd" id="1_0x3m6"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="2_vd0rw"]
 
 [node name="NivelTetris" type="Node2D" unique_id=1552365202]

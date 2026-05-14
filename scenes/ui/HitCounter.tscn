@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cksbfdmmh7m2o"]
 
-[ext_resource type="Script" uid="uid://tr0bu2jib6o7" path="res://scenes/ui/HitCounter.gd" id="1_6i3qc"]
+[ext_resource type="Script" uid="uid://bcjoqyfhg32yt" path="res://scenes/ui/HitCounter.gd" id="1_6i3qc"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="2_4qtew"]
 
 [sub_resource type="FontVariation" id="FontVariation_7v8v5"]

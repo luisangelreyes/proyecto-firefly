@@ -39,7 +39,6 @@ func _ready():
 		$ContenedorMenu/LabelSalir,
 		$ContenedorMenu/BotonCambiar
 	]
-<<<<<<< HEAD
 
 	# Cargar tamaños iniciales desde Configuración
 	_cargar_tamaños_iniciales()
@@ -47,16 +46,6 @@ func _ready():
 	# Conectar señal de cambio de tamaño
 	_conectar_signal_configuracion()
 
-=======
-	size_activo = Configuracion.get_tamaño_activo()
-	size_inactivo = Configuracion.get_tamaño_inactivo()
-	
-	# 2. Aplicamos visualmente al menú principal
-	_actualizar_seleccion()
-	
-	# 3. Tu lógica de arranque que ya tenías
-	inicializar_sistema()
->>>>>>> main
 	# Conectar ventana perfiles (igual que antes)
 	$VentanaPerfiles/CajaBotones/BotonSeleccionar.pressed.connect(_on_seleccionar_perfil)
 	$VentanaPerfiles/CajaBotones/BotonNuevo.pressed.connect(abrir_ventana_nuevo)
@@ -153,6 +142,7 @@ func _unhandled_input(event):
 			if get_viewport() != null:
 				get_viewport().set_input_as_handled()
 		return
+
 # 2. Navegación dentro de VentanaPerfiles
 	if ventana_perfiles.visible:
 		if event.is_action_pressed("mover_arriba") or event.is_action_pressed("ui_up"):
@@ -163,12 +153,6 @@ func _unhandled_input(event):
 				ultimo_movimiento = tiempo_actual
 				get_viewport().set_input_as_handled()
 
-<<<<<<< HEAD
-	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-		_confirmar_seleccion()
-
-# ── ACTUALIZACIÓN VISUAL ───────────────────────────────────────────────────
-=======
 		elif event.is_action_pressed("mover_abajo") or event.is_action_pressed("ui_down"):
 			if tiempo_actual - ultimo_movimiento > 200:
 				var idx = lista_perfiles.get_selected_items()
@@ -194,22 +178,15 @@ func _unhandled_input(event):
 		elif event.is_action_pressed("ui_cancel"):
 			abrir_ventana_perfiles()
 			get_viewport().set_input_as_handled()
->>>>>>> main
+
+# ── ACTUALIZACIÓN VISUAL ───────────────────────────────────────────────────
 func _actualizar_seleccion():
 	for i in range(items.size()):
 		if i == indice_actual:
 			items[i].add_theme_color_override("font_color", COLOR_ACTIVO)
-<<<<<<< HEAD
 			items[i].add_theme_font_size_override("font_size", size_activo)
 		else:
 			items[i].add_theme_color_override("font_color", COLOR_INACTIVO)
-=======
-			# USAMOS LA VARIABLE DINÁMICA:
-			items[i].add_theme_font_size_override("font_size", size_activo)
-		else:
-			items[i].add_theme_color_override("font_color", COLOR_INACTIVO)
-			# USAMOS LA VARIABLE DINÁMICA:
->>>>>>> main
 			items[i].add_theme_font_size_override("font_size", size_inactivo)
 
 	label_descripcion.text = DESCRIPCIONES[indice_actual]
@@ -219,13 +196,8 @@ func _confirmar_seleccion():
 	match indice_actual:
 		0: _iniciar_modo_aventura()
 		1: _iniciar_arcade()
-<<<<<<< HEAD
 		2: _abrir_logros() 
 		3: _abrir_opciones() 
-=======
-		2: get_tree().change_scene_to_file("res://scenes/logros/logros.tscn") 
-		3: get_tree().change_scene_to_file("res://scenes/opciones/opciones.tscn") 
->>>>>>> main
 		4: get_tree().quit()
 
 # ── ACCIONES DEL MENÚ ────────────────────────────────────────────────────────
@@ -233,11 +205,10 @@ func _iniciar_modo_aventura():
 	get_tree().change_scene_to_file("res://scenes/menu/ModoAventura.tscn")
 
 func _iniciar_arcade():
-<<<<<<< HEAD
 	if SesionGlobal.perfil_actual == "":
 		abrir_ventana_perfiles()
 		return
-	get_tree().change_scene_to_file("res://scenes/niveles/Nivel.tscn")
+	get_tree().change_scene_to_file("res://scenes/niveles/NivelBase.tscn")
 
 func _abrir_opciones():
 	if SesionGlobal.perfil_actual == "":
@@ -251,10 +222,6 @@ func _abrir_logros():
 		return
 	get_tree().change_scene_to_file("res://scenes/logros/logros.tscn")
 
-=======
-	get_tree().change_scene_to_file("res://scenes/niveles/NivelBase.tscn")
-	
->>>>>>> main
 # ── LÓGICA DE ARRANQUE (RF-05) ────────────────────────────────────────────────
 func inicializar_sistema():
 	var perfiles = SesionGlobal.cargar_todos_los_perfiles()

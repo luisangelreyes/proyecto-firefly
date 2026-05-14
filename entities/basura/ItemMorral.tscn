@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8lc1c5kd3rcl"]
 
-[ext_resource type="Script" uid="uid://cn7g61fu82r7n" path="res://scripts/ItemMorral.gd" id="1_wqup3"]
+[ext_resource type="Script" uid="uid://82ogvd40isnp" path="res://scripts/ItemMorral.gd" id="1_wqup3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0l7f"]
 size = Vector2(80, 80)
