@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://be7pb25waefas"]
+
+[ext_resource type="Script" uid="uid://8qwyofhlq3qp" path="res://entities/jugador/barbara.gd" id="1_e87rb"]
+[ext_resource type="Texture2D" uid="uid://cbsko3sqpi5hy" path="res://entities/jugador/sprites/sprite-max-px-16.png" id="2_e87rb"]
+[ext_resource type="Texture2D" uid="uid://ce5vntcui65dm" path="res://entities/basura/sprites/trash_apple.png" id="2_vss5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e87rb"]
+size = Vector2(250, 344)
+
+[sub_resource type="Animation" id="Animation_vss5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e87rb"]
+resource_name = "caminar"
+length = 0.53333336
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vss5t"]
+_data = {
+&"RESET": SubResource("Animation_vss5t"),
+&"caminar": SubResource("Animation_e87rb")
+}
+
+[node name="Barbara" type="Area2D" unique_id=1800587545]
+position = Vector2(0, 650)
+script = ExtResource("1_e87rb")
+
+[node name="Sombra" type="Sprite2D" parent="." unique_id=1347364586]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.49803922)
+position = Vector2(127, 43.999973)
+scale = Vector2(1.6972742, 0.38438648)
+texture = ExtResource("2_vss5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1144012254]
+position = Vector2(158.70332, -112.22918)
+scale = Vector2(0.683068, 0.6812822)
+texture = ExtResource("2_e87rb")
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455544391]
+texture_filter = 1
+position = Vector2(166, -114)
+shape = SubResource("RectangleShape2D_e87rb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1083103762]
+libraries/ = SubResource("AnimationLibrary_vss5t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

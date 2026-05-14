@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bgl5di61qwcmh"]
+
+[ext_resource type="Script" uid="uid://7jxwetbuflp2" path="res://scenes/menu/PantallaIntro.gd" id="1_skeq3"]
+[ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_4p353"]
+[ext_resource type="FontFile" uid="uid://bnx37nwur2oe" path="res://assets/ui/fonts/GraffitiStreamExtrude-OGL5A.otf" id="3_45du3"]
+
+[node name="PantallaIntro" type="Control" unique_id=840015892]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_skeq3")
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=1485364452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4p353")
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=902109958]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -959.0
+offset_top = 71.0
+offset_right = -183.0
+offset_bottom = 204.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_45du3")
+theme_override_font_sizes/font_size = 67
+text = "*RECOLECTORES"
+horizontal_alignment = 1
+
+[node name="LabelSubtitulo" type="Label" parent="." unique_id=88626722]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -387.0
+offset_right = -476.0
+offset_bottom = -338.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "El Legado de lo Olvidado
+"
+horizontal_alignment = 1
+
+[node name="LabelPresiona" type="Label" parent="." unique_id=134240840]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 679.0
+offset_right = 176.0
+offset_bottom = 702.0
+theme_override_font_sizes/font_size = 28
+text = "Presiona cualquier botón"
+
+[node name="LabelPerfil" type="Label" parent="." unique_id=1388324223]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1895.0
+offset_top = 496.0
+offset_right = -1542.0
+offset_bottom = 519.0
+grow_horizontal = 0
+grow_vertical = 2

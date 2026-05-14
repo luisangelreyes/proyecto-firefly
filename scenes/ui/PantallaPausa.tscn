@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://btt4ojnnu2aka"]
+
+[ext_resource type="Script" uid="uid://1oam4e0lud05" path="res://scenes/ui/PantallaPausa.gd" id="1_qq7xk"]
+
+[node name="PantallaPausa" type="CanvasLayer" unique_id=1921388617]
+process_mode = 3
+layer = 10
+script = ExtResource("1_qq7xk")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=466645209]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.69411767)
+
+[node name="LineaDecorativa" type="ColorRect" parent="." unique_id=97725735]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = -1857.0
+offset_bottom = -389.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2627451, 0.2627451, 0.2627451, 0.94509804)
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=1755720190]
+offset_left = 80.0
+offset_top = 109.0
+offset_right = 245.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
+theme_override_font_sizes/font_size = 51
+text = "PAUSA"
+
+[node name="LabelReanudar" type="Label" parent="." unique_id=890958]
+offset_left = 80.0
+offset_top = 260.0
+offset_right = 156.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 32
+text = "REANUDAR"
+
+[node name="LabelReiniciar" type="Label" parent="." unique_id=1811282351]
+offset_left = 80.0
+offset_top = 324.0
+offset_right = 148.0
+offset_bottom = 347.0
+theme_override_font_sizes/font_size = 32
+text = "REINICIAR"
+
+[node name="LabelMenu" type="Label" parent="." unique_id=1842229650]
+offset_left = 80.0
+offset_top = 388.0
+offset_right = 125.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 32
+text = "REGRESAR A MENÚ"
+
+[node name="LabelDescripcion" type="Label" parent="." unique_id=575167191]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -220.0
+offset_right = 6.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24

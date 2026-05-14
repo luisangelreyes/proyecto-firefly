@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://o131vxt373ht"]
+
+[ext_resource type="Script" uid="uid://cgemxhykwo88u" path="res://scenes/niveles/NivelTetris.gd" id="1_0x3m6"]
+[ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="2_vd0rw"]
+
+[node name="NivelTetris" type="Node2D" unique_id=1552365202]
+process_mode = 1
+script = ExtResource("1_0x3m6")
+
+[node name="Tablero" type="Node2D" parent="." unique_id=1701779489]
+
+[node name="PildoraActual" type="Node2D" parent="." unique_id=337450690]
+
+[node name="HUD" type="Node2D" parent="." unique_id=556380205]
+
+[node name="LabelPuntos" type="Label" parent="HUD" unique_id=686369925]
+offset_left = 122.0
+offset_top = 31.0
+offset_right = 228.0
+offset_bottom = 87.0
+
+[node name="LabelVidas" type="Label" parent="HUD" unique_id=278049314]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 765.0
+offset_top = 17.0
+offset_right = 1144.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelNivel" type="Label" parent="HUD" unique_id=1955362547]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1712.0
+offset_top = 26.0
+offset_right = 1817.0
+offset_bottom = 71.0
+grow_horizontal = 2
+
+[node name="ContenedorBotes" type="HBoxContainer" parent="HUD" unique_id=1100720769]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BotesPapel" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=1199856226]
+layout_mode = 2
+
+[node name="BotesVidrio" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=950784732]
+layout_mode = 2
+
+[node name="BotesPlastico" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=466908337]
+layout_mode = 2
+
+[node name="BotesAluminio" type="VBoxContainer" parent="HUD/ContenedorBotes" unique_id=1343661469]
+layout_mode = 2
+
+[node name="PantallaGameOver" type="CanvasLayer" parent="." unique_id=2023749978]
+
+[node name="Fondo" type="ColorRect" parent="PantallaGameOver" unique_id=820411391]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00028472347, 0, 0.23108113, 1)
+
+[node name="LabelTitulo" type="Label" parent="PantallaGameOver/Fondo" unique_id=358630203]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 234.0
+offset_right = 121.0
+offset_bottom = 347.5
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="BotonReiniciar" type="Button" parent="PantallaGameOver/Fondo" unique_id=1078504380]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "Reiniciar"
+
+[node name="PantallaVictoria" type="CanvasLayer" parent="." unique_id=1339710180]
+visible = false
+
+[node name="Fondo" type="ColorRect" parent="PantallaVictoria" unique_id=1282232513]
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 1917.0
+offset_bottom = 1080.0
+
+[node name="LabelTitulo" type="Label" parent="PantallaVictoria/Fondo" unique_id=1177948639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BotonSiguiente" type="Button" parent="PantallaVictoria/Fondo" unique_id=72299247]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("2_vd0rw")]

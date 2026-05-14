@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://d1jjcb5plsg51"]
+
+[ext_resource type="Script" uid="uid://c5bkdwi7c3c4i" path="res://scripts/opciones.gd" id="1_2qbtr"]
+[ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="1_ycng2"]
+[ext_resource type="Script" uid="uid://d3ln0thjvgds3" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
+
+[node name="Opciones" type="Control" unique_id=384793349]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2qbtr")
+
+[node name="Button" type="Button" parent="." unique_id=392828683]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("1_ycng2")
+theme_override_font_sizes/font_size = 55
+text = "Salir"
+
+[node name="LabelTamañoActual" type="Label" parent="." unique_id=1569145187]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 160.0
+offset_right = 417.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 25
+text = "Tamaño de fuente:"
+script = ExtResource("3_vhjlx")
+
+[node name="BotonNormal" type="Button" parent="." unique_id=1060949477]
+layout_mode = 0
+offset_left = 853.0
+offset_top = 139.0
+offset_right = 1024.0
+offset_bottom = 211.0
+text = "Normal"
+
+[node name="BotonMediano" type="Button" parent="." unique_id=363001533]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 141.0
+offset_right = 1231.0
+offset_bottom = 211.0
+text = "Grande"
+
+[node name="BotonGrande" type="Button" parent="." unique_id=459269473]
+layout_mode = 0
+offset_left = 1268.0
+offset_top = 143.0
+offset_right = 1437.0
+offset_bottom = 212.0
+text = "Muy Grande"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
