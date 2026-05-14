@@ -15,6 +15,20 @@ Thumbs.db
 Desktop.ini
 *.exe
 
+# Archivos de identificadores únicos (se regeneran localmente)
+*.uid
 
 # Archivos de usuario (El progreso aislado y analytics que definimos)
 user/
+
+# ─── Archivos de configuración de editores ─────────
+*.sublime-project
+*.sublime-workspace
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# Archivos temporales del editor
+*.tmp
+*.tmp.*
