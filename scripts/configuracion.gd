@@ -51,6 +51,7 @@ func aplicar_tamaño_actual():
 	var valores = TAMAÑOS[tamaño_actual]
 	emit_signal("tamaño_cambiado", get_nombre_tamaño(), valores["activo"], valores["inactivo"])
 
+<<<<<<< HEAD
 func set_filtro_color(nuevo_filtro: int):
 	filtro_actual = nuevo_filtro
 	guardar_configuracion()
@@ -95,10 +96,18 @@ func guardar_configuracion():
 	var config = ConfigFile.new()
 	config.set_value("accesibilidad", "tamaño_fuente", tamaño_actual)
 	config.set_value("accesibilidad", "filtro_color", filtro_actual)
+=======
+func guardar_configuracion():
+	var config = ConfigFile.new()
+	config.set_value("accesibilidad", "tamaño_fuente", tamaño_actual)
+>>>>>>> main
 	config.save("user://configuracion.cfg")
 
 func cargar_configuracion():
 	var config = ConfigFile.new()
 	if config.load("user://configuracion.cfg") == OK:
 		tamaño_actual = config.get_value("accesibilidad", "tamaño_fuente", TamañoFuente.NORMAL)
+<<<<<<< HEAD
 		filtro_actual = config.get_value("accesibilidad", "filtro_color", FiltroColor.NINGUNO)
+=======
+>>>>>>> main

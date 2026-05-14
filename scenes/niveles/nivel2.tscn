@@ -17,6 +17,7 @@ bg_color = Color(0.7482163, 0.5628441, 0.28525728, 1)
 corner_detail = 10
 
 [node name="Nivel2" type="Node2D" unique_id=1972288213]
+process_mode = 1
 script = ExtResource("1_qrsul")
 
 [node name="PanelMorral" type="ColorRect" parent="." unique_id=631864937]

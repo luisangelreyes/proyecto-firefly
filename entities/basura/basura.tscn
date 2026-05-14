@@ -11,7 +11,7 @@ shader_parameter/grosor = 5.0
 shader_parameter/activar_borde = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jasq"]
-size = Vector2(36.75, 39.0625)
+size = Vector2(84.5, 79.5)
 
 [node name="basura" type="Area2D" unique_id=2023222528 groups=["basura_caida"]]
 position = Vector2(19, 14)
@@ -22,12 +22,12 @@ script = ExtResource("1_6jasq")
 modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_su0lg")
-position = Vector2(-9, -9.5)
-scale = Vector2(0.08903564, 0.088197015)
+position = Vector2(11.999998, -38)
+scale = Vector2(0.13125, 0.13499999)
 texture = ExtResource("3_su0lg")
 hframes = 7
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404098192]
-position = Vector2(-9.375, -7.5)
+position = Vector2(8.75, -34.25)
 shape = SubResource("RectangleShape2D_6jasq")

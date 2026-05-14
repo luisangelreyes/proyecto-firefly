@@ -31,7 +31,7 @@ func mostrar_resultados(atrapados: int, escapados: int, total: int):
 	$Fondo/BotonSiguiente.grab_focus()
 
 func _on_boton_siguiente_pressed():
-	# Por ahora recarga el nivel, aquí irá la transición al siguiente mundo
 	SesionGlobal.vidas = 3
 	SesionGlobal.puntaje = 0
-	get_tree().reload_current_scene()
+	# Usar SceneTree directamente desde el Autoload
+	Engine.get_main_loop().change_scene_to_file("res://scenes/menu/ModoAventura.tscn")

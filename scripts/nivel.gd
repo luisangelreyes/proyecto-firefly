@@ -3,15 +3,21 @@ extends Node2D
 signal oleada_terminada(oleada_actual: int, total_oleadas: int)
 signal nivel_completado(atrapados: int, escapados: int, total: int)
 
-@export var lista_canciones: Array[AudioStream] = [
-	
+@export var lista_canciones: Array[AudioStream] = [	
 ]
-
+# ── CONFIGURACIÓN DE DIFICULTAD POR OLEADA ───────────────────────────────
+# Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
+var DIFICULTAD_OLEADAS = [
+		[200.0, 1, 0.02],   # Oleada 1 — primer contacto con peligrosos
+		[240.0, 1, 0.08],   # Oleada 2 — más frecuentes
+		[275.0, 1, 0.02],   # Oleada 3 — presión real
+		[310.0, 1, 0.06],   # Oleada 4 — desafío del mundo 1
+]
 var escena_basura = preload("res://entities/basura/basura.tscn")
 
 # Cada número es la cantidad de residuos de esa oleada
 # Sobreescribe esta variable en niveles hijos para cambiar la dificultad
-var oleadas: Array = [2, 6,8,8]
+var oleadas: Array = [2,30,8]
 var oleada_actual: int = 0
 var residuos_en_oleada: int = 0      # cuántos spawneó esta oleada
 var residuos_pendientes: int = 0     # cuántos siguen vivos en pantalla
@@ -23,9 +29,11 @@ var residuos_escapados: int = 0
 
 # ── ESTADO ───────────────────────────────────────────────────────────────
 var nivel_activo: bool = false
-var tiempo_entre_residuos: float = 1.0
+var tiempo_entre_residuos: float = 2.0
 
 func _ready():
+	SesionGlobal.vidas = 3    # ← agregar esta línea
+	SesionGlobal.puntaje = 0  # ← opcional: también resetear puntos por nivel
 	$MusicaFondo.pitch_scale = 1.0
 	if lista_canciones.size() > 0:
 		var indice = randi() % lista_canciones.size()
@@ -37,6 +45,7 @@ func _ready():
 	$Barbara.tension_musical.connect(_on_tension_musical)
 	nivel_completado.connect($PantallaResultados.mostrar_resultados)
 	$Barbara.residuo_clasificado.connect(_on_residuo_clasificado)  
+	
 
 	
 	
@@ -47,6 +56,28 @@ func _ready():
 		total_residuos += cantidad
 	
 	_iniciar_oleada()
+	$Barbara.combo_actualizado.connect(_on_combo_actualizado)
+	oleada_terminada.connect(_on_oleada_terminada)
+
+
+func _on_combo_actualizado(racha: int, multiplicador: int):
+	# HitCounter
+	if racha > 0:
+		$HitCounter.registrar_acierto(racha)
+	else:
+		$HitCounter.registrar_fallo()
+
+	# Label de multiplicador — solo si hay x2 o más
+	if multiplicador > 1:
+		$TextoCombo.text = "x%d" % multiplicador
+		$TextoCombo.visible = true
+		match multiplicador:
+			2: $TextoCombo.add_theme_color_override("font_color", Color("#fbbf24"))
+			3: $TextoCombo.add_theme_color_override("font_color", Color("#f97316"))
+			4: $TextoCombo.add_theme_color_override("font_color", Color("#ef4444"))
+	else:
+		$TextoCombo.visible = false
+		
 func _on_residuo_clasificado(acierto: bool):
 	if acierto:
 		residuos_atrapados += 1
@@ -79,12 +110,20 @@ func lanzar_basura_normal():
 		return
 
 	var posicion_eli = $Barbara.position.x
+	if posicion_eli <= 0 or posicion_eli >= 1440:
+		posicion_eli = 720
+
 	var nuevo_x = posicion_eli + randf_range(-400, 400)
 	nuevo_x = clamp(nuevo_x, 50, 1390)
 
 	var basura = escena_basura.instantiate()
 	basura.position = Vector2(nuevo_x, -50)
-	basura.prob_peligroso = probabilidad_peligroso  # ← asignamos antes de add_child
+	basura.prob_peligroso = probabilidad_peligroso
+
+	# Aplicar velocidad de la oleada actual
+	var config = DIFICULTAD_OLEADAS[min(oleada_actual, DIFICULTAD_OLEADAS.size() - 1)]
+	basura.velocidad_caida = config[0]
+
 	basura.tree_exited.connect(_on_residuo_salio)
 	basura.residuo_escapado.connect(_on_residuo_escapado)
 	add_child(basura)
@@ -161,7 +200,9 @@ func _on_juego_terminado():
 	
 	$MusicaFondo.stop()
 	$SonidoGameOver.play()
-	$TextoGameOver.visible = true
+	$GameOver.visible = true
+	$GameOver/TextoGameOver.visible = true
+	
 	$Timer.stop()
 	SesionGlobal.guardar_sesion()
 	$Barbara.queue_free()
@@ -169,12 +210,41 @@ func _on_juego_terminado():
 	
 
 func _process(_delta):
-	if $TextoGameOver.visible:
+	if $GameOver/TextoGameOver.visible:
+		print("es visible")
 		if Input.is_action_just_pressed("reiniciar"):
 			SesionGlobal.vidas = 3
 			SesionGlobal.puntaje = 0
 			get_tree().reload_current_scene()
+		return
 	
 	if $PantallaResultados.visible:
-		if Input.is_action_just_pressed("reiniciar"):
+		if Input.is_action_just_pressed("confirmar"):
 			$PantallaResultados._on_boton_siguiente_pressed()
+		return
+	
+func _on_oleada_terminada(oleada: int, _total: int):
+	if oleada >= DIFICULTAD_OLEADAS.size():
+		return
+	
+	if not is_inside_tree():
+		return
+		
+	var config = DIFICULTAD_OLEADAS[oleada]
+	tiempo_entre_residuos  = config[1]
+	probabilidad_peligroso = config[2]
+
+	for basura in get_tree().get_nodes_in_group("basura_caida"):
+		basura.velocidad_caida = config[0]
+
+	_mostrar_aviso_oleada(oleada + 1)
+func _mostrar_aviso_oleada(numero: int):
+	if not has_node("TextoOleada"):
+		return
+	$TextoOleada.text = "Oleada %d" % numero
+	$TextoOleada.visible = true
+	$TextoOleada.modulate.a = 1.0
+	var tween = create_tween()
+	tween.tween_interval(1.2)
+	tween.tween_property($TextoOleada, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(func(): $TextoOleada.visible = false)

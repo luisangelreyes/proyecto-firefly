@@ -11,25 +11,24 @@ var combo: int = 1
 var mundo_actual: int = 1
 var nivel_actual: int = 1
 
-# Mapa de niveles desbloqueados — clave "mundo-nivel"
-# 1-1: Tutorial
-# 1-2: Caída de residuos (NivelBase)
-# 1-3: Dr. Mario de residuos
 var niveles_desbloqueados: Dictionary = {
 	"1-1": true,
 	"1-2": false,
 	"1-3": false,
+	"1-4": false
 }
 
 # Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
 const RUTAS_NIVELES: Dictionary = {
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
-	"1-2": "res://scenes/niveles/NivelBase.tscn",
-	"1-3": "res://scenes/niveles/Nivel2.tscn",
+	"1-2": "res://scenes/niveles/NivelCaida1.tscn",
+	"1-3": "res://scenes/niveles/NivelCaida2.tscn",
+	"1-4": "res://scenes/niveles/Nivel2.tscn",
 }
 
 # Ruta del archivo de guardado
 var ruta_guardado: String = "user://perfiles_recolectores.json"
+var ultimo_perfil_usado: String = ""
 
 # ── RF-01 / RF-06: NUEVA PARTIDA ─────────────────────────────────────────────
 func iniciar_nueva_partida(nombre_jugador: String):
@@ -43,12 +42,13 @@ func iniciar_nueva_partida(nombre_jugador: String):
 		"1-1": true,
 		"1-2": false,
 		"1-3": false,
+		"1-4":false
 	}
 	guardar_progreso()
 
 # ── DESBLOQUEAR SIGUIENTE NIVEL ───────────────────────────────────────────────
 func completar_nivel(mundo: int, nivel: int):
-	var clave_actual   = "%d-%d" % [mundo, nivel]
+	var _clave_actual   = "%d-%d" % [mundo, nivel]
 	var clave_siguiente = "%d-%d" % [mundo, nivel + 1]
 
 	# Si existe el siguiente nivel en el mapa, lo desbloqueamos
@@ -114,21 +114,51 @@ func cargar_partida(nombre_jugador: String) -> bool:
 		return false
 
 	var d = datos[nombre_jugador]
-	perfil_actual = nombre_jugador
-	puntaje       = d.get("puntaje", 0)
-	vidas         = d.get("vidas", 3)
-	combo         = d.get("combo", 1)
-	mundo_actual  = d.get("mundo_actual", 1)
-	nivel_actual  = d.get("nivel_actual", 1)
+	perfil_actual     = nombre_jugador
+	ultimo_perfil_usado = nombre_jugador   # ← guardar cuál fue
+	puntaje           = d.get("puntaje", 0)
+	vidas             = d.get("vidas", 3)
+	combo             = d.get("combo", 1)
+	mundo_actual      = d.get("mundo_actual", 1)
+	nivel_actual      = d.get("nivel_actual", 1)
+	niveles_desbloqueados = d.get("niveles_desbloqueados", {
+		"1-1": true, "1-2": false, "1-3": false, "1-4":false
+	})
 
-	# Compatibilidad hacia atrás: si el JSON es viejo y no tiene
-	# niveles_desbloqueados, arrancamos con solo el tutorial disponible
-	niveles_desbloqueados = d.get("niveles_desbloqueados", {"1-1": true, "1-2": false, "1-3": false})
+	# Guardar que este fue el último perfil usado
+	_guardar_ultimo_perfil(nombre_jugador)
 	return true
 
+func _guardar_ultimo_perfil(nombre: String):
+	var ruta_ultimo = "user://ultimo_perfil.json"
+	var archivo = FileAccess.open(ruta_ultimo, FileAccess.WRITE)
+	if archivo:
+		archivo.store_string(JSON.stringify({"ultimo": nombre}))
+		archivo.close()
+
+func cargar_ultimo_perfil() -> String:
+	var ruta_ultimo = "user://ultimo_perfil.json"
+	if not FileAccess.file_exists(ruta_ultimo):
+		return ""
+	var archivo = FileAccess.open(ruta_ultimo, FileAccess.READ)
+	if not archivo:
+		return ""
+	var json = JSON.new()
+	var error = json.parse(archivo.get_as_text())
+	archivo.close()
+	if error == OK and typeof(json.data) == TYPE_DICTIONARY:
+		return json.data.get("ultimo", "")
+	return ""
+	
+	
 # ── HELPERS DE JUEGO ──────────────────────────────────────────────────────────
 func registrar_acierto(cantidad: int):
 	puntaje += cantidad
 
 func registrar_error():
 	vidas -= 1
+
+func reiniciar_estadisticas_nivel():
+	vidas = 3
+	puntaje = 0 # Opcional: si quieres que el puntaje vuelva a 0 al reiniciar el intento
+	combo = 1

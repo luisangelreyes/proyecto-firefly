@@ -84,6 +84,8 @@ var timer_activo: bool = false
 const GRID_ORIGEN = Vector2(150, 540)   # posición donde aparece el objeto
 
 func _ready():
+	SesionGlobal.vidas = 3
+	SesionGlobal.puntaje = 0
 	lbl_feedback.visible = false
 	popup.visible = false
 	_preparar_cola()

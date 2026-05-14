@@ -7,6 +7,9 @@ signal juego_terminado()
 signal interfaz_actualizada(puntos: int, vidas: int)
 signal tension_musical(activa: bool)
 signal residuo_clasificado(acierto: bool)
+signal combo_actualizado(racha: int, multiplicador: int)
+
+var racha_actual: int = 0
 @onready var audio_acierto = $AudioAcierto
 @onready var audio_error = $AudioError
 @onready var audio_derrota = $AudioDerrota
@@ -101,6 +104,9 @@ func _on_area_entered(area):
 		
 		if tipo_que_cayo == "Peligroso":
 			SesionGlobal.vidas -= 1
+			racha_actual = 0
+			SesionGlobal.combo = 1
+			combo_actualizado.emit(0, 1) 
 			Input.start_joy_vibration(0, 0.8, 0.0, 0.4)
 			resultado_tutorial.emit(false)
 			residuo_clasificado.emit(false)
@@ -111,12 +117,19 @@ func _on_area_entered(area):
 				acierto = true
 				
 			if acierto:
-				SesionGlobal.puntaje += 10
+				racha_actual += 1                          # ← incrementar racha
+				var mult = _get_multiplicador()
+				SesionGlobal.puntaje += 10 * mult          # ← puntos con multiplicador
+				SesionGlobal.combo = mult
+				combo_actualizado.emit(racha_actual, mult)  # ← avisar al HUD
 				Input.start_joy_vibration(0, 0.2, 0.0, 0.1)
 				audio_acierto.play()
 				resultado_tutorial.emit(true)
 				residuo_clasificado.emit(true)
 			else:
+				racha_actual = 0                           # ← resetear racha
+				SesionGlobal.combo = 1
+				combo_actualizado.emit(0, 1) 
 				SesionGlobal.vidas -= 1
 				Input.start_joy_vibration(0, 0.0, 0.5, 0.3)
 				audio_error.play()
@@ -182,3 +195,7 @@ func ejecutar_derrota():
 	
 	# 4. AHORA SÍ avisamos al nivel que saque la pantalla de Game Over
 	juego_terminado.emit()
+func _get_multiplicador() -> int:
+	# Cada 4 aciertos consecutivos sube un nivel, máximo 4x
+	# 0-3 = 1x | 4-7 = 2x | 8-11 = 3x | 12+ = 4x
+	return min(racha_actual / 4 + 1, 4)
