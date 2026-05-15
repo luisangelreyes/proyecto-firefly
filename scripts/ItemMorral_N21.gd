@@ -64,7 +64,7 @@ func inicializar(datos: Dictionary, ref_nivel):
  
 	var col = frame_idx % cols
 	var row = frame_idx / cols
- 
+	
 	var atlas = AtlasTexture.new()
 	atlas.atlas  = sheet
 	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
