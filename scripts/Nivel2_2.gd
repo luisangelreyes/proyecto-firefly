@@ -90,7 +90,7 @@ var timer_activo    : bool  = false
 @onready var popup        = $InterfazUI/PopUpAyuda
 @onready var lbl_explicacion = $InterfazUI/PopUpAyuda/VBoxContainer/LblExplicacion
  
-const GRID_ORIGEN = Vector2(150, 450)
+const GRID_ORIGEN = Vector2(150, 540)
  
  
 func _ready():
