@@ -68,10 +68,10 @@ offset_bottom = 308.0
 
 [node name="LabelFiltroColor" type="Label" parent="." unique_id=596991252]
 layout_mode = 0
-offset_left = 185.0
-offset_top = 371.0
-offset_right = 384.0
-offset_bottom = 438.0
+offset_left = 173.0
+offset_top = 375.0
+offset_right = 372.0
+offset_bottom = 442.0
 theme_override_font_sizes/font_size = 25
 text = "Filtro de color:"
 script = ExtResource("3_vhjlx")
@@ -107,5 +107,22 @@ offset_top = 366.0
 offset_right = 1649.0
 offset_bottom = 435.0
 text = "Tritanopia"
+
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=1667951426]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 480.0
+offset_right = 1608.0
+offset_bottom = 517.0
+
+[node name="CheckButtonReducirMovimiento" type="CheckButton" parent="." unique_id=761841178]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 546.0
+offset_right = 949.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 25
+text = "Reducir movimiento"
+script = ExtResource("3_vhjlx")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

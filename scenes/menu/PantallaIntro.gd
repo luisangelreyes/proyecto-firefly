@@ -15,14 +15,21 @@ func _ready():
 	else:
 		$LabelPerfil.visible = false
 
-	$LabelPresiona.modulate.a = 0.0
+	if Configuracion.movimiento_reducido:
+		$LabelPresiona.modulate.a = 1.0
+		input_habilitado = true
+	else:
+		$LabelPresiona.modulate.a = 0.0
 
-	# Fade in del texto "Presiona cualquier botón"
-	var tween = create_tween()
-	tween.tween_property($LabelPresiona, "modulate:a", 1.0, 1.5)
-	tween.tween_callback(func(): input_habilitado = true)
+		# Fade in del texto "Presiona cualquier botón"
+		var tween = create_tween()
+		tween.tween_property($LabelPresiona, "modulate:a", 1.0, 1.5)
+		tween.tween_callback(func(): input_habilitado = true)
 
 func _process(delta):
+	if Configuracion.movimiento_reducido:
+		return
+
 	# Parpadeo del texto
 	if input_habilitado:
 		parpadeo_timer += delta
@@ -47,6 +54,10 @@ func _input(event):
 
 func _ir_a_menu():
 	input_habilitado = false
+	if Configuracion.movimiento_reducido:
+		get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
+		return
+
 	# Fade out antes de cambiar de escena
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.4)

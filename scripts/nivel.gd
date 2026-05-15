@@ -244,6 +244,10 @@ func _mostrar_aviso_oleada(numero: int):
 	$TextoOleada.text = "Oleada %d" % numero
 	$TextoOleada.visible = true
 	$TextoOleada.modulate.a = 1.0
+	if Configuracion.movimiento_reducido:
+		await get_tree().create_timer(1.2).timeout
+		$TextoOleada.visible = false
+		return
 	var tween = create_tween()
 	tween.tween_interval(1.2)
 	tween.tween_property($TextoOleada, "modulate:a", 0.0, 0.6)

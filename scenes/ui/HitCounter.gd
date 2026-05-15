@@ -86,6 +86,10 @@ func _animar_pop():
 	if tween_pop:
 		tween_pop.kill()
 
+	if Configuracion.movimiento_reducido:
+		$Contenedor.scale = Vector2.ONE
+		return
+
 	# Escala rápida hacia arriba y vuelve — el "pop" de SoR4
 	$Contenedor.scale = Vector2(1.3, 1.3)
 	tween_pop = create_tween()
@@ -95,6 +99,12 @@ func _animar_pop():
 
 func _iniciar_decay():
 	en_decay = true
+
+	if Configuracion.movimiento_reducido:
+		tween_decay = create_tween()
+		tween_decay.tween_interval(TIEMPO_BLINK)
+		tween_decay.tween_callback(_resetear)
+		return
 
 	# Parpadeo + encogimiento gradual
 	tween_decay = create_tween().set_loops()

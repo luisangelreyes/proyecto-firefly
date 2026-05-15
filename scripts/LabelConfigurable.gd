@@ -1,9 +1,10 @@
-# label_configurable.gd
-# Guarda este archivo en tu carpeta de scripts
-extends Label
+# Adjúntalo directamente a Labels o CheckButtons individuales
+
+extends Control
 
 @export var factor_tamaño: float = 1.0
-@export var usar_tamaño_activo: bool = true  # true = size_activo, false = size_inactivo
+@export var usar_tamaño_activo: bool = true
+@export var escalar_icono: bool = false  # Solo se activa para CheckButtons
 
 func _ready():
 	_actualizar_tamaño()
@@ -22,4 +23,13 @@ func _actualizar_tamaño():
 		return
 	
 	var tamaño_base = Configuracion.get_tamaño_activo() if usar_tamaño_activo else Configuracion.get_tamaño_inactivo()
-	add_theme_font_size_override("font_size", int(tamaño_base * factor_tamaño))
+	var tamaño_fuente = int(tamaño_base * factor_tamaño)
+	
+	# Cambiar tamaño de fuente (funciona en Label Y CheckButton)
+	add_theme_font_size_override("font_size", tamaño_fuente)
+	
+	# Si es un CheckButton/CheckBox y tiene activado escalar_icono
+	if escalar_icono:
+		var tamaño_icono = int(tamaño_base * factor_tamaño * 0.7)
+		add_theme_constant_override("icon_width", tamaño_icono)
+		add_theme_constant_override("icon_height", tamaño_icono)

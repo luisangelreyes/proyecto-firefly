@@ -150,22 +150,20 @@ func actualizar_interfaz():
 
 # --- NUEVA FUNCIÓN: ANIMACIÓN DE FALLA ---
 func recibir_dano():
-	# PROTECCIÓN: Si ya está aturdida, ignoramos el golpe para no congelar el juego
 	if esta_aturdida:
 		return
-		
+
 	esta_aturdida = true
-	
-	# Reproduce la animación de daño
-	if bote_activo == 0:
-		anim_sprite.play("falla_organico")
+
+	if Configuracion.movimiento_reducido:
+		await get_tree().create_timer(0.4).timeout
 	else:
-		anim_sprite.play("falla_inorganico")
-		
-	# Esperar a que termine la animación (los 4 frames)
-	await anim_sprite.animation_finished
-	
-	# Regresarla a la normalidad
+		if bote_activo == 0:
+			anim_sprite.play("falla_organico")
+		else:
+			anim_sprite.play("falla_inorganico")
+		await anim_sprite.animation_finished
+
 	esta_aturdida = false
 	if bote_activo == 0:
 		anim_sprite.play("caminata_organico")
@@ -176,24 +174,22 @@ func recibir_dano():
 func celebrar_victoria():
 	nivel_terminado = true
 	audio_victoria.play()
-	
-	
-	# Reproduce la animación de baile. 
-	# (Si hiciste dos animaciones distintas para cada bote, usa un if/else como en recibir_dano)
-	anim_sprite.play("victoria")
+
+	if not Configuracion.movimiento_reducido:
+		anim_sprite.play("victoria")
 # --- NUEVA FUNCIÓN: DERROTA (GAME OVER) ---
 func ejecutar_derrota():
-	# 1. Bloqueamos los controles
 	nivel_terminado = true
-	esta_aturdida = true 
+	esta_aturdida = true
 	$"../MusicaFondo".stop()
-	audio_derrota.play() # <--- SONIDO REPRODUCIÉNDOSE
-	anim_sprite.play("derrota")
-	
-	# 3. Esperamos a que Liz termine de caer al suelo
-	await anim_sprite.animation_finished
-	
-	# 4. AHORA SÍ avisamos al nivel que saque la pantalla de Game Over
+	audio_derrota.play()
+
+	if Configuracion.movimiento_reducido:
+		await get_tree().create_timer(0.5).timeout
+	else:
+		anim_sprite.play("derrota")
+		await anim_sprite.animation_finished
+
 	juego_terminado.emit()
 func _get_multiplicador() -> int:
 	# Cada 4 aciertos consecutivos sube un nivel, máximo 4x

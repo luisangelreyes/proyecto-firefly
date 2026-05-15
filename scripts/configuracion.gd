@@ -3,6 +3,7 @@ extends Node
 
 signal tamaño_cambiado(nuevo_tamaño: String, valor_activo: int, valor_inactivo: int)
 signal filtro_cambiado(tipo: int)
+signal movimiento_reducido_cambiado(valor: bool)
 
 enum TamañoFuente { NORMAL, MEDIANO, GRANDE }
 enum FiltroColor { NINGUNO, DEUTERANOPIA, PROTANOPIA, TRITANOPIA }
@@ -15,6 +16,7 @@ const TAMAÑOS = {
 
 var tamaño_actual: int = TamañoFuente.NORMAL
 var filtro_actual: int = FiltroColor.NINGUNO
+var movimiento_reducido: bool = false
 
 var _overlay_layer: CanvasLayer
 var _overlay_rect: ColorRect
@@ -68,6 +70,11 @@ func get_nombre_filtro() -> String:
 			return "Tritanopia"
 	return "Ninguno"
 
+func set_movimiento_reducido(valor: bool):
+	movimiento_reducido = valor
+	guardar_configuracion()
+	emit_signal("movimiento_reducido_cambiado", valor)
+
 func aplicar_filtro_actual():
 	if _shader_material:
 		_shader_material.set_shader_parameter("filtro_tipo", filtro_actual)
@@ -95,6 +102,7 @@ func guardar_configuracion():
 	var config = ConfigFile.new()
 	config.set_value("accesibilidad", "tamaño_fuente", tamaño_actual)
 	config.set_value("accesibilidad", "filtro_color", filtro_actual)
+	config.set_value("accesibilidad", "movimiento_reducido", movimiento_reducido)
 	config.save("user://configuracion.cfg")
 
 func cargar_configuracion():
@@ -102,3 +110,4 @@ func cargar_configuracion():
 	if config.load("user://configuracion.cfg") == OK:
 		tamaño_actual = config.get_value("accesibilidad", "tamaño_fuente", TamañoFuente.NORMAL)
 		filtro_actual = config.get_value("accesibilidad", "filtro_color", FiltroColor.NINGUNO)
+		movimiento_reducido = config.get_value("accesibilidad", "movimiento_reducido", false)

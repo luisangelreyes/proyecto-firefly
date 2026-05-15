@@ -10,7 +10,15 @@ extends Control
 @onready var boton_protanopia = $BotonProtanopia
 @onready var boton_tritanopia = $BotonTritanopia
 
+@onready var check_reducir_movimiento = $CheckButtonReducirMovimiento
+
 func _ready():
+	check_reducir_movimiento.toggled.connect(func(valor): Configuracion.set_movimiento_reducido(valor))
+	check_reducir_movimiento.button_pressed = Configuracion.movimiento_reducido
+	
+	if not Configuracion.movimiento_reducido_cambiado.is_connected(_on_movimiento_reducido_cambiado):
+		Configuracion.movimiento_reducido_cambiado.connect(_on_movimiento_reducido_cambiado)
+	
 	boton_normal.pressed.connect(func(): _cambiar_tamaño(Configuracion.TamañoFuente.NORMAL))
 	boton_mediano.pressed.connect(func(): _cambiar_tamaño(Configuracion.TamañoFuente.MEDIANO))
 	boton_grande.pressed.connect(func(): _cambiar_tamaño(Configuracion.TamañoFuente.GRANDE))
@@ -46,6 +54,9 @@ func _actualizar_ui_tamaño():
 	boton_normal.modulate = Color.WHITE if tamaño_actual == Configuracion.TamañoFuente.NORMAL else Color.DIM_GRAY
 	boton_mediano.modulate = Color.WHITE if tamaño_actual == Configuracion.TamañoFuente.MEDIANO else Color.DIM_GRAY
 	boton_grande.modulate = Color.WHITE if tamaño_actual == Configuracion.TamañoFuente.GRANDE else Color.DIM_GRAY
+
+func _on_movimiento_reducido_cambiado(valor: bool):
+	check_reducir_movimiento.button_pressed = valor
 
 func _actualizar_ui_filtro():
 	label_filtro_color.text = "Filtro actual: " + Configuracion.get_nombre_filtro()
