@@ -1,8 +1,10 @@
+# ════════════════════════════════════════════════════════
+#  ItemMorral_N23.gd
+# ════════════════════════════════════════════════════════
 extends Node2D
  
-# ── SHEETS DEL NIVEL 2.1 ──────────────────────────────────────────────────
 const SHEET_TELA       = preload("res://entities/basura/sprites/basura_tela6.png")
-const SHEET_ORGANICO   = preload("res://entities/basura/sprites/basura_organica7.png")
+const SHEET_MADERA     = preload("res://entities/basura/sprites/basura_madera5.png")
 const SHEET_INORGANICO = preload("res://entities/basura/sprites/basura_inorganica8.png")
  
 var tipo        : String  = ""
@@ -37,24 +39,24 @@ func inicializar(datos: Dictionary, ref_nivel):
 	explicacion = datos["explicacion"]
 	frame_idx   = datos["frame"]
  
-	var sheet    : Texture2D
-	var cols     : int
-	var cell_w   : float
-	var cell_h   : float
+	var sheet  : Texture2D
+	var cols   : int
+	var cell_w : float
+	var cell_h : float
  
 	match tipo:
 		"tela":
-			# 512x512 — 4 cols x 4 filas — celda 128x128
+			# 512x512 — 3 cols x 4 filas — celda 128x128
 			sheet  = SHEET_TELA
 			cols   = 3
 			cell_w = 128.0
 			cell_h = 128.0
-		"organico":
-			# 1024x1536 — 3 cols x 4 filas — celda ~341x384
-			sheet  = SHEET_ORGANICO
+		"madera":
+			# 512x512 — 3 cols x 4 filas — celda 128x128
+			sheet  = SHEET_MADERA
 			cols   = 3
-			cell_w = 1024.0 / 3.0
-			cell_h = 1536.0 / 4.0
+			cell_w = 128.0
+			cell_h = 128.0
 		"inorganico":
 			# 1024x1536 — 3 cols x 4 filas — celda ~341x384
 			sheet  = SHEET_INORGANICO
@@ -64,18 +66,12 @@ func inicializar(datos: Dictionary, ref_nivel):
  
 	var col = frame_idx % cols
 	var row = frame_idx / cols
-	
-	print("Tipo: ", tipo, " | Frame: ", frame_idx, " | Col: ", col, " | Row: ", row)
-	print("CellW: ", cell_w, " | CellH: ", cell_h)
-	print("Region: ", Rect2(col * cell_w, row * cell_h, cell_w, cell_h))
-	
+ 
 	var atlas = AtlasTexture.new()
 	atlas.atlas  = sheet
 	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
 	sprite.texture = atlas
  
-	# Escalar para que todos se vean del mismo tamaño en pantalla
-	# La celda más grande es ~341x384 → escalar a ~160px de alto
 	var target_h : float = 160.0
 	var scale_f  : float = target_h / cell_h
 	sprite.scale = Vector2(scale_f, scale_f)
@@ -89,9 +85,9 @@ func _input(event):
 		if event.pressed:
 			var local = to_local(get_global_mouse_position())
 			if sprite.get_rect().has_point(local):
-				arrastrando      = true
-				offset_arrastre  = global_position - get_global_mouse_position()
-				z_index          = 10
+				arrastrando     = true
+				offset_arrastre = global_position - get_global_mouse_position()
+				z_index         = 10
 		else:
 			if arrastrando:
 				arrastrando = false

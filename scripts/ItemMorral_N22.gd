@@ -54,7 +54,7 @@ func inicializar(datos: Dictionary, ref_nivel):
 		"madera":
 			# 512x512 — 4 cols x 3 filas  ← cols y filas invertidas
 			sheet  = SHEET_MADERA
-			cols   = 4
+			cols   = 3
 			cell_w = 128
 			cell_h = 128
 		"vidrio":
