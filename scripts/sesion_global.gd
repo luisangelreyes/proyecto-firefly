@@ -29,7 +29,19 @@ const RUTAS_NIVELES: Dictionary = {
 # Ruta del archivo de guardado
 var ruta_guardado: String = "user://perfiles_recolectores.json"
 var ultimo_perfil_usado: String = ""
+var eventos_sesion: Array = []
+var tiempo_inicio_sesion: float = 0.0
+var tiempo_ultimo_residuo: float = 0.0
 
+func iniciar_registro_sesion():
+	eventos_sesion.clear()
+	tiempo_inicio_sesion = Time.get_ticks_msec() / 1000.0
+	tiempo_ultimo_residuo = tiempo_inicio_sesion
+
+func registrar_evento(datos: Dictionary):
+	datos["timestamp_ms"] = Time.get_ticks_msec()
+	eventos_sesion.append(datos)
+	
 # ── RF-01 / RF-06: NUEVA PARTIDA ─────────────────────────────────────────────
 func iniciar_nueva_partida(nombre_jugador: String):
 	perfil_actual = nombre_jugador
@@ -42,7 +54,7 @@ func iniciar_nueva_partida(nombre_jugador: String):
 		"1-1": true,
 		"1-2": false,
 		"1-3": false,
-		"1-4":false
+		"1-4":false,
 	}
 	guardar_progreso()
 
@@ -112,7 +124,7 @@ func cargar_partida(nombre_jugador: String) -> bool:
 	var datos = cargar_todos_los_perfiles()
 	if not datos.has(nombre_jugador):
 		return false
-
+	
 	var d = datos[nombre_jugador]
 	perfil_actual     = nombre_jugador
 	ultimo_perfil_usado = nombre_jugador   # ← guardar cuál fue
@@ -122,11 +134,16 @@ func cargar_partida(nombre_jugador: String) -> bool:
 	mundo_actual      = d.get("mundo_actual", 1)
 	nivel_actual      = d.get("nivel_actual", 1)
 	niveles_desbloqueados = d.get("niveles_desbloqueados", {
-		"1-1": true, "1-2": false, "1-3": false, "1-4":false
+	"1-1": true, "1-2": false, "1-3": false, "1-4": false
 	})
 
+# Parchar claves que faltan en perfiles viejos
+	if not niveles_desbloqueados.has("1-4"):
+		niveles_desbloqueados["1-4"] = false
+	if not niveles_desbloqueados.has("1-3"):
+		niveles_desbloqueados["1-3"] = false
 	# Guardar que este fue el último perfil usado
-	_guardar_ultimo_perfil(nombre_jugador)
+		_guardar_ultimo_perfil(nombre_jugador)
 	return true
 
 func _guardar_ultimo_perfil(nombre: String):

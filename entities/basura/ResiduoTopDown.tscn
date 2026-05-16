@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ceo8fflyx606d"]
+
+[ext_resource type="Script" uid="uid://cdj137b76vhsc" path="res://entities/basura/ResiduoTopDown.gd" id="1_o7177"]
+[ext_resource type="Texture2D" uid="uid://ce5vntcui65dm" path="res://entities/basura/sprites/trash_apple.png" id="2_xnypf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7177"]
+radius = 100.85
+
+[node name="ResiduoTopDown" type="Area2D" unique_id=1795362567]
+script = ExtResource("1_o7177")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1618773979]
+position = Vector2(-1.5000004, 20.25)
+scale = Vector2(0.57894737, 0.57916665)
+texture = ExtResource("2_xnypf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813386845]
+position = Vector2(0, 26)
+shape = SubResource("CircleShape2D_o7177")
+
+[node name="Indicador" type="Label" parent="." unique_id=1622975361]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.5
+offset_top = -23.0
+offset_right = 10.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "[X]"
+
+[node name="TimerDireccion" type="Timer" parent="." unique_id=1543688942]
+wait_time = 2.0
+autostart = true
+
+[node name="SensorPared" type="RayCast2D" parent="." unique_id=1435383978]

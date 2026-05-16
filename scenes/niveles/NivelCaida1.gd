@@ -12,10 +12,10 @@ func _ready():
 # Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
 
 	DIFICULTAD_OLEADAS = [
-		[140.0, 1.65, 0.0],   # Oleada 1 — muy tranquilo
-		[165.0, 1.58, 0.0],   # Oleada 2 — ligero aumento
-		[185.0, 1.52, 0.0],   # Oleada 3 — ritmo constante
-		[200.0, 1.46, 0.0],   # Oleada 4 — cierre sin sorpresas
+		[240.0, 1.65, 0.0],   # Oleada 1 — muy tranquilo
+		[265.0, 1.58, 0.0],   # Oleada 2 — ligero aumento
+		[385.0, 1.52, 0.0],   # Oleada 3 — ritmo constante
+		[400.0, 1.46, 0.0],   # Oleada 4 — cierre sin sorpresas
 	]
 
 	super()

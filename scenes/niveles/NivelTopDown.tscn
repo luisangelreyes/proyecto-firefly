@@ -1,0 +1,306 @@
+[gd_scene format=3 uid="uid://cf3hvnw81j8xo"]
+
+[ext_resource type="Script" uid="uid://dihr6oa0up7s7" path="res://scenes/niveles/Eli_TopDown.gd" id="1_27k72"]
+[ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="1_biqqu"]
+[ext_resource type="Script" uid="uid://cgo5sx2rjpk21" path="res://scenes/niveles/NivelTopDown.gd" id="1_ikboe"]
+[ext_resource type="PackedScene" uid="uid://ceo8fflyx606d" path="res://entities/basura/ResiduoTopDown.tscn" id="1_t8bxv"]
+[ext_resource type="Texture2D" uid="uid://3p75sjsbb4eg" path="res://entities/fondos/ChatGPT Image May 14, 2026, 11_04_17 PM (1).png" id="2_731va"]
+[ext_resource type="SpriteFrames" uid="uid://ch80rpll6wct5" path="res://entities/jugador/animacion_liz.tres" id="5_731va"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikboe"]
+size = Vector2(2513.25, 178.33606)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_085ah"]
+size = Vector2(1349.625, 146.00003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfc1b"]
+size = Vector2(815.90625, 99.79201)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5inq"]
+size = Vector2(582.9531, 886.00006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcbqe"]
+size = Vector2(235, 192.00002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrx8a"]
+size = Vector2(346.5, 89.00001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypiac"]
+size = Vector2(346.5, 184.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfqio"]
+size = Vector2(2686, 256.33594)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpq5o"]
+size = Vector2(4440.0625, 406.08365)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivvtp"]
+size = Vector2(803.0625, 1694.084)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpk2a"]
+radius = 14.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_731va"]
+radius = 70.0
+height = 204.0
+
+[node name="NivelTopDown" type="Node2D" unique_id=1058708230]
+script = ExtResource("1_ikboe")
+escena_residuo = ExtResource("1_t8bxv")
+
+[node name="Mundo" type="Node2D" parent="." unique_id=1235514271]
+
+[node name="ZonasSpawn" type="Node2D" parent="Mundo" unique_id=1790772228]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Mundo/ZonasSpawn" unique_id=317231433]
+offset_left = -860.0
+offset_top = -1168.0
+offset_right = 1171.0
+offset_bottom = 2884.0
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="Mundo/ZonasSpawn" unique_id=1434965643]
+offset_left = 1174.0
+offset_top = -668.0
+offset_right = 1608.0
+offset_bottom = 2919.0
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="Mundo/ZonasSpawn" unique_id=817863566]
+offset_left = 1632.0
+offset_top = -668.0
+offset_right = 2468.0
+offset_bottom = 2740.0
+
+[node name="ReferenceRect4" type="ReferenceRect" parent="Mundo/ZonasSpawn" unique_id=1809634987]
+offset_left = -839.0
+offset_top = -668.0
+offset_right = 2826.0
+offset_bottom = 1049.0
+
+[node name="Fondo" type="TextureRect" parent="Mundo" unique_id=702639763]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1529.0
+offset_top = -1557.0
+offset_right = 3487.0
+offset_bottom = 3459.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_731va")
+
+[node name="Paredes" type="StaticBody2D" parent="Mundo" unique_id=1201093046]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=134799657]
+position = Vector2(2882, 2851)
+shape = SubResource("RectangleShape2D_ikboe")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1839702662]
+position = Vector2(-308, 1146)
+shape = SubResource("RectangleShape2D_085ah")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=771264107]
+position = Vector2(334.896, 1487.9531)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_qfc1b")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1094050719]
+position = Vector2(1185, 1677.4766)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_j5inq")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1362663063]
+position = Vector2(-283, 1382.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_tcbqe")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1706686247]
+position = Vector2(1446, 2664)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=489598185]
+position = Vector2(2504, 388)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1528632947]
+position = Vector2(2632, -110)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1395262053]
+position = Vector2(527, -994)
+shape = SubResource("RectangleShape2D_ypiac")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=770965814]
+position = Vector2(2613, 776)
+shape = SubResource("RectangleShape2D_ypiac")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=2092558719]
+position = Vector2(1047, -895)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=966593676]
+position = Vector2(267, -1280)
+shape = SubResource("RectangleShape2D_ikboe")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1478464583]
+position = Vector2(381, 3063)
+shape = SubResource("RectangleShape2D_rfqio")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1528858867]
+position = Vector2(-1071, 857)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_gpq5o")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=212870588]
+position = Vector2(3064, 1138)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_gpq5o")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=60784606]
+position = Vector2(2659.958, 3328.0313)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_gpq5o")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1766042846]
+position = Vector2(2039, -1084)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_ivvtp")
+
+[node name="Residuos" type="Node2D" parent="Mundo" unique_id=921514589]
+
+[node name="Eli" type="CharacterBody2D" parent="Mundo" unique_id=549371338]
+position = Vector2(-286, 1704)
+script = ExtResource("1_27k72")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mundo/Eli" unique_id=1540078512]
+position = Vector2(3.9999876, -34.75)
+scale = Vector2(0.2831857, 0.24086156)
+sprite_frames = ExtResource("5_731va")
+animation = &"caminar_lado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Eli" unique_id=2051845523]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_lpk2a")
+
+[node name="AreaDeteccion" type="Area2D" parent="Mundo/Eli" unique_id=2101908033]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Eli/AreaDeteccion" unique_id=1739997363]
+position = Vector2(-4, -31)
+shape = SubResource("CapsuleShape2D_731va")
+
+[node name="Camera2D" type="Camera2D" parent="Mundo/Eli" unique_id=498250678]
+zoom = Vector2(0.7, 0.7)
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1185437524]
+
+[node name="BarraTiempo" type="ProgressBar" parent="HUD" unique_id=2038981329]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 300.0
+offset_top = 19.0
+offset_right = -180.0
+offset_bottom = 46.0
+grow_horizontal = 2
+max_value = 90.0
+value = 90.0
+show_percentage = false
+
+[node name="LabelTiempo" type="Label" parent="HUD" unique_id=84531734]
+offset_left = 1015.0
+offset_top = 64.0
+offset_right = 1545.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 22
+text = "90"
+
+[node name="LabelBote" type="Label" parent="HUD" unique_id=37603496]
+offset_left = 20.0
+offset_top = 28.0
+offset_right = 60.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 18
+
+[node name="LabelResiduos" type="Label" parent="HUD" unique_id=1627000924]
+offset_left = 1200.0
+offset_top = 28.0
+offset_right = 1240.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 18
+
+[node name="LabelVidas" type="Label" parent="HUD" unique_id=365888104]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("1_biqqu")]
+visible = false
+
+[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=1858286883]
+layer = 8
+
+[node name="Fondo" type="ColorRect" parent="PantallaResultados" unique_id=818734639]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7490196)
+
+[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=1410390135]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+
+[node name="LabelResiduos" type="Label" parent="PantallaResultados/Fondo" unique_id=965841435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -147.0
+offset_right = 20.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LabelTiempo" type="Label" parent="PantallaResultados/Fondo" unique_id=2073385602]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=1634996321]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 0
+offset_left = 853.0
+offset_top = 906.0
+offset_right = 1153.0
+offset_bottom = 966.0

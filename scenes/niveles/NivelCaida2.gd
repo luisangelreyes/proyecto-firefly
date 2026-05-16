@@ -11,10 +11,10 @@ func _ready():
 	probabilidad_peligroso = 0.12       # peligrosos empiezan a aparecer
 # Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
 	DIFICULTAD_OLEADAS = [
-		[100.0, 1.55, 0.02],   # Oleada 1 — primer contacto con peligrosos
-		[240.0, 1.47, 0.08],   # Oleada 2 — más frecuentes
-		[275.0, 1.40, 0.02],   # Oleada 3 — presión real
-		[310.0, 1.34, 0.06],   # Oleada 4 — desafío del mundo 1
+		[400.0, 1.55, 0.02],   # Oleada 1 — primer contacto con peligrosos
+		[440.0, 1.47, 0.08],   # Oleada 2 — más frecuentes
+		[475.0, 1.40, 0.02],   # Oleada 3 — presión real
+		[510.0, 1.34, 0.06],   # Oleada 4 — desafío del mundo 1
 	]
 
 	super()

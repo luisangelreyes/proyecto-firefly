@@ -63,8 +63,12 @@ func _posicionar_icono_inicial():
 	indice_actual = ultimo_idx
 	_mover_icono_a(ultimo_idx)
 	
- 
 func _actualizar_mapa():
+	print("--- ESTADO NIVELES ---")
+	for clave in CLAVES:
+		print(clave, ": ", SesionGlobal.niveles_desbloqueados.get(clave, "NO EXISTE"))
+	print("nivel_actual: ", SesionGlobal.nivel_actual)
+	print("----------------------")
 	for clave in CLAVES:
 		var mundo  = int(clave.split("-")[0])
 		var nivel  = int(clave.split("-")[1])

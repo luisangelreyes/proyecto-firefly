@@ -94,9 +94,6 @@ func _process(delta):
 func _on_area_entered(area):
 	if nivel_terminado:
 		return
-	if area.is_in_group("basura_caida"):
-		area.fue_atrapado = true
-		var tipo_que_cayo = area.categoria
 		
 	if area.is_in_group("basura_caida"):
 		area.fue_atrapado = true
@@ -126,6 +123,18 @@ func _on_area_entered(area):
 				audio_acierto.play()
 				resultado_tutorial.emit(true)
 				residuo_clasificado.emit(true)
+				var ahora = Time.get_ticks_msec()
+				SesionGlobal.registrar_evento({
+					"tipo":           "clasificacion",
+					"nivel":          "%d-%d" % [SesionGlobal.mundo_actual, SesionGlobal.nivel_actual],
+					"residuo":        tipo_que_cayo,
+					"bote_usado":     bote_activo,
+					"resultado":      "acierto" if acierto else "error",
+					"tiempo_decision_ms": ahora - SesionGlobal.tiempo_ultimo_residuo,
+					"racha_en_momento": racha_actual,
+				})
+				SesionGlobal.tiempo_ultimo_residuo = ahora
+				
 			else:
 				racha_actual = 0                           # ← resetear racha
 				SesionGlobal.combo = 1
