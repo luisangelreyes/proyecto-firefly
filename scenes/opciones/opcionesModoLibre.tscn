@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b0cgtlfrjpxtx"]
+
+[ext_resource type="Script" uid="uid://b4n6cuyykohg3" path="res://scripts/opciones_modo_libre.gd" id="1_k5o5t"]
+[ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_xgvkd"]
+[ext_resource type="Script" uid="uid://6rprvtwo3c8" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
+
+[node name="OpcionesModoLibre" type="Control" unique_id=451950470]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k5o5t")
+
+[node name="Button" type="Button" parent="." unique_id=2067477518]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 148.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("2_xgvkd")
+theme_override_font_sizes/font_size = 55
+text = "Salir"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1524124443]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 140.0
+offset_right = 1562.0
+offset_bottom = 896.0
+theme_override_constants/separation = 30
+
+[node name="LabelDificultad" type="Label" parent="VBoxContainer" unique_id=1196323533]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Selecciona la dificultad:"
+horizontal_alignment = 1
+script = ExtResource("3_vhjlx")
+
+[node name="HBoxDificultad" type="HBoxContainer" parent="VBoxContainer" unique_id=1543676826]
+layout_mode = 2
+alignment = 1
+
+[node name="BotonFacil" type="Button" parent="VBoxContainer/HBoxDificultad" unique_id=485925473]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xgvkd")
+text = "Fácil"
+script = ExtResource("3_vhjlx")
+
+[node name="BotonNormal" type="Button" parent="VBoxContainer/HBoxDificultad" unique_id=997302999]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xgvkd")
+text = "Normal"
+script = ExtResource("3_vhjlx")
+
+[node name="BotonDificil" type="Button" parent="VBoxContainer/HBoxDificultad" unique_id=1792273185]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xgvkd")
+text = "Difícil"
+script = ExtResource("3_vhjlx")
+
+[node name="HSeparator1" type="HSeparator" parent="VBoxContainer" unique_id=1827886576]
+layout_mode = 2
+
+[node name="LabelCamaraLenta" type="Label" parent="VBoxContainer" unique_id=1661059913]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Modo cámara lenta:"
+horizontal_alignment = 1
+script = ExtResource("3_vhjlx")
+
+[node name="HBoxCamaraLenta" type="HBoxContainer" parent="VBoxContainer" unique_id=1332516475]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckCamaraLenta" type="CheckButton" parent="VBoxContainer/HBoxCamaraLenta" unique_id=2110243759]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Activar cámara lenta "
+script = ExtResource("3_vhjlx")
+escalar_icono = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=1694391044]
+layout_mode = 2
+
+[node name="LabelModoInfinito" type="Label" parent="VBoxContainer" unique_id=225413609]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Modo infinito:"
+horizontal_alignment = 1
+script = ExtResource("3_vhjlx")
+
+[node name="HBoxModoInfinito" type="HBoxContainer" parent="VBoxContainer" unique_id=1881609633]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckModoInfinito" type="CheckButton" parent="VBoxContainer/HBoxModoInfinito" unique_id=1788454013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Activar modo infinito (sin game over)"
+script = ExtResource("3_vhjlx")
+escalar_icono = true
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer" unique_id=1347159781]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=978483294]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxIniciar" type="HBoxContainer" parent="VBoxContainer" unique_id=189908759]
+layout_mode = 2
+alignment = 1
+
+[node name="BotonIniciar" type="Button" parent="VBoxContainer/HBoxIniciar" unique_id=414727997]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xgvkd")
+theme_override_font_sizes/font_size = 40
+text = "INICIAR!"
+script = ExtResource("3_vhjlx")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
