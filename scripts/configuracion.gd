@@ -4,9 +4,14 @@ extends Node
 signal tamaño_cambiado(nuevo_tamaño: String, valor_activo: int, valor_inactivo: int)
 signal filtro_cambiado(tipo: int)
 signal movimiento_reducido_cambiado(valor: bool)
+signal velocidad_cambiado(valor: int)
 
 enum TamañoFuente { NORMAL, MEDIANO, GRANDE }
 enum FiltroColor { NINGUNO, DEUTERANOPIA, PROTANOPIA, TRITANOPIA }
+
+const VELOCIDAD_75 := 75
+const VELOCIDAD_100 := 100
+const VELOCIDAD_125 := 125
 
 const TAMAÑOS = {
 	TamañoFuente.NORMAL:  {"activo": 32, "inactivo": 26},
@@ -17,6 +22,7 @@ const TAMAÑOS = {
 var tamaño_actual: int = TamañoFuente.NORMAL
 var filtro_actual: int = FiltroColor.NINGUNO
 var movimiento_reducido: bool = false
+var velocidad_actual: int = VELOCIDAD_100
 
 var _overlay_layer: CanvasLayer
 var _overlay_rect: ColorRect
@@ -75,6 +81,17 @@ func set_movimiento_reducido(valor: bool):
 	guardar_configuracion()
 	emit_signal("movimiento_reducido_cambiado", valor)
 
+func set_velocidad_juego(porcentaje: int):
+	if porcentaje not in [VELOCIDAD_75, VELOCIDAD_100, VELOCIDAD_125]:
+		return
+	velocidad_actual = porcentaje
+	Engine.time_scale = porcentaje / 100.0
+	guardar_configuracion()
+	emit_signal("velocidad_cambiado", porcentaje)
+
+func get_nombre_velocidad() -> String:
+	return str(velocidad_actual) + "%"
+
 func aplicar_filtro_actual():
 	if _shader_material:
 		_shader_material.set_shader_parameter("filtro_tipo", filtro_actual)
@@ -103,6 +120,7 @@ func guardar_configuracion():
 	config.set_value("accesibilidad", "tamaño_fuente", tamaño_actual)
 	config.set_value("accesibilidad", "filtro_color", filtro_actual)
 	config.set_value("accesibilidad", "movimiento_reducido", movimiento_reducido)
+	config.set_value("accesibilidad", "velocidad_juego", velocidad_actual)
 	config.save("user://configuracion.cfg")
 
 func cargar_configuracion():
@@ -111,3 +129,5 @@ func cargar_configuracion():
 		tamaño_actual = config.get_value("accesibilidad", "tamaño_fuente", TamañoFuente.NORMAL)
 		filtro_actual = config.get_value("accesibilidad", "filtro_color", FiltroColor.NINGUNO)
 		movimiento_reducido = config.get_value("accesibilidad", "movimiento_reducido", false)
+		velocidad_actual = config.get_value("accesibilidad", "velocidad_juego", VELOCIDAD_100)
+	Engine.time_scale = velocidad_actual / 100.0

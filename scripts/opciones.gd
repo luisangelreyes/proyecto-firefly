@@ -12,6 +12,11 @@ extends Control
 
 @onready var check_reducir_movimiento = $CheckButtonReducirMovimiento
 
+@onready var label_velocidad = $LabelVelocidad
+@onready var boton_75 = $Boton75
+@onready var boton_100 = $Boton100
+@onready var boton_125 = $Boton125
+
 func _ready():
 	check_reducir_movimiento.toggled.connect(func(valor): Configuracion.set_movimiento_reducido(valor))
 	check_reducir_movimiento.button_pressed = Configuracion.movimiento_reducido
@@ -28,13 +33,20 @@ func _ready():
 	boton_protanopia.pressed.connect(func(): _cambiar_filtro(Configuracion.FiltroColor.PROTANOPIA))
 	boton_tritanopia.pressed.connect(func(): _cambiar_filtro(Configuracion.FiltroColor.TRITANOPIA))
 
+	boton_75.pressed.connect(func(): _cambiar_velocidad(Configuracion.VELOCIDAD_75))
+	boton_100.pressed.connect(func(): _cambiar_velocidad(Configuracion.VELOCIDAD_100))
+	boton_125.pressed.connect(func(): _cambiar_velocidad(Configuracion.VELOCIDAD_125))
+
 	if not Configuracion.tamaño_cambiado.is_connected(_on_tamaño_cambiado):
 		Configuracion.tamaño_cambiado.connect(_on_tamaño_cambiado)
 	if not Configuracion.filtro_cambiado.is_connected(_on_filtro_cambiado):
 		Configuracion.filtro_cambiado.connect(_on_filtro_cambiado)
+	if not Configuracion.velocidad_cambiado.is_connected(_on_velocidad_cambiado):
+		Configuracion.velocidad_cambiado.connect(_on_velocidad_cambiado)
 
 	_actualizar_ui_tamaño()
 	_actualizar_ui_filtro()
+	_actualizar_ui_velocidad()
 
 func _cambiar_tamaño(nuevo_tamaño: int):
 	Configuracion.set_tamaño_fuente(nuevo_tamaño)
@@ -47,6 +59,19 @@ func _on_tamaño_cambiado(nombre: String, activo: int, inactivo: int):
 
 func _on_filtro_cambiado(tipo: int):
 	_actualizar_ui_filtro()
+
+func _cambiar_velocidad(porcentaje: int):
+	Configuracion.set_velocidad_juego(porcentaje)
+
+func _on_velocidad_cambiado(valor: int):
+	_actualizar_ui_velocidad()
+
+func _actualizar_ui_velocidad():
+	label_velocidad.text = "Velocidad actual: " + Configuracion.get_nombre_velocidad()
+	var vel = Configuracion.velocidad_actual
+	boton_75.modulate = Color.WHITE if vel == Configuracion.VELOCIDAD_75 else Color.DIM_GRAY
+	boton_100.modulate = Color.WHITE if vel == Configuracion.VELOCIDAD_100 else Color.DIM_GRAY
+	boton_125.modulate = Color.WHITE if vel == Configuracion.VELOCIDAD_125 else Color.DIM_GRAY
 
 func _actualizar_ui_tamaño():
 	label_tamaño_actual.text = "Tamaño actual: " + Configuracion.get_nombre_tamaño()
