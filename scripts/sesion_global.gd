@@ -68,7 +68,7 @@ func iniciar_nueva_partida(nombre_jugador: String):
 
 # ── DESBLOQUEAR SIGUIENTE NIVEL ───────────────────────────────────────────────
 func completar_nivel(mundo: int, nivel: int):
-	var clave_actual    = "%d-%d" % [mundo, nivel]
+	var _clave_actual    = "%d-%d" % [mundo, nivel]
 	var clave_siguiente = "%d-%d" % [mundo, nivel + 1]
 
 	# Si no existe el siguiente en este mundo, buscar el inicio del siguiente mundo
