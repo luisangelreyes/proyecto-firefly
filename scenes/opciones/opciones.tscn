@@ -19,7 +19,7 @@ script = ExtResource("1_2qbtr")
 layout_mode = 0
 offset_left = 11.0
 offset_top = 11.0
-offset_right = 167.0
+offset_right = 148.0
 offset_bottom = 87.0
 theme_override_fonts/font = ExtResource("1_ycng2")
 theme_override_font_sizes/font_size = 55
@@ -27,36 +27,143 @@ text = "Salir"
 
 [node name="LabelTamañoActual" type="Label" parent="." unique_id=1569145187]
 layout_mode = 0
-offset_left = 170.0
+offset_left = 236.0
 offset_top = 160.0
-offset_right = 417.0
-offset_bottom = 218.0
+offset_right = 483.0
+offset_bottom = 235.0
 theme_override_font_sizes/font_size = 25
 text = "Tamaño de fuente:"
 script = ExtResource("3_vhjlx")
 
 [node name="BotonNormal" type="Button" parent="." unique_id=1060949477]
 layout_mode = 0
-offset_left = 853.0
+offset_left = 919.0
 offset_top = 139.0
-offset_right = 1024.0
+offset_right = 1090.0
 offset_bottom = 211.0
 text = "Normal"
 
 [node name="BotonMediano" type="Button" parent="." unique_id=363001533]
 layout_mode = 0
-offset_left = 1060.0
+offset_left = 1126.0
 offset_top = 141.0
-offset_right = 1231.0
+offset_right = 1297.0
 offset_bottom = 211.0
-text = "Grande"
+text = "Mediano"
 
 [node name="BotonGrande" type="Button" parent="." unique_id=459269473]
 layout_mode = 0
-offset_left = 1268.0
+offset_left = 1334.0
 offset_top = 143.0
-offset_right = 1437.0
+offset_right = 1503.0
 offset_bottom = 212.0
-text = "Muy Grande"
+text = "Grande"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1882694300]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 271.0
+offset_right = 1674.0
+offset_bottom = 308.0
+
+[node name="LabelFiltroColor" type="Label" parent="." unique_id=596991252]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 375.0
+offset_right = 438.0
+offset_bottom = 442.0
+theme_override_font_sizes/font_size = 25
+text = "Filtro de color:"
+script = ExtResource("3_vhjlx")
+
+[node name="BotonNinguno" type="Button" parent="." unique_id=1597386703]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 355.0
+offset_right = 1092.0
+offset_bottom = 427.0
+text = "Ninguno"
+
+[node name="BotonDeuteranopia" type="Button" parent="." unique_id=995045577]
+layout_mode = 0
+offset_left = 1128.0
+offset_top = 357.0
+offset_right = 1299.0
+offset_bottom = 427.0
+text = "Deuteranopia"
+
+[node name="BotonProtanopia" type="Button" parent="." unique_id=1384107133]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 359.0
+offset_right = 1505.0
+offset_bottom = 428.0
+text = "Protanopia"
+
+[node name="BotonTritanopia" type="Button" parent="." unique_id=38091205]
+layout_mode = 0
+offset_left = 1545.0
+offset_top = 365.0
+offset_right = 1714.0
+offset_bottom = 434.0
+text = "Tritanopia"
+
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=1667951426]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 480.0
+offset_right = 1674.0
+offset_bottom = 517.0
+
+[node name="CheckButtonReducirMovimiento" type="CheckButton" parent="." unique_id=761841178]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 546.0
+offset_right = 1015.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 25
+text = "Reducir movimiento"
+script = ExtResource("3_vhjlx")
+
+[node name="HSeparator3" type="HSeparator" parent="." unique_id=766632874]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 611.0
+offset_right = 1677.0
+offset_bottom = 648.0
+
+[node name="LabelVelocidad" type="Label" parent="." unique_id=974748185]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 695.0
+offset_right = 484.0
+offset_bottom = 762.0
+theme_override_font_sizes/font_size = 25
+text = "Velocidad del juego:"
+script = ExtResource("3_vhjlx")
+
+[node name="Boton75" type="Button" parent="." unique_id=1469736835]
+layout_mode = 0
+offset_left = 919.0
+offset_top = 671.0
+offset_right = 1090.0
+offset_bottom = 743.0
+text = "75%"
+
+[node name="Boton100" type="Button" parent="." unique_id=1418860868]
+layout_mode = 0
+offset_left = 1126.0
+offset_top = 673.0
+offset_right = 1297.0
+offset_bottom = 743.0
+text = "100%"
+
+[node name="Boton125" type="Button" parent="." unique_id=836796591]
+layout_mode = 0
+offset_left = 1334.0
+offset_top = 675.0
+offset_right = 1503.0
+offset_bottom = 744.0
+text = "125%"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
