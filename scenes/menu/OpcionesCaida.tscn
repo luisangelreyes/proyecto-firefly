@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crndvqu85ch7"]
 
 [ext_resource type="Script" uid="uid://cetrwgyh3bsox" path="res://scenes/menu/OpcionesCaida.gd" id="1_7rq01"]
+[ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_hvxln"]
 
 [node name="OpcionesCaida" type="Control" unique_id=1589192223]
 layout_mode = 3
@@ -11,12 +12,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7rq01")
 
+[node name="Fondo2" type="TextureRect" parent="." unique_id=786736658]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hvxln")
+
 [node name="Fondo" type="ColorRect" parent="." unique_id=258985058]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.68235296)
 
 [node name="PreviewRect" type="ColorRect" parent="." unique_id=1942489717]
+visible = false
 layout_mode = 0
 offset_right = 6.0
 offset_bottom = 1080.0

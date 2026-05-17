@@ -3,17 +3,36 @@
 [ext_resource type="Script" uid="uid://c5bkdwi7c3c4i" path="res://scripts/opciones.gd" id="1_2qbtr"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="1_ycng2"]
 [ext_resource type="Script" uid="uid://d3ln0thjvgds3" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
+[ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="4_im0su"]
 
 [node name="Opciones" type="Control" unique_id=384793349]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1920.0
-offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2qbtr")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1399036206]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_im0su")
+
+[node name="TextureRect2" type="ColorRect" parent="." unique_id=389568040]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6862745)
 
 [node name="Button" type="Button" parent="." unique_id=392828683]
 layout_mode = 0

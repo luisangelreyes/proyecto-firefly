@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyo8xy05emu52"]
 
 [ext_resource type="Script" uid="uid://g28atd6v01pf" path="res://scenes/menu/ModoLibre.gd" id="1_eh4ac"]
+[ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_t710x"]
 
 [node name="ModoLibre" type="Control" unique_id=1867112607]
 layout_mode = 3
@@ -11,6 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eh4ac")
 
+[node name="Fondo2" type="TextureRect" parent="." unique_id=1741350250]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t710x")
+
 [node name="Fondo" type="ColorRect" parent="." unique_id=1776299200]
 layout_mode = 1
 anchors_preset = 15
@@ -18,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+color = Color(0.039215688, 0.039215688, 0.039215688, 0.6862745)
 
 [node name="LabelTitulo" type="Label" parent="." unique_id=863707217]
 layout_mode = 0
