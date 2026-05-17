@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8qwyofhlq3qp" path="res://entities/jugador/barbara.gd" id="1_e87rb"]
 [ext_resource type="Texture2D" uid="uid://ce5vntcui65dm" path="res://entities/basura/sprites/trash_apple.png" id="2_vss5t"]
-[ext_resource type="SpriteFrames" uid="uid://ch80rpll6wct5" path="res://entities/jugador/animacion_liz.tres" id="3_itjt0"]
+[ext_resource type="SpriteFrames" uid="uid://duavve81lrb35" path="res://entities/jugador/lis_nivel_1.tres" id="3_itjt0"]
 [ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="8_6v5ui"]
 [ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="9_cnb63"]
 [ext_resource type="AudioStream" uid="uid://di2lftqfx86fe" path="res://assets/audio/sfx/GameOver.ogg" id="11_icytq"]
@@ -61,7 +61,7 @@ texture = ExtResource("2_vss5t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1721740654]
 scale = Vector2(0.683068, 0.6812822)
 sprite_frames = ExtResource("3_itjt0")
-animation = &"caminata_inorganico"
+animation = &"derrota"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455544391]
 texture_filter = 1

@@ -12,18 +12,25 @@ var mundo_actual: int = 1
 var nivel_actual: int = 1
 
 var niveles_desbloqueados: Dictionary = {
-	"1-1": true,
-	"1-2": false,
-	"1-3": false,
-	"1-4": false
+	"1-1": true,  "1-2": false, "1-3": false, "1-4": false,
+	"2-1": false, "2-2": false, "2-3": false,
+	"2-4": false, "2-5": false, "2-6": false,
 }
 
 # Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
 const RUTAS_NIVELES: Dictionary = {
+	# Mundo 1
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
 	"1-2": "res://scenes/niveles/NivelCaida1.tscn",
 	"1-3": "res://scenes/niveles/NivelCaida2.tscn",
-	"1-4": "res://scenes/niveles/Nivel2.tscn",
+	"1-4": "res://scenes/niveles/nivel2.tscn",
+	# Mundo 2
+	"2-1": "res://scenes/niveles/NivelTopDown.tscn",
+	"2-2": "res://scenes/niveles/NivelCaida1.tscn",
+	"2-3": "res://scenes/niveles/NivelCaida2.tscn",
+	"2-4": "res://scenes/niveles/nivel2.tscn",
+	"2-5": "res://scenes/niveles/nivel2.tscn",
+	"2-6": "res://scenes/niveles/nivel2.tscn",
 }
 
 # Ruta del archivo de guardado
@@ -51,23 +58,24 @@ func iniciar_nueva_partida(nombre_jugador: String):
 	mundo_actual  = 1
 	nivel_actual  = 1
 	niveles_desbloqueados = {
-		"1-1": true,
-		"1-2": false,
-		"1-3": false,
-		"1-4":false,
+	"1-1": true,  "1-2": false, "1-3": false, "1-4": false,
+	"2-1": false, "2-2": false, "2-3": false,
+	"2-4": false, "2-5": false, "2-6": false,
 	}
 	guardar_progreso()
 
 # ── DESBLOQUEAR SIGUIENTE NIVEL ───────────────────────────────────────────────
 func completar_nivel(mundo: int, nivel: int):
-	var _clave_actual   = "%d-%d" % [mundo, nivel]
+	var clave_actual    = "%d-%d" % [mundo, nivel]
 	var clave_siguiente = "%d-%d" % [mundo, nivel + 1]
 
-	# Si existe el siguiente nivel en el mapa, lo desbloqueamos
+	# Si no existe el siguiente en este mundo, buscar el inicio del siguiente mundo
+	if not niveles_desbloqueados.has(clave_siguiente):
+		clave_siguiente = "%d-%d" % [mundo + 1, 1]
+
 	if niveles_desbloqueados.has(clave_siguiente):
 		niveles_desbloqueados[clave_siguiente] = true
 
-	# Avanzamos el puntero de progreso
 	mundo_actual = mundo
 	nivel_actual = nivel + 1
 	guardar_sesion()
@@ -133,10 +141,9 @@ func cargar_partida(nombre_jugador: String) -> bool:
 	combo             = d.get("combo", 1)
 	mundo_actual      = d.get("mundo_actual", 1)
 	nivel_actual      = d.get("nivel_actual", 1)
-	niveles_desbloqueados = d.get("niveles_desbloqueados", {
-	"1-1": true, "1-2": false, "1-3": false, "1-4": false
-	})
-
+	for clave in ["2-1","2-2","2-3","2-4","2-5","2-6"]:
+		if not niveles_desbloqueados.has(clave):
+			niveles_desbloqueados[clave] = false
 # Parchar claves que faltan en perfiles viejos
 	if not niveles_desbloqueados.has("1-4"):
 		niveles_desbloqueados["1-4"] = false

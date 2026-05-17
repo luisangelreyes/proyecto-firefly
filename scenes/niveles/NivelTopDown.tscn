@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://cgo5sx2rjpk21" path="res://scenes/niveles/NivelTopDown.gd" id="1_ikboe"]
 [ext_resource type="PackedScene" uid="uid://ceo8fflyx606d" path="res://entities/basura/ResiduoTopDown.tscn" id="1_t8bxv"]
 [ext_resource type="Texture2D" uid="uid://3p75sjsbb4eg" path="res://entities/fondos/ChatGPT Image May 14, 2026, 11_04_17 PM (1).png" id="2_731va"]
-[ext_resource type="SpriteFrames" uid="uid://ch80rpll6wct5" path="res://entities/jugador/animacion_liz.tres" id="5_731va"]
+[ext_resource type="SpriteFrames" uid="uid://dbp5k15mlsl00" path="res://entities/jugador/liz_bote_verde.tres" id="5_gpq5o"]
+[ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="7_rfqio"]
+[ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_gpq5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikboe"]
 size = Vector2(2513.25, 178.33606)
@@ -25,11 +27,21 @@ size = Vector2(235, 192.00002)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrx8a"]
 size = Vector2(346.5, 89.00001)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pgxf"]
+size = Vector2(121, 89.00001)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikeym"]
+radius = 208.00015
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgyh1"]
+radius = 108.01807
+height = 280.03564
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypiac"]
 size = Vector2(346.5, 184.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfqio"]
-size = Vector2(2686, 256.33594)
+size = Vector2(2686, 297.16797)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpq5o"]
 size = Vector2(4440.0625, 406.08365)
@@ -130,6 +142,51 @@ position = Vector2(2632, -110)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_mrx8a")
 
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=2119078015]
+position = Vector2(2315, 2263)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1984067242]
+position = Vector2(-658, -189)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1490510266]
+position = Vector2(-561, -760)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mrx8a")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=100537630]
+position = Vector2(-71, -1004)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_3pgxf")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1790635940]
+position = Vector2(2624.75, -256)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ikeym")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=833701774]
+position = Vector2(-674, -311)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ikeym")
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1557208627]
+position = Vector2(2318, 2095)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ikeym")
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1489072051]
+position = Vector2(2011, 2576.0002)
+rotation = -0.003753543
+shape = SubResource("CapsuleShape2D_xgyh1")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=80037756]
+position = Vector2(-567, -919)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ikeym")
+
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1395262053]
 position = Vector2(527, -994)
 shape = SubResource("RectangleShape2D_ypiac")
@@ -148,7 +205,7 @@ position = Vector2(267, -1280)
 shape = SubResource("RectangleShape2D_ikboe")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1478464583]
-position = Vector2(381, 3063)
+position = Vector2(381, 3042.584)
 shape = SubResource("RectangleShape2D_rfqio")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mundo/Paredes" unique_id=1528858867]
@@ -178,10 +235,10 @@ position = Vector2(-286, 1704)
 script = ExtResource("1_27k72")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mundo/Eli" unique_id=1540078512]
-position = Vector2(3.9999876, -34.75)
-scale = Vector2(0.2831857, 0.24086156)
-sprite_frames = ExtResource("5_731va")
-animation = &"caminar_lado"
+position = Vector2(4.9009557, -36.455486)
+scale = Vector2(0.37770894, 0.3029294)
+sprite_frames = ExtResource("5_gpq5o")
+animation = &"caminar_abajo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Eli" unique_id=2051845523]
 position = Vector2(1, 0)
@@ -190,7 +247,7 @@ shape = SubResource("CapsuleShape2D_lpk2a")
 [node name="AreaDeteccion" type="Area2D" parent="Mundo/Eli" unique_id=2101908033]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Eli/AreaDeteccion" unique_id=1739997363]
-position = Vector2(-4, -31)
+position = Vector2(6, -35)
 shape = SubResource("CapsuleShape2D_731va")
 
 [node name="Camera2D" type="Camera2D" parent="Mundo/Eli" unique_id=498250678]
@@ -247,6 +304,7 @@ visible = false
 
 [node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=1858286883]
 layer = 8
+visible = false
 
 [node name="Fondo" type="ColorRect" parent="PantallaResultados" unique_id=818734639]
 anchors_preset = 15
@@ -304,3 +362,18 @@ offset_left = 853.0
 offset_top = 906.0
 offset_right = 1153.0
 offset_bottom = 966.0
+
+[node name="BoteNoReciclables" type="TextureRect" parent="." unique_id=2078668153]
+visible = false
+offset_left = 917.0
+offset_top = 343.0
+offset_right = 1163.0
+offset_bottom = 638.0
+pivot_offset = Vector2(105, 164)
+texture = ExtResource("7_rfqio")
+expand_mode = 1
+
+[node name="PuntoDeEntrada" type="Marker2D" parent="BoteNoReciclables" unique_id=1928719040]
+position = Vector2(97, 99)
+
+[node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("8_gpq5o")]

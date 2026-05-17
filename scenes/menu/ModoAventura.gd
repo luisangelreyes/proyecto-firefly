@@ -43,7 +43,6 @@ func _ready():
 		var btn   = nodos[clave].get_node("BtnNodo")
 		btn.pressed.connect(_on_nivel_presionado.bind(clave))
 		btn.focus_entered.connect(_on_nodo_enfocado.bind(i))
-		btn.mouse_entered.connect(_on_nodo_enfocado.bind(i))
 
 	$BotonVolver.pressed.connect(_on_volver)
 

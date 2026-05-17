@@ -6,7 +6,11 @@ signal recogida_intentada(tipo: String, bote: int)
 const VELOCIDAD_MAX = 350.0  
 const ACELERACION = 2500.0   
 const FRICCION = 3000.0      
+# Cargamos los dos conjuntos de animaciones (asegúrate de poner la ruta correcta de tus archivos)
+var frames_organico = preload("res://entities/jugador/liz_bote_verde.tres")
+var frames_inorganico = preload("res://entities/jugador/liz_bote_azul.tres")
 
+@onready var anim = $AnimatedSprite2D
 # --- NUEVAS VARIABLES PARA EL DASH ---
 const VELOCIDAD_DASH = 1200.0 # Una ráfaga de velocidad altísima
 const DURACION_DASH = 0.15    # Dura menos de un segundo
@@ -56,12 +60,12 @@ func _physics_process(delta):
 			elif dir.y > 0:
 				# Se mueve hacia abajo (Sur)
 				$AnimatedSprite2D.play("caminar_abajo")
-				$AnimatedSprite2D.flip_h = false
+				$AnimatedSprite2D.flip_h = dir.x > 0
 				ultima_direccion = "abajo"
 			elif dir.y < 0:
 				# Se mueve hacia arriba (Norte)
 				$AnimatedSprite2D.play("caminar_arriba")
-				$AnimatedSprite2D.flip_h = false
+				$AnimatedSprite2D.flip_h = dir.x < 0
 				ultima_direccion = "arriba"
 		else:
 			# Se detuvo, aplicamos fricción
@@ -78,8 +82,17 @@ func _physics_process(delta):
 	_actualizar_indicador()
 
 	if Input.is_action_just_pressed("cambiar_tacho"):
+		print("1. Se detectó el botón!")
+		print("2. Bote antes del cambio: ", bote_activo)
+		
+		# Cambiamos el valor (de 0 a 1, o de 1 a 0)
 		bote_activo = (bote_activo + 1) % 2
-
+		
+		print("3. Bote después del cambio: ", bote_activo)
+		
+		# ¡ESTA ES LA LÍNEA CLAVE! Aquí llamamos a la función que hace el cambiazo visual
+		_actualizar_color_bote()
+		
 	if Input.is_action_just_pressed("recoger_objeto"):
 		_intentar_recoger()
 
@@ -125,3 +138,21 @@ func _intentar_recoger():
 	if residuo_enfocado and is_instance_valid(residuo_enfocado):
 		recogida_intentada.emit(residuo_enfocado.tipo, bote_activo)
 		residuo_enfocado.intentar_recoger(bote_activo)
+func _actualizar_color_bote():
+	print("4. Ejecutando el cambio visual de SpriteFrames")
+	
+	var animacion_actual = anim.animation
+	var frame_actual = anim.frame
+	var progreso_actual = anim.frame_progress
+	
+	# Cambiamos el archivo completo de animaciones según el bote activo
+	if bote_activo == 0:
+		# Orgánico (Verde)
+		anim.sprite_frames = frames_organico
+	elif bote_activo == 1:
+		# Inorgánico (Azul)
+		anim.sprite_frames = frames_inorganico
+			
+	# Le decimos que siga reproduciendo la misma animación exacta desde donde se quedó
+	anim.play(animacion_actual)
+	anim.set_frame_and_progress(frame_actual, progreso_actual)

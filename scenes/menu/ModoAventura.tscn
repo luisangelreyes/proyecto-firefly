@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dvgne3yocujmf" path="res://scenes/menu/ModoAventura.gd" id="1_4iea3"]
 [ext_resource type="Texture2D" uid="uid://btwnw3u6vdqjx" path="res://entities/fondos/FONDO_MUNDO_TREN.png" id="2_lp1uh"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_0fhu4"]
+[ext_resource type="Texture2D" uid="uid://dm42hjvyivx55" path="res://entities/jugador/sprites/nivel3_animaciones/liz_td_victoria.png" id="4_oqyiv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00fj3"]
+atlas = ExtResource("4_oqyiv")
+region = Rect2(965.0239, 708.9834, 323.48633, 437.44177)
 
 [node name="ModoAventura" type="Control" unique_id=1620023844]
 layout_mode = 3
@@ -216,12 +221,18 @@ theme_override_font_sizes/font_size = 26
 
 [node name="BotonVolver" type="Button" parent="." unique_id=1642407252]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 46.0
+text = "Regresar al Menú"
 
-[node name="IconoJugador" type="ColorRect" parent="." unique_id=2143206669]
+[node name="IconoJugador" type="TextureRect" parent="." unique_id=1950364283]
 z_index = 5
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0.7930297, 0.3765269, 1)
+offset_left = 119.0
+offset_top = 397.0
+offset_right = 228.0
+offset_bottom = 530.0
+texture = SubResource("AtlasTexture_00fj3")
+expand_mode = 1

@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cp4b3cesvn4yh"]
+
+[ext_resource type="PackedScene" uid="uid://d24aq6kneg27o" path="res://scenes/menu/ModoAventura.tscn" id="1_csdry"]
+[ext_resource type="Script" uid="uid://h73h6e2escib" path="res://scenes/menu/ModoAventura2.gd" id="2_hjalc"]
+
+[node name="ModoAventura" unique_id=1620023844 instance=ExtResource("1_csdry")]
+script = ExtResource("2_hjalc")
+
+[node name="Camino" parent="." index="2" unique_id=1996330790]
+points = PackedVector2Array(176, 643, 349, 642, 745, 352, 1102, 684, 1481, 461, 1617, 607, 1755, 471)
+
+[node name="Nodo5" type="Control" parent="." index="7" unique_id=1921856421]
+anchors_preset = 0
+offset_left = 1573.0
+offset_top = 550.0
+offset_right = 1654.0
+offset_bottom = 628.0
+
+[node name="BtnNodo" type="Button" parent="Nodo5" index="0" unique_id=1286266127]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo5" index="1" unique_id=1561564164]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo5" index="2" unique_id=1548529293]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nivel 1-4"
+
+[node name="Nodo6" type="Control" parent="." index="8" unique_id=1420367082]
+anchors_preset = 0
+offset_left = 1713.0
+offset_top = 423.0
+offset_right = 1794.0
+offset_bottom = 501.0
+
+[node name="BtnNodo" type="Button" parent="Nodo6" index="0" unique_id=1445349652]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="LabelNumero" type="Label" parent="Nodo6" index="1" unique_id=534443545]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="LabelNombre" type="Label" parent="Nodo6" index="2" unique_id=14866863]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nivel 1-4"

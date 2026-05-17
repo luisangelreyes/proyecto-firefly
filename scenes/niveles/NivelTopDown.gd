@@ -9,7 +9,18 @@ var total_residuos: int = 0
 var recogidos: int = 0
 @export var escena_residuo: PackedScene  # Aquí arrastraremos ResiduoTopDown.tscn en el inspector
 @onready var contenedor_zonas = $Mundo/ZonasSpawn
+# Cambia "BoteNoReciclables" por el nombre exacto de tu nodo del tacho peligroso
+@onready var bote_no_reciclables = $BoteNoReciclables 
+
+# Suponiendo que tu cámara es un nodo hijo de Liz (EliTopDown)
+@onready var camara = $Mundo/Eli/Camera2D
 var sprite_sheet_residuos = preload("res://entities/basura/sprites/basura_in_or_pelirgo.png") # <-- Pon tu ruta real
+
+
+
+#COlor de tacho azul #009cff
+
+
 # Lista de basuras posibles con las rutas de tus iconos (ajusta las rutas a tus archivos reales)
 var catalogo_basura = [
 	# --- INORGÁNICOS (Azul) ---
@@ -52,7 +63,28 @@ var catalogo_basura = [
 
 const NOMBRES_BOTE = ["Orgánico", "Inorgánico"]
 const COLOR_BOTE   = [Color("#4fb87a"), Color("#4a8fd4")]
+@onready var hit_counter = $HitCounter
 
+var racha_actual: int = 0
+
+func _on_residuo_correcto(_tipo: String):
+	recogidos += 1
+	racha_actual += 1
+	SesionGlobal.puntaje += 10
+	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
+	hit_counter.registrar_acierto(racha_actual)
+	if recogidos >= total_residuos:
+		_victoria()
+
+func _on_residuo_incorrecto(_tipo: String):
+	racha_actual = 0
+	hit_counter.registrar_fallo()
+	_game_over("¡Bote incorrecto!\nEl nivel reinicia.")
+
+func _on_peligroso_tocado():
+	racha_actual = 0
+	hit_counter.registrar_fallo()
+	_game_over("¡Residuo peligroso!\nEl nivel reinicia.")
 func _ready():
 	SesionGlobal.vidas   = 1   
 	SesionGlobal.puntaje = 0
@@ -122,18 +154,7 @@ func _actualizar_bote():
 func _on_recogida_intentada(_tipo: String, _bote: int):
 	pass   # por ahora solo para debug
 
-func _on_residuo_correcto(_tipo: String):
-	recogidos += 1
-	SesionGlobal.puntaje += 10
-	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
-	if recogidos >= total_residuos:
-		_victoria()
 
-func _on_residuo_incorrecto(_tipo: String):
-	_game_over("¡Bote incorrecto!\nEl nivel reinicia.")
-
-func _on_peligroso_tocado():
-	_game_over("¡Residuo peligroso!\nEl nivel reinicia.")
 
 func _tiempo_agotado():
 	_game_over("¡Tiempo agotado!\nEl nivel reinicia.")
@@ -154,9 +175,35 @@ func _victoria():
 	SesionGlobal.completar_nivel(2, 5)
 	SesionGlobal.guardar_sesion()
 	_mostrar_resultado("¡Zona limpia!", true)
+func _activar_iman_contencion():
+	$BoteNoReciclables.visible = true
 
-func _mostrar_resultado(titulo: String, victoria: bool):
+	# 1. ¡El nuevo punto de succión es la posición real del bote de no reciclables!
+	var centro_succion = bote_no_reciclables.get_node("PuntoDeEntrada").global_position
+	# ------------------------
+	
+	# El resto de la cámara y los tweens se queda exactamente igual
+	var tween_camara = create_tween()
+	tween_camara.tween_property(camara, "global_position", centro_succion, 0.8)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
+	
+	var _peligrosos_restantes = 0
+	
+	# 3. Hacemos que toda la basura peligrosa vuele directo al tacho
+	for residuo in contenedor_res.get_children():
+		if residuo.tipo == "peligroso":
+			residuo.ser_succionado(centro_succion)
+			_peligrosos_restantes += 1
+			
+	# 4. Esperamos a que termine el remolino de absorción (1.5 segundos)
+	await get_tree().create_timer(1.6).timeout
+		
+	# 5. AHORA SÍ, mostramos el cartel de "Zona Limpia"
 	pantalla_result.visible = true
+	
+func _mostrar_resultado(titulo: String, victoria: bool):
+	_activar_iman_contencion()
 	$PantallaResultados/Fondo/LabelTitulo.text = titulo
 
 	var color = Color("#4fb87a") if victoria else Color("#f87171")

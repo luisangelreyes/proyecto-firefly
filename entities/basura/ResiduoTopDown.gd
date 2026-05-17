@@ -102,3 +102,31 @@ func _elegir_nueva_direccion():
 	
 	# Opcional: Le damos un tiempo aleatorio al Timer para que no todos giren a la vez
 	timer_dir.wait_time = randf_range(1.0, 3.0)
+
+
+func ser_succionado(destino: Vector2):
+	# 1. Apagamos su "IA" y su colisión para que no lastimen a Liz mientras vuelan
+	velocidad_movimiento = 0
+	$SensorPared.enabled = false
+	if has_node("TimerDireccion"):
+		$TimerDireccion.stop()
+		
+	# Desactivamos la colisión de forma segura
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+	# 2. Creamos un Tween para la animación fluida
+	var tween = create_tween()
+	tween.set_parallel(true) # Hace que todas las animaciones ocurran al mismo tiempo
+	
+	# Movemos el residuo hacia el centro en 1.5 segundos
+	tween.tween_property(self, "global_position", destino, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# Lo encogemos hasta que desaparezca (escala 0,0)
+	tween.tween_property(self, "scale", Vector2.ZERO, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# Lo hacemos girar a lo loco como un remolino
+	tween.tween_property(self, "rotation", 15.0, 1.5)
+	
+	# 3. Cuando termina la animación paralela, eliminamos el residuo
+	tween.set_parallel(false)
+	tween.tween_callback(queue_free)
