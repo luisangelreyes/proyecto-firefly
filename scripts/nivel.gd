@@ -1,8 +1,14 @@
 extends Node2D
 
 signal oleada_terminada(oleada_actual: int, total_oleadas: int)
-signal nivel_completado(atrapados: int, escapados: int, total: int)
+signal nivel_completado(atrapados: int, escapados: int, total: int, desglose: Dictionary, peligrosos: int)
 
+# Agrega estas variables junto a las métricas existentes
+var desglose_atrapados: Dictionary = {
+	"Organico":   0,
+	"Inorganico": 0,
+}
+var peligrosos_esquivados: int = 0
 @export var lista_canciones: Array[AudioStream] = [	
 ]
 # ── CONFIGURACIÓN DE DIFICULTAD POR OLEADA ───────────────────────────────
@@ -50,10 +56,6 @@ func _ready():
 	
 	
 
-	# Calculamos el total real sumando todas las oleadas
-	total_residuos = 0
-	for cantidad in oleadas:
-		total_residuos += cantidad
 	
 	_iniciar_oleada()
 	$Barbara.combo_actualizado.connect(_on_combo_actualizado)
@@ -78,9 +80,12 @@ func _on_combo_actualizado(racha: int, multiplicador: int):
 	else:
 		$TextoCombo.visible = false
 		
-func _on_residuo_clasificado(acierto: bool):
+func _on_residuo_clasificado(acierto: bool, tipo: String):
+	if tipo == "Peligroso":
+		return  # los peligrosos no cuentan como clasificables
 	if acierto:
 		residuos_atrapados += 1
+		desglose_atrapados[tipo] = desglose_atrapados.get(tipo, 0) + 1
 	else:
 		residuos_escapados += 1
 # ── LÓGICA DE OLEADAS ─────────────────────────────────────────────────────
@@ -94,12 +99,12 @@ func _iniciar_oleada():
 	$Timer.start()
 
 func _on_timer_timeout():
+	if oleadas.is_empty():
+		return
 	var cantidad_esta_oleada = oleadas[oleada_actual]
-
 	if residuos_en_oleada < cantidad_esta_oleada:
 		lanzar_basura_normal()
 		residuos_en_oleada += 1
-
 		if residuos_en_oleada >= cantidad_esta_oleada:
 			$Timer.stop()
 
@@ -120,18 +125,26 @@ func lanzar_basura_normal():
 	basura.position = Vector2(nuevo_x, -50)
 	basura.prob_peligroso = probabilidad_peligroso
 
-	# Aplicar velocidad de la oleada actual
-	var config = DIFICULTAD_OLEADAS[min(oleada_actual, DIFICULTAD_OLEADAS.size() - 1)]
+	var config = DIFICULTAD_OLEADAS[min(oleada_actual, DIFICULTAD_OLEADAS.size()-1)]
 	basura.velocidad_caida = config[0]
 
 	basura.tree_exited.connect(_on_residuo_salio)
 	basura.residuo_escapado.connect(_on_residuo_escapado)
 	add_child(basura)
+
+	# Contar solo no-peligrosos en el total
+	if basura.categoria != "Peligroso":
+		total_residuos += 1
 # ── NUEVA: residuo que cayó al suelo sin ser tocado ──
-func _on_residuo_escapado():
+func _on_residuo_escapado(categoria: String):
+	if categoria == "Peligroso":
+		peligrosos_esquivados += 1
+		return  # esquivar peligrosos no es un error
 	residuos_escapados += 1
 	
 func _on_residuo_salio():
+	if oleadas.is_empty():
+		return
 	# Este callback se dispara cuando un residuo hace queue_free()
 	# ya sea porque fue atrapado o porque cayó al suelo
 	residuos_pendientes -= 1
@@ -146,6 +159,8 @@ func registrar_atrape(acierto: bool):
 		residuos_escapados += 1
 
 func _verificar_oleada_completa():
+	if oleadas.is_empty():
+		return
 	if residuos_pendientes > 0:
 		return
 
@@ -177,9 +192,17 @@ func _mostrar_pantalla_crash():
 	$Timer.stop()
 	$MusicaFondo.stop()
 	SesionGlobal.completar_nivel(1, 2)  # mundo 1, nivel 2
-	nivel_completado.emit(residuos_atrapados, residuos_escapados, total_residuos)
+	nivel_completado.emit(        residuos_atrapados,
+		residuos_escapados,
+		total_residuos,
+		desglose_atrapados,
+		peligrosos_esquivados)
 	SesionGlobal.guardar_sesion()
-	nivel_completado.emit(residuos_atrapados, residuos_escapados, total_residuos)
+	nivel_completado.emit(        residuos_atrapados,
+		residuos_escapados,
+		total_residuos,
+		desglose_atrapados,
+		peligrosos_esquivados)
 	var nodo_liz = get_node_or_null("Barbara") 
 	if nodo_liz != null:
 		nodo_liz.celebrar_victoria()

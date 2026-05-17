@@ -166,12 +166,6 @@ layout_mode = 2
 text = "3 min"
 flat = true
 
-[node name="BtnSinTimer" type="Button" parent="ContenedorOpciones/FilaTimer/HBoxVelocidad" unique_id=2121913792]
-custom_minimum_size = Vector2(160, 52)
-layout_mode = 2
-text = "Sin límite"
-flat = true
-
 [node name="Separador2" type="HSeparator" parent="." unique_id=816824310]
 layout_mode = 0
 offset_left = 60.0

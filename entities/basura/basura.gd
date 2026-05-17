@@ -1,6 +1,7 @@
 extends Area2D
 signal tutorial_completado(acierto: bool)
-signal residuo_escapado()
+signal residuo_escapado(categoria: String)
+
 
 var velocidad_caida = 290
 var categoria = ""
@@ -106,5 +107,5 @@ func _process(delta):
 	
 	if position.y > 1200:
 		if not fue_atrapado:
-			residuo_escapado.emit()
+			residuo_escapado.emit(categoria)
 		queue_free()

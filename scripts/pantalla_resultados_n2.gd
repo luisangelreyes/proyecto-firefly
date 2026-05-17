@@ -16,7 +16,6 @@ func mostrar_resultados(
 	visible = true
 
 
-
 	if faltaron == 0:
 		$Fondo/LabelTitulo.text = "¡Jornada terminada!"
 		$Fondo/LabelTitulo.add_theme_color_override("font_color", Color("#86efac"))

@@ -6,7 +6,7 @@ signal resultado_tutorial(acierto: bool)
 signal juego_terminado()
 signal interfaz_actualizada(puntos: int, vidas: int)
 signal tension_musical(activa: bool)
-signal residuo_clasificado(acierto: bool)
+signal residuo_clasificado(acierto: bool, tipo: String)
 signal combo_actualizado(racha: int, multiplicador: int)
 
 var racha_actual: int = 0
@@ -106,7 +106,7 @@ func _on_area_entered(area):
 			combo_actualizado.emit(0, 1) 
 			Input.start_joy_vibration(0, 0.8, 0.0, 0.4)
 			resultado_tutorial.emit(false)
-			residuo_clasificado.emit(false)
+			residuo_clasificado.emit(false, "Peligroso")
 			recibir_dano() # <--- Activamos la animación de falla
 		else:
 			var acierto = false
@@ -122,7 +122,7 @@ func _on_area_entered(area):
 				Input.start_joy_vibration(0, 0.2, 0.0, 0.1)
 				audio_acierto.play()
 				resultado_tutorial.emit(true)
-				residuo_clasificado.emit(true)
+				residuo_clasificado.emit(true, tipo_que_cayo)   # ← agregar tipo
 				var ahora = Time.get_ticks_msec()
 				SesionGlobal.registrar_evento({
 					"tipo":           "clasificacion",
@@ -143,7 +143,7 @@ func _on_area_entered(area):
 				Input.start_joy_vibration(0, 0.0, 0.5, 0.3)
 				audio_error.play()
 				resultado_tutorial.emit(false)
-				residuo_clasificado.emit(false)
+				residuo_clasificado.emit(false, tipo_que_cayo)
 				recibir_dano() # <--- Activamos la animación de falla
 
 		area.queue_free()

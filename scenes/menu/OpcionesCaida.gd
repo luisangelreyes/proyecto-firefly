@@ -18,13 +18,14 @@ var timer_minutos: int = 0   # 0 = sin límite
 @onready var btns_timer   = [
 	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer1,
 	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer2,
-	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer3,
-	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnSinTimer]
+	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer3
+	]
 @onready var check_inf    = $ContenedorOpciones/FilaInfinito/CheckInfinito
 
 func _ready():
 	$BtnJugar.pressed.connect(_on_jugar)
 	$BtnVolver.pressed.connect(_on_volver)
+	$ContenedorOpciones/FilaInfinito/CheckInfinito.toggled.connect(_on_infinito_toggled)
 
 	$ContenedorOpciones/FilaDificultad/HBoxDificultad/BtnFacil.pressed.connect(func(): _set_dificultad("facil"))
 	$ContenedorOpciones/FilaDificultad/HBoxDificultad/BtnNormal.pressed.connect(func(): _set_dificultad("normal"))
@@ -37,7 +38,6 @@ func _ready():
 	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer1.pressed.connect(func(): _set_timer(1))
 	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer2.pressed.connect(func(): _set_timer(2))
 	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnTimer3.pressed.connect(func(): _set_timer(3))
-	$ContenedorOpciones/FilaTimer/HBoxVelocidad/BtnSinTimer.pressed.connect(func(): _set_timer(0))
 
 	check_inf.toggled.connect(func(v): modo_infinito = v)
 
@@ -71,7 +71,7 @@ func _actualizar_botones():
 			else Color(0.5, 0.5, 0.5)
 
 func _on_jugar():
-	# Guardar config en SesionGlobal antes de cargar el nivel
+	SesionGlobal.es_modo_libre = true
 	SesionGlobal.modo_libre_config = {
 		"tipo":          "caida",
 		"dificultad":    dificultad,
@@ -79,7 +79,16 @@ func _on_jugar():
 		"modo_infinito": modo_infinito,
 		"timer_minutos": timer_minutos,
 	}
-	get_tree().change_scene_to_file("res://scenes/niveles/NivelBase.tscn")
+	get_tree().change_scene_to_file(
+        "res://scenes/niveles/NivelCaidaModoLibre.tscn"
+	)
 
 func _on_volver():
 	get_tree().change_scene_to_file("res://scenes/menu/ModoLibre.tscn")
+	
+func _on_infinito_toggled(activo: bool):
+	modo_infinito = activo
+	$ContenedorOpciones/FilaTimer.visible = not activo
+	if activo:
+		timer_minutos = 0  # sin límite cuando es infinito
+	_actualizar_botones()

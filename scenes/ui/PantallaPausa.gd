@@ -142,3 +142,7 @@ func _on_hover(indice: int):
 func _on_click(event: InputEvent, indice: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_ejecutar(indice)
+func _on_menu():
+	get_tree().paused = false
+	Engine.time_scale = 1.0   # ← restaurar siempre al salir
+	menu_presionado.emit()

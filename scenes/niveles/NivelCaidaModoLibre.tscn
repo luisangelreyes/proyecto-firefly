@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dcha3d86d7aqb"]
+
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_mte3l"]
+[ext_resource type="Script" uid="uid://dvdlvtp5g1sv2" path="res://scenes/niveles/NivelCaidaModoLibre.gd" id="2_yfekr"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_8g8o4"]
+
+[node name="Nivel" unique_id=784809779 instance=ExtResource("1_mte3l")]
+script = ExtResource("2_yfekr")
+lista_canciones = Array[AudioStream]([])
+
+[node name="LabelTimerSesion" type="Label" parent="." index="13" unique_id=1592708039]
+visible = false
+offset_left = 483.0
+offset_top = 4.0
+offset_right = 713.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("3_8g8o4")
+theme_override_font_sizes/font_size = 55
+text = "LabelTimerSesion"

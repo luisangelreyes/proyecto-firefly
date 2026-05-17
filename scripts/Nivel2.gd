@@ -290,7 +290,7 @@ func _feedback(msg: String, color: Color):
 func _victoria():
 	juego_activo = false
 	timer_activo = false
-	SesionGlobal.completar_nivel(1, 2)
+	SesionGlobal.completar_nivel(1, 4)
 	$PantallaResultados.mostrar_resultados(
 		clasificados,
 		clasificados_primera,
