@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://dyo8xy05emu52"]
+
+[ext_resource type="Script" uid="uid://g28atd6v01pf" path="res://scenes/menu/ModoLibre.gd" id="1_eh4ac"]
+
+[node name="ModoLibre" type="Control" unique_id=1867112607]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eh4ac")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1776299200]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=863707217]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 160.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 28
+text = "MODO LIBRE"
+
+[node name="Separador" type="HSeparator" parent="." unique_id=215703387]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -390.0
+offset_bottom = -386.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListaMecanicas" type="VBoxContainer" parent="." unique_id=633149330]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 660.0
+offset_bottom = 780.0
+theme_override_constants/separation = 0
+
+[node name="ItemCaida" type="Control" parent="ListaMecanicas" unique_id=1618350685]
+custom_minimum_size = Vector2(620, 90)
+layout_mode = 2
+
+[node name="FondoItem" type="ColorRect" parent="ListaMecanicas/ItemCaida" unique_id=2092438894]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.1882353)
+
+[node name="LabelNombre" type="Label" parent="ListaMecanicas/ItemCaida" unique_id=1785530762]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -17.0
+offset_right = 237.0
+offset_bottom = 17.0
+grow_vertical = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "Lluvia de Residuos                                                                    "
+
+[node name="ItemClasificacion" type="Control" parent="ListaMecanicas" unique_id=1029153531]
+custom_minimum_size = Vector2(620, 90)
+layout_mode = 2
+
+[node name="FondoItem" type="ColorRect" parent="ListaMecanicas/ItemClasificacion" unique_id=1701899169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="LabelNombre" type="Label" parent="ListaMecanicas/ItemClasificacion" unique_id=1863896401]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -17.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_vertical = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "Clasificación                                                                               "
+
+[node name="ItemTopDown" type="Control" parent="ListaMecanicas" unique_id=1667965944]
+custom_minimum_size = Vector2(620, 90)
+layout_mode = 2
+
+[node name="FondoItem" type="ColorRect" parent="ListaMecanicas/ItemTopDown" unique_id=1629917165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="LabelNombre" type="Label" parent="ListaMecanicas/ItemTopDown" unique_id=2116199654]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -17.0
+offset_right = 64.0
+offset_bottom = 17.0
+grow_vertical = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "Exploración Limpieza                                                                                      "
+
+[node name="PanelPreview" type="Control" parent="." unique_id=36453303]
+anchors_preset = 0
+offset_left = 760.0
+offset_top = 180.0
+offset_right = 1380.0
+offset_bottom = 600.0
+
+[node name="PreviewRect" type="ColorRect" parent="PanelPreview" unique_id=543077556]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.18039216, 0.101960786, 1)
+
+[node name="LabelNombrePreview" type="Label" parent="PanelPreview" unique_id=1121056561]
+layout_mode = 0
+offset_top = 440.0
+offset_right = 620.0
+offset_bottom = 500.0
+
+[node name="LabelDescPreview" type="Label" parent="PanelPreview" unique_id=498538104]
+layout_mode = 0
+offset_top = 510.0
+offset_right = 620.0
+offset_bottom = 630.0
+theme_override_font_sizes/font_size = 23
+autowrap_mode = 2
+
+[node name="Separador2" type="HSeparator" parent="." unique_id=1793495975]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 410.0
+offset_bottom = 414.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelControles" type="Label" parent="." unique_id=1601240614]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 420.0
+offset_right = 180.0
+offset_bottom = 487.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 23
+text = "SPACE  Seleccionar           ESC  Volver
+"
+
+[node name="BotonVolver" type="Button" parent="." unique_id=825661269]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 1001.0
+offset_right = 268.0
+offset_bottom = 1053.0
+text = "Volver"

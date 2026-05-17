@@ -40,6 +40,10 @@ func _ready():
 	]
 	size_activo = Configuracion.get_tamaño_activo()
 	size_inactivo = Configuracion.get_tamaño_inactivo()
+	# En menu.gd _ready()
+	SesionGlobal.es_modo_libre = false
+	SesionGlobal.modo_libre_config = {}
+	Engine.time_scale = 1.0  
 	
 	# 2. Aplicamos visualmente al menú principal
 	_actualizar_seleccion()
@@ -168,7 +172,7 @@ func _iniciar_modo_aventura():
 	get_tree().change_scene_to_file("res://scenes/menu/SelectorMundos.tscn")
 
 func _iniciar_arcade():
-	get_tree().change_scene_to_file("res://scenes/niveles/NivelBase.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/ModoLibre.tscn")
 	
 # ── LÓGICA DE ARRANQUE (RF-05) ────────────────────────────────────────────────
 func inicializar_sistema():

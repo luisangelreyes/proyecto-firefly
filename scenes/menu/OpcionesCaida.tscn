@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://crndvqu85ch7"]
+
+[ext_resource type="Script" uid="uid://cetrwgyh3bsox" path="res://scenes/menu/OpcionesCaida.gd" id="1_7rq01"]
+
+[node name="OpcionesCaida" type="Control" unique_id=1589192223]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7rq01")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=258985058]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PreviewRect" type="ColorRect" parent="." unique_id=1942489717]
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 1080.0
+color = Color(0.30980393, 0.72156864, 0.47843137, 1)
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=1088087175]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 222.0
+offset_bottom = 83.0
+text = "LLUVIA DE RESIDUOS"
+
+[node name="LabelSubtitulo" type="Label" parent="." unique_id=1651127458]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 100.0
+offset_right = 412.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 36
+text = "Configura tu partida"
+
+[node name="Separador" type="HSeparator" parent="." unique_id=2025984528]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 1380.0
+offset_bottom = 184.0
+
+[node name="ContenedorOpciones" type="VBoxContainer" parent="." unique_id=1688351693]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 220.0
+offset_right = 760.0
+offset_bottom = 870.0
+theme_override_constants/separation = 40
+
+[node name="FilaDificultad" type="VBoxContainer" parent="ContenedorOpciones" unique_id=1821403788]
+layout_mode = 2
+
+[node name="LabelDificultad" type="Label" parent="ContenedorOpciones/FilaDificultad" unique_id=1438370325]
+layout_mode = 2
+text = "DIFICULTAD"
+
+[node name="HBoxDificultad" type="HBoxContainer" parent="ContenedorOpciones/FilaDificultad" unique_id=1816871099]
+layout_mode = 2
+
+[node name="BtnFacil" type="Button" parent="ContenedorOpciones/FilaDificultad/HBoxDificultad" unique_id=885530371]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "Fácil"
+flat = true
+
+[node name="BtnNormal" type="Button" parent="ContenedorOpciones/FilaDificultad/HBoxDificultad" unique_id=1892752025]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "Normal"
+flat = true
+
+[node name="BtnDificil" type="Button" parent="ContenedorOpciones/FilaDificultad/HBoxDificultad" unique_id=672542451]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "Difícil"
+flat = true
+
+[node name="FilaVelocidad" type="VBoxContainer" parent="ContenedorOpciones" unique_id=1083385242]
+layout_mode = 2
+
+[node name="LabelVelocidad" type="Label" parent="ContenedorOpciones/FilaVelocidad" unique_id=1033741549]
+layout_mode = 2
+text = "VELOCIDAD"
+
+[node name="HBoxVelocidad" type="HBoxContainer" parent="ContenedorOpciones/FilaVelocidad" unique_id=1180383295]
+layout_mode = 2
+
+[node name="Btn75" type="Button" parent="ContenedorOpciones/FilaVelocidad/HBoxVelocidad" unique_id=1214002762]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "75%"
+flat = true
+
+[node name="Btn100" type="Button" parent="ContenedorOpciones/FilaVelocidad/HBoxVelocidad" unique_id=1461952098]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "100%"
+flat = true
+
+[node name="Btn125" type="Button" parent="ContenedorOpciones/FilaVelocidad/HBoxVelocidad" unique_id=974675012]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "125%"
+flat = true
+
+[node name="FilaInfinito" type="HBoxContainer" parent="ContenedorOpciones" unique_id=245149226]
+layout_mode = 2
+
+[node name="LabelInfinito" type="Label" parent="ContenedorOpciones/FilaInfinito" unique_id=1904937110]
+layout_mode = 2
+text = "MODO INFINITO"
+
+[node name="CheckInfinito" type="CheckButton" parent="ContenedorOpciones/FilaInfinito" unique_id=966817113]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = " "
+flat = true
+
+[node name="FilaTimer" type="VBoxContainer" parent="ContenedorOpciones" unique_id=124026776]
+layout_mode = 2
+
+[node name="LabelTimer" type="Label" parent="ContenedorOpciones/FilaTimer" unique_id=1140206170]
+layout_mode = 2
+text = "TEMPORIZADOR"
+
+[node name="HBoxVelocidad" type="HBoxContainer" parent="ContenedorOpciones/FilaTimer" unique_id=1129478886]
+layout_mode = 2
+
+[node name="BtnTimer1" type="Button" parent="ContenedorOpciones/FilaTimer/HBoxVelocidad" unique_id=521263257]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "1 min"
+flat = true
+
+[node name="BtnTimer2" type="Button" parent="ContenedorOpciones/FilaTimer/HBoxVelocidad" unique_id=579498515]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "2 min"
+flat = true
+
+[node name="BtnTimer3" type="Button" parent="ContenedorOpciones/FilaTimer/HBoxVelocidad" unique_id=269453676]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "3 min"
+flat = true
+
+[node name="BtnSinTimer" type="Button" parent="ContenedorOpciones/FilaTimer/HBoxVelocidad" unique_id=2121913792]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "Sin límite"
+flat = true
+
+[node name="Separador2" type="HSeparator" parent="." unique_id=816824310]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 900.0
+offset_right = 1380.0
+offset_bottom = 904.0
+
+[node name="BtnJugar" type="Button" parent="." unique_id=1831686653]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 930.0
+offset_right = 280.0
+offset_bottom = 990.0
+theme_override_font_sizes/font_size = 22
+text = "▶  JUGAR"
+
+[node name="BtnVolver" type="Button" parent="." unique_id=1278524193]
+layout_mode = 0
+offset_left = 1180.0
+offset_top = 930.0
+offset_right = 1400.0
+offset_bottom = 990.0
+theme_override_font_sizes/font_size = 22
+text = "← Volver"

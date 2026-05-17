@@ -5,7 +5,9 @@ var perfil_actual: String = ""
 var puntaje: int = 0
 var vidas: int = 3
 var combo: int = 1
-
+# En sesion_global.gd, junto a las demás variables
+var modo_libre_config: Dictionary = {}
+var es_modo_libre: bool = false
 # ── ESTRUCTURA DE PROGRESO POR MUNDOS ────────────────────────────────────────
 # mundo_actual y nivel_actual indican dónde está el jugador ahora mismo
 var mundo_actual: int = 1
