@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="5_tbdeb"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_tbdeb"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="9_c6fl3"]
+[ext_resource type="PackedScene" uid="uid://cmsvqkygh1on8" path="res://scenes/ui/DialogoTutorial.tscn" id="10_vyjmu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqwmd"]
 atlas = ExtResource("5_j7nqj")
@@ -484,5 +485,7 @@ transform = Transform2D(1, 0, 0, 1, 0, 500)
 
 [node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("9_c6fl3")]
 visible = false
+
+[node name="DialogoTutorial" parent="." unique_id=530390666 instance=ExtResource("10_vyjmu")]
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]

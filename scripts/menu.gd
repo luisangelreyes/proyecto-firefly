@@ -58,6 +58,7 @@ func _ready():
 
 	# Conectar ventana nuevo perfil (igual que antes)
 	$VentanaNuevo/CajaBotones/BotonAceptar.pressed.connect(_on_crear_nuevo_perfil)
+	$VentanaNuevo/CajaBotones/BotonCancelar.pressed.connect(cerrar_ventanas)
 	$ContenedorMenu/BotonCambiar.pressed.connect(abrir_ventana_perfiles)
 
 	cerrar_ventanas()
@@ -219,13 +220,21 @@ func abrir_ventana_nuevo():
 	menu_bloqueado = true
 	ventana_perfiles.hide()
 	ventana_nuevo.show()
-	entrada_nombre.text = ""
+	entrada_nombre.text = " "
 	entrada_nombre.grab_focus()
 
 func cerrar_ventanas():
+	var perfiles = SesionGlobal.cargar_todos_los_perfiles()
+	if perfiles.is_empty():
+		label_bienvenida.text = "¡Crea un perfil para empezar!"
+		abrir_ventana_nuevo()
+		return
+
+	
 	menu_bloqueado = false
 	ventana_perfiles.hide()
 	ventana_nuevo.hide()
+	
 
 # ── ACCIONES DE PERFILES (RF-01, RF-02, RF-03) ───────────────────────────────
 func _on_crear_nuevo_perfil():

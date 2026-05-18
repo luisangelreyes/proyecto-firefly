@@ -28,11 +28,11 @@ func _ready():
 
 	# ── Tutorial ─────────────────────────────────────────────────────────
 	mensajes_tutorial = [
-		"¡Mija, escucha bien! Aquí tienes tres contenedores:\nuno para PAPEL, uno para VIDRIO y uno para PLÁSTICO.",
-		"Cada objeto que salga de tu morral lo tienes\nque arrastrar al contenedor correcto.",
-		"Si lo pones en el lugar equivocado, te voy\na explicar dónde va. ¡No te apures, así se aprende!",
-		"Tienes %d segundos para clasificar cada objeto\nantes de que se acabe el tiempo. ¡Ándale!" % int(tiempo_limite),
-		"¿Listo? ¡Vamos a limpiar esto!",
-	]
+	"¡Mija, escucha bien! Aquí tienes tres contenedores:\nuno para [color=#F4D03F]PAPEL[/color], uno para [color=#2ECC71]VIDRIO[/color] y uno para [color=#3498DB]PLÁSTICO[/color].",
+	"Cada objeto que salga de tu morral lo tienes\nque arrastrar al contenedor correcto.",
+	"Si lo pones en el lugar equivocado, te voy\na explicar dónde va. ¡No te apures, así se aprende!",
+	"Tienes %d segundos para clasificar cada objeto\nantes de que se acabe el tiempo. ¡Ándale!" % int(tiempo_limite),
+	"¿Listo? ¡Vamos a limpiar esto!",
+]
 
 	super()

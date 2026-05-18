@@ -5,3 +5,41 @@
 
 [node name="Nivel2" unique_id=1972288213 instance=ExtResource("1_bhuy4")]
 script = ExtResource("2_mjt2e")
+
+[node name="PanelMorral" parent="." index="0" unique_id=653609551]
+modulate = Color(1, 1, 1, 0.7058824)
+
+[node name="PanelMorral2" parent="." index="1" unique_id=1371072087]
+modulate = Color(0, 0.4392157, 0.8156863, 0.5568628)
+
+[node name="Labelpuntos" parent="." index="7" unique_id=930952704]
+offset_left = 62.0
+offset_top = 16.0
+offset_right = 306.0
+offset_bottom = 74.0
+
+[node name="LabelTimer" parent="." index="8" unique_id=2119736961]
+offset_left = 1651.0
+offset_top = 941.0
+offset_right = 1838.0
+offset_bottom = 1043.0
+
+[node name="LabelVidas" parent="." index="9" unique_id=170874925]
+offset_left = 75.0
+offset_top = 63.0
+offset_right = 350.0
+offset_bottom = 118.0
+text = "VIDAS: 3"
+
+[node name="LabelFeedBack" parent="." index="10" unique_id=746849514]
+offset_left = 699.0
+offset_top = 66.0
+offset_right = 1234.0
+offset_bottom = 307.0
+
+[node name="LabelZonaBotes" parent="." index="11" unique_id=61205302]
+offset_left = 66.0
+offset_top = 23.0
+offset_right = 425.0
+offset_bottom = 73.0
+text = ""

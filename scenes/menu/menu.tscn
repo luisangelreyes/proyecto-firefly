@@ -3,11 +3,9 @@
 [ext_resource type="Script" uid="uid://bwaggakiu61tq" path="res://scripts/menu.gd" id="1_lti8b"]
 [ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_e0arn"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
+[ext_resource type="Texture2D" uid="uid://cdbpedrp0k6k8" path="res://assets/ui/crear_perfil-Photoroom.png" id="4_037ec"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgdb"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcvr8"]
-bg_color = Color(0.21906003, 0.36, 0.0468, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
 
@@ -223,35 +221,36 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 text = "Cancelar"
 
-[node name="VentanaNuevo" type="Panel" parent="." unique_id=256666432]
+[node name="VentanaNuevo" type="TextureRect" parent="." unique_id=121078825]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -331.0
-offset_top = -118.25
-offset_right = 331.0
-offset_bottom = 118.25
+offset_left = -387.25
+offset_top = -214.5
+offset_right = 387.25
+offset_bottom = 214.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mcvr8")
+texture = ExtResource("4_037ec")
+expand_mode = 1
 
 [node name="Titulo" type="Label" parent="VentanaNuevo" unique_id=1923516526]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -181.0
-offset_top = 32.0
-offset_right = 181.0
-offset_bottom = 89.0
+offset_left = -174.75
+offset_top = 57.0
+offset_right = 187.25
+offset_bottom = 114.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_mcvr8")
 theme_override_font_sizes/font_size = 50
-text = "Escribe tu nombre:"
 horizontal_alignment = 1
 
 [node name="EntradaNombre" type="LineEdit" parent="VentanaNuevo" unique_id=792161574]
@@ -262,13 +261,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -34.25
-offset_top = -15.5
-offset_right = 34.25
-offset_bottom = 15.5
+offset_left = -210.0
+offset_top = -27.5
+offset_right = 210.0
+offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 26
 placeholder_text = "Tu nombre:"
+flat = true
 
 [node name="CajaBotones" type="HBoxContainer" parent="VentanaNuevo" unique_id=1964655178]
 layout_mode = 1
@@ -277,17 +278,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -66.5
-offset_top = -55.0
-offset_right = 66.5
-offset_bottom = -32.0
+offset_left = -142.75
+offset_top = -154.0
+offset_right = 150.25
+offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 39
 alignment = 1
 
 [node name="BotonAceptar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=199225387]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_037ec")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_y1o0p")
@@ -300,9 +302,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f2fum")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kaijy")
 theme_override_styles/focus = SubResource("StyleBoxFlat_y4i35")
 text = "Aceptar"
+flat = true
 
 [node name="BotonCancelar" type="Button" parent="VentanaNuevo/CajaBotones" unique_id=1267034720]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_037ec")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_y1o0p")
@@ -315,6 +319,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f2fum")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_kaijy")
 theme_override_styles/focus = SubResource("StyleBoxFlat_y4i35")
 text = "Cancelar"
+flat = true
 alignment = 2
 
 [node name="LabelDescripcion" type="Label" parent="." unique_id=341529883]

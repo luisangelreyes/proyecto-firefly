@@ -3,36 +3,56 @@
 [ext_resource type="Script" uid="uid://bmvraomr8vwpr" path="res://scenes/ui/DialogoTutorial.gd" id="1_ibwks"]
 
 [node name="DialogoTutorial" type="CanvasLayer" unique_id=530390666]
+process_mode = 3
 script = ExtResource("1_ibwks")
 
 [node name="PanelDialogo" type="Panel" parent="." unique_id=307952867]
-modulate = Color(0, 0, 0, 0.84705883)
+self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 220)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -343.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="RetratoDonSergio" type="TextureRect" parent="PanelDialogo" unique_id=717825801]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 342.0
+offset_top = -122.0
+offset_right = 543.0
+offset_bottom = 33.0
 
 [node name="LabelNombre" type="Label" parent="PanelDialogo" unique_id=1217635475]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 87.0
+offset_top = -57.0
+offset_right = 313.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 34
 text = "Abuelo Sergio"
 
-[node name="LabelTexto" type="Label" parent="PanelDialogo" unique_id=1212658539]
+[node name="LabelTexto" type="RichTextLabel" parent="PanelDialogo" unique_id=1326386358]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 55.0
+offset_top = 23.0
+offset_right = 1553.0
+offset_bottom = 194.0
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 
 [node name="LabelContinuar" type="Label" parent="PanelDialogo" unique_id=1802248276]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1592.0
+offset_top = 37.0
+offset_right = 1847.0
+offset_bottom = 147.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
 text = "▶ Continuar"
+horizontal_alignment = 1
+vertical_alignment = 1

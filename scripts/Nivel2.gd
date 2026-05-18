@@ -94,6 +94,8 @@ var timer_activo: bool = false
 const GRID_ORIGEN = Vector2(150, 540)   # posición donde aparece el objeto
 
 func _ready():
+	_iniciar_nivel()
+
 	SesionGlobal.vidas = 3
 	SesionGlobal.puntaje = 0
 	lbl_feedback.visible = false
@@ -110,6 +112,20 @@ func _ready():
 	timer_activo = true
 	_siguiente_objeto()
 	
+	
+func _iniciar_nivel():
+	lbl_feedback.visible = false
+	popup.visible = false
+	_configurar_botes()
+	if catalogo_objetos.is_empty():
+		catalogo_objetos = OBJETOS.duplicate()
+	_preparar_cola()
+	_actualizar_hud()
+	tiempo_restante = tiempo_limite
+	timer_activo = true
+	_siguiente_objeto()
+
+
 func _configurar_botes():
 	for cfg in config_botes:
 		var nodo = get_node_or_null(cfg["nodo"])
@@ -369,7 +385,7 @@ func _unhandled_input(event):
 		return
 
 	if event is InputEventJoypadButton and event.pressed:
-		if event.button_index == JOY_BUTTON_A:
+		if event.button_index == JOY_BUTTON_A or KEY_SPACE:
 			if item_agarrado == null:
 				# Intentar agarrar el objeto actual si el cursor está cerca
 				if is_instance_valid(objeto_actual):

@@ -14,9 +14,12 @@ var velocidad_escritura: float = 0.035
 
 func _ready():
 	visible = false
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	$PanelDialogo.process_mode = Node.PROCESS_MODE_ALWAYS
+	$PanelDialogo/LabelTexto.process_mode = Node.PROCESS_MODE_ALWAYS
+	$PanelDialogo/LabelContinuar.process_mode = Node.PROCESS_MODE_ALWAYS
 	lbl_continuar.visible = false
 	lbl_nombre.text = "Don Sergio"
-
 func iniciar(lista_mensajes: Array):
 	mensajes      = lista_mensajes
 	indice_actual = 0
@@ -32,16 +35,36 @@ func _mostrar_mensaje(indice: int):
 	_escribir_texto()
 
 func _escribir_texto():
-	for i in range(texto_completo.length()):
-		lbl_texto.text = texto_completo.substr(0, i + 1)
+	lbl_texto.text = ""
+	var texto_visible = ""
+	var i = 0
+	var dentro_etiqueta = false
+
+	while i < texto_completo.length():
+		var caracter = texto_completo[i]
+
+		if caracter == "[":
+			dentro_etiqueta = true
+
+		if dentro_etiqueta:
+			texto_visible += caracter
+			if caracter == "]":
+				dentro_etiqueta = false
+			i += 1
+			continue
+
+		texto_visible += caracter
+		lbl_texto.text = texto_visible
+		i += 1
+
 		await get_tree().create_timer(velocidad_escritura).timeout
 		if not escribiendo:
 			break
-	lbl_texto.text    = texto_completo
-	escribiendo       = false
+
+	lbl_texto.text = texto_completo
+	escribiendo = false
 	lbl_continuar.visible = true
 	_animar_continuar()
-
 func _animar_continuar():
 	var tween = create_tween().set_loops()
 	tween.tween_property(lbl_continuar, "modulate:a", 0.2, 0.5)
