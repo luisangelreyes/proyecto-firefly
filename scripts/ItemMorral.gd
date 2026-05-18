@@ -55,6 +55,12 @@ func inicializar(datos: Dictionary, ref_nivel):
 	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
 	sprite.texture = atlas
 	sprite.scale   = Vector2(0.5, 0.5)
+	if datos.has("escala"):
+		# Si el diccionario tiene una escala especial, la aplicamos
+		sprite.scale = Vector2(datos["escala"], datos["escala"])
+	else:
+		# Si no tiene, lo dejamos en su tamaño original (1.0)
+		sprite.scale = Vector2(1.0, 1.0)
 
 func volver_origen():
 	global_position = pos_origen

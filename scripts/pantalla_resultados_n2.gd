@@ -15,16 +15,12 @@ func mostrar_resultados(
 ):
 	visible = true
 
-
-
 	if faltaron == 0:
 		$Fondo/LabelTitulo.text = "¡Jornada terminada!"
 		$Fondo/LabelTitulo.add_theme_color_override("font_color", Color("#86efac"))
 	else:
 		$Fondo/LabelTitulo.text = "¡Se acabó el tiempo!"
 		$Fondo/LabelTitulo.add_theme_color_override("font_color", Color("#f87171"))
-
-	$Fondo/LabelClasificados.text = "✓ Clasificados: %d / %d" % [clasificados, total]
 
 	# Faltaron — solo si se acabó el tiempo
 	if faltaron > 0:
@@ -57,11 +53,37 @@ func mostrar_resultados(
 		$Fondo/LabelFallos.text = "Fallos y tiempos agotados: %d" % fallos
 		$Fondo/LabelFallos.add_theme_color_override("font_color", Color("#f87171"))
 
-	# Desglose por categoría
+	# ── DESGLOSE DINÁMICO POR CATEGORÍA ──
 	$Fondo/LabelDesglose.text = "Desglose por categoría:"
-	$Fondo/LabelPapel.text    = "  📄 Papel:    %d" % desglose.get("papel", 0)
-	$Fondo/LabelVidrio.text   = "  🟢 Vidrio:   %d" % desglose.get("vidrio", 0)
-	$Fondo/LabelPlastico.text = "  🔵 Plástico: %d" % desglose.get("plastico", 0)
+	
+	# Agrupamos tus nodos de interfaz en un Array para manejarlos secuencialmente
+	var slots_labels = [$Fondo/LabelPapel, $Fondo/LabelVidrio, $Fondo/LabelPlastico]
+	
+	# Diccionario de iconos temáticos para todos tus niveles
+	var iconos = {
+		"papel": "📄",
+		"vidrio": "🟢",
+		"plastico": "🔵",
+		"organico": "🍎",
+		"inorganico": "🥫",
+		"tela": "👕"
+	}
+	
+	# 1. Ocultamos todos los slots primero por seguridad
+	for lbl in slots_labels:
+		lbl.visible = false
+		
+	# 2. Asignamos los datos reales del diccionario 'desglose' a los labels
+	var categorias = desglose.keys()
+	for i in range(categorias.size()):
+		if i < slots_labels.size():
+			var llave_cat = categorias[i]
+			var cantidad = desglose[llave_cat]
+			var icono = iconos.get(llave_cat, "📦") # Icono genérico por si creas otra categoría
+			
+			# capitalize() cambia "organico" a "Organico"
+			slots_labels[i].text = "  %s %s: %d" % [icono, llave_cat.capitalize(), cantidad]
+			slots_labels[i].visible = true
 
 	# Puntos
 	$Fondo/LabelPuntos.text = "Puntos totales: %d" % SesionGlobal.puntaje

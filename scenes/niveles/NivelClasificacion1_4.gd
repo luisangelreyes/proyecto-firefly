@@ -25,7 +25,7 @@ func _ready():
 		{"frame":23, "sheet":SHEET_N2, "cols":9, "tipo":"plastico",
 		 "nombre":"Yogur",        "explicacion":"Los envases de yogur son plástico reciclable."},
 	]
-
+	
 	# ── Tutorial ─────────────────────────────────────────────────────────
 	mensajes_tutorial = [
 	"¡Mija, escucha bien! Aquí tienes tres contenedores:\nuno para [color=#F4D03F]PAPEL[/color], uno para [color=#2ECC71]VIDRIO[/color] y uno para [color=#3498DB]PLÁSTICO[/color].",
