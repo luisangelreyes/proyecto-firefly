@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_tbdeb"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="9_c6fl3"]
 [ext_resource type="PackedScene" uid="uid://cmsvqkygh1on8" path="res://scenes/ui/DialogoTutorial.tscn" id="10_vyjmu"]
+[ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="11_frlv3"]
+[ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="12_t3c3p"]
+[ext_resource type="AudioStream" uid="uid://biwkee6sh2fbe" path="res://assets/audio/sfx/Tee-Lopes-Big-Apple_-3-PM-_-TMNT_-Shredder_s-Revenge-Official-Soundtrack.ogg" id="13_ggm30"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_41671"]
+[ext_resource type="AudioStream" uid="uid://8axil6obvf53" path="res://assets/audio/sfx/Finish-Line-2nd-to-4th-Place-Mario-Kart-64-OST.ogg" id="15_41671"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqwmd"]
 atlas = ExtResource("5_j7nqj")
@@ -487,5 +492,20 @@ transform = Transform2D(1, 0, 0, 1, 0, 500)
 visible = false
 
 [node name="DialogoTutorial" parent="." unique_id=530390666 instance=ExtResource("10_vyjmu")]
+
+[node name="AudioAcierto" type="AudioStreamPlayer" parent="." unique_id=860217609]
+stream = ExtResource("11_frlv3")
+
+[node name="AudioError" type="AudioStreamPlayer" parent="." unique_id=1288895175]
+stream = ExtResource("12_t3c3p")
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1783638444]
+stream = ExtResource("13_ggm30")
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=882194140]
+stream = ExtResource("14_41671")
+
+[node name="AudioVictoria" type="AudioStreamPlayer" parent="." unique_id=46149894]
+stream = ExtResource("15_41671")
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]

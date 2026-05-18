@@ -54,7 +54,7 @@ func inicializar(datos: Dictionary, ref_nivel):
 	var row      = frame_idx / cols
 	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
 	sprite.texture = atlas
-	sprite.scale   = Vector2(0.35, 0.35)
+	sprite.scale   = Vector2(0.5, 0.5)
 
 func volver_origen():
 	global_position = pos_origen

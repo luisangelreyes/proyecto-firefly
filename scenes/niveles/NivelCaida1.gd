@@ -26,14 +26,24 @@ func _ready():
 	# ── Fondo placeholder hasta que llegue el arte ────────────────────────
 
 func _mostrar_pantalla_crash():
+	if SesionGlobal.vidas <= 0:
+		return
 	nivel_activo = false
 	$Timer.stop()
 	$MusicaFondo.stop()
 	SesionGlobal.completar_nivel(1, 3)
-	nivel_completado.emit(
-		residuos_atrapados,
+
+	nivel_completado.emit(        residuos_atrapados,
 		residuos_escapados,
 		total_residuos,
 		desglose_atrapados,
-		peligrosos_esquivados
-	)
+		peligrosos_esquivados)
+	SesionGlobal.guardar_sesion()
+	nivel_completado.emit(        residuos_atrapados,
+		residuos_escapados,
+		total_residuos,
+		desglose_atrapados,
+		peligrosos_esquivados)
+	var nodo_liz = get_node_or_null("Barbara") 
+	if nodo_liz != null:
+		nodo_liz.celebrar_victoria()

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cbxdfvmt78ynr"]
+
+[ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/nivel2.tscn" id="1_qcklg"]
+[ext_resource type="Script" uid="uid://hgsma0q0jn24" path="res://scenes/niveles/NivelClasificacion2_2.gd" id="2_h3qxt"]
+[ext_resource type="Texture2D" uid="uid://mbrxmxs5gxrw" path="res://entities/basura/sprites/bote_tela-organico-inorganico.png" id="3_pidto"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqxs7"]
+atlas = ExtResource("3_pidto")
+region = Rect2(-1325.8362, 87.98999, 2317.3623, 966.0841)
+
+[node name="Nivel2" unique_id=1972288213 instance=ExtResource("1_qcklg")]
+script = ExtResource("2_h3qxt")
+
+[node name="FondoPAPEL" parent="BotePAPEL" parent_id_path=PackedInt32Array(622439365) index="0" unique_id=943783097]
+texture = ExtResource("3_pidto")
+
+[node name="FondoVIDRIO" parent="BoteVIDRIO" parent_id_path=PackedInt32Array(193919060) index="0" unique_id=1752869427]
+texture = ExtResource("3_pidto")
+frame = 2
+
+[node name="FondoPLASTICO" parent="BotePLASTICO" parent_id_path=PackedInt32Array(1069856128) index="0" unique_id=1286513167]
+position = Vector2(-18.999956, -20.999994)
+scale = Vector2(0.37305707, 0.3954452)
+texture = SubResource("AtlasTexture_nqxs7")
+
+[node name="LabelFeedBack" parent="." index="10" unique_id=746849514]
+visible = false

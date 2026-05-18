@@ -148,20 +148,30 @@ stream = ExtResource("5_o6cdr")
 [node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=602996145]
 stream = ExtResource("5_bnor3")
 
-[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=196954291]
+[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("8_hfh3j")]
+visible = false
+
+[node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("11_3ej5d")]
+
+[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=287716614]
 layer = 10
 script = ExtResource("6_bnor3")
 
-[node name="Fondo" type="Panel" parent="PantallaResultados" unique_id=1777660455]
-anchors_preset = 15
+[node name="Fondo" type="Panel" parent="PantallaResultados" unique_id=756670836]
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_left = 562.0
+offset_top = -381.0
+offset_right = -502.0
+offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=564744415]
+[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=554245907]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -177,7 +187,8 @@ theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="LabelAtrapados" type="Label" parent="PantallaResultados/Fondo" unique_id=780269860]
+[node name="LabelAtrapados" type="Label" parent="PantallaResultados/Fondo" unique_id=1597896260]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -194,7 +205,7 @@ theme_override_fonts/font = ExtResource("5_6hkwo")
 theme_override_font_sizes/font_size = 28
 metadata/_edit_use_anchors_ = true
 
-[node name="LabelDesglose" type="Label" parent="PantallaResultados/Fondo" unique_id=932002122]
+[node name="LabelDesglose" type="Label" parent="PantallaResultados/Fondo" unique_id=693918302]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -211,7 +222,7 @@ theme_override_fonts/font = ExtResource("5_6hkwo")
 theme_override_font_sizes/font_size = 28
 metadata/_edit_use_anchors_ = true
 
-[node name="LabelEscapados" type="Label" parent="PantallaResultados/Fondo" unique_id=249579302]
+[node name="LabelEscapados" type="Label" parent="PantallaResultados/Fondo" unique_id=1219428340]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.517
@@ -228,13 +239,14 @@ theme_override_fonts/font = ExtResource("5_6hkwo")
 theme_override_font_sizes/font_size = 28
 metadata/_edit_use_anchors_ = true
 
-[node name="LabelPuntos" type="Label" parent="PantallaResultados/Fondo" unique_id=1506918904]
+[node name="LabelPuntos" type="Label" parent="PantallaResultados/Fondo" unique_id=1034827989]
+visible = false
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.7803738
+anchor_top = 0.30193663
+anchor_right = 0.7803738
+anchor_bottom = 0.30193663
 offset_left = -366.0
 offset_top = -22.5
 offset_right = -106.0
@@ -245,14 +257,15 @@ theme_override_fonts/font = ExtResource("5_6hkwo")
 theme_override_font_sizes/font_size = 32
 metadata/_edit_use_anchors_ = true
 
-[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=530706264]
+[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=1835316776]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.48014018
+anchor_top = 1.0475352
+anchor_right = 0.48014018
+anchor_bottom = 1.0475352
 offset_left = -149.0
 offset_top = -120.0
 offset_right = 151.0
@@ -263,10 +276,5 @@ theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_fonts/font = ExtResource("4_doau0")
 text = "Confirmar"
 metadata/_edit_use_anchors_ = true
-
-[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("8_hfh3j")]
-visible = false
-
-[node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("11_3ej5d")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
