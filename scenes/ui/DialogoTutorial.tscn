@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cmsvqkygh1on8"]
+
+[ext_resource type="Script" uid="uid://bmvraomr8vwpr" path="res://scenes/ui/DialogoTutorial.gd" id="1_ibwks"]
+
+[node name="DialogoTutorial" type="CanvasLayer" unique_id=530390666]
+script = ExtResource("1_ibwks")
+
+[node name="PanelDialogo" type="Panel" parent="." unique_id=307952867]
+modulate = Color(0, 0, 0, 0.84705883)
+custom_minimum_size = Vector2(0, 220)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RetratoDonSergio" type="TextureRect" parent="PanelDialogo" unique_id=717825801]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelNombre" type="Label" parent="PanelDialogo" unique_id=1217635475]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Abuelo Sergio"
+
+[node name="LabelTexto" type="Label" parent="PanelDialogo" unique_id=1212658539]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LabelContinuar" type="Label" parent="PanelDialogo" unique_id=1802248276]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "▶ Continuar"

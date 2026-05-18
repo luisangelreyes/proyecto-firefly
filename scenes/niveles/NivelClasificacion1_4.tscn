@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://xwslbxt6yirf"]
+
+[ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/nivel2.tscn" id="1_bhuy4"]
+[ext_resource type="Script" uid="uid://btcu4d0xeks1h" path="res://scenes/niveles/NivelClasificacion1_4.gd" id="2_mjt2e"]
+
+[node name="Nivel2" unique_id=1972288213 instance=ExtResource("1_bhuy4")]
+script = ExtResource("2_mjt2e")

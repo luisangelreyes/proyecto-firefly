@@ -4,7 +4,15 @@ var cursor_pos: Vector2 = Vector2(720, 540)
 var cursor_spd: float = 900.0
 var item_agarrado = null
 var usando_mando: bool = false
+# ── CONFIGURACIÓN DE BOTES (sobreescribible por hijos) ───────────────────
+var config_botes: Array = [
+	{"nodo": "BotePAPEL",    "tipo": "papel",    "nombre": "Papel"},
+	{"nodo": "BoteVIDRIO",   "tipo": "vidrio",   "nombre": "Vidrio"},
+	{"nodo": "BotePLASTICO", "tipo": "plastico", "nombre": "Plástico"},
+]
 
+# ── CATÁLOGO (sobreescribible por hijos) ──────────────────────────────────
+var catalogo_objetos: Array = []
 @onready var cursor_visual = $CursorMando  
 
 const SPRITESHEET = preload("res://entities/basura/sprites/basura_nivel2.png")
@@ -53,10 +61,12 @@ var juego_activo: bool = true
 var item_pausado = null
 var fb_timer: float = 0.0
 var objetos_por_partida: int = 9
+@onready var hit_counter = $HitCounter
 
+var racha_actual: int = 0
 # ── MÉTRICAS PARA PANTALLA DE RESULTADOS ─────────────────────────────────
 var clasificados_primera: int = 0   # correctos sin fallar ni agotar tiempo
-var racha_actual: int = 0
+
 var racha_maxima: int = 0
 var fallos: int = 0                 # mal clasificados + tiempos agotados
 var desglose: Dictionary = {
@@ -76,8 +86,8 @@ var timer_activo: bool = false
 @onready var bote_plastico = $BotePLASTICO
 @onready var lbl_puntos   = $Labelpuntos
 @onready var lbl_feedback = $LabelFeedBack
-@onready var lbl_timer    = $LabelTimer        # ← nodo nuevo para mostrar 8,7,6...
-@onready var lbl_vidas    = $LabelVidas        # ← nodo nuevo
+@onready var lbl_timer    = $LabelTimer        
+@onready var lbl_vidas    = $LabelVidas        
 @onready var popup        = $InterfazUI/PopUpAyuda
 @onready var lbl_explicacion = $InterfazUI/PopUpAyuda/VBoxContainer/LblExplicacion
 
@@ -88,12 +98,23 @@ func _ready():
 	SesionGlobal.puntaje = 0
 	lbl_feedback.visible = false
 	popup.visible = false
+	_configurar_botes()
+
+	# Usar catálogo del hijo si está definido, si no usar OBJETOS por defecto
+	if catalogo_objetos.is_empty():
+		catalogo_objetos = OBJETOS.duplicate()
+
 	_preparar_cola()
 	_actualizar_hud()
 	tiempo_restante = tiempo_limite
 	timer_activo = true
 	_siguiente_objeto()
-
+	
+func _configurar_botes():
+	for cfg in config_botes:
+		var nodo = get_node_or_null(cfg["nodo"])
+		if nodo:
+			nodo.set_meta("tipo", cfg["tipo"])
 func _preparar_cola():
 	var todos = OBJETOS.duplicate()
 	todos.shuffle()
@@ -195,7 +216,8 @@ func _tiempo_agotado():
 	if not is_inside_tree():
 		return
 
-	SesionGlobal.completar_nivel(1, 2)
+	SesionGlobal.completar_nivel(1, 4)
+	
 	$PantallaResultados.mostrar_resultados(
 		clasificados,
 		clasificados_primera,
@@ -221,16 +243,17 @@ func intentar_clasificar(item, pos_soltar: Vector2 = Vector2.ZERO):
 		_incorrecto(item, item.tipo)
 
 func _get_bote_en(pos: Vector2):
-	for bote in [bote_papel, bote_vidrio, bote_plastico]:
-		# Usamos la CollisionShape del bote para detectar si el punto cae dentro
-		var shape = bote.get_node("CollisionShape2D")
+	for cfg in config_botes:
+		var bote = get_node_or_null(cfg["nodo"])
+		if not bote:
+			continue
+		var shape = bote.get_node_or_null("CollisionShape2D")
 		if shape == null:
 			continue
 		var rect = shape.shape
 		if rect is RectangleShape2D:
-			# Convertimos el punto global al espacio local del bote
 			var local = bote.to_local(pos)
-			var half = rect.size / 2.0
+			var half  = rect.size / 2.0
 			if abs(local.x) <= half.x and abs(local.y) <= half.y:
 				return bote
 	return null
@@ -239,7 +262,7 @@ func _correcto(_item):
 
 	SesionGlobal.puntaje += 10
 	clasificados += 1
-
+	hit_counter.registrar_acierto(racha_actual)
 	# Métricas
 	desglose[_item.tipo] += 1
 	racha_actual += 1
@@ -255,7 +278,14 @@ func _correcto(_item):
 	if is_inside_tree() and juego_activo:
 		_siguiente_objeto()
 
+func _actualizar_hud():
+	lbl_puntos.text = "Puntos: %d" % SesionGlobal.puntaje
+	lbl_vidas.text  = "Vidas: %d" % SesionGlobal.vidas
+	if SesionGlobal.vidas <= 0:
+		_game_over()
+	
 func _incorrecto(item, tipo_correcto: String):
+	SesionGlobal.vidas -= 1
 	timer_activo = false
 	# Métricas
 	fallos += 1
@@ -263,6 +293,8 @@ func _incorrecto(item, tipo_correcto: String):
 	objeto_fallado = true
 	juego_activo = false
 	item_pausado = item
+	hit_counter.registrar_fallo()
+	
 	var nombre_obj  = item.nombre      if "nombre"      in item else "Este objeto"
 	var explicacion = item.explicacion if "explicacion" in item else ""
 	var nombres_botes = {
@@ -276,10 +308,9 @@ func _incorrecto(item, tipo_correcto: String):
 		explicacion
 	]
 	popup.visible = true
+	_actualizar_hud()
 
-func _actualizar_hud():
-	lbl_puntos.text = "Puntos: %d" % SesionGlobal.puntaje
-	lbl_vidas.text  = "Vidas: %d" % SesionGlobal.vidas
+
 
 func _feedback(msg: String, color: Color):
 	lbl_feedback.text = msg
@@ -304,14 +335,17 @@ func _victoria():
 func _game_over():
 	juego_activo = false
 	timer_activo = false
+	popup.visible = false
 	SesionGlobal.guardar_sesion()
 	lbl_feedback.text = "GAME OVER\n%d puntos\n\nPresiona R para reiniciar" % SesionGlobal.puntaje
 	lbl_feedback.add_theme_color_override("font_color", Color("#fca5a5"))
 	lbl_feedback.visible = true
+	
 
 func _on_popup_entendido_pressed():
 	popup.visible = false
 	juego_activo = true
+	timer_activo = true
 	if item_pausado and is_instance_valid(item_pausado):
 		item_pausado.volver_origen()
 		item_pausado.set_process_input(true)

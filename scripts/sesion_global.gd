@@ -23,12 +23,12 @@ var niveles_desbloqueados: Dictionary = {
 const RUTAS_NIVELES: Dictionary = {
 	# Mundo 1
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
-	"1-2": "res://scenes/niveles/NivelCaida1.tscn",
-	"1-3": "res://scenes/niveles/NivelCaida2.tscn",
+	"1-2": "res://scenes/niveles/NivelCaida0.tscn",
+	"1-3": "res://scenes/niveles/NivelCaida1.tscn",
 	"1-4": "res://scenes/niveles/nivel2.tscn",
 	# Mundo 2
 	"2-1": "res://scenes/niveles/NivelTopDown.tscn",
-	"2-2": "res://scenes/niveles/NivelCaida1.tscn",
+	"2-2": "res://scenes/niveles/NivelCaida2.tscn",
 	"2-3": "res://scenes/niveles/NivelCaida2.tscn",
 	"2-4": "res://scenes/niveles/nivel2.tscn",
 	"2-5": "res://scenes/niveles/nivel2.tscn",
@@ -134,27 +134,31 @@ func cargar_partida(nombre_jugador: String) -> bool:
 	var datos = cargar_todos_los_perfiles()
 	if not datos.has(nombre_jugador):
 		return false
-	
+
 	var d = datos[nombre_jugador]
-	perfil_actual     = nombre_jugador
-	ultimo_perfil_usado = nombre_jugador   # ← guardar cuál fue
-	puntaje           = d.get("puntaje", 0)
-	vidas             = d.get("vidas", 3)
-	combo             = d.get("combo", 1)
-	mundo_actual      = d.get("mundo_actual", 1)
-	nivel_actual      = d.get("nivel_actual", 1)
-	for clave in ["2-1","2-2","2-3","2-4","2-5","2-6"]:
+	perfil_actual       = nombre_jugador
+	ultimo_perfil_usado = nombre_jugador
+	puntaje             = d.get("puntaje", 0)
+	vidas               = d.get("vidas", 3)
+	combo               = d.get("combo", 1)
+	mundo_actual        = d.get("mundo_actual", 1)
+	nivel_actual        = d.get("nivel_actual", 1)
+
+	# ← ESTA línea faltaba — carga el progreso real del JSON
+	niveles_desbloqueados = d.get("niveles_desbloqueados", {
+		"1-1": true, "1-2": false, "1-3": false, "1-4": false,
+		"2-1": false, "2-2": false, "2-3": false,
+		"2-4": false, "2-5": false, "2-6": false,
+	})
+
+	# Parchar claves faltantes en perfiles viejos
+	for clave in ["1-1","1-2","1-3","1-4","2-1","2-2","2-3","2-4","2-5","2-6"]:
 		if not niveles_desbloqueados.has(clave):
 			niveles_desbloqueados[clave] = false
-# Parchar claves que faltan en perfiles viejos
-	if not niveles_desbloqueados.has("1-4"):
-		niveles_desbloqueados["1-4"] = false
-	if not niveles_desbloqueados.has("1-3"):
-		niveles_desbloqueados["1-3"] = false
-	# Guardar que este fue el último perfil usado
-		_guardar_ultimo_perfil(nombre_jugador)
-	return true
 
+	_guardar_ultimo_perfil(nombre_jugador)
+	return true
+	
 func _guardar_ultimo_perfil(nombre: String):
 	var ruta_ultimo = "user://ultimo_perfil.json"
 	var archivo = FileAccess.open(ruta_ultimo, FileAccess.WRITE)

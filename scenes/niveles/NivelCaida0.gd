@@ -5,16 +5,17 @@ func _ready():
 	SesionGlobal.puntaje = 0
 
 	# ── Identidad del nivel ───────────────────────────────────────────────
-	# Nivel 1-3: Caída Media — introduce peligrosos, más velocidad
-	oleadas = [7, 8, 8, 7]              # 30 residuos total
-	tiempo_entre_residuos = 1.55
-	probabilidad_peligroso = 0.12       # peligrosos empiezan a aparecer
+	# Nivel 1-2: Caída Fácil — solo orgánico e inorgánico, sin peligrosos
+	oleadas = [2, 6, 7, 7]              # 25 residuos total
+	tiempo_entre_residuos = 2.65
+	probabilidad_peligroso = 0.0        # sin peligrosos
 # Cada entrada corresponde a una oleada: [velocidad_caida, intervalo_spawn, prob_peligroso]
+
 	DIFICULTAD_OLEADAS = [
-		[400.0, 1.55, 0.02],   # Oleada 1 — primer contacto con peligrosos
-		[440.0, 1.47, 0.08],   # Oleada 2 — más frecuentes
-		[475.0, 1.40, 0.02],   # Oleada 3 — presión real
-		[510.0, 1.34, 0.06],   # Oleada 4 — desafío del mundo 1
+		[240.0, 1.65, 0.0],   # Oleada 1 — muy tranquilo
+		[265.0, 1.58, 0.0],   # Oleada 2 — ligero aumento
+		[295.0, 1.52, 0.0],   # Oleada 3 — ritmo constante
+		[350.0, 1.46, 0.0],   # Oleada 4 — cierre sin sorpresas
 	]
 
 	super()
@@ -22,13 +23,17 @@ func _ready():
 	# ── Música específica de este nivel ───────────────────────────────────
 
 
+	# ── Fondo placeholder hasta que llegue el arte ────────────────────────
+
 func _mostrar_pantalla_crash():
 	nivel_activo = false
 	$Timer.stop()
 	$MusicaFondo.stop()
-	SesionGlobal.completar_nivel(2, 4)
-	nivel_completado.emit(        residuos_atrapados,
+	SesionGlobal.completar_nivel(1, 2)
+	nivel_completado.emit(
+		residuos_atrapados,
 		residuos_escapados,
 		total_residuos,
 		desglose_atrapados,
-		peligrosos_esquivados)
+		peligrosos_esquivados
+	)

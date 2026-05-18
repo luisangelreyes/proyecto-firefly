@@ -33,21 +33,28 @@ func inicializar(datos: Dictionary, ref_nivel):
 	nivel_ref   = ref_nivel
 	tipo        = datos["tipo"]
 	nombre      = datos["nombre"]
-	explicacion = datos["explicacion"]
+	explicacion = datos.get("explicacion", "")
 	frame_idx   = datos["frame"]
-	
-	# Configurar el sprite sheet
-	var atlas = AtlasTexture.new()
-	atlas.atlas = SPRITESHEET
-	# Calculamos la región del frame en el sheet
-	# Cada celda mide ancho_total/9 × alto_total/4
-	var cell_w = SPRITESHEET.get_width()  / 9.0
-	var cell_h = SPRITESHEET.get_height() / 4.0
-	var col = frame_idx % COLS
-	var row = frame_idx / COLS
+
+	var sheet = datos.get("sheet", preload(
+		"res://entities/basura/sprites/basura_nivel2.png"))
+	var cols  = datos.get("cols", 9)
+
+	var atlas    = AtlasTexture.new()
+	atlas.atlas  = sheet
+	var cell_w   = sheet.get_width()  / float(cols)
+	var cell_h   = sheet.get_height() / float(sheet.get_height() / cell_w)
+	# Calcular filas automáticamente
+	var filas    = int(sheet.get_height() / cell_w) \
+		if cell_w == (sheet.get_height() / (sheet.get_height() / cell_w)) \
+		else sheet.get_height() / (sheet.get_width() / cols)
+	cell_h       = sheet.get_height() / float(int(sheet.get_height() / (sheet.get_width() / cols)))
+
+	var col      = frame_idx % cols
+	var row      = frame_idx / cols
 	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
 	sprite.texture = atlas
-	sprite.scale = Vector2(0.30, 0.30)  # ajusta según el tamaño que quieras
+	sprite.scale   = Vector2(0.35, 0.35)
 
 func volver_origen():
 	global_position = pos_origen
