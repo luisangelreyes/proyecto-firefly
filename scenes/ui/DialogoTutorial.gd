@@ -6,7 +6,7 @@ var mensajes: Array = []
 var indice_actual: int = 0
 var escribiendo: bool = false
 var texto_completo: String = ""
-var velocidad_escritura: float = 0.035
+var velocidad_escritura: float = 0.015
 
 @onready var lbl_texto     = $PanelDialogo/LabelTexto
 @onready var lbl_continuar = $PanelDialogo/LabelContinuar

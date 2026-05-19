@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://rngnjsydrndh"]
 
 [ext_resource type="Script" uid="uid://c2xlck6lnc4xf" path="res://scenes/menu/SelectorMundos.gd" id="1_g42fj"]
+[ext_resource type="Texture2D" uid="uid://b0t5ldbc4l3w6" path="res://assets/ui/fondo_mundos.png" id="2_6j7hr"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="2_w3ieb"]
+[ext_resource type="Texture2D" uid="uid://briigflvck5rm" path="res://assets/ui/tarjetas_mundos-Photoroom.png" id="4_qwy4k"]
 
 [node name="SelectorMundos" type="Control" unique_id=1652468886]
 layout_mode = 3
@@ -11,82 +14,138 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g42fj")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=1382195922]
+[node name="Fondo" type="TextureRect" parent="." unique_id=671773995]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15199637, 0.15199634, 0.15199634, 1)
+texture = ExtResource("2_6j7hr")
 
 [node name="LabelTitulo" type="Label" parent="." unique_id=1404010942]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -218.5
+offset_right = 218.5
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_w3ieb")
+theme_override_font_sizes/font_size = 65
+text = "SELECCIONA LA ZONA"
+
+[node name="Mundo1" type="Control" parent="." unique_id=1603079602]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 180.0
-offset_right = 20.0
-offset_bottom = 203.0
+offset_left = -567.0
+offset_top = -127.0
+offset_right = -221.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 28
 
-[node name="Mundo1" type="Control" parent="." unique_id=1603079602]
-anchors_preset = 0
-offset_left = 360.0
-offset_top = 340.0
-offset_right = 706.0
-offset_bottom = 595.0
+[node name="TextureRect" type="TextureRect" parent="Mundo1" unique_id=904840227]
+layout_mode = 0
+offset_left = -143.0
+offset_top = -70.0
+offset_right = 506.0
+offset_bottom = 346.0
+texture = ExtResource("4_qwy4k")
+expand_mode = 1
 
 [node name="BtnMundo" type="Button" parent="Mundo1" unique_id=91882427]
 layout_mode = 0
-offset_right = 272.0
-offset_bottom = 138.0
+offset_left = -5.0
+offset_top = -38.0
+offset_right = 365.0
+offset_bottom = 323.0
+icon_alignment = 1
+expand_icon = true
 
 [node name="LabelNombre" type="Label" parent="Mundo1" unique_id=1910629285]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 237.0
+offset_right = 185.0
+offset_bottom = 306.0
+theme_override_fonts/font = ExtResource("2_w3ieb")
+theme_override_font_sizes/font_size = 35
+text = "ZONA 1"
 
 [node name="LabelNumero" type="Label" parent="Mundo1" unique_id=1713521863]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 110.0
+offset_bottom = 50.0
 
-[node name="Mundo2" type="Control" parent="." unique_id=658368823]
-anchors_preset = 0
-offset_left = 880.0
-offset_top = 340.0
-offset_right = 1207.0
-offset_bottom = 520.0
+[node name="Mundo2" type="Control" parent="." unique_id=1521680863]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -740.0
+offset_top = -127.0
+offset_right = -394.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="BtnMundo" type="Button" parent="Mundo2" unique_id=296686491]
+[node name="TextureRect" type="TextureRect" parent="Mundo2" unique_id=113152371]
 layout_mode = 0
-offset_right = 316.0
-offset_bottom = 171.0
+offset_left = -143.0
+offset_top = -70.0
+offset_right = 506.0
+offset_bottom = 346.0
+texture = ExtResource("4_qwy4k")
+expand_mode = 1
 
-[node name="LabelNombre" type="Label" parent="Mundo2" unique_id=1398486061]
+[node name="BtnMundo" type="Button" parent="Mundo2" unique_id=1344084884]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -18.0
+offset_top = -48.0
+offset_right = 385.0
+offset_bottom = 323.0
+icon_alignment = 1
+expand_icon = true
 
-[node name="LabelNumero" type="Label" parent="Mundo2" unique_id=262057123]
+[node name="LabelNombre" type="Label" parent="Mundo2" unique_id=1566741744]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 7.0
+offset_top = 245.0
+offset_right = 189.0
+offset_bottom = 314.0
+theme_override_fonts/font = ExtResource("2_w3ieb")
+theme_override_font_sizes/font_size = 35
+text = "ZONA 1"
+
+[node name="LabelNumero" type="Label" parent="Mundo2" unique_id=1344753758]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 110.0
+offset_bottom = 50.0
 
 [node name="LabelDescripcion" type="Label" parent="." unique_id=266130888]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 25.0
+offset_top = 987.0
+offset_right = 309.0
+offset_bottom = 1075.0
+theme_override_font_sizes/font_size = 29
 
 [node name="BotonVolver" type="Button" parent="." unique_id=637357184]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 21.0
-offset_right = 233.0
-offset_bottom = 117.0
+layout_mode = 1
+offset_right = 193.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("2_w3ieb")
+theme_override_font_sizes/font_size = 40
+text = "REGRESAR"

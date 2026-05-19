@@ -35,7 +35,7 @@ func _ready():
 func _mostrar_intro():
 	_fase_dialogo = "intro"
 	dialogo.iniciar([
-		"¡Mija, bienvenida! Soy Don Sergio, tu abuelo.\nTe voy a enseñar a separar la basura.",
+		"¡Mija, bienvenida! Soy tu abuelo Sergio.\nTe voy a enseñar a separar la basura.",
 		"Van a caer residuos desde arriba. Tienes que\natraparlos con el [color=#4fb87a]BOTE CORRECTO[/color].",
 		"Usa las [color=#e8c428]FLECHAS[/color] para moverte y\n[color=#e8c428]ESPACIO[/color] para cambiar de bote.",
 		"Hay dos tipos principales:\n[color=#4fb87a]ORGÁNICO[/color] (restos de comida y plantas)\ny [color=#4a8fd4]INORGÁNICO[/color] (plásticos, latas, vidrio).",
@@ -81,9 +81,9 @@ func _iniciar_paso():
 		basura_actual.get_node("Sprite2D").frame = 42
 		material.set_shader_parameter("color_borde", Color(1, 0, 0, 1))
 		dialogo.iniciar([
-			"¡Cuidado, mija! Esto es un residuo [color=#d44a4a]PELIGROSO[/color].\nJeringas, pilas, medicamentos caducos...",
+			"¡Cuidado! Esto es un residuo [color=#d44a4a]PELIGROSO[/color].\nJeringas, pilas, medicamentos caducos...",
 			"¡[color=#d44a4a]NO lo atrapes[/color] con ningún bote!\nEsquívalo moviéndote a un lado.",
-			"Si te golpea pierdes una vida.\n¡Aléjate de su trayectoria!",
+			"Si te golpea PUEDES LASTIMARTE.\n¡Aléjate de eso!",
 		])
 
 # ── DIALOGO TERMINADO ─────────────────────────────────────────────────────
@@ -130,7 +130,7 @@ func _evaluar_resultado_jugador(acierto: bool):
 			_fase_dialogo = "error"
 			if paso_tutorial == 0:
 				dialogo.iniciar([
-					"¡Ese no era el bote correcto, mija!\nRecuerda: para [color=#4fb87a]ORGÁNICO[/color] usa el [color=#4fb87a]BOTE VERDE[/color].",
+					"¡Ese no era el bote correcto!\nRecuerda: para [color=#4fb87a]ORGÁNICO[/color] usa el [color=#4fb87a]BOTE VERDE[/color].",
 					"Inténtalo de nuevo. ¡Ya casi!",
 				])
 			else:
@@ -149,9 +149,9 @@ func _avanzar_tutorial():
 	else:
 		_fase_dialogo = "final"
 		dialogo.iniciar([
-			"¡Excelente trabajo, mija! Ya sabes lo básico.",
+			"¡Excelente trabajo! Ya sabes lo básico.",
 			"Recuerda siempre:\n[color=#4fb87a]VERDE[/color] para orgánico, [color=#4a8fd4]AZUL[/color] para inorgánico\ny [color=#d44a4a]ESQUIVA[/color] los peligrosos.",
-			"¡Ahora a limpiar Coatzacoalcos!\n¡Ándale!",
+			"¡Ahora a limpiar!\n¡Vamos!",
 		])
 
 # ── REINTENTAR PASO ───────────────────────────────────────────────────────

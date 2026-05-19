@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_e0arn"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
 [ext_resource type="Texture2D" uid="uid://cdbpedrp0k6k8" path="res://assets/ui/crear_perfil-Photoroom.png" id="4_037ec"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="4_y1o0p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgdb"]
 
@@ -97,7 +98,10 @@ theme_override_constants/separation = 24
 
 [node name="LabelBienvenida" type="Label" parent="ContenedorMenu" unique_id=1459043045]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0.88860947, 0.7621517, 0.34762368, 1)
+theme_override_fonts/font = ExtResource("4_y1o0p")
+theme_override_font_sizes/font_size = 52
+text = "Hola de nuevo!"
 
 [node name="BotonCambiar" type="Button" parent="ContenedorMenu" unique_id=556695261]
 layout_mode = 2
@@ -105,8 +109,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/h_separation = 1
-theme_override_fonts/font = ExtResource("2_mcvr8")
-theme_override_font_sizes/font_size = 34
+theme_override_fonts/font = ExtResource("4_y1o0p")
+theme_override_font_sizes/font_size = 31
 text = "¿No eres tú? Haz clic aquí para cambiar usuario"
 flat = true
 alignment = 0

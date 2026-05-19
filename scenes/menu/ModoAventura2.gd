@@ -39,7 +39,7 @@ const COLOR_SELECCION  = Color("#ffffff")
 var indice_actual: int = 0
 
 func _ready():
-	$LabelMundo.text = "MUNDO 2 — Las Calles de la Ciudad"
+	$LabelMundo.text = "ZONA 2 — Las Calles de la Ciudad"
 
 	for i in range(CLAVES.size()):
 		var clave = CLAVES[i]

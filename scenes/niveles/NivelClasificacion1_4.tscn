@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/nivel2.tscn" id="1_bhuy4"]
 [ext_resource type="Script" uid="uid://btcu4d0xeks1h" path="res://scenes/niveles/NivelClasificacion1_4.gd" id="2_mjt2e"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="3_occ40"]
 
 [node name="Nivel2" unique_id=1972288213 instance=ExtResource("1_bhuy4")]
 script = ExtResource("2_mjt2e")
@@ -32,10 +33,11 @@ offset_bottom = 118.0
 text = "VIDAS: 3"
 
 [node name="LabelFeedBack" parent="." index="10" unique_id=746849514]
-offset_left = 699.0
-offset_top = 66.0
-offset_right = 1234.0
-offset_bottom = 307.0
+offset_left = 698.0
+offset_top = 184.0
+offset_right = 1233.0
+offset_bottom = 425.0
+theme_override_fonts/font = ExtResource("3_occ40")
 
 [node name="LabelZonaBotes" parent="." index="11" unique_id=61205302]
 offset_left = 66.0
@@ -43,3 +45,10 @@ offset_top = 23.0
 offset_right = 425.0
 offset_bottom = 73.0
 text = ""
+
+[node name="LabelDesglose" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="7" unique_id=877314535]
+offset_top = -243.0
+offset_bottom = -220.0
+
+[node name="AnimatedSprite2D" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="14" unique_id=1449434720]
+position = Vector2(363.50003, 662.5)

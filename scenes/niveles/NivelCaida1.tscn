@@ -2,6 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_m2lys"]
 [ext_resource type="Script" uid="uid://dpmvpyujtcgrb" path="res://scenes/niveles/NivelCaida1.gd" id="2_67hhv"]
+[ext_resource type="Texture2D" uid="uid://bmdq6lp0x2cid" path="res://entities/fondos/NIVEL_1-3.png" id="3_kv6qt"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_m2lys")]
 script = ExtResource("2_67hhv")
+
+[node name="Fondo" parent="." index="0" unique_id=1396352973]
+anchors_preset = 15
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 0.0
+offset_right = 1915.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("3_kv6qt")

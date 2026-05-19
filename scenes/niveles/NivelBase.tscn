@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://wavbtv4qfktp" path="res://scripts/pantalla_resultados.gd" id="6_bnor3"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="8_hfh3j"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="11_3ej5d"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="13_8ejw2"]
 [ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="13_pn2mr"]
 
 [node name="Nivel" type="Node2D" unique_id=784809779]
@@ -32,7 +33,7 @@ texture = ExtResource("2_bnor3")
 
 [node name="Barbara" parent="." unique_id=1800587545 instance=ExtResource("2_7gdj4")]
 modulate = Color(0.7233511, 0.7233511, 0.7233511, 1)
-position = Vector2(287, 932)
+position = Vector2(287, 904)
 
 [node name="Timer" type="Timer" parent="." unique_id=449807207]
 wait_time = 0.5
@@ -156,10 +157,10 @@ visible = false
 
 [node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=287716614]
 layer = 10
-visible = false
 script = ExtResource("6_bnor3")
 
 [node name="Fondo" type="Panel" parent="PantallaResultados" unique_id=756670836]
+self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -171,7 +172,6 @@ offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=554245907]
 layout_mode = 1
@@ -184,8 +184,14 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_doau0")
+theme_override_colors/font_color = Color(0.39392647, 0.9200779, 0.99999994, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = -2
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("13_8ejw2")
 theme_override_font_sizes/font_size = 48
+text = "4864njknjnkkjnkn"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -209,37 +215,47 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LabelDesglose" type="Label" parent="PantallaResultados/Fondo" unique_id=693918302]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.4334112
+anchor_top = 0.409331
+anchor_right = 0.56658876
+anchor_bottom = 0.41109154
 offset_left = -20.0
 offset_top = -11.5
 offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("5_6hkwo")
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 7
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("13_8ejw2")
+theme_override_font_sizes/font_size = 37
+text = "84646464864"
 metadata/_edit_use_anchors_ = true
 
 [node name="LabelEscapados" type="Label" parent="PantallaResultados/Fondo" unique_id=1219428340]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.517
-anchor_top = 0.813
-anchor_right = 0.517
-anchor_bottom = 0.813
-offset_left = -51.788025
-offset_top = -69.14801
-offset_right = -11.788025
-offset_bottom = -46.14801
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 86.0
+offset_right = 63.0
+offset_bottom = 110.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("5_6hkwo")
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = 4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("13_8ejw2")
 theme_override_font_sizes/font_size = 28
-metadata/_edit_use_anchors_ = true
+text = "456564564"
 
 [node name="LabelPuntos" type="Label" parent="PantallaResultados/Fondo" unique_id=1034827989]
 visible = false
@@ -275,10 +291,12 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_fonts/font = ExtResource("4_doau0")
-text = "Confirmar"
+theme_override_fonts/font = ExtResource("13_8ejw2")
+theme_override_font_sizes/font_size = 40
+text = "CONTINUAR"
 metadata/_edit_use_anchors_ = true
 
 [node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("13_pn2mr")]
+visible = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

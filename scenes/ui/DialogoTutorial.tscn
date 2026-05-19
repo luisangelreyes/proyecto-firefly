@@ -1,12 +1,22 @@
 [gd_scene format=3 uid="uid://cmsvqkygh1on8"]
 
 [ext_resource type="Script" uid="uid://bmvraomr8vwpr" path="res://scenes/ui/DialogoTutorial.gd" id="1_ibwks"]
+[ext_resource type="Texture2D" uid="uid://bhbksv7fvwcla" path="res://assets/ui/sergio.png" id="2_l5fsf"]
 
 [node name="DialogoTutorial" type="CanvasLayer" unique_id=530390666]
 process_mode = 3
 script = ExtResource("1_ibwks")
 
-[node name="PanelDialogo" type="Panel" parent="." unique_id=307952867]
+[node name="RetratoDonSergio" type="TextureRect" parent="." unique_id=717825801]
+offset_left = 1459.0
+offset_top = 588.0
+offset_right = 1974.0
+offset_bottom = 1288.0
+texture = ExtResource("2_l5fsf")
+expand_mode = 1
+flip_h = true
+
+[node name="PanelDialogo" type="ColorRect" parent="." unique_id=1505916507]
 self_modulate = Color(0, 0, 0, 1)
 top_level = true
 custom_minimum_size = Vector2(0, 220)
@@ -14,23 +24,17 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -233.0
+offset_top = -220.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="RetratoDonSergio" type="TextureRect" parent="PanelDialogo" unique_id=717825801]
-layout_mode = 0
-offset_left = 1691.0
-offset_top = -145.0
-offset_right = 1892.0
-offset_bottom = 10.0
+color = Color(0, 0, 0, 1)
 
 [node name="LabelNombre" type="Label" parent="PanelDialogo" unique_id=1217635475]
 layout_mode = 0
-offset_left = 87.0
-offset_top = -57.0
-offset_right = 313.0
-offset_bottom = -10.0
+offset_left = 1410.0
+offset_top = -51.0
+offset_right = 1636.0
+offset_bottom = -4.0
 theme_override_font_sizes/font_size = 34
 text = "Abuelo Sergio"
 
