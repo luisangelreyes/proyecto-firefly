@@ -66,7 +66,9 @@ func mostrar_resultados(
 		"plastico": "🔵",
 		"organico": "🍎",
 		"inorganico": "🥫",
-		"tela": "👕"
+		"tela": "👕",
+		"metal": "⚙️",   
+		"madera": "🪵"   
 	}
 	
 	# 1. Ocultamos todos los slots primero por seguridad

@@ -60,6 +60,8 @@ func _ready():
 	_iniciar_oleada()
 	$Barbara.combo_actualizado.connect(_on_combo_actualizado)
 	oleada_terminada.connect(_on_oleada_terminada)
+	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
+	$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)
 
 
 func _on_combo_actualizado(racha: int, multiplicador: int):
@@ -222,15 +224,23 @@ func _on_juego_terminado():
 	
 	$MusicaFondo.stop()
 	$SonidoGameOver.play()
-	$GameOver.visible = true
-	$GameOver/TextoGameOver.visible = true
 	
 	$Timer.stop()
 	SesionGlobal.guardar_sesion()
 	$Barbara.queue_free()
 	# Cuando detectes que el jugador ganó el nivel:
+	$PantallaGameOver.mostrar("vidas_agotadas")	
 	
+func _on_reintentar():
+	SesionGlobal.vidas   = 3
+	SesionGlobal.puntaje = 0
+	get_tree().reload_current_scene()
 
+func _on_menu_gameover():
+	SesionGlobal.vidas   = 3
+	SesionGlobal.puntaje = 0
+	Engine.get_main_loop().change_scene_to_file("res://scenes/menu/menu.tscn")
+	
 func _process(_delta):
 	if $GameOver/TextoGameOver.visible:
 		print("es visible")

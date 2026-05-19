@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dbp5k15mlsl00" path="res://entities/jugador/liz_bote_verde.tres" id="5_gpq5o"]
 [ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="7_rfqio"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_gpq5o"]
+[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="9_ivvtp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikboe"]
 size = Vector2(2513.25, 178.33606)
@@ -377,3 +378,5 @@ expand_mode = 1
 position = Vector2(97, 99)
 
 [node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("8_gpq5o")]
+
+[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("9_ivvtp")]

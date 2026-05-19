@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://wavbtv4qfktp" path="res://scripts/pantalla_resultados.gd" id="6_bnor3"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="8_hfh3j"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="11_3ej5d"]
+[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="13_pn2mr"]
 
 [node name="Nivel" type="Node2D" unique_id=784809779]
 process_mode = 1
@@ -155,6 +156,7 @@ visible = false
 
 [node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=287716614]
 layer = 10
+visible = false
 script = ExtResource("6_bnor3")
 
 [node name="Fondo" type="Panel" parent="PantallaResultados" unique_id=756670836]
@@ -276,5 +278,7 @@ theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_fonts/font = ExtResource("4_doau0")
 text = "Confirmar"
 metadata/_edit_use_anchors_ = true
+
+[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("13_pn2mr")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

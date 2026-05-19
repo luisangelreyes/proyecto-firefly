@@ -79,13 +79,14 @@ func _on_residuo_correcto(_tipo: String):
 func _on_residuo_incorrecto(_tipo: String):
 	racha_actual = 0
 	hit_counter.registrar_fallo()
-	_game_over("¡Bote incorrecto!\nEl nivel reinicia.")
+	_game_over("clasificacion_incorrecta")
 
 func _on_peligroso_tocado():
 	racha_actual = 0
 	hit_counter.registrar_fallo()
-	_game_over("¡Residuo peligroso!\nEl nivel reinicia.")
+	_game_over("residuo_peligroso")
 func _ready():
+
 	SesionGlobal.vidas   = 1   
 	SesionGlobal.puntaje = 0
 
@@ -110,10 +111,13 @@ func _ready():
 
 	# Conectar Eli
 	eli.recogida_intentada.connect(_on_recogida_intentada)
+	
 
 	# Conectar pausa
 	$PantallaPausa.reiniciar_presionado.connect(_reiniciar)
 	$PantallaPausa.menu_presionado.connect(_ir_menu)
+	$PantallaGameOver.reintentar_presionado.connect(_reiniciar)
+	$PantallaGameOver.menu_presionado.connect(_ir_menu)
 
 	lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
 	_actualizar_bote()
@@ -157,9 +161,11 @@ func _on_recogida_intentada(_tipo: String, _bote: int):
 
 
 func _tiempo_agotado():
-	_game_over("¡Tiempo agotado!\nEl nivel reinicia.")
+	_game_over("tiempo_agotado")
 
-func _game_over(mensaje: String):
+
+func _game_over(causa: String = "vidas_agotadas"):
+	_activar_iman_contencion()
 	juego_activo = false
 	timer_activo = false
 	SesionGlobal.guardar_sesion()
@@ -168,7 +174,8 @@ func _game_over(mensaje: String):
 	
 	if not is_inside_tree():
 		return
-	_mostrar_resultado(mensaje, false)
+	$PantallaGameOver.mostrar(causa)
+	#_mostrar_resultado(mensaje, false)
 func _victoria():
 	juego_activo = false
 	timer_activo = false
@@ -200,7 +207,7 @@ func _activar_iman_contencion():
 	await get_tree().create_timer(1.6).timeout
 		
 	# 5. AHORA SÍ, mostramos el cartel de "Zona Limpia"
-	pantalla_result.visible = true
+	#pantalla_result.visible = true
 	
 func _mostrar_resultado(titulo: String, victoria: bool):
 	_activar_iman_contencion()
@@ -218,6 +225,7 @@ func _mostrar_resultado(titulo: String, victoria: bool):
 		"Continuar" if victoria else "Reintentar"
 	$PantallaResultados/Fondo/BotonSiguiente.grab_focus()
 	$PantallaResultados/Fondo/BotonSiguiente.pressed.connect(_on_boton_resultado)
+	pantalla_result.visible = true
 
 func _on_boton_resultado():
 	if juego_activo == false and recogidos >= total_residuos:

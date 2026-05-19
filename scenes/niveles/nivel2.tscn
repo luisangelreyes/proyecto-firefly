@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://biwkee6sh2fbe" path="res://assets/audio/sfx/Tee-Lopes-Big-Apple_-3-PM-_-TMNT_-Shredder_s-Revenge-Official-Soundtrack.ogg" id="13_ggm30"]
 [ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_41671"]
 [ext_resource type="AudioStream" uid="uid://8axil6obvf53" path="res://assets/audio/sfx/Finish-Line-2nd-to-4th-Place-Mario-Kart-64-OST.ogg" id="15_41671"]
+[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="16_qj1c0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqwmd"]
 atlas = ExtResource("5_j7nqj")
@@ -507,5 +508,7 @@ stream = ExtResource("14_41671")
 
 [node name="AudioVictoria" type="AudioStreamPlayer" parent="." unique_id=46149894]
 stream = ExtResource("15_41671")
+
+[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("16_qj1c0")]
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]

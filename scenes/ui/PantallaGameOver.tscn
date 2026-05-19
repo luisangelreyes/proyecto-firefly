@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://clusukjgh2v1m"]
+
+[ext_resource type="Script" uid="uid://vsmyivn2axlo" path="res://scenes/ui/PantallaGameOver.gd" id="1_xv0hj"]
+
+[node name="PantallaGameOver" type="CanvasLayer" unique_id=1478625898]
+script = ExtResource("1_xv0hj")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=956173727]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LabelGameOver" type="Label" parent="." unique_id=287140455]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -220.0
+offset_right = 73.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "FIN DE LA PARTIDA"
+
+[node name="LabelMensaje" type="RichTextLabel" parent="." unique_id=90617002]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -110.0
+offset_right = 400.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Separador" type="HSeparator" parent="." unique_id=524663934]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 60.0
+offset_right = 300.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelReintentar" type="Label" parent="." unique_id=1438442445]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 90.0
+offset_right = 65.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 30
+text = "Volver a intentar"
+
+[node name="LabelMenu" type="Label" parent="." unique_id=519544871]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 140.0
+offset_right = 58.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "Menú Principal"
+
+[node name="LabelControles" type="Label" parent="." unique_id=768628243]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 493.0
+offset_top = -48.0
+offset_right = 932.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "A / Enter  Seleccionar     ESC  Menú Principal"

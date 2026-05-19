@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dm3sjh2kubqsf"]
+
+[ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/nivel2.tscn" id="1_ijcae"]
+[ext_resource type="Script" uid="uid://crqdkfb871367" path="res://scenes/niveles/NivelClasificacion2_5.gd" id="2_nc5pq"]
+[ext_resource type="Texture2D" uid="uid://bqjdprdl4diy7" path="res://entities/basura/sprites/bote_metal-madera-vidrio.png" id="3_h0oqm"]
+
+[node name="Nivel2" unique_id=1972288213 instance=ExtResource("1_ijcae")]
+script = ExtResource("2_nc5pq")
+
+[node name="FondoPAPEL" parent="BotePAPEL" parent_id_path=PackedInt32Array(622439365) index="0" unique_id=943783097]
+position = Vector2(-79.999985, -8.000056)
+scale = Vector2(0.37333336, 0.39000002)
+texture = ExtResource("3_h0oqm")
+frame = 0
+
+[node name="FondoVIDRIO" parent="BoteVIDRIO" parent_id_path=PackedInt32Array(193919060) index="0" unique_id=1752869427]
+position = Vector2(-39.00001, 11.999974)
+scale = Vector2(0.37333328, 0.37333336)
+texture = ExtResource("3_h0oqm")
+frame = 1
+
+[node name="FondoPLASTICO" parent="BotePLASTICO" parent_id_path=PackedInt32Array(1069856128) index="0" unique_id=1286513167]
+position = Vector2(7.499948, -6.835919)
+scale = Vector2(0.34583336, 0.3419401)
+texture = ExtResource("3_h0oqm")
+
+[node name="InterfazUI" parent="." index="13" unique_id=198814979]
+visible = false
+
+[node name="LblExplicacion" parent="InterfazUI/PopUpAyuda/VBoxContainer" parent_id_path=PackedInt32Array(1057737066) index="0" unique_id=22164179]
+text = "Clasifica antes de que se acabe el tiempo!"
