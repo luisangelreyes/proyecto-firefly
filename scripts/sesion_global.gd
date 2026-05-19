@@ -5,6 +5,8 @@ var perfil_actual: String = ""
 var puntaje: int = 0
 var vidas: int = 3
 var combo: int = 1
+var recien_completado: bool = false
+
 # En sesion_global.gd, junto a las demás variables
 var modo_libre_config: Dictionary = {}
 var es_modo_libre: bool = false
@@ -80,6 +82,7 @@ func completar_nivel(mundo: int, nivel: int):
 
 	mundo_actual = mundo
 	nivel_actual = nivel + 1
+	recien_completado = true
 	guardar_sesion()
 
 func nivel_disponible(mundo: int, nivel: int) -> bool:

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="7_rfqio"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_gpq5o"]
 [ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="9_ivvtp"]
+[ext_resource type="PackedScene" uid="uid://mcg45f8ll8l5" path="res://scenes/ui/PantallaResultadosTopDown.tscn" id="10_085ah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikboe"]
 size = Vector2(2513.25, 178.33606)
@@ -303,67 +304,6 @@ offset_bottom = 23.0
 [node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("1_biqqu")]
 visible = false
 
-[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=1858286883]
-layer = 8
-visible = false
-
-[node name="Fondo" type="ColorRect" parent="PantallaResultados" unique_id=818734639]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.7490196)
-
-[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=1410390135]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-
-[node name="LabelResiduos" type="Label" parent="PantallaResultados/Fondo" unique_id=965841435]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -147.0
-offset_right = 20.0
-offset_bottom = -113.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-
-[node name="LabelTiempo" type="Label" parent="PantallaResultados/Fondo" unique_id=2073385602]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-
-[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=1634996321]
-custom_minimum_size = Vector2(300, 60)
-layout_mode = 0
-offset_left = 853.0
-offset_top = 906.0
-offset_right = 1153.0
-offset_bottom = 966.0
-
 [node name="BoteNoReciclables" type="TextureRect" parent="." unique_id=2078668153]
 visible = false
 offset_left = 917.0
@@ -380,3 +320,5 @@ position = Vector2(97, 99)
 [node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("8_gpq5o")]
 
 [node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("9_ivvtp")]
+
+[node name="PantallaResultadosTopDown" parent="." unique_id=599453692 instance=ExtResource("10_085ah")]

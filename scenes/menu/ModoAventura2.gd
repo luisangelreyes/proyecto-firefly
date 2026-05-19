@@ -46,11 +46,37 @@ func _ready():
 		var btn   = nodos[clave].get_node("BtnNodo")
 		btn.pressed.connect(_on_nivel_presionado.bind(clave))
 		btn.focus_entered.connect(_on_nodo_enfocado.bind(i))
-		btn.mouse_entered.connect(_on_nodo_enfocado.bind(i))
+		
 
 	$BotonVolver.pressed.connect(_on_volver)
 	_actualizar_mapa()
-	_seleccionar_primer_disponible()
+	_seleccionar_nivel_activo()
+	_verificar_mundo_completado()
+
+func _verificar_mundo_completado():
+	# Solo transicionar si venimos de completar un nivel
+	if not SesionGlobal.recien_completado:
+		return
+
+	SesionGlobal.recien_completado = false  # resetear inmediatamente
+
+	var todos_completados = true
+	for i in range(CLAVES.size() - 1):
+		var sig = CLAVES[i + 1]
+		if not SesionGlobal.nivel_disponible(
+			int(sig.split("-")[0]), int(sig.split("-")[1])
+		):
+			todos_completados = false
+			break
+
+	var ultima = CLAVES[-1]
+	if todos_completados and SesionGlobal.nivel_disponible(
+		int(ultima.split("-")[0]), int(ultima.split("-")[1])
+	):
+		await get_tree().create_timer(1.5).timeout
+		if is_inside_tree():
+			get_tree().change_scene_to_file("res://scenes/menu/SelectorMundos.tscn")
+	
 
 func _actualizar_mapa():
 	for i in range(CLAVES.size()):
@@ -84,17 +110,30 @@ func _actualizar_mapa():
 			lbl_n.text   = "🔒"
 			btn.disabled = true
 
-func _seleccionar_primer_disponible():
+func _seleccionar_nivel_activo():
+	var idx_activo = 0
 	for i in range(CLAVES.size()):
-		var clave = CLAVES[i]
-		var mundo = int(clave.split("-")[0])
-		var nivel = int(clave.split("-")[1])
+		var clave  = CLAVES[i]
+		var mundo  = int(clave.split("-")[0])
+		var nivel  = int(clave.split("-")[1])
 		if SesionGlobal.nivel_disponible(mundo, nivel):
-			indice_actual = i
-			nodos[clave].get_node("BtnNodo").grab_focus()
-			lbl_descripcion.text = DESCRIPCIONES[clave]
-			_mover_icono_a(i)
-			break
+			idx_activo = i
+			# Verificar si está completado
+			var idx_sig = i + 1
+			if idx_sig < CLAVES.size():
+				var sig   = CLAVES[idx_sig]
+				var m2    = int(sig.split("-")[0])
+				var n2    = int(sig.split("-")[1])
+				var completado = SesionGlobal.nivel_disponible(m2, n2)
+				if not completado:
+					break  # este es el siguiente a jugar
+	
+	indice_actual = idx_activo
+	var clave_activa = CLAVES[idx_activo]
+	nodos[clave_activa].get_node("BtnNodo").grab_focus()
+	lbl_descripcion.text = DESCRIPCIONES[clave_activa]
+	_mover_icono_a(idx_activo)
+	_resaltar_nodo(idx_activo)
 
 func _on_nodo_enfocado(indice: int):
 	indice_actual = indice
@@ -118,6 +157,11 @@ func _resaltar_nodo(indice: int):
 			btn.modulate = COLOR_SELECCION
 
 func _on_nivel_presionado(clave: String):
+	# Verificar que el nivel no esté bloqueado
+	var btn = nodos[clave].get_node("BtnNodo")
+	if btn.disabled:
+		return
+
 	var ruta = SesionGlobal.get_ruta_nivel(
 		int(clave.split("-")[0]),
 		int(clave.split("-")[1])

@@ -75,7 +75,7 @@ func _actualizar_visual():
 	var color = COLORES[nivel]
 
 	lbl_numero.text = str(racha)
-	lbl_hits.text   = "hits"
+	lbl_hits.text   = "Combo"
 
 	lbl_numero.add_theme_color_override("font_color", color)
 	lbl_hits.add_theme_color_override("font_color", color)

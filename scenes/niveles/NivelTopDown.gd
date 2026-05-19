@@ -1,7 +1,7 @@
 extends Node2D
 
 const TIEMPO_LIMITE: float = 90.0
-
+var racha_maxima: int = 0   # ← agregar junto a racha_actual
 var tiempo_restante: float = TIEMPO_LIMITE
 var timer_activo: bool = false
 var juego_activo: bool = false
@@ -58,7 +58,6 @@ var catalogo_basura = [
 @onready var lbl_tiempo       = $HUD/LabelTiempo
 @onready var lbl_bote         = $HUD/LabelBote
 @onready var lbl_residuos     = $HUD/LabelResiduos
-@onready var pantalla_result  = $PantallaResultados
 @onready var contenedor_res   = $Mundo/Residuos
 
 const NOMBRES_BOTE = ["Orgánico", "Inorgánico"]
@@ -70,12 +69,14 @@ var racha_actual: int = 0
 func _on_residuo_correcto(_tipo: String):
 	recogidos += 1
 	racha_actual += 1
+	if racha_actual > racha_maxima:
+		racha_maxima = racha_actual   # ← actualizar máxima
 	SesionGlobal.puntaje += 10
 	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
 	hit_counter.registrar_acierto(racha_actual)
 	if recogidos >= total_residuos:
 		_victoria()
-
+		
 func _on_residuo_incorrecto(_tipo: String):
 	racha_actual = 0
 	hit_counter.registrar_fallo()
@@ -90,7 +91,7 @@ func _ready():
 	SesionGlobal.vidas   = 1   
 	SesionGlobal.puntaje = 0
 
-	pantalla_result.visible = false
+
 	barra_tiempo.max_value  = TIEMPO_LIMITE
 	barra_tiempo.value      = TIEMPO_LIMITE
 	
@@ -164,24 +165,30 @@ func _tiempo_agotado():
 	_game_over("tiempo_agotado")
 
 
-func _game_over(causa: String = "vidas_agotadas"):
-	_activar_iman_contencion()
+func _game_over(causa: String):
 	juego_activo = false
 	timer_activo = false
 	SesionGlobal.guardar_sesion()
-	
-	await get_tree().create_timer(0.3).timeout 
-	
+	await get_tree().create_timer(0.8).timeout
 	if not is_inside_tree():
 		return
-	$PantallaGameOver.mostrar(causa)
-	#_mostrar_resultado(mensaje, false)
+	if causa == "tiempo_agotado" and recogidos > 0:
+		# Tiempo agotado pero recogió algo — mostrar resultados
+		_mostrar_resultado(false)
+	else:
+		# Error de clasificación o peligroso — Game Over
+		$PantallaGameOver.mostrar(causa)
+		
 func _victoria():
 	juego_activo = false
 	timer_activo = false
-	SesionGlobal.completar_nivel(2, 5)
+	SesionGlobal.completar_nivel(SesionGlobal.mundo_actual, SesionGlobal.nivel_actual - 1)
 	SesionGlobal.guardar_sesion()
-	_mostrar_resultado("¡Zona limpia!", true)
+	_activar_iman_contencion()
+	await get_tree().create_timer(1.5).timeout
+	if is_inside_tree():
+		_mostrar_resultado(true)
+		
 func _activar_iman_contencion():
 	$BoteNoReciclables.visible = true
 
@@ -209,23 +216,14 @@ func _activar_iman_contencion():
 	# 5. AHORA SÍ, mostramos el cartel de "Zona Limpia"
 	#pantalla_result.visible = true
 	
-func _mostrar_resultado(titulo: String, victoria: bool):
-	_activar_iman_contencion()
-	$PantallaResultados/Fondo/LabelTitulo.text = titulo
-
-	var color = Color("#4fb87a") if victoria else Color("#f87171")
-	$PantallaResultados/Fondo/LabelTitulo.add_theme_color_override("font_color", color)
-
-	$PantallaResultados/Fondo/LabelResiduos.text = \
-		"Residuos recogidos: %d / %d" % [recogidos, total_residuos]
-	$PantallaResultados/Fondo/LabelTiempo.text = \
-		"Tiempo restante: %d s" % int(tiempo_restante)
-
-	$PantallaResultados/Fondo/BotonSiguiente.text = \
-		"Continuar" if victoria else "Reintentar"
-	$PantallaResultados/Fondo/BotonSiguiente.grab_focus()
-	$PantallaResultados/Fondo/BotonSiguiente.pressed.connect(_on_boton_resultado)
-	pantalla_result.visible = true
+func _mostrar_resultado(victoria: bool):
+	$PantallaResultadosTopDown.mostrar_resultados(
+		victoria,
+		recogidos,
+		total_residuos,
+		tiempo_restante,
+		racha_maxima
+	)
 
 func _on_boton_resultado():
 	if juego_activo == false and recogidos >= total_residuos:

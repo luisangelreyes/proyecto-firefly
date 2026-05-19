@@ -1,8 +1,9 @@
 extends CanvasLayer
 
 func _ready():
+	$Fondo/AnimatedSprite2D.play("victoria")
 	visible = false
-	$Fondo/BotonSiguiente.pressed.connect(_on_boton_siguiente)
+	$Fondo/BotonSiguiente.pressed.connect(_on_boton_siguiente_pressed)
 
 func mostrar_resultados(
 	clasificados: int,
@@ -92,7 +93,22 @@ func mostrar_resultados(
 
 	$Fondo/BotonSiguiente.grab_focus()
 
-func _on_boton_siguiente():
-	SesionGlobal.vidas   = 3
-	SesionGlobal.puntaje = 0
-	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
+
+func _on_boton_siguiente_pressed():
+	Engine.time_scale = 1.0
+	if SesionGlobal.es_modo_libre:
+		SesionGlobal.es_modo_libre = false
+		SesionGlobal.modo_libre_config = {}
+		Engine.get_main_loop().change_scene_to_file(
+            "res://scenes/menu/ModoLibre.tscn"
+		)
+		return
+
+	# Ir al mapa del mundo correcto
+	match SesionGlobal.mundo_actual:
+		1: Engine.get_main_loop().change_scene_to_file(
+			"res://scenes/menu/ModoAventura.tscn")
+		2: Engine.get_main_loop().change_scene_to_file(
+			"res://scenes/menu/ModoAventura2.tscn")
+		_: Engine.get_main_loop().change_scene_to_file(
+			"res://scenes/menu/SelectorMundos.tscn")

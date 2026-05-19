@@ -51,23 +51,25 @@ func _ready():
 	_verificar_mundo_completado()
 
 func _verificar_mundo_completado():
-	# Si todos los niveles del mundo están completados, ir al selector
+	# Solo transicionar si venimos de completar un nivel
+	if not SesionGlobal.recien_completado:
+		return
+
+	SesionGlobal.recien_completado = false  # resetear inmediatamente
+
 	var todos_completados = true
 	for i in range(CLAVES.size() - 1):
-		var _clave = CLAVES[i]
-		var sig   = CLAVES[i + 1]
-		var m2    = int(sig.split("-")[0])
-		var n2    = int(sig.split("-")[1])
-		if not SesionGlobal.nivel_disponible(m2, n2):
+		var sig = CLAVES[i + 1]
+		if not SesionGlobal.nivel_disponible(
+			int(sig.split("-")[0]), int(sig.split("-")[1])
+		):
 			todos_completados = false
 			break
-	
-	# Verificar el último nivel
+
 	var ultima = CLAVES[-1]
 	if todos_completados and SesionGlobal.nivel_disponible(
 		int(ultima.split("-")[0]), int(ultima.split("-")[1])
 	):
-		# Pequeña pausa para que el jugador vea el mapa completado
 		await get_tree().create_timer(1.5).timeout
 		if is_inside_tree():
 			get_tree().change_scene_to_file("res://scenes/menu/SelectorMundos.tscn")
@@ -166,13 +168,17 @@ func _resaltar_nodo(indice: int):
 			btn.modulate = COLOR_SELECCION
 
 func _on_nivel_presionado(clave: String):
+	# Verificar que el nivel no esté bloqueado
+	var btn = nodos[clave].get_node("BtnNodo")
+	if btn.disabled:
+		return
+
 	var ruta = SesionGlobal.get_ruta_nivel(
 		int(clave.split("-")[0]),
 		int(clave.split("-")[1])
 	)
 	if ruta != "":
 		get_tree().change_scene_to_file(ruta)
-
 func _on_volver():
 	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
 
