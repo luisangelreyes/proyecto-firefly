@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c4cc200awfikb"]
+
+[ext_resource type="PackedScene" uid="uid://cf3hvnw81j8xo" path="res://scenes/niveles/NivelTopDown.tscn" id="1_lwgj0"]
+[ext_resource type="Script" uid="uid://i5iqgjc5i4po" path="res://scenes/niveles/NivelTopDown2_3.gd" id="2_1i63p"]
+
+[node name="NivelTopDown" unique_id=1058708230 instance=ExtResource("1_lwgj0")]
+script = ExtResource("2_1i63p")

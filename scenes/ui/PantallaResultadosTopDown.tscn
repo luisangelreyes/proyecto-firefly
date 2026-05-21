@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bb0fjps5u3vxb" path="res://scenes/ui/pantalla_resultados_top_down.gd" id="1_851qv"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="2_crw60"]
 [ext_resource type="SpriteFrames" uid="uid://duavve81lrb35" path="res://entities/jugador/lis_nivel_1.tres" id="3_6p2q7"]
+[ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="4_055s5"]
 
 [node name="PantallaResultadosTopDown" type="CanvasLayer" unique_id=599453692]
 layer = 8
@@ -111,3 +112,54 @@ position = Vector2(1646, 584)
 sprite_frames = ExtResource("3_6p2q7")
 animation = &"victoria"
 flip_h = true
+
+[node name="BoteNoReciclables" type="TextureRect" parent="." unique_id=1288370602]
+offset_left = 132.0
+offset_top = 286.0
+offset_right = 517.0
+offset_bottom = 709.0
+pivot_offset = Vector2(105, 164)
+texture = ExtResource("4_055s5")
+expand_mode = 1
+
+[node name="LabelPuntos2" type="Label" parent="BoteNoReciclables" unique_id=361060459]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.5
+offset_top = 155.5
+offset_right = 164.5
+offset_bottom = 326.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_crw60")
+theme_override_font_sizes/font_size = 50
+text = "Los otros residuos 
+se fueron al bote de
+ "
+horizontal_alignment = 1
+
+[node name="LabelPuntos3" type="Label" parent="BoteNoReciclables" unique_id=1041256300]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = 277.5
+offset_right = 162.5
+offset_bottom = 350.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+theme_override_fonts/font = ExtResource("2_crw60")
+theme_override_font_sizes/font_size = 50
+text = "NO RECICLABLES "
+horizontal_alignment = 1
+
+[node name="PuntoDeEntrada" type="Marker2D" parent="BoteNoReciclables" unique_id=390671307]
+position = Vector2(97, 99)

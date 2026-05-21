@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdj137b76vhsc" path="res://entities/basura/ResiduoTopDown.gd" id="1_o7177"]
 [ext_resource type="Texture2D" uid="uid://ce5vntcui65dm" path="res://entities/basura/sprites/trash_apple.png" id="2_xnypf"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="3_ys3mc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7177"]
 radius = 100.85
@@ -24,13 +25,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -10.5
-offset_top = -23.0
-offset_right = 10.5
+offset_left = -107.0
+offset_top = -190.0
+offset_right = 110.0
+offset_bottom = -153.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 14
-text = "[X]"
+theme_override_fonts/font = ExtResource("3_ys3mc")
+theme_override_font_sizes/font_size = 89
+text = "AGARRAR [E]"
 
 [node name="TimerDireccion" type="Timer" parent="." unique_id=1543688942]
 wait_time = 2.0

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dihr6oa0up7s7" path="res://scenes/niveles/Eli_TopDown.gd" id="1_27k72"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="1_biqqu"]
 [ext_resource type="Script" uid="uid://cgo5sx2rjpk21" path="res://scenes/niveles/NivelTopDown.gd" id="1_ikboe"]
-[ext_resource type="PackedScene" uid="uid://ceo8fflyx606d" path="res://entities/basura/ResiduoTopDown.tscn" id="1_t8bxv"]
 [ext_resource type="Texture2D" uid="uid://3p75sjsbb4eg" path="res://entities/fondos/ChatGPT Image May 14, 2026, 11_04_17 PM (1).png" id="2_731va"]
 [ext_resource type="SpriteFrames" uid="uid://dbp5k15mlsl00" path="res://entities/jugador/liz_bote_verde.tres" id="5_gpq5o"]
 [ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="7_rfqio"]
@@ -61,7 +60,6 @@ height = 204.0
 
 [node name="NivelTopDown" type="Node2D" unique_id=1058708230]
 script = ExtResource("1_ikboe")
-escena_residuo = ExtResource("1_t8bxv")
 
 [node name="Mundo" type="Node2D" parent="." unique_id=1235514271]
 

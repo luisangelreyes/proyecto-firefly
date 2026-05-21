@@ -1,16 +1,14 @@
+# NivelTopDown2_3.gd — Mundo 2, nivel top-down
 extends "res://scripts/NivelTopDownBase.gd"
 
 func _ready():
-	# ── Configuración de este nivel ───────────────────────────────────────
-	tiempo_limite       = 90.0
-	cantidad_normales   = 30
-	cantidad_peligrosos = 190
-	escena_nivel_actual = "res://scenes/niveles/NivelTopDown.tscn"
-
+	tiempo_limite       = 120.0   # más tiempo para el mundo 2
+	cantidad_normales   = 15
+	cantidad_peligrosos = 50
+	escena_nivel_actual = "res://scenes/niveles/Mundo2/NivelTopDown2_3.tscn"
 	sprite_sheet = preload(
         "res://entities/basura/sprites/basura_in_or_pelirgo.png"
 	)
-
 	catalogo_basura = [
 		# INORGÁNICOS
 		{"tipo":"inorganico","nombre":"lata_aplastada",   "region":Rect2(0,    0,    800,800)},

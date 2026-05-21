@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://q73j7semrq54"]
+
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_jlx5k"]
+[ext_resource type="Script" uid="uid://00b4wio6u33p" path="res://scenes/niveles/nivel_caida_2_1.gd" id="2_y7rdv"]
+
+[node name="Nivel" unique_id=784809779 instance=ExtResource("1_jlx5k")]
+script = ExtResource("2_y7rdv")
+lista_canciones = Array[AudioStream]([])

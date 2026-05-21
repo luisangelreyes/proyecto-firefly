@@ -100,13 +100,10 @@ func _manejar_spawn_infinito(delta):
 		lanzar_basura_normal()
 
 func _aumentar_velocidad_progresiva():
-	# Cada AUMENTO_VELOCIDAD_CADA segundos, acortamos el intervalo
-	# y subimos la velocidad de las nuevas basuras
 	var pasos = int(tiempo_jugado / AUMENTO_VELOCIDAD_CADA)
 	_intervalo_spawn = max(0.20, 0.50 - pasos * 0.04)
 	probabilidad_peligroso = min(0.35, pasos * 0.03)
 
-	# Actualizar velocidad de caída para nuevas basuras
 	var nueva_vel = min(
 		VELOCIDAD_MAXIMA,
 		260.0 + pasos * AUMENTO_VELOCIDAD_CANTIDAD

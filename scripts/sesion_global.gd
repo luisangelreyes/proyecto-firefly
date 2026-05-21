@@ -23,16 +23,16 @@ var niveles_desbloqueados: Dictionary = {
 
 # Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
 const RUTAS_NIVELES: Dictionary = {
-	# Mundo 1
+	
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
 	"1-2": "res://scenes/niveles/NivelCaida0.tscn",
 	"1-3": "res://scenes/niveles/NivelCaida1.tscn",
 	"1-4": "res://scenes/niveles/NivelClasificacion1_4.tscn",
-	# Mundo 2
-	"2-1": "res://scenes/niveles/NivelCaida2.tscn",
+
+	"2-1": "res://scenes/niveles/NivelCaida2_3.tscn",
 	"2-2": "res://scenes/niveles/NivelClasificacion2_2.tscn",
-	"2-3": "res://scenes/niveles/NivelCaida2.tscn",
-	"2-4": "res://scenes/niveles/nivel2.tscn",
+	"2-3": "res://scenes/niveles/NivelCaida2_3.tscn",
+	"2-4": "res://scenes/niveles/nivel2.tscn",#top down 
 	"2-5": "res://scenes/niveles/NivelClasificacion2_5.tscn",
 	"2-6": "res://scenes/niveles/nivel2.tscn",
 }
