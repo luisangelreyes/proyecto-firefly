@@ -22,7 +22,7 @@ var racha_actual: int = 0
 
 # --- CONFIGURACIÓN DE MOVIMIENTO ---
 var velocidad_caminar = 500 
-var velocidad_correr = 1200 
+var velocidad_correr = 1700 
 
 # --- VARIABLES DE JUEGO ---
 var bote_activo = 0 # 0 = Orgánico, 1 = Inorgánico

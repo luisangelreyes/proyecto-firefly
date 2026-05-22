@@ -19,6 +19,13 @@ var DIFICULTAD_OLEADAS = [
 		[275.0, 1, 0.02],   # Oleada 3 — presión real
 		[310.0, 1, 0.06],   # Oleada 4 — desafío del mundo 1
 ]
+var _lado_anterior: int = -1
+var _contador_mismo_lado: int = 0
+
+# ── ALERTAS DE PELIGROSO ──────────────────────────────────────────────────
+const MAX_ALERTAS = 2          # máximo de sombras visibles a la vez
+var _alertas_activas: int = 0  # cuántas hay ahora mismo en pantalla
+
 var escena_basura = preload("res://entities/basura/basura.tscn")
 
 # Cada número es la cantidad de residuos de esa oleada
@@ -112,32 +119,23 @@ func _on_timer_timeout():
 
 var probabilidad_peligroso: float = 0.10
 
-var _lado_anterior: int = -1      # 0 = izquierda, 1 = derecha
-var _contador_mismo_lado: int = 0
-
 func lanzar_basura_normal():
 	if not has_node("Barbara"):
 		return
 
+	# ── Posición X: 70% aleatorio por zonas, 30% cerca del jugador ───────────
 	var nuevo_x: float
-	var tirada = randf()
-
-	if tirada < 0.70:
-		# ── 70%: spawn aleatorio por toda la pantalla ──────────────────────
-		# Dividimos en 3 zonas para asegurar cobertura uniforme
+	if randf() < 0.70:
 		var zona = randi() % 3
 		match zona:
-			0: nuevo_x = randf_range(50,  480)    # izquierda
-			1: nuevo_x = randf_range(480, 960)    # centro
-			2: nuevo_x = randf_range(960, 1390)   # derecha
+			0: nuevo_x = randf_range(50,  480)
+			1: nuevo_x = randf_range(480, 960)
+			2: nuevo_x = randf_range(960, 1390)
 	else:
-		# ── 30%: spawn cerca del jugador (presión moderada) ─────────────────
-		var posicion_eli = $Barbara.position.x
-		posicion_eli = clamp(posicion_eli, 0, 1440)
-		nuevo_x = posicion_eli + randf_range(-200, 200)
-		nuevo_x = clamp(nuevo_x, 50, 1390)
+		var px = clamp($Barbara.position.x, 0.0, 1440.0)
+		nuevo_x = clamp(px + randf_range(-200, 200), 50, 1390)
 
-	# ── Corrector de lado: si 3 seguidos en mismo lado, forzar el otro ──────
+	# Corrector de lado: si 3 seguidos en el mismo lado, forzar el otro
 	var lado_actual = 0 if nuevo_x < 720 else 1
 	if lado_actual == _lado_anterior:
 		_contador_mismo_lado += 1
@@ -146,15 +144,11 @@ func lanzar_basura_normal():
 	_lado_anterior = lado_actual
 
 	if _contador_mismo_lado >= 3:
-		# Forzar el lado opuesto
-		if lado_actual == 0:
-			nuevo_x = randf_range(720, 1390)
-		else:
-			nuevo_x = randf_range(50, 720)
+		nuevo_x = randf_range(720, 1390) if lado_actual == 0 else randf_range(50, 720)
 		_lado_anterior = 1 - lado_actual
 		_contador_mismo_lado = 0
 
-	# ── Spawn ────────────────────────────────────────────────────────────────
+	# ── Spawn ─────────────────────────────────────────────────────────────────
 	var basura = escena_basura.instantiate()
 	basura.position = Vector2(nuevo_x, -50)
 	basura.prob_peligroso = probabilidad_peligroso
@@ -168,7 +162,36 @@ func lanzar_basura_normal():
 
 	if basura.categoria != "Peligroso":
 		total_residuos += 1
-		
+
+	# ── Alerta visual si es peligroso y hay cupo ──────────────────────────────
+	if basura.categoria == "Peligroso" and _alertas_activas < MAX_ALERTAS:
+		_mostrar_alerta_peligroso(nuevo_x, basura)
+
+# Muestra una sombra en el suelo indicando dónde caerá el peligroso.
+# Desaparece cuando el residuo sale del árbol.
+func _mostrar_alerta_peligroso(x: float, basura_ref):
+	_alertas_activas += 1
+
+	var alerta = Label.new()
+	alerta.text = "⚠"
+	alerta.add_theme_font_size_override("font_size", 52)
+	alerta.add_theme_color_override("font_color", Color(1.0, 0.2, 0.0, 0.85))
+	alerta.position = Vector2(x - 26, 80)   # justo encima del suelo
+	add_child(alerta)
+
+	# Parpadeo suave para llamar la atención sin saturar
+	var tween = create_tween().set_loops()
+	tween.tween_property(alerta, "modulate:a", 0.3, 0.35)
+	tween.tween_property(alerta, "modulate:a", 1.0, 0.35)
+
+	# Cuando el residuo desaparezca, eliminar la alerta
+	basura_ref.tree_exited.connect(func():
+		_alertas_activas = max(0, _alertas_activas - 1)
+		tween.kill()
+		if is_instance_valid(alerta):
+			alerta.queue_free()
+	)
+# ── NUEVA: residuo que cayó al suelo sin ser tocado ──
 func _on_residuo_escapado(categoria: String):
 	if categoria == "Peligroso":
 		peligrosos_esquivados += 1
@@ -304,10 +327,21 @@ func _on_oleada_terminada(oleada: int, _total: int):
 func _mostrar_aviso_oleada(numero: int):
 	if not has_node("TextoOleada"):
 		return
-	$TextoOleada.text = "Oleada %d" % numero
+
+	var es_ultima = (numero == oleadas.size())
+
+	if es_ultima:
+		$TextoOleada.text = " ¡OLEADA FINAL! "
+		$TextoOleada.add_theme_color_override("font_color", Color(0.94, 0.113, 0.223, 1.0))
+	else:
+		$TextoOleada.text = "Oleada %d de %d" % [numero, oleadas.size()]
+		$TextoOleada.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+
 	$TextoOleada.visible = true
 	$TextoOleada.modulate.a = 1.0
+
+	var duracion_visible = 1.8 if es_ultima else 1.2
 	var tween = create_tween()
-	tween.tween_interval(1.2)
+	tween.tween_interval(duracion_visible)
 	tween.tween_property($TextoOleada, "modulate:a", 0.0, 0.6)
 	tween.tween_callback(func(): $TextoOleada.visible = false)

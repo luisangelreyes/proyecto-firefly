@@ -59,6 +59,7 @@ scale = Vector2(3.0842106, 0.55)
 texture = ExtResource("2_vss5t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1721740654]
+modulate = Color(1.3749781, 1.3749781, 1.3749781, 1)
 position = Vector2(-25.000013, -4.7499866)
 scale = Vector2(0.904918, 0.8703704)
 sprite_frames = ExtResource("3_itjt0")
