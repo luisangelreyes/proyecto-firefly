@@ -2,9 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://cf3hvnw81j8xo" path="res://scenes/niveles/NivelTopDown.tscn" id="1_wgo8r"]
 [ext_resource type="Script" uid="uid://b3ehtltjuby52" path="res://scenes/niveles/mundo2/nivel_top_down_tutorial_2_2.gd" id="2_bnisf"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_bnisf"]
 [ext_resource type="PackedScene" uid="uid://cmsvqkygh1on8" path="res://scenes/ui/DialogoTutorial.tscn" id="3_yeh6t"]
 
 [node name="NivelTopDown" unique_id=1058708230 instance=ExtResource("1_wgo8r")]
 script = ExtResource("2_bnisf")
+
+[node name="LabelOleada" type="Label" parent="HUD" parent_id_path=PackedInt32Array(1185437524) index="5" unique_id=540746087]
+offset_left = 770.0
+offset_top = 22.0
+offset_right = 1160.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("3_bnisf")
+theme_override_font_sizes/font_size = 48
 
 [node name="DialogoTutorial" parent="." index="7" unique_id=530390666 instance=ExtResource("3_yeh6t")]

@@ -8,6 +8,8 @@ var tutorial_completado: bool = false
 
 func _ready():
 	popup.visible = false
+	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
+	$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)
 	if not mensajes_tutorial.is_empty():
 		$PanelMorral2.visible = false
 		$PanelMorral.visible = false

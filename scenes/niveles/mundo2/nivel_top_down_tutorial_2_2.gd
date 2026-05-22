@@ -1,15 +1,24 @@
 extends "res://scripts/NivelTopDownBase.gd"
 
-# ── ESTADO DEL TUTORIAL ───────────────────────────────────────────────────
-var paso_tutorial: int = 0   # 0=organico 1=inorganico 2=peligroso 3=libre
-var tutorial_activo: bool = true
-var _fase_dialogo: String = ""
+# ── CONFIGURACIÓN TUTORIAL ────────────────────────────────────────────────
+const DURACION_OLEADA   = 20.0
+const RADIO_SPAWN_CERCA = 350.0   # residuos normales cerca de Eli
+const RADIO_SEGURO_PELI = 500.0   # peligrosos lejos de Eli
 
-@onready var dialogo = $DialogoTutorial
+var oleada_actual_tut: int = 0
+var timer_oleada: float = 0.0
+var oleada_activa: bool = false
+var tutorial_activo: bool = true
+var _hint_organico_dado: bool = false
+var _hint_inorganico_dado: bool = false
+var _hint_peligroso_dado: bool = false
+
+@onready var dialogo    = $DialogoTutorial
+@onready var lbl_oleada = $HUD/LabelOleada   # Label nuevo en el HUD
 
 func _ready():
-	tiempo_limite       = 120.0    # sin límite durante el tutorial
-	cantidad_normales   = 0      # no generamos nada al inicio
+	tiempo_limite       = 999.0   # sin límite real
+	cantidad_normales   = 0
 	cantidad_peligrosos = 0
 	escena_nivel_actual = \
         "res://scenes/niveles/Mundo2/NivelTopDownTutorial2_2.tscn"
@@ -25,12 +34,16 @@ func _ready():
 		 "region":Rect2(1600,3200,800,800)},
 		{"tipo":"organico",  "nombre":"elote",
 		 "region":Rect2(0,2400,800,800)},
+		{"tipo":"organico",  "nombre":"naranja",
+		 "region":Rect2(4800,2400,800,800)},
 		{"tipo":"inorganico","nombre":"lata_aplastada",
 		 "region":Rect2(0,0,800,800)},
 		{"tipo":"inorganico","nombre":"botella_plastico",
 		 "region":Rect2(800,0,800,800)},
 		{"tipo":"inorganico","nombre":"caja_carton",
 		 "region":Rect2(4800,0,800,800)},
+		{"tipo":"inorganico","nombre":"periodico",
+		 "region":Rect2(4000,0,800,800)},
 		{"tipo":"peligroso", "nombre":"jeringa",
 		 "region":Rect2(4800,4000,800,800)},
 		{"tipo":"peligroso", "nombre":"bateria",
@@ -41,10 +54,11 @@ func _ready():
 
 	super()
 
-	# Detener todo hasta que termine la intro
 	juego_activo = false
 	timer_activo = false
 	barra_tiempo.visible = false
+	if has_node("HUD/LabelOleada"):
+		lbl_oleada.visible = false
 
 	dialogo.dialogo_terminado.connect(_on_dialogo_terminado)
 
@@ -53,96 +67,116 @@ func _ready():
 
 # ── INTRO ─────────────────────────────────────────────────────────────────
 func _mostrar_intro():
-	_fase_dialogo = "intro"
 	dialogo.iniciar([
-		"¡Mija, bienvenida al barrio!\nAquí la basura está por todos lados.",
-		"Tienes que [color=#e8c428]moverte[/color] por el escenario\ny recoger los residuos con [color=#e8c428]E o el botón A[/color].",
-		"Recuerda cambiar de bote con [color=#e8c428]ESPACIO[/color]\nsegún el tipo de residuo.",
-		"¡Vamos a practicar paso a paso!",
+		"¡Mija, este barrio está hecho un desastre!\nVamos a practicar antes de la jornada real.",
+		"Usa [color=#e8c428]FLECHAS o WASD[/color] para moverte.\nPresiona [color=#e8c428]E o A[/color] para recoger residuos.",
+		"Cambia de bote con [color=#e8c428]ESPACIO[/color] según\nel tipo de residuo. ¡Vamos!",
 	])
 
-# ── PASO 1: ORGÁNICOS ─────────────────────────────────────────────────────
-func _iniciar_paso_organico():
-	_fase_dialogo = "instruccion_organico"
-	_limpiar_residuos()
-	dialogo.iniciar([
-		"Primero los [color=#4fb87a]RESIDUOS ORGÁNICOS[/color].\nSon restos de comida — frutas, verduras...",
-		"Para recogerlos necesitas el [color=#4fb87a]BOTE VERDE[/color].\nAcércate y presiona [color=#e8c428]E[/color] o [color=#e8c428]A[/color].",
-		"Recoge todos los residuos verdes del escenario.\n¡Yo cuento cuántos faltan!",
-	])
-
-# ── PASO 2: INORGÁNICOS ───────────────────────────────────────────────────
-func _iniciar_paso_inorganico():
-	_fase_dialogo = "instruccion_inorganico"
-	_limpiar_residuos()
-	dialogo.iniciar([
-		"¡Muy bien! Ahora los [color=#4a8fd4]RESIDUOS INORGÁNICOS[/color].\nLatas, botellas, cartón...",
-		"Para estos necesitas el [color=#4a8fd4]BOTE AZUL[/color].\nCámbialo con [color=#e8c428]ESPACIO[/color] antes de recoger.",
-		"¡Limpia todos los residuos azules!",
-	])
-
-# ── PASO 3: PELIGROSOS ────────────────────────────────────────────────────
-func _iniciar_paso_peligroso():
-	_fase_dialogo = "instruccion_peligroso"
-	_limpiar_residuos()
-	dialogo.iniciar([
-		"¡Cuidado, mija! Ahora vienen los\n[color=#d44a4a]RESIDUOS PELIGROSOS[/color].",
-		"Jeringas, baterías, cigarros...\n[color=#d44a4a]¡NO los toques![/color] Se mueven hacia ti.",
-		"Esquívalos moviéndote.\nSi te tocan, pierdes. ¡Mantén distancia!",
-		"Sobrevive hasta que el contenedor\nnaranaja los absorba automáticamente.",
-	])
-
-# ── DIÁLOGO TERMINADO ─────────────────────────────────────────────────────
 func _on_dialogo_terminado():
-	match _fase_dialogo:
-		"intro":
-			_iniciar_paso_organico()
+	_iniciar_oleada(oleada_actual_tut)
 
-		"instruccion_organico":
-			_generar_paso(3, "normal", "organico")
-			juego_activo = true
+# ── OLEADAS ───────────────────────────────────────────────────────────────
+func _iniciar_oleada(oleada: int):
+	_limpiar_residuos()
+	oleada_activa = true
+	timer_oleada  = DURACION_OLEADA
+	juego_activo  = true
+	recogidos = 0
 
-		"instruccion_inorganico":
-			_generar_paso(3, "normal", "inorganico")
-			juego_activo = true
-
-		"instruccion_peligroso":
-			_generar_paso(5, "peligroso", "peligroso")
-			juego_activo = true
-			# Timer para sobrevivir 10 segundos
-			_esperar_fin_paso_peligroso()
-
-		"error_bote":
-			juego_activo = true
-
-		"final":
+	match oleada:
+		0:
+			if has_node("HUD/LabelOleada"):
+				lbl_oleada.text = "Práctica 1 — Orgánicos e Inorgánicos"
+				lbl_oleada.visible = true
+			
+			# Spawneamos 4 de cada uno
+			_spawnear_cerca(4, "organico")
+			_spawnear_cerca(4, "inorganico")
+			
+			
+			total_residuos = 8
+			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+			
+		1:
+			if has_node("HUD/LabelOleada"):
+				lbl_oleada.text = "Práctica 2 — ¡Cuidado con los peligrosos!"
+				
+			# Spawneamos basura normal y añadimos los peligrosos
+			_spawnear_cerca(5, "organico")
+			_spawnear_cerca(5, "inorganico")
+			_spawnear_cerca(5, "peligroso")
+			
+			total_residuos = 10 
+			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+			
+		2:
+			if has_node("HUD/LabelOleada"):
+				lbl_oleada.text = "Oleada Final — ¡Cuidado con los peligrosos!"
+				
+			# Spawneamos basura normal y añadimos los peligrosos
+			_spawnear_cerca(3, "organico")
+			_spawnear_cerca(2, "inorganico")
+			_spawnear_cerca(2, "peligroso")
+			_spawnear_lejos(5, "organico")
+			_spawnear_lejos(30, "peligroso")
+			_spawnear_lejos(3,"inorganico")
+			
+			total_residuos = 15 
+			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+		3:
+			# Fin del tutorial
 			_finalizar_tutorial()
+			return
 
-# ── GENERAR RESIDUOS DEL PASO ─────────────────────────────────────────────
-func _generar_paso(cantidad: int, filtro: String, tipo_especifico: String):
-	total_residuos = 0
-	recogidos      = 0
+func _process(delta):
+	super(delta)
 
-	# Filtrar catálogo al tipo específico
-	var catalogo_paso = catalogo_basura.filter(
-		func(item): return item["tipo"] == tipo_especifico
-	)
-
-	var space_state   = get_world_2d().direct_space_state
-	var zonas         = contenedor_zonas.get_children()
-	if zonas.is_empty():
+	if not oleada_activa or not juego_activo:
 		return
+	if oleada_actual_tut != 2:
+		timer_oleada -= delta
+		if timer_oleada <= 0:
+			_terminar_oleada_por_tiempo()
+	timer_oleada -= delta
+	if timer_oleada <= 0:
+		_terminar_oleada_por_tiempo()
 
-	var query  = PhysicsShapeQueryParameters2D.new()
-	var shape  = CircleShape2D.new()
-	shape.radius = 25.0
-	query.shape  = shape
+# ── SPAWN CONTROLADO ──────────────────────────────────────────────────────
+func _spawnear_cerca(cantidad: int, tipo_filtro: String):
+	var catalogo_f = catalogo_basura.filter(
+		func(i): return i["tipo"] == tipo_filtro
+	)
+	var generados = 0
+	var intentos  = 0
 
-	var generados         = 0
-	var intentos          = 0
-	var posiciones_usadas: Array[Vector2] = []
+	while generados < cantidad and intentos < cantidad * 30:
+		intentos += 1
+		# Spawn en radio cercano a Eli
+		var angulo = randf_range(0, TAU)
+		var radio  = randf_range(150.0, RADIO_SPAWN_CERCA)
+		var punto  = eli.global_position + Vector2(
+			cos(angulo) * radio,
+			sin(angulo) * radio
+		)
 
-	while generados < cantidad and intentos < cantidad * 50:
+		if not _punto_valido(punto):
+			continue
+
+		var r = _crear_residuo(catalogo_f.pick_random(), punto)
+		if r:
+			_conectar_residuo(r)
+			generados += 1
+
+func _spawnear_lejos(cantidad: int, tipo_filtro: String):
+	var catalogo_f = catalogo_basura.filter(
+		func(i): return i["tipo"] == tipo_filtro
+	)
+	var generados = 0
+	var intentos  = 0
+	var zonas     = contenedor_zonas.get_children()
+
+	while generados < cantidad and intentos < cantidad * 30:
 		intentos += 1
 		var zona  = zonas.pick_random()
 		var rect  = zona.get_global_rect()
@@ -151,49 +185,47 @@ func _generar_paso(cantidad: int, filtro: String, tipo_especifico: String):
 			randf_range(rect.position.y, rect.end.y)
 		)
 
-		if punto.distance_to(eli.global_position) < 200.0:
+		# Garantizar distancia mínima con Eli
+		if punto.distance_to(eli.global_position) < RADIO_SEGURO_PELI:
 			continue
 
-		var muy_cerca = false
-		for pos in posiciones_usadas:
-			if punto.distance_to(pos) < 90.0:
-				muy_cerca = true
-				break
-		if muy_cerca:
+		if not _punto_valido(punto):
 			continue
 
-		query.transform = Transform2D(0, punto)
-		if not space_state.intersect_shape(query).is_empty():
-			continue
+		var r = _crear_residuo(catalogo_f.pick_random(), punto)
+		if r:
+			_conectar_residuo(r)
+			generados += 1
 
-		var residuo = escena_residuo.instantiate()
-		residuo.global_position = punto
-		residuo.scale           = Vector2(0.3, 0.3)
+func _punto_valido(punto: Vector2) -> bool:
+	var space = get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	var shape = CircleShape2D.new()
+	shape.radius  = 25.0
+	query.shape   = shape
+	query.transform = Transform2D(0, punto)
+	return space.intersect_shape(query).is_empty()
 
-		var data         = catalogo_paso.pick_random()
-		residuo.tipo     = data["tipo"]
-		residuo.nombre   = data["nombre"]
+func _crear_residuo(data: Dictionary, punto: Vector2) -> Node:
+	var r = escena_residuo.instantiate()
+	r.global_position = punto
+	r.scale           = Vector2(0.3, 0.3)
+	r.tipo            = data["tipo"]
+	r.nombre          = data["nombre"]
+	var atlas         = AtlasTexture.new()
+	atlas.atlas       = sprite_sheet
+	atlas.region      = data["region"]
+	r.icono           = atlas
+	contenedor_res.add_child(r)
+	return r
 
-		var atlas        = AtlasTexture.new()
-		atlas.atlas      = sprite_sheet
-		atlas.region     = data["region"]
-		residuo.icono    = atlas
+func _conectar_residuo(r: Node):
+	r.recogido_correcto.connect(_on_residuo_correcto_tut)
+	r.recogido_incorrecto.connect(_on_residuo_incorrecto_tut)
+	r.peligroso_tocado.connect(_on_peligroso_tut)
 
-		residuo.recogido_correcto.connect(_on_residuo_correcto)
-		residuo.recogido_incorrecto.connect(_on_residuo_tutorial_incorrecto)
-		residuo.peligroso_tocado.connect(_on_peligroso_tutorial)
-
-		contenedor_res.add_child(residuo)
-		posiciones_usadas.append(punto)
-		generados += 1
-
-		if tipo_especifico != "peligroso":
-			total_residuos += 1
-
-	lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
-
-# ── OVERRIDE: cuando recoge todos los de un paso ──────────────────────────
-func _on_residuo_correcto(_tipo: String):
+# ── CALLBACKS ─────────────────────────────────────────────────────────────
+func _on_residuo_correcto_tut(tipo: String):
 	recogidos += 1
 	racha_actual += 1
 	if racha_actual > racha_maxima:
@@ -202,67 +234,75 @@ func _on_residuo_correcto(_tipo: String):
 	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
 	hit_counter.registrar_acierto(racha_actual)
 
-	if recogidos >= total_residuos and total_residuos > 0:
-		juego_activo = false
-		await get_tree().create_timer(0.8).timeout
-		if is_inside_tree():
-			_avanzar_paso()
+	_revisar_victoria_oleada()
 
-func _on_residuo_tutorial_incorrecto(_tipo: String):
+
+func _on_residuo_incorrecto_tut(tipo: String):
 	racha_actual = 0
 	hit_counter.registrar_fallo()
-	_fase_dialogo = "error_bote"
-	juego_activo  = false
-	if paso_tutorial == 0:
+	
+	# FIX: Reducimos el total_residuos para que no se quede bloqueado el nivel
+	# si el jugador destruye un objeto por equivocarse de bote.
+	total_residuos -= 1
+	# Evitamos que el total baje de los que ya hemos recogido
+	if total_residuos < recogidos:
+		total_residuos = recogidos 
+		
+	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
+
+	# Diálogo de error
+	if tipo == "organico":
 		dialogo.iniciar([
-			"¡Ese no era el bote correcto!\nRecuerda: [color=#4fb87a]ORGÁNICO = BOTE VERDE[/color].",
-			"Cambia el bote con [color=#e8c428]ESPACIO[/color]\ny vuelve a intentarlo.",
+			"¡Ese era [color=#4fb87a]ORGÁNICO[/color]!\nNecesita el [color=#4fb87a]bote verde[/color]. ¡Inténtalo de nuevo!"
 		])
 	else:
 		dialogo.iniciar([
-			"¡Ese no era el bote correcto!\nRecuerda: [color=#4a8fd4]INORGÁNICO = BOTE AZUL[/color].",
-			"Cambia el bote con [color=#e8c428]ESPACIO[/color]\ny vuelve a intentarlo.",
+			"¡Ese era [color=#4a8fd4]INORGÁNICO[/color]!\nNecesita el [color=#4a8fd4]bote azul[/color]. ¡Inténtalo de nuevo!"
 		])
-
-func _on_peligroso_tutorial():
+		
+	_revisar_victoria_oleada()
+	
+func _on_peligroso_tut():
 	racha_actual = 0
 	hit_counter.registrar_fallo()
-	_fase_dialogo = "error_bote"
+	# Sin game over — solo mensaje y el residuo peligroso rebota
+	dialogo.iniciar([
+        "[color=#d44a4a]¡Cuidado![/color] Los residuos peligrosos hacen daño.\n¡Mantente alejada de ellos!"
+	])
+
+func _terminar_oleada_exitosa():
+	match oleada_actual_tut:
+		0: dialogo.iniciar([
+			"¡Excelente limpieza!\nAhora vamos a complicarlo: mezclaremos todo y aparecerán residuos peligrosos."
+		])
+		1: dialogo.iniciar([
+			"¡Muy bien!\nÚltima prueba: la basura estará esparcida por todas partes. ¡Búscala!"
+		])
+		2: dialogo.iniciar([
+			"¡Lo lograste! Ya tienes todo lo que necesitas\npara limpiar el barrio. ¡Ándale!"
+		])
+	oleada_actual_tut += 1
+
+func _terminar_oleada_por_tiempo():
+	oleada_activa = false
 	juego_activo  = false
-	dialogo.iniciar([
-		"¡Te tocó un residuo peligroso!\n[color=#d44a4a]¡Mantente alejada![/color]",
-		"Muévete rápido para esquivarlos.\n¡Inténtalo de nuevo!",
-	])
-	await get_tree().create_timer(0.5).timeout
-	if is_inside_tree():
-		_iniciar_paso_peligroso()
-
-# ── AVANZAR ENTRE PASOS ───────────────────────────────────────────────────
-func _avanzar_paso():
-	paso_tutorial += 1
-	match paso_tutorial:
-		1: _iniciar_paso_inorganico()
-		2: _iniciar_paso_peligroso()
-		3: _mostrar_final()
-
-func _esperar_fin_paso_peligroso():
-	await get_tree().create_timer(10.0).timeout
-	if is_inside_tree() and tutorial_activo and paso_tutorial == 2:
-		juego_activo = false
-		_limpiar_residuos_peligrosos()
-		await get_tree().create_timer(0.5).timeout
-		_avanzar_paso()
-
-func _mostrar_final():
-	_fase_dialogo = "final"
-	dialogo.iniciar([
-		"¡Excelente trabajo, mija!\nYa conoces los tres tipos de residuos.",
-		"Recuerda:\n[color=#4fb87a]VERDE[/color] = Orgánico\n[color=#4a8fd4]AZUL[/color] = Inorgánico\n[color=#d44a4a]ESQUIVA[/color] los peligrosos.",
-		"¡Ahora a limpiar el barrio de verdad!\n¡Ándale!",
-	])
-
+	_limpiar_residuos_peligrosos()
+	
+	match oleada_actual_tut:
+		0: dialogo.iniciar([
+			"Se acabó el tiempo, pero vas entendiendo.\n¡Cuidado ahora, que vienen los peligrosos!"
+		])
+		1: dialogo.iniciar([
+			"¡Tiempo! Vamos al examen final.\nTendrás que moverte por todo el mapa."
+		])
+		2: dialogo.iniciar([
+			"¡Tiempo! Ya practicaste suficiente.\n¡Al nivel real!"
+		])
+	oleada_actual_tut += 1
+# ── FINALIZAR ─────────────────────────────────────────────────────────────
 func _finalizar_tutorial():
 	tutorial_activo = false
+	_limpiar_residuos()
 	SesionGlobal.completar_nivel(2, 2)
 	SesionGlobal.guardar_sesion()
 	Engine.get_main_loop().change_scene_to_file(
@@ -277,7 +317,17 @@ func _limpiar_residuos():
 	recogidos      = 0
 
 func _limpiar_residuos_peligrosos():
+	if not has_node("BoteNoReciclables"):
+		return
 	var centro = bote_no_reciclables.get_node("PuntoDeEntrada").global_position
 	for r in contenedor_res.get_children():
-		if r.tipo == "peligroso":
+		if is_instance_valid(r) and r.tipo == "peligroso":
 			r.ser_succionado(centro)
+func _revisar_victoria_oleada():
+	# Si ya recogimos todo lo que quedaba en pantalla (o si el total llegó a 0)
+	if recogidos >= total_residuos:
+		juego_activo = false
+		oleada_activa = false
+		await get_tree().create_timer(0.8).timeout
+		if is_inside_tree():
+			_terminar_oleada_exitosa()

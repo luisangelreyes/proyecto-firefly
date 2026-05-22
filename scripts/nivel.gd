@@ -112,17 +112,49 @@ func _on_timer_timeout():
 
 var probabilidad_peligroso: float = 0.10
 
+var _lado_anterior: int = -1      # 0 = izquierda, 1 = derecha
+var _contador_mismo_lado: int = 0
+
 func lanzar_basura_normal():
 	if not has_node("Barbara"):
 		return
 
-	var posicion_eli = $Barbara.position.x
-	if posicion_eli <= 0 or posicion_eli >= 1440:
-		posicion_eli = 720
+	var nuevo_x: float
+	var tirada = randf()
 
-	var nuevo_x = posicion_eli + randf_range(-400, 400)
-	nuevo_x = clamp(nuevo_x, 50, 1390)
+	if tirada < 0.70:
+		# ── 70%: spawn aleatorio por toda la pantalla ──────────────────────
+		# Dividimos en 3 zonas para asegurar cobertura uniforme
+		var zona = randi() % 3
+		match zona:
+			0: nuevo_x = randf_range(50,  480)    # izquierda
+			1: nuevo_x = randf_range(480, 960)    # centro
+			2: nuevo_x = randf_range(960, 1390)   # derecha
+	else:
+		# ── 30%: spawn cerca del jugador (presión moderada) ─────────────────
+		var posicion_eli = $Barbara.position.x
+		posicion_eli = clamp(posicion_eli, 0, 1440)
+		nuevo_x = posicion_eli + randf_range(-200, 200)
+		nuevo_x = clamp(nuevo_x, 50, 1390)
 
+	# ── Corrector de lado: si 3 seguidos en mismo lado, forzar el otro ──────
+	var lado_actual = 0 if nuevo_x < 720 else 1
+	if lado_actual == _lado_anterior:
+		_contador_mismo_lado += 1
+	else:
+		_contador_mismo_lado = 0
+	_lado_anterior = lado_actual
+
+	if _contador_mismo_lado >= 3:
+		# Forzar el lado opuesto
+		if lado_actual == 0:
+			nuevo_x = randf_range(720, 1390)
+		else:
+			nuevo_x = randf_range(50, 720)
+		_lado_anterior = 1 - lado_actual
+		_contador_mismo_lado = 0
+
+	# ── Spawn ────────────────────────────────────────────────────────────────
 	var basura = escena_basura.instantiate()
 	basura.position = Vector2(nuevo_x, -50)
 	basura.prob_peligroso = probabilidad_peligroso
@@ -134,10 +166,9 @@ func lanzar_basura_normal():
 	basura.residuo_escapado.connect(_on_residuo_escapado)
 	add_child(basura)
 
-	# Contar solo no-peligrosos en el total
 	if basura.categoria != "Peligroso":
 		total_residuos += 1
-# ── NUEVA: residuo que cayó al suelo sin ser tocado ──
+		
 func _on_residuo_escapado(categoria: String):
 	if categoria == "Peligroso":
 		peligrosos_esquivados += 1

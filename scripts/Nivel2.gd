@@ -132,6 +132,10 @@ func _ready():
 	_siguiente_objeto()
 	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
 	$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)
+	
+	if not $PantallaGameOver.reintentar_presionado.is_connected(_on_reintentar):
+		$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
+		$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)
 
 
 func _iniciar_nivel():
