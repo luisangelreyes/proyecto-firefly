@@ -3,10 +3,35 @@
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_d68bf"]
 [ext_resource type="Script" uid="uid://d4gjtveljciqa" path="res://scenes/niveles/NIVEL_FINAL/nivel_boss.gd" id="2_4btpm"]
 [ext_resource type="PackedScene" uid="uid://do8n2x32omw2a" path="res://scenes/niveles/NIVEL_FINAL/Alien.tscn" id="3_vryas"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_wd3au"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_d68bf")]
 script = ExtResource("2_4btpm")
 lista_canciones = Array[AudioStream]([])
 
-[node name="Alien" parent="." index="14" unique_id=956123243 instance=ExtResource("3_vryas")]
+[node name="Barbara" parent="." index="1" unique_id=1800587545]
+z_index = 1
+
+[node name="TextoOleada" parent="." index="5" unique_id=793852983]
+offset_top = 184.0
+offset_bottom = 316.0
+
+[node name="LabelCargador" type="Label" parent="." index="6" unique_id=1488063936]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1278.0
+offset_top = 13.0
+offset_right = 1895.0
+offset_bottom = 151.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("3_wd3au")
+theme_override_font_sizes/font_size = 61
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien" parent="." index="15" unique_id=956123243 instance=ExtResource("3_vryas")]
 position = Vector2(960, 80)

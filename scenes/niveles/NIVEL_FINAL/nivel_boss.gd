@@ -19,7 +19,6 @@ var _ventana_abierta: bool = false
 
 @onready var alien = $Alien
 
-var label_cargador: Label
 
 # ──────────────────────────────────────────────────────────────────────────────
 func _ready():
@@ -43,8 +42,7 @@ func _ready():
 		$Barbara.residuo_clasificado.disconnect(_on_residuo_clasificado)
 	$Barbara.residuo_clasificado.connect(_on_residuo_clasificado_boss)
 
-	# Crear label de cargador en el HUD
-	_crear_hud_cargador()
+
 
 	# Iniciar intro con pequeña pausa
 	await get_tree().create_timer(1.2).timeout
@@ -214,28 +212,18 @@ func _on_residuo_spawneado(residuo):
 		total_residuos += 1
 
 # ── HUD CARGADOR ──────────────────────────────────────────────────────────────
-func _crear_hud_cargador():
-	label_cargador = Label.new()
-	label_cargador.add_theme_font_size_override("font_size", 36)
-	label_cargador.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5, 1.0))
-	label_cargador.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1))
-	label_cargador.add_theme_constant_override("shadow_offset_x", 3)
-	label_cargador.add_theme_constant_override("shadow_offset_y", 3)
-	label_cargador.position = Vector2(700, 20)
-	add_child(label_cargador)
-	_actualizar_hud_cargador()
+
+
+@onready var label_cargador = $LabelCargador
 
 func _actualizar_hud_cargador():
 	if not is_instance_valid(label_cargador):
 		return
-	var llenos   = cargador_actual
-	var vacios   = ACIERTOS_PARA_CARGAR - cargador_actual
-	var barra    = "⬛".repeat(vacios) + "🟩".repeat(llenos) if llenos > 0 else "⬛".repeat(vacios)
-	# Fallback con caracteres ASCII si los emojis no renderizan bien en Godot
-	barra = "[%s%s]" % ["|".repeat(llenos), " ".repeat(vacios)]
+	var llenos = cargador_actual
+	var vacios = ACIERTOS_PARA_CARGAR - cargador_actual
+	var barra  = "[%s%s]" % ["|".repeat(llenos), " ".repeat(vacios)]
 	label_cargador.text = "CARGADOR %s %d/%d" % [barra, llenos, ACIERTOS_PARA_CARGAR]
 
-	# Color según llenado
 	if cargador_actual >= ACIERTOS_PARA_CARGAR:
 		label_cargador.add_theme_color_override("font_color", Color(0.2, 1.0, 0.3, 1.0))
 	elif cargador_actual >= ACIERTOS_PARA_CARGAR * 0.6:

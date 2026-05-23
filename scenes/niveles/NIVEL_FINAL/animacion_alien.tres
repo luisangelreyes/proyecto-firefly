@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bq6w4wkvsii3d"]
+
+[ext_resource type="Texture2D" uid="uid://83n2agtyodr" path="res://entities/jugador/sprites/REMASTER/alien_animacion.png" id="1_kamk0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs6t8"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxf72"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srrcd"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh3un"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2ww0"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de4fj"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra2l3"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(3072, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3qr4"]
+atlas = ExtResource("1_kamk0")
+region = Rect2(3584, 0, 512, 512)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs6t8")
+}, {
+"duration": 3.6,
+"texture": SubResource("AtlasTexture_fxf72")
+}, {
+"duration": 4.92,
+"texture": SubResource("AtlasTexture_srrcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh3un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2ww0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de4fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra2l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3qr4")
+}],
+"loop": true,
+"name": &"alien_idle",
+"speed": 8.0
+}]

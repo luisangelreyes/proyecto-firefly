@@ -5,3 +5,10 @@
 
 [node name="ResiduoGigante" unique_id=2023222528 instance=ExtResource("1_nb4pg")]
 script = ExtResource("2_54eif")
+
+[node name="Sprite2D" parent="." index="0" unique_id=513962450]
+position = Vector2(10.000005, -37.5)
+scale = Vector2(0.16187501, 0.16375)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1404098192]
+position = Vector2(9.25, -36.75)
