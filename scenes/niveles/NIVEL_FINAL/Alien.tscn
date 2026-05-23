@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://do8n2x32omw2a"]
+
+[ext_resource type="Script" uid="uid://c5xiovj6xavs7" path="res://scenes/niveles/NIVEL_FINAL/alien.gd" id="1_larnf"]
+[ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="2_eycfk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eycfk"]
+atlas = ExtResource("2_eycfk")
+region = Rect2(147.60002, 183.29999, 167.19997, 177.59998)
+
+[node name="Alien" type="Node2D" unique_id=956123243]
+script = ExtResource("1_larnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207829487]
+texture = SubResource("AtlasTexture_eycfk")

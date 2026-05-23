@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cmc5s34ubwt86"]
+
+[ext_resource type="PackedScene" uid="uid://m4t4mkwgylux" path="res://entities/basura/basura.tscn" id="1_nb4pg"]
+[ext_resource type="Script" uid="uid://do0an2ljq82sb" path="res://entities/basura/residuo_gigante.gd" id="2_54eif"]
+
+[node name="ResiduoGigante" unique_id=2023222528 instance=ExtResource("1_nb4pg")]
+script = ExtResource("2_54eif")

@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://8axil6obvf53" path="res://assets/audio/sfx/Finish-Line-2nd-to-4th-Place-Mario-Kart-64-OST.ogg" id="12_vm7fe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e87rb"]
-size = Vector2(233, 109)
+size = Vector2(200.5, 109)
 
 [sub_resource type="Animation" id="Animation_vss5t"]
 length = 0.001
@@ -63,11 +63,11 @@ modulate = Color(1.3749781, 1.3749781, 1.3749781, 1)
 position = Vector2(-25.000013, -4.7499866)
 scale = Vector2(0.904918, 0.8703704)
 sprite_frames = ExtResource("3_itjt0")
-animation = &"victoria"
+animation = &"caminata_inorganico"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455544391]
 texture_filter = 1
-position = Vector2(8.5, -110.5)
+position = Vector2(-10.25, -73)
 shape = SubResource("RectangleShape2D_e87rb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1083103762]

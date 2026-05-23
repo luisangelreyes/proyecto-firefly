@@ -11,7 +11,7 @@ func _ready():
 		{"nodo": "BoteVIDRIO",   "tipo": "inorganico", "nombre": "Inorgánico"},
 		{"nodo": "BotePLASTICO", "tipo": "tela",       "nombre": "Tela"},
 	]
-	SesionGlobal.mundo_actual = 2 
+	
 	catalogo_objetos = [
 		{"frame":26, "sheet":SHEET_N2,    "cols":7,"filas": 6,"escala":0.2, "tipo":"organico",
 		 "nombre":"Restos de Piña",  "explicacion":"Las frutas son residuos orgánicos."},

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bnyy53dvf46tt"]
+
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_d68bf"]
+[ext_resource type="Script" uid="uid://d4gjtveljciqa" path="res://scenes/niveles/NIVEL_FINAL/nivel_boss.gd" id="2_4btpm"]
+[ext_resource type="PackedScene" uid="uid://do8n2x32omw2a" path="res://scenes/niveles/NIVEL_FINAL/Alien.tscn" id="3_vryas"]
+
+[node name="Nivel" unique_id=784809779 instance=ExtResource("1_d68bf")]
+script = ExtResource("2_4btpm")
+lista_canciones = Array[AudioStream]([])
+
+[node name="Alien" parent="." index="14" unique_id=956123243 instance=ExtResource("3_vryas")]
+position = Vector2(960, 80)
