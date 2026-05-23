@@ -14,7 +14,7 @@ var _hint_inorganico_dado: bool = false
 var _hint_peligroso_dado: bool = false
 
 @onready var dialogo    = $DialogoTutorial
-@onready var lbl_oleada = $HUD/LabelOleada   # Label nuevo en el HUD
+@onready var lbl_oleada = $HUD/LabelOleada   
 
 func _ready():
 	tiempo_limite       = 999.0   # sin límite real
@@ -64,6 +64,9 @@ func _ready():
 
 	await get_tree().create_timer(0.5).timeout
 	_mostrar_intro()
+	barra_tiempo.visible = false
+	if has_node("HUD/LabelTiempo"): 
+		$HUD/LabelTiempo.visible = false
 
 # ── INTRO ─────────────────────────────────────────────────────────────────
 func _mostrar_intro():
@@ -72,76 +75,60 @@ func _mostrar_intro():
 		"Usa [color=#e8c428]FLECHAS o WASD[/color] para moverte.\nPresiona [color=#e8c428]E o A[/color] para recoger residuos.",
 		"Cambia de bote con [color=#e8c428]ESPACIO[/color] según\nel tipo de residuo. ¡Vamos!",
 	])
-
 func _on_dialogo_terminado():
+
+	if oleada_activa:
+		return
 	_iniciar_oleada(oleada_actual_tut)
 
-# ── OLEADAS ───────────────────────────────────────────────────────────────
 func _iniciar_oleada(oleada: int):
 	_limpiar_residuos()
 	oleada_activa = true
 	timer_oleada  = DURACION_OLEADA
 	juego_activo  = true
-	recogidos = 0
+	recogidos     = 0
 
 	match oleada:
 		0:
 			if has_node("HUD/LabelOleada"):
 				lbl_oleada.text = "Práctica 1 — Orgánicos e Inorgánicos"
 				lbl_oleada.visible = true
-			
-			# Spawneamos 4 de cada uno
 			_spawnear_cerca(4, "organico")
 			_spawnear_cerca(4, "inorganico")
-			
-			
-			total_residuos = 8
-			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
 			
 		1:
 			if has_node("HUD/LabelOleada"):
 				lbl_oleada.text = "Práctica 2 — ¡Cuidado con los peligrosos!"
-				
-			# Spawneamos basura normal y añadimos los peligrosos
 			_spawnear_cerca(5, "organico")
 			_spawnear_cerca(5, "inorganico")
-			_spawnear_cerca(5, "peligroso")
-			
-			total_residuos = 10 
-			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+			_spawnear_cerca(5, "peligroso") 
 			
 		2:
 			if has_node("HUD/LabelOleada"):
-				lbl_oleada.text = "Oleada Final — ¡Cuidado con los peligrosos!"
-				
-			# Spawneamos basura normal y añadimos los peligrosos
+				lbl_oleada.text = "Práctica 3 — Examen Final"
 			_spawnear_cerca(3, "organico")
-			_spawnear_cerca(2, "inorganico")
-			_spawnear_cerca(2, "peligroso")
-			_spawnear_lejos(5, "organico")
-			_spawnear_lejos(30, "peligroso")
-			_spawnear_lejos(3,"inorganico")
+			_spawnear_cerca(3, "inorganico")
+			_spawnear_cerca(3, "peligroso")
+			_spawnear_lejos(3, "organico")
+			_spawnear_lejos(3, "inorganico")
+			_spawnear_lejos(7, "peligroso")
 			
-			total_residuos = 15 
-			lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
 		3:
-			# Fin del tutorial
 			_finalizar_tutorial()
 			return
 
+	# ── CONTADOR DINÁMICO AUTOMÁTICO ──
+	# Contamos físicamente cuántos objetos reales (que no sean peligrosos) 
+	# lograron aparecer con éxito en el contenedor. ¡Cero números hardcodeados!
+	total_residuos = 0
+	for r in contenedor_res.get_children():
+		if r.tipo != "peligroso":
+			total_residuos += 1
+			
+	lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+
 func _process(delta):
 	super(delta)
-
-	if not oleada_activa or not juego_activo:
-		return
-	if oleada_actual_tut != 2:
-		timer_oleada -= delta
-		if timer_oleada <= 0:
-			_terminar_oleada_por_tiempo()
-	timer_oleada -= delta
-	if timer_oleada <= 0:
-		_terminar_oleada_por_tiempo()
-
 # ── SPAWN CONTROLADO ──────────────────────────────────────────────────────
 func _spawnear_cerca(cantidad: int, tipo_filtro: String):
 	var catalogo_f = catalogo_basura.filter(

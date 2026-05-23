@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="3_ys3mc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7177"]
-radius = 100.85
+radius = 166.29
 
 [node name="ResiduoTopDown" type="Area2D" unique_id=1795362567]
 script = ExtResource("1_o7177")

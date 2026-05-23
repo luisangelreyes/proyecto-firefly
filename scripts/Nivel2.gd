@@ -99,29 +99,11 @@ var timer_activo: bool = false
 
 const GRID_ORIGEN = Vector2(150, 540)   # posición donde aparece el objeto
 
-#func _ready():
-#	_iniciar_nivel()
-#	SesionGlobal.puntaje = 0
-#	lbl_feedback.visible = false
-#	popup.visible = false
-#	_configurar_botes()
 
-	# Usar catálogo del hijo si está definido, si no usar OBJETOS por defecto
-#	if catalogo_objetos.is_empty():
-#		catalogo_objetos = OBJETOS.duplicate()
-
-#	_preparar_cola()
-#	_actualizar_hud()
-#	tiempo_restante = tiempo_limite
-#	timer_activo = true
-#	_siguiente_objeto()
 func _ready():
 
-	# call_deferred espera a que el nodo y todos sus scripts hijos terminen 
-	# de configurarse antes de llamar a la función que arranca el juego.
-	call_deferred("_iniciar_nivel")
 
-	# Usar catálogo del hijo si está definido, si no usar OBJETOS por defecto
+	call_deferred("_iniciar_nivel")
 	if catalogo_objetos.is_empty():
 		catalogo_objetos = OBJETOS.duplicate()
 
@@ -152,7 +134,7 @@ func _iniciar_nivel():
 
 
 func _configurar_botes():
-	desglose.clear() # Limpiamos cualquier dato viejo por seguridad
+	desglose.clear() 
 	
 	for cfg in config_botes:
 		var nodo = get_node_or_null(cfg["nodo"])

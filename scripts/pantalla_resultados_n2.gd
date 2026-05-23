@@ -104,7 +104,6 @@ func _on_boton_siguiente_pressed():
 		)
 		return
 
-	# Ir al mapa del mundo correcto
 	match SesionGlobal.mundo_actual:
 		1: Engine.get_main_loop().change_scene_to_file(
 			"res://scenes/menu/ModoAventura.tscn")
