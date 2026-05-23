@@ -23,14 +23,14 @@ func _ready():
 
 	# ── Música específica de este nivel ───────────────────────────────────
 
-
 func _mostrar_pantalla_crash():
 	if SesionGlobal.vidas <= 0:
 		return
 	nivel_activo = false
 	$Timer.stop()
 	$MusicaFondo.stop()
-	SesionGlobal.completar_nivel(2, 3)
+	SesionGlobal.completar_nivel(2, 2)
+
 	SesionGlobal.guardar_sesion()
 	nivel_completado.emit(        residuos_atrapados,
 		residuos_escapados,

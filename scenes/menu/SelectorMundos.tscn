@@ -4,6 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://b0t5ldbc4l3w6" path="res://assets/ui/fondo_mundos.png" id="2_6j7hr"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="2_w3ieb"]
 [ext_resource type="Texture2D" uid="uid://briigflvck5rm" path="res://assets/ui/tarjetas_mundos-Photoroom.png" id="4_qwy4k"]
+[ext_resource type="Texture2D" uid="uid://ddyjus64r2xag" path="res://entities/UI/titlie_screen2.jpg" id="5_x7wla"]
+[ext_resource type="Texture2D" uid="uid://du0f8ewjp2ij6" path="res://entities/fondos/MINIATURA_MUNDO2.png" id="6_6be2v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5q1b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t7u6"]
+bg_color = Color(1, 1, 1, 0.40392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfm74"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.82359993, 0.87, 0.174, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7wla"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6be2v"]
+bg_color = Color(0.69, 0.69, 0.69, 0.67058825)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydrd7"]
+bg_color = Color(0.12563097, 0.12563097, 0.12563097, 0.6666667)
 
 [node name="SelectorMundos" type="Control" unique_id=1652468886]
 layout_mode = 3
@@ -59,12 +84,25 @@ offset_bottom = 346.0
 texture = ExtResource("4_qwy4k")
 expand_mode = 1
 
+[node name="TextureRect2" type="TextureRect" parent="Mundo1" unique_id=1589619281]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -40.0
+offset_right = 355.0
+offset_bottom = 228.0
+texture = ExtResource("5_x7wla")
+expand_mode = 1
+
 [node name="BtnMundo" type="Button" parent="Mundo1" unique_id=91882427]
 layout_mode = 0
 offset_left = -5.0
 offset_top = -38.0
 offset_right = 365.0
 offset_bottom = 323.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_x5q1b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6t7u6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bfm74")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -108,12 +146,24 @@ offset_bottom = 346.0
 texture = ExtResource("4_qwy4k")
 expand_mode = 1
 
+[node name="TextureRect3" type="TextureRect" parent="Mundo2" unique_id=286742271]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 356.0
+offset_bottom = 228.0
+texture = ExtResource("6_6be2v")
+expand_mode = 1
+
 [node name="BtnMundo" type="Button" parent="Mundo2" unique_id=1344084884]
 layout_mode = 0
 offset_left = -18.0
 offset_top = -48.0
 offset_right = 385.0
 offset_bottom = 323.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_x7wla")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6be2v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydrd7")
+disabled = true
 icon_alignment = 1
 expand_icon = true
 
