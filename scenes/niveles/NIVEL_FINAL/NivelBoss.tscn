@@ -5,12 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://do8n2x32omw2a" path="res://scenes/niveles/NIVEL_FINAL/Alien.tscn" id="3_vryas"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_wd3au"]
 
-[node name="Nivel" unique_id=784809779 instance=ExtResource("1_d68bf")]
+[node name="Nivel" unique_id=784809779 node_paths=PackedStringArray("liz_nodo") instance=ExtResource("1_d68bf")]
 script = ExtResource("2_4btpm")
+liz_nodo = NodePath("Barbara")
 lista_canciones = Array[AudioStream]([])
 
 [node name="Barbara" parent="." index="1" unique_id=1800587545]
 z_index = 1
+iniciar_en_cinematica = true
 
 [node name="TextoOleada" parent="." index="5" unique_id=793852983]
 offset_top = 184.0

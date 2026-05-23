@@ -14,6 +14,7 @@ var racha_actual: int = 0
 @onready var audio_error = $AudioError
 @onready var audio_derrota = $AudioDerrota
 @onready var audio_victoria = $AudioVictoria
+@export var iniciar_en_cinematica: bool = false
 
 # --- NODOS ---
 # Ahora usamos exclusivamente tu nuevo AnimatedSprite2D
@@ -30,10 +31,15 @@ var esta_aturdida: bool = false # Para bloquear a Liz cuando falla
 var nivel_terminado: bool = false # Para bloquear a Liz cuando gana
 
 func _ready():
-	# Inicializamos a Liz con el bote verde (0 = Orgánico)
+	# Inicializamos el bote (0 = Orgánico)
 	bote_activo = 0
-	anim_sprite.play("caminata_organico")
-	anim_sprite.stop()
+	
+	if iniciar_en_cinematica:
+		set_process(false)
+		anim_sprite.play("shockprendida")
+	else:
+		anim_sprite.play("caminata_organico")
+		anim_sprite.stop()
 	
 func _process(delta):
 	if nivel_terminado:
@@ -208,3 +214,20 @@ func _get_multiplicador() -> int:
 	# Cada 4 aciertos consecutivos sube un nivel, máximo 4x
 	# 0-3 = 1x | 4-7 = 2x | 8-11 = 3x | 12+ = 4x
 	return min(racha_actual / 4 + 1, 4)
+# Pon esta función al final de barbara.gd
+# Pon esta función al final de barbara.gd
+func reaccionar_ante_jefe(activar: bool):
+	if activar:
+		# Apagamos el _process normal para que no sobrescriba la animación
+		set_process(false) 
+		anim_sprite.play("shockprendida")
+	else:
+		# Devolvemos el control y la animación normal
+		set_process(true) 
+		
+		# Usamos la lógica que ya tienes para que regrese al bote correcto
+		if bote_activo == 0:
+			anim_sprite.play("caminata_organico")
+		else:
+			anim_sprite.play("caminata_inorganico")
+		anim_sprite.stop()

@@ -8,7 +8,6 @@ enum EstadoBoss {
 	VICTORIA
 }
 var estado_boss: EstadoBoss = EstadoBoss.INTRO
-
 const ACIERTOS_PARA_CARGAR = 10
 var cargador_actual: int = 0
 
@@ -18,14 +17,15 @@ var _timer_vulnerabilidad: SceneTreeTimer = null
 var _ventana_abierta: bool = false
 
 @onready var alien = $Alien
+@export var liz_nodo: Node2D
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 func _ready():
+
 	oleadas = []
 	nivel_activo = false
-
-	# Conectar señales del alien
+	
 	alien.patron_completado.connect(_on_patron_completado)
 	alien.golpeado.connect(_on_alien_golpeado)
 	alien._residuo_spawneado.connect(_on_residuo_spawneado)
@@ -50,17 +50,33 @@ func _ready():
 
 # ── INTRO ─────────────────────────────────────────────────────────────────────
 func _iniciar_intro():
-	# Mostrar aviso narrativo usando TextoOleada
+	if has_node("Barbara"):
+		$Barbara.reaccionar_ante_jefe(true)
+	if alien != null:
+		alien.entrada_cinematica(2.0)
+
+	# 2. Configuración del texto (Tu código original)
 	$TextoOleada.add_theme_color_override("font_color", Color(1.0, 0.3, 0.1, 1.0))
 	$TextoOleada.text = "¡¡EL ALIEN!!"
 	$TextoOleada.visible = true
 	$TextoOleada.modulate.a = 1.0
 
+	# 3. La secuencia del Tween
 	var tween = create_tween()
-	tween.tween_interval(2.0)
+	
+	# Esperamos 2 segundos con el mensaje en pantalla y Liz asustada
+	tween.tween_interval(3.0) 
+	
+	# Desvanecemos el texto
 	tween.tween_property($TextoOleada, "modulate:a", 0.0, 0.8)
+	
 	tween.tween_callback(func():
 		$TextoOleada.visible = false
+		
+		# 4. ¡Liz recupera el valor y el control!
+		if has_node("Barbara"):
+			$Barbara.reaccionar_ante_jefe(false)
+			
 		_iniciar_fase(1)
 	)
 

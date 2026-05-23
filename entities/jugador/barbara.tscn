@@ -63,7 +63,7 @@ modulate = Color(1.3749781, 1.3749781, 1.3749781, 1)
 position = Vector2(-25.000013, -4.7499866)
 scale = Vector2(0.904918, 0.8703704)
 sprite_frames = ExtResource("3_itjt0")
-animation = &"caminata_inorganico"
+animation = &"shockprendida"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455544391]
 texture_filter = 1

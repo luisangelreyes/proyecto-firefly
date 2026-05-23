@@ -27,7 +27,8 @@ signal _residuo_spawneado(nodo)
 
 # ──────────────────────────────────────────────────────────────────────────────
 func _ready():
-	position = Vector2(960, Y_REPOSO)
+	# Empieza abajo, fuera de la vista del jugador
+	position = Vector2(960, 1000) 
 	_aplicar_visual_hp()
 
 func _process(delta):
@@ -219,3 +220,17 @@ func ejecutar_derrota():
 
 	await tween.finished
 	# El nodo queda en escena para que Barbara celebre sobre él
+# ── CINEMÁTICA DE ENTRADA ─────────────────────────────────────────────────────
+# ── CINEMÁTICA DE ENTRADA ─────────────────────────────────────────────────────
+func entrada_cinematica(duracion: float):
+	# 🔴 FIX: Usamos SUBIENDO para que el _process no interfiera
+	estado = Estado.SUBIENDO 
+	
+	var tween = create_tween()
+	tween.tween_property(self, "position:y", Y_REPOSO, duracion)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+		
+	tween.tween_callback(func():
+		estado = Estado.IDLE 
+	)
