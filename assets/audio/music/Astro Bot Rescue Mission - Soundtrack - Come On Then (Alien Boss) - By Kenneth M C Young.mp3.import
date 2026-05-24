@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://27bjxteju77w"
+path="res://.godot/imported/Astro Bot Rescue Mission - Soundtrack - Come On Then (Alien Boss) - By Kenneth M C Young.mp3-8695a6053f35496c496cb435937ea1d0.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Astro Bot Rescue Mission - Soundtrack - Come On Then (Alien Boss) - By Kenneth M C Young.mp3"
+dest_files=["res://.godot/imported/Astro Bot Rescue Mission - Soundtrack - Come On Then (Alien Boss) - By Kenneth M C Young.mp3-8695a6053f35496c496cb435937ea1d0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

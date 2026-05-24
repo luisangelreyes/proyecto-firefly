@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://b0cgtlfrjpxtx"]
 
-[ext_resource type="Script" uid="uid://b4n6cuyykohg3" path="res://scripts/opciones_modo_libre.gd" id="1_k5o5t"]
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_xgvkd"]
-[ext_resource type="Script" uid="uid://6rprvtwo3c8" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
+[ext_resource type="Script" uid="uid://d3ln0thjvgds3" path="res://scripts/LabelConfigurable.gd" id="3_vhjlx"]
 
 [node name="OpcionesModoLibre" type="Control" unique_id=451950470]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_k5o5t")
 
 [node name="Button" type="Button" parent="." unique_id=2067477518]
 layout_mode = 0

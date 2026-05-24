@@ -2,7 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_1sx11"]
 [ext_resource type="Script" uid="uid://cffce5aknta1u" path="res://scenes/niveles/NivelCaida0.gd" id="2_3vtmv"]
+[ext_resource type="AudioStream" uid="uid://b5bps4yul8c2q" path="res://assets/audio/sfx/VICKY.ogg" id="3_7v6oi"]
+[ext_resource type="AudioStream" uid="uid://cxk8xdhcdmg03" path="res://assets/audio/music/Hydro City Zone Act 2.mp3" id="3_y8u28"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_1sx11")]
 script = ExtResource("2_3vtmv")
-lista_canciones = Array[AudioStream]([])
+lista_canciones = Array[AudioStream]([ExtResource("3_y8u28")])
+
+[node name="SonidoGameOver" parent="." index="9" unique_id=602996145]
+stream = ExtResource("3_7v6oi")

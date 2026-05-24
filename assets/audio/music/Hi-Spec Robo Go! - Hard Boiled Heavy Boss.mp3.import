@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpal5w03fgqfs"
+path="res://.godot/imported/Hi-Spec Robo Go! - Hard Boiled Heavy Boss.mp3-c8daa19992c3635a5599c6bb09548293.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Hi-Spec Robo Go! - Hard Boiled Heavy Boss.mp3"
+dest_files=["res://.godot/imported/Hi-Spec Robo Go! - Hard Boiled Heavy Boss.mp3-c8daa19992c3635a5599c6bb09548293.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

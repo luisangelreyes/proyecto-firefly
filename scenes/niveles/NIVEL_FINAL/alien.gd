@@ -15,6 +15,8 @@ var hp: int = 3
 # ── REFERENCIAS ───────────────────────────────────────────────────────────────
 @onready var sprite = $Sprite2D
 @onready var pos_objetivo = Vector2(960, 80)
+@onready var audio_golpe = $AudioGolpe
+
 
 var escena_basura          = preload("res://entities/basura/basura.tscn")
 var escena_residuo_gigante = preload("res://entities/basura/ResiduoGigante.tscn")
@@ -176,6 +178,8 @@ func _spawn_basura(x: float, forzar_peligroso: bool, prob_peligroso: float = 0.2
 
 # ── DAÑO Y VISUAL ─────────────────────────────────────────────────────────────
 func _recibir_golpe():
+	audio_golpe.play()
+
 	hp -= 1
 	golpeado.emit()
 	_flash_dano()
@@ -194,6 +198,8 @@ func _aplicar_visual_hp():
 
 # ── CUTSCENE DE DERROTA ───────────────────────────────────────────────────────
 func ejecutar_derrota():
+	if has_node("Barbara"): # O si usas tu variable liz_nodo
+		$Barbara.celebrar_victoria(true) # <--- ¡Ese 'true' hace toda la magia!
 	estado = Estado.IDLE
 	var suelo_y = 900.0   # ajusta si tu suelo está en otra Y
 

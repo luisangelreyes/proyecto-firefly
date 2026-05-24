@@ -152,7 +152,7 @@ func _ventana_expirada():
 func _on_alien_golpeado():
 	_ventana_abierta = false
 	estado_boss = EstadoBoss.TRANSICION
-
+	
 	# Subir el alien antes de la transición
 	alien.subir()
 	await alien.animacion_lista
@@ -203,7 +203,7 @@ func _iniciar_victoria():
 
 	# Cutscene: alien cae, Barbara celebra
 	alien.ejecutar_derrota()
-	$Barbara.celebrar_victoria()
+	$Barbara.celebrar_victoria(true)
 
 	# Esperar que terminen las animaciones
 	await get_tree().create_timer(3.2).timeout

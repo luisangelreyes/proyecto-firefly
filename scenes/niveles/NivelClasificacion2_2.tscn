@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/nivel2.tscn" id="1_qcklg"]
 [ext_resource type="Script" uid="uid://hgsma0q0jn24" path="res://scenes/niveles/NivelClasificacion2_2.gd" id="2_h3qxt"]
 [ext_resource type="Texture2D" uid="uid://mbrxmxs5gxrw" path="res://entities/basura/sprites/bote_tela-organico-inorganico.png" id="3_pidto"]
+[ext_resource type="AudioStream" uid="uid://b5bps4yul8c2q" path="res://assets/audio/sfx/VICKY.ogg" id="4_nqxs7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqxs7"]
 atlas = ExtResource("3_pidto")
@@ -25,3 +26,6 @@ texture = SubResource("AtlasTexture_nqxs7")
 
 [node name="LabelFeedBack" parent="." index="10" unique_id=746849514]
 visible = false
+
+[node name="AudioVictoria" parent="." index="23" unique_id=46149894]
+stream = ExtResource("4_nqxs7")

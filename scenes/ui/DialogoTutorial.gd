@@ -25,6 +25,12 @@ func iniciar(lista_mensajes: Array):
 	indice_actual = 0
 	visible       = true
 	get_tree().paused = true
+	
+	# NUEVO: Busca la música del nivel y la hace inmune SOLO durante el diálogo
+	var musica = get_tree().current_scene.get_node_or_null("MusicaFondo")
+	if musica:
+		musica.process_mode = Node.PROCESS_MODE_ALWAYS
+		
 	_mostrar_mensaje(0)
 
 func _mostrar_mensaje(indice: int):
@@ -73,18 +79,24 @@ func _animar_continuar():
 func _input(event):
 	if not visible:
 		return
-	var confirmar = (
-		(event is InputEventKey and event.pressed and not event.is_echo()) or
-		(event is InputEventJoypadButton and event.pressed and
-		 event.button_index == JOY_BUTTON_A) or
-		(event is InputEventMouseButton and event.pressed and
-		 event.button_index == MOUSE_BUTTON_LEFT)
-	)
+		
+	var confirmar = false
+	
+	# Verificamos que el botón/tecla haya sido presionado (y no mantenido)
+	if event.is_pressed() and not event.is_echo():
+		if event is InputEventKey:
+			# Solo aceptamos Espacio o Enter
+			if event.keycode == KEY_SPACE or event.keycode == KEY_ENTER:
+				confirmar = true
+		elif event is InputEventJoypadButton:
+			# Solo aceptamos el botón A (índice 0 en la mayoría de mandos)
+			if event.button_index == JOY_BUTTON_A:
+				confirmar = true
+
 	if not confirmar:
 		return
 
 	if escribiendo:
-		# Saltar escritura — mostrar texto completo de golpe
 		escribiendo = false
 		lbl_texto.text = texto_completo
 		lbl_continuar.visible = true
@@ -95,8 +107,12 @@ func _input(event):
 		_mostrar_mensaje(indice_actual)
 	else:
 		_terminar()
-
 func _terminar():
 	visible = false
 	get_tree().paused = false
+	
+	var musica = get_tree().current_scene.get_node_or_null("MusicaFondo")
+	if musica:
+		musica.process_mode = Node.PROCESS_MODE_INHERIT
+		
 	dialogo_terminado.emit()

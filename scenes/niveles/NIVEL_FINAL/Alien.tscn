@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5xiovj6xavs7" path="res://scenes/niveles/NIVEL_FINAL/alien.gd" id="1_larnf"]
 [ext_resource type="SpriteFrames" uid="uid://bq6w4wkvsii3d" path="res://scenes/niveles/NIVEL_FINAL/animacion_alien.tres" id="2_eycfk"]
+[ext_resource type="AudioStream" uid="uid://ctjqr7y5p4xq2" path="res://assets/audio/sfx/GOLPE_ALIEN.ogg" id="3_fs6t8"]
 
 [node name="Alien" type="Node2D" unique_id=956123243]
 script = ExtResource("1_larnf")
@@ -12,4 +13,7 @@ scale = Vector2(0.69140625, 0.69140625)
 sprite_frames = ExtResource("2_eycfk")
 animation = &"alien_idle"
 autoplay = "alien_idle"
-frame_progress = 0.30723596
+frame_progress = 0.6234287
+
+[node name="AudioGolpe" type="AudioStreamPlayer" parent="." unique_id=334822858]
+stream = ExtResource("3_fs6t8")

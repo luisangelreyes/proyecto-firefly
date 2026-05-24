@@ -2,13 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_d68bf"]
 [ext_resource type="Script" uid="uid://d4gjtveljciqa" path="res://scenes/niveles/NIVEL_FINAL/nivel_boss.gd" id="2_4btpm"]
+[ext_resource type="AudioStream" uid="uid://ck7d5nawjmu6f" path="res://assets/audio/music/Come On Then (Alien Boss) - By Kenneth M C Young.ogg" id="3_h686e"]
 [ext_resource type="PackedScene" uid="uid://do8n2x32omw2a" path="res://scenes/niveles/NIVEL_FINAL/Alien.tscn" id="3_vryas"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_wd3au"]
+[ext_resource type="Texture2D" uid="uid://fllvwwj87tha" path="res://entities/fondos/julian-nguyen-you-stg4-lvl2-a.jpg" id="4_h686e"]
 
 [node name="Nivel" unique_id=784809779 node_paths=PackedStringArray("liz_nodo") instance=ExtResource("1_d68bf")]
 script = ExtResource("2_4btpm")
 liz_nodo = NodePath("Barbara")
-lista_canciones = Array[AudioStream]([])
+lista_canciones = Array[AudioStream]([ExtResource("3_h686e")])
+
+[node name="Fondo" parent="." index="0" unique_id=1396352973]
+anchors_preset = 15
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = 334.0
+offset_right = 2060.1665
+offset_bottom = 1170.0
+grow_vertical = 2
+texture = ExtResource("4_h686e")
 
 [node name="Barbara" parent="." index="1" unique_id=1800587545]
 z_index = 1

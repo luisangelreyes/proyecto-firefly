@@ -7,6 +7,7 @@ var tutorial_completado: bool = false
 @onready var dialogo = $DialogoTutorial
 
 func _ready():
+	$MusicaFondo.play()
 	popup.visible = false
 	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
 	$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)

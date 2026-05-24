@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scripts/pantalla_resultados_n2.gd" id="3_vrnrg"]
 [ext_resource type="Texture2D" uid="uid://blpqlrjc7il0u" path="res://assets/ui/cuadro_de_texto-removebg-preview.png" id="5_j7nqj"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="5_tbdeb"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="6_xrm4e"]
 [ext_resource type="SpriteFrames" uid="uid://duavve81lrb35" path="res://entities/jugador/lis_nivel_1.tres" id="8_byvsu"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_tbdeb"]
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="9_c6fl3"]
@@ -190,11 +191,12 @@ theme_override_fonts/font = ExtResource("5_tbdeb")
 theme_override_font_sizes/font_size = 40
 text = "❤️❤️❤️"
 
-[node name="LabelFeedBack" type="Label" parent="." unique_id=746849514]
-offset_left = 45.0
-offset_top = -9.0
-offset_right = 1864.0
-offset_bottom = 945.0
+[node name="LabelFeedBack" type="Label" parent="." unique_id=1406337311]
+offset_left = 743.0
+offset_top = 175.0
+offset_right = 1278.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("6_xrm4e")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 

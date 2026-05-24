@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="3_hm1ko"]
 [ext_resource type="AudioStream" uid="uid://cwxjuawhi1abp" path="res://assets/audio/music/musica_C.ogg" id="3_kqvyy"]
 [ext_resource type="PackedScene" uid="uid://cmsvqkygh1on8" path="res://scenes/ui/DialogoTutorial.tscn" id="5_aja5g"]
+[ext_resource type="AudioStream" uid="uid://b5bps4yul8c2q" path="res://assets/audio/sfx/VICKY.ogg" id="6_tpfj4"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_hd5p7")]
 script = ExtResource("2_ew45k")
@@ -123,6 +124,9 @@ theme_override_fonts/font = ExtResource("3_hm1ko")
 theme_override_font_sizes/font_size = 80
 text = "f"
 metadata/_edit_use_anchors_ = true
+
+[node name="SonidoGameOver" parent="." index="10" unique_id=602996145]
+stream = ExtResource("6_tpfj4")
 
 [node name="DialogoTutorial" parent="." index="14" unique_id=530390666 instance=ExtResource("5_aja5g")]
 

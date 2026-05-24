@@ -4,7 +4,7 @@ extends Control
 
 @export var factor_tamaño: float = 1.0
 @export var usar_tamaño_activo: bool = true
-@export var escalar_icono: bool = false  # Solo se activa para CheckButtons
+@export var escalar_icono: bool = false  
 
 func _ready():
 	_actualizar_tamaño()

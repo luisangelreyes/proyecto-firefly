@@ -92,7 +92,6 @@ func _process(delta):
 	# Sincronizar la sombra con el frame actual de Liz
 #	sprite_sombra.frame = anim_sprite.frame	
 	
-	# 6. Límite de pantalla
 	var ancho_pantalla = get_viewport_rect().size.x
 	position.x = clamp(position.x, 40, ancho_pantalla - 40)
 		
@@ -142,12 +141,13 @@ func _on_area_entered(area):
 				SesionGlobal.tiempo_ultimo_residuo = ahora
 				
 			else:
+				audio_error.play()
 				racha_actual = 0                           # ← resetear racha
 				SesionGlobal.combo = 1
 				combo_actualizado.emit(0, 1) 
 				SesionGlobal.vidas -= 1
 				Input.start_joy_vibration(0, 0.0, 0.5, 0.3)
-				audio_error.play()
+				
 				resultado_tutorial.emit(false)
 				residuo_clasificado.emit(false, tipo_que_cayo)
 				recibir_dano() # <--- Activamos la animación de falla
@@ -165,6 +165,7 @@ func actualizar_interfaz():
 
 # --- NUEVA FUNCIÓN: ANIMACIÓN DE FALLA ---
 func recibir_dano():
+	audio_error.play()
 	# PROTECCIÓN: Si ya está aturdida, ignoramos el golpe para no congelar el juego
 	if esta_aturdida:
 		return
@@ -187,14 +188,19 @@ func recibir_dano():
 	else:
 		anim_sprite.play("caminata_inorganico")
 	anim_sprite.stop()
-# --- NUEVA FUNCIÓN: VICTORIA ---
-func celebrar_victoria():
+
+func celebrar_victoria(es_jefe: bool = false):
 	nivel_terminado = true
-	audio_victoria.play()
 	
+	if es_jefe:
+		var sonido_epico = load("res://assets/audio/sfx/JEFE_DERROTADO.ogg")
+		audio_victoria.stream = sonido_epico
+		audio_victoria.play()
+	else:
+		# Reproduce el sonido normal de siempre (Mario Kart)
+		audio_victoria.play()
 	
 	# Reproduce la animación de baile. 
-	# (Si hiciste dos animaciones distintas para cada bote, usa un if/else como en recibir_dano)
 	anim_sprite.play("victoria")
 # --- NUEVA FUNCIÓN: DERROTA (GAME OVER) ---
 func ejecutar_derrota():

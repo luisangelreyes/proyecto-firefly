@@ -7,8 +7,13 @@ var _intento_peligroso = 0
 var _fase_dialogo    = ""  # "intro" | "instruccion" | "error" | "final"
 
 @onready var dialogo = $DialogoTutorial
-
+@onready var reproductor_musica = $MusicaFondo
 func _ready():
+	
+	# 2. Tu lógica normal para reproducir la música
+	if lista_canciones.size() > 0:
+		reproductor_musica.stream = lista_canciones[0] 
+		reproductor_musica.play()
 	SesionGlobal.vidas   = 3
 	SesionGlobal.puntaje = 0
 	oleadas                = [3, 3, 3]
@@ -112,7 +117,9 @@ func _on_dialogo_terminado():
 func _evaluar_resultado_jugador(acierto: bool):
 	if not tutorial_activo:
 		return
-
+	if not acierto:
+		SesionGlobal.vidas = 3
+		$Barbara.actualizar_interfaz()
 	if paso_tutorial == 2:
 		if not acierto:
 			_fase_dialogo = "error"
@@ -159,9 +166,11 @@ func lanzar_basura_tutorial():
 	if is_instance_valid(basura_actual):
 		basura_actual.queue_free()
 		basura_actual = null
-	if paso_tutorial == 0:
-		SesionGlobal.vidas = 3
-		$Barbara.actualizar_interfaz()
+		
+	# SEGUNDO SEGURO: Siempre recargamos vidas al reintentar
+	SesionGlobal.vidas = 3
+	$Barbara.actualizar_interfaz()
+	
 	_iniciar_paso()
 
 # ── ESQUIVE PELIGROSO ─────────────────────────────────────────────────────

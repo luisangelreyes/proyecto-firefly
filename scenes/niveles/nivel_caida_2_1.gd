@@ -13,15 +13,12 @@ func _ready():
 	DIFICULTAD_OLEADAS = [
 		[400.0, 1.55, 0.02],   # Oleada 1 — primer contacto con peligrosos
 		[440.0, 1.47, 0.08],   # Oleada 2 — más frecuentes
-		[475.0, 1.40, 0.02],   # Oleada 3 — presión real
-		[510.0, 1.34, 0.06],   # Oleada 4 — desafío del mundo 1
+		[475.0, 0.40, 0.02],   # Oleada 3 — presión real
+		[510.0, 0.34, 0.06],   # Oleada 4 — desafío del mundo 1
 	]
 
 	super()
-
-	# ── Música específica de este nivel ───────────────────────────────────
-
-
+	
 func _mostrar_pantalla_crash():
 	if SesionGlobal.vidas <= 0:
 		return
