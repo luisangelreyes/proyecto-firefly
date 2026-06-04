@@ -17,7 +17,7 @@ Recolectores: Reordenando Resiudos
 
 ---
 
-## 📖 ¿Qué es Recolectores?
+##  ¿Qué es Recolectores?
 
 **Recolectores: Reordenando Residuos** es un videojuego educativo 2D desarrollado por **Coyote Studio** como proyecto de juego serio (*serious game*) orientado a estudiantes de educación primaria (6–12 años).
 
@@ -27,7 +27,7 @@ El juego sigue a **Liz** y su abuelo **Sergio**, pepenadores urbanos que trabaja
 
 
 
-## 🧠 Fundamento Pedagógico
+## Fundamento Pedagógico
 
 El juego está diseñado siguiendo la **tabla de Mecánicas de Aprendizaje – Mecánicas de Juego (LM-GM)** y alineado con objetivos curriculares de la **SEP (Secretaría de Educación Pública)** de México.
 
@@ -142,5 +142,6 @@ El código fuente está disponible para fines de investigación en diseño de ju
 
 <div align="center">
 
+**Recolectores: RR tendrá una expansión de contenido próximamente**
 
 </div>
