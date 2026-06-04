@@ -1,6 +1,7 @@
-Un juego de Coyote Studio: #  Recolectores: Reordenando Resiudos
+Un juego de Coyote Studio: 
 
-> *"Lo que tiramos no desaparece — alguien lo carga."*
+Recolectores: Reordenando Resiudos
+
 
 <div align="center">
 
@@ -37,37 +38,34 @@ El juego está diseñado siguiendo la **tabla de Mecánicas de Aprendizaje – M
 | LM-3 | Identificar y esquivar residuos peligrosos | Aplicar | Procedimental + Actitudinal |
 | LM-4 | Pantalla de Game Over con consejo ambiental | Evaluar | Actitudinal |
 
-El error no es penalización — es **retroalimentación formativa**. Cada clasificación incorrecta activa una explicación breve de Don Sergio sobre por qué ese residuo pertenece a otra categoría.
+El error no es penalización — es **retroalimentación formativa**. Cada clasificación incorrecta activa una explicación breve de Sergio sobre por qué ese residuo pertenece a otra categoría.
 
 ---
 
-## 🕹️ Mecánicas Principales
+##  Mecánicas Principales
 
 ### Nivel 1 — Caída de Residuos
-Inspirado en los clásicos arcade de caída de objetos. Los residuos caen desde la parte superior de la pantalla y Liz debe atraparlos con el bote correcto (orgánico/inorgánico) o esquivarlos si son peligrosos. El nivel funciona por **oleadas definidas** — no es infinito — y al terminar muestra una pantalla de resultados con cuántos residuos clasificaste, cuántos se escaparon y tu puntaje.
+Inspirado en los clásicos arcade de caída de objetos. Los residuos caen desde la parte superior de la pantalla y Liz debe atraparlos con el bote correcto (orgánico/inorgánico) o esquivarlos si son peligrosos. El nivel funciona por **oleadas definidas** no es infinito  y al terminar muestra una pantalla de resultados con cuántos residuos clasificaste, cuántos se escaparon y tu puntaje.
 
 ### Nivel 2 — Clasificación del Morral
 Los residuos recolectados durante la jornada salen uno por uno del morral de Liz. El jugador tiene **8 segundos** para arrastrar cada objeto al contenedor correcto (papel, vidrio, plástico). Si el tiempo se agota, pierde una vida pero puede intentarlo de nuevo con el mismo objeto. Los errores muestran una explicación educativa antes de continuar.
 
-### Nivel 3 — Exploración Top-Down *(en desarrollo)*
-Vista cenital estilo *Hotline Miami* adaptada al contexto educativo. Liz recorre un terreno baldío recolectando residuos dispersos. El **vagabundo** y su **perro** patrullan el territorio — si te detectan, el nivel reinicia completamente. Una sola vida. La dificultad viene de leer patrones, no de velocidad de reacción.
+### Nivel 3 — Exploración  
+Vista cenital estilo *Hotline Miami* adaptada al contexto educativo. Liz recorre un parque recolectando residuos dispersos. si fallas, el nivel reinicia completamente. Una sola vida. La dificultad viene de identificar residuos reciclables y no reciclables.
 
 ---
 
-## 👥 Personajes
+## Personajes
 
-### Eli
-Protagonista principal. Joven pepenadora que aprende el oficio de su abuelo. Enérgica, curiosa y comprometida con su comunidad. Sus animaciones de caminar e idle reflejan el contexto urbano popular mexicano.
+### Liz
+Protagonista principal. Joven pepenadora que aprende el oficio de su abuelo. Enérgica, curiosa y comprometida con su comunidad.
 
-### Don Sergio
-El abuelo de Eli. Pepenador experimentado que conoce el sistema de reciclaje desde adentro. Aparece como narrador y consejero — sus líneas de diálogo son el canal principal de retroalimentación educativa.
-
-### El Vagabundo y su perro
-Antagonistas no violentos del Nivel 3. También dependen de los residuos para sobrevivir, pero de forma diferente a Eli y Don Sergio. No son villanos — son un espejo del mismo sistema visto desde otro ángulo. El perro patrulla de forma independiente con IA de persecución.
+### Sergio
+El abuelo de Liz. Pepenador experimentado que conoce el sistema de reciclaje desde adentro. Aparece como narrador y consejero sus líneas de diálogo son el canal principal de retroalimentación educativa.
 
 ---
 
-## 🏫 Diseño para el Aula
+## Diseño para el Aula
 
 Recolectores fue diseñado con restricciones reales del sistema escolar mexicano:
 
@@ -83,7 +81,7 @@ Recolectores fue diseñado con restricciones reales del sistema escolar mexicano
 
 ---
 
-## ⚙️ Especificaciones Técnicas
+## Especificaciones Técnicas
 
 ```
 Motor:           Godot Engine 4.x
@@ -101,7 +99,7 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto
+## Cómo ejecutar el proyecto
 
 ### En Godot Engine (desarrollo)
 ```bash
@@ -121,7 +119,7 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 
 ---
 
-## 👨‍💻 Equipo
+##  Equipo
 
 **Coyote Studio**
 
@@ -134,7 +132,7 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 ---
 
 
-## 📄 Licencia
+##  Mucho ojo 👀
 
 Este proyecto es desarrollado con fines **académicos y educativos no comerciales**.  
 Es posible que elementos del juego estén sujetas a derechos de autor. 
@@ -144,6 +142,5 @@ El código fuente está disponible para fines de investigación en diseño de ju
 
 <div align="center">
 
-**Coyote Studio © 2025**
 
 </div>
