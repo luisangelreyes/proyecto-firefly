@@ -31,7 +31,7 @@ var escena_residuo: PackedScene = preload("res://entities/basura/ResiduoTopDown.
 @onready var hit_counter       = $HitCounter
 
 const NOMBRES_BOTE = ["Orgánico", "Inorgánico"]
-const COLOR_BOTE   = [Color("#4fb87a"), Color("#4a8fd4")]
+const COLOR_BOTE   = [Color("00f969ff"), Color("0e95ffff")]
 
 func _ready():
 	SesionGlobal.vidas   = 1

@@ -13,7 +13,7 @@ const MECANICAS = [
 		"nombre":      "Clasificación",
 		"descripcion": "Arrastra cada residuo al contenedor correcto\nantes de que se acabe el tiempo.",
 		"color":       Color("#1a1a2e"),
-		"escena":      "res://scenes/menu/OpcionesClasificacion.tscn",
+		"escena":      "res://scenes/niveles/modo_libre/OpcionesClasificacion.tscn",
 	},
 	{
 		"id":          "topdown",

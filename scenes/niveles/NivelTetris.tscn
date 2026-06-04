@@ -66,6 +66,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PantallaGameOver" type="CanvasLayer" parent="." unique_id=2023749978]
+visible = false
 
 [node name="Fondo" type="ColorRect" parent="PantallaGameOver" unique_id=820411391]
 anchors_preset = 15

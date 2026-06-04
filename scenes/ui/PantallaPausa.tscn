@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btt4ojnnu2aka"]
 
 [ext_resource type="Script" uid="uid://1oam4e0lud05" path="res://scenes/ui/PantallaPausa.gd" id="1_qq7xk"]
+[ext_resource type="Script" uid="uid://rvxj55rtotgt" path="res://scripts/TextoAdaptativo.gd" id="2_oxkur"]
 
 [node name="PantallaPausa" type="CanvasLayer" unique_id=1921388617]
 process_mode = 3
@@ -72,3 +73,19 @@ offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
+
+[node name="LabelControles" type="Label" parent="." unique_id=788819180]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -219.5
+offset_top = -30.0
+offset_right = 219.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "A / Enter  Seleccionar     ESC  Menú Principal"
+horizontal_alignment = 1
+script = ExtResource("2_oxkur")

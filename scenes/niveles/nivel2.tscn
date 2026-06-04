@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scripts/Nivel2.gd" id="1_qrsul"]
 [ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="2_fqim2"]
-[ext_resource type="Texture2D" uid="uid://d0icn37ol36tc" path="res://assets/ui/fondo_nivel_2.png" id="2_iqwmd"]
+[ext_resource type="Texture2D" uid="uid://d0icn37ol36tc" path="res://entities/fondos/fondo_nivel_2.png" id="2_iqwmd"]
 [ext_resource type="Texture2D" uid="uid://dkt4p2pgn471s" path="res://entities/UI/cursor.png" id="3_62nbq"]
 [ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scripts/pantalla_resultados_n2.gd" id="3_vrnrg"]
 [ext_resource type="Texture2D" uid="uid://blpqlrjc7il0u" path="res://assets/ui/cuadro_de_texto-removebg-preview.png" id="5_j7nqj"]

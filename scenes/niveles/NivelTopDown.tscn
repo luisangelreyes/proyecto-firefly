@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="1_biqqu"]
 [ext_resource type="Script" uid="uid://cgo5sx2rjpk21" path="res://scenes/niveles/NivelTopDown.gd" id="1_ikboe"]
 [ext_resource type="Texture2D" uid="uid://3p75sjsbb4eg" path="res://entities/fondos/ChatGPT Image May 14, 2026, 11_04_17 PM (1).png" id="2_731va"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="5_085ah"]
 [ext_resource type="SpriteFrames" uid="uid://dbp5k15mlsl00" path="res://entities/jugador/liz_bote_verde.tres" id="5_gpq5o"]
 [ext_resource type="Texture2D" uid="uid://ropephiwdbu7" path="res://entities/jugador/sprites/bote_no_reciclables-removebg-preview.png" id="7_rfqio"]
 [ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://scenes/ui/HitCounter.tscn" id="8_gpq5o"]
@@ -261,10 +262,10 @@ position_smoothing_speed = 8.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1185437524]
 
-[node name="BarraTiempo" type="ProgressBar" parent="HUD" unique_id=2038981329]
+[node name="BarraTiempo" type="ProgressBar" parent="HUD" unique_id=100894599]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 300.0
+offset_left = 479.0
 offset_top = 19.0
 offset_right = -180.0
 offset_bottom = 46.0
@@ -273,29 +274,54 @@ max_value = 90.0
 value = 90.0
 show_percentage = false
 
-[node name="LabelTiempo" type="Label" parent="HUD" unique_id=84531734]
-offset_left = 1015.0
-offset_top = 64.0
-offset_right = 1545.0
-offset_bottom = 144.0
-theme_override_font_sizes/font_size = 22
+[node name="LabelTiempo" type="Label" parent="HUD" unique_id=1690871153]
+offset_left = 1517.0
+offset_top = 11.0
+offset_right = 2047.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("5_085ah")
+theme_override_font_sizes/font_size = 69
 text = "90"
+horizontal_alignment = 1
 
-[node name="LabelBote" type="Label" parent="HUD" unique_id=37603496]
-offset_left = 20.0
-offset_top = 28.0
-offset_right = 60.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 18
+[node name="LabelBote" type="Label" parent="HUD" unique_id=804065129]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -37.0
+offset_right = 73.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_085ah")
+theme_override_font_sizes/font_size = 45
+text = ".jiojijo"
 
-[node name="LabelResiduos" type="Label" parent="HUD" unique_id=1627000924]
-offset_left = 1200.0
-offset_top = 28.0
-offset_right = 1240.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 18
+[node name="LabelResiduos" type="Label" parent="HUD" unique_id=1905841417]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -799.0
+offset_top = 9.0
+offset_right = -546.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("5_085ah")
+theme_override_font_sizes/font_size = 45
+text = "residuos 50/51"
 
-[node name="LabelVidas" type="Label" parent="HUD" unique_id=365888104]
+[node name="LabelVidas" type="Label" parent="HUD" unique_id=81339953]
 offset_right = 40.0
 offset_bottom = 23.0
 
@@ -318,5 +344,7 @@ position = Vector2(97, 99)
 [node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("8_gpq5o")]
 
 [node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("9_ivvtp")]
+visible = false
 
 [node name="PantallaResultadosTopDown" parent="." unique_id=599453692 instance=ExtResource("10_085ah")]
+visible = false

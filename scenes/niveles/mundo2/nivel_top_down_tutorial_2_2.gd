@@ -290,11 +290,10 @@ func _terminar_oleada_por_tiempo():
 func _finalizar_tutorial():
 	tutorial_activo = false
 	_limpiar_residuos()
+	_mostrar_resultado(true)
 	SesionGlobal.completar_nivel(2, 2)
 	SesionGlobal.guardar_sesion()
-	Engine.get_main_loop().change_scene_to_file(
-        "res://scenes/menu/ModoAventura2.tscn"
-	)
+	#Engine.get_main_loop().change_scene_to_file("res://scenes/menu/ModoAventura2.tscn")
 
 # ── UTILIDADES ────────────────────────────────────────────────────────────
 func _limpiar_residuos():

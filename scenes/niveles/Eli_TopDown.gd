@@ -82,13 +82,11 @@ func _physics_process(delta):
 	_actualizar_indicador()
 
 	if Input.is_action_just_pressed("cambiar_tacho"):
-		print("1. Se detectó el botón!")
-		print("2. Bote antes del cambio: ", bote_activo)
+	
 		
 		# Cambiamos el valor (de 0 a 1, o de 1 a 0)
 		bote_activo = (bote_activo + 1) % 2
 		
-		print("3. Bote después del cambio: ", bote_activo)
 		
 		# ¡ESTA ES LA LÍNEA CLAVE! Aquí llamamos a la función que hace el cambiazo visual
 		_actualizar_color_bote()
@@ -139,7 +137,7 @@ func _intentar_recoger():
 		recogida_intentada.emit(residuo_enfocado.tipo, bote_activo)
 		residuo_enfocado.intentar_recoger(bote_activo)
 func _actualizar_color_bote():
-	print("4. Ejecutando el cambio visual de SpriteFrames")
+	
 	
 	var animacion_actual = anim.animation
 	var frame_actual = anim.frame

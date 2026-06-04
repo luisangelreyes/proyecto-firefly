@@ -49,17 +49,20 @@ func _ready():
 		
 
 	$BotonVolver.pressed.connect(_on_volver)
+	$BotonVolver.focus_entered.connect(_on_volver_enfocado)
 	_actualizar_mapa()
 	_seleccionar_nivel_activo()
 	_verificar_mundo_completado()
-
+	
+func _on_volver_enfocado():
+	icono.visible = false
+	lbl_descripcion.text = "Regresar al menú principal."
+	_resaltar_nodo(-1) 
+	
 func _verificar_mundo_completado():
-	# Solo transicionar si venimos de completar un nivel
 	if not SesionGlobal.recien_completado:
 		return
-
 	SesionGlobal.recien_completado = false  # resetear inmediatamente
-
 	var todos_completados = true
 	for i in range(CLAVES.size() - 1):
 		var sig = CLAVES[i + 1]
@@ -135,9 +138,22 @@ func _seleccionar_nivel_activo():
 	_mover_icono_a(idx_activo)
 	_resaltar_nodo(idx_activo)
 
+# REEMPLAZA TU FUNCIÓN ACTUAL POR ESTA:
 func _on_nodo_enfocado(indice: int):
+	icono.visible = true # Nos aseguramos de que el icono regrese
 	indice_actual = indice
 	lbl_descripcion.text = DESCRIPCIONES[CLAVES[indice]]
+	
+	# Le quitamos el foco al botón de regresar si lo tenía
+	var foco = get_viewport().gui_get_focus_owner()
+	if foco == $BotonVolver:
+		$BotonVolver.release_focus()
+		
+	# Si el nivel no está bloqueado, le damos el foco real
+	var btn = nodos[CLAVES[indice]].get_node("BtnNodo")
+	if not btn.disabled and foco != btn:
+		btn.grab_focus()
+		
 	_resaltar_nodo(indice)
 	_mover_icono_a(indice)
 
@@ -176,24 +192,45 @@ func _mover_icono_a(indice: int):
 func _on_volver():
 	get_tree().change_scene_to_file("res://scenes/menu/SelectorMundos.tscn")
 
+
 func _unhandled_input(event):
-	if not (event is InputEventKey or event is InputEventJoypadButton or
-			event is InputEventJoypadMotion):
+	if not (event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion):
 		return
-	if event.is_echo():
+	if event.is_echo() or not event.is_pressed():
 		return
 
+	var foco = get_viewport().gui_get_focus_owner()
+
+	# 1. Movimiento Izquierda
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
 		var nuevo = max(0, indice_actual - 1)
-		if nuevo != indice_actual:
-			indice_actual = nuevo
-			_on_nodo_enfocado(nuevo)
+		_on_nodo_enfocado(nuevo)
+		get_viewport().set_input_as_handled()
+
+	# 2. Movimiento Derecha
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
 		var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
-		if nuevo != indice_actual:
-			indice_actual = nuevo
-			_on_nodo_enfocado(nuevo)
+		_on_nodo_enfocado(nuevo)
+		get_viewport().set_input_as_handled()
+
+
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-		_on_nivel_presionado(CLAVES[indice_actual])
-	elif event.is_action_pressed("ui_cancel"):
-		_on_volver()
+		get_viewport().set_input_as_handled() 
+		if foco == $BotonVolver:
+			_on_volver()
+		else:
+			_on_nivel_presionado(CLAVES[indice_actual])
+
+	else:
+		var cancelar = false
+		if event.is_action_pressed("ui_cancel"):
+			cancelar = true
+		elif event is InputEventKey and event.keycode == KEY_ESCAPE:
+			cancelar = true
+		elif event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B:
+			cancelar = true
+
+		if cancelar:
+			get_viewport().set_input_as_handled()
+			
+			_on_volver()

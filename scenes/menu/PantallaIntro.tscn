@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7jxwetbuflp2" path="res://scenes/menu/PantallaIntro.gd" id="1_skeq3"]
 [ext_resource type="Texture2D" uid="uid://blb1qbdstf68c" path="res://entities/UI/title_screen3.png" id="2_4p353"]
 [ext_resource type="FontFile" uid="uid://bnx37nwur2oe" path="res://assets/ui/fonts/GraffitiStreamExtrude-OGL5A.otf" id="3_45du3"]
-[ext_resource type="Texture2D" uid="uid://d3jh2l4duxg1e" path="res://entities/UI/logo_juego-Photoroom.png" id="4_pgn02"]
+[ext_resource type="Texture2D" uid="uid://cxt8xsxhxldk3" path="res://entities/UI/Reordenado Residuos-Photoroom.png" id="4_pgn02"]
 
 [node name="PantallaIntro" type="Control" unique_id=840015892]
 layout_mode = 3
@@ -61,7 +61,7 @@ offset_left = 136.0
 offset_top = 679.0
 offset_right = 176.0
 offset_bottom = 702.0
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 33
 text = "Presiona cualquier botón"
 
 [node name="LabelPerfil" type="Label" parent="." unique_id=1388324223]
@@ -81,9 +81,9 @@ grow_vertical = 2
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1038427860]
 layout_mode = 0
-offset_left = -14.0
-offset_top = -28.0
-offset_right = 831.0
-offset_bottom = 440.0
+offset_left = -17.0
+offset_top = -86.0
+offset_right = 967.0277
+offset_bottom = 459.0
 texture = ExtResource("4_pgn02")
 expand_mode = 1

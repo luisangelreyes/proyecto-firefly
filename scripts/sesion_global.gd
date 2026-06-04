@@ -43,7 +43,31 @@ var ultimo_perfil_usado: String = ""
 var eventos_sesion: Array = []
 var tiempo_inicio_sesion: float = 0.0
 var tiempo_ultimo_residuo: float = 0.0
+signal tipo_control_cambiado(es_mando: bool)
+var usando_mando: bool = false
 
+func _input(event):
+	var hubo_cambio = false
+	
+	# Detectar Teclado o Ratón
+	if event is InputEventKey or event is InputEventMouse or event is InputEventMouseButton:
+		if usando_mando == true:
+			usando_mando = false
+			hubo_cambio = true
+			
+	# Detectar Mando (Control)
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		# Ignoramos movimientos minúsculos de las palancas (stick drift)
+		if event is InputEventJoypadMotion and abs(event.axis_value) < 0.2:
+			return
+			
+		if usando_mando == false:
+			usando_mando = true
+			hubo_cambio = true
+			
+
+	if hubo_cambio:
+		tipo_control_cambiado.emit(usando_mando)
 func iniciar_registro_sesion():
 	eventos_sesion.clear()
 	tiempo_inicio_sesion = Time.get_ticks_msec() / 1000.0

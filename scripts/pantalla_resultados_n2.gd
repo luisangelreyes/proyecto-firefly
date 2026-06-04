@@ -33,28 +33,26 @@ func mostrar_resultados(
 	else:
 		$Fondo/LabelFaltaron.visible = false
 		
-	$Fondo/LabelClasificados.text = "✓ Clasificados correctamente: %d / %d" % [clasificados, total]
+	$Fondo/LabelClasificados.text = "✓ Clasificados correctamente: %d " % [clasificados]
 
 	# Primera vez
 	if primera == total:
 		$Fondo/LabelPrimera.text = "⭐ ¡Todos a la primera!"
 		$Fondo/LabelPrimera.add_theme_color_override("font_color", Color("#fbbf24"))
 	else:
-		$Fondo/LabelPrimera.text = "A la primera: %d / %d" % [primera, total]
+		$Fondo/LabelPrimera.text = "A la primera: %d" % [primera]
 		$Fondo/LabelPrimera.add_theme_color_override("font_color", Color("#ffffff"))
 
-	# Racha
 	$Fondo/LabelRacha.text = "🔥 Mejor racha: %d seguidos" % racha
 
 	# Fallos
 	if fallos == 0:
-		$Fondo/LabelFallos.text = "✓ Sin fallos ni tiempos agotados"
+		$Fondo/LabelFallos.text = "✓ Sin fallos  "
 		$Fondo/LabelFallos.add_theme_color_override("font_color", Color("#86efac"))
 	else:
-		$Fondo/LabelFallos.text = "Fallos y tiempos agotados: %d" % fallos
+		$Fondo/LabelFallos.text = "Fallos: %d" % fallos
 		$Fondo/LabelFallos.add_theme_color_override("font_color", Color("#f87171"))
 
-	# ── DESGLOSE DINÁMICO POR CATEGORÍA ──
 	$Fondo/LabelDesglose.text = "Desglose por categoría:"
 	
 	# Agrupamos tus nodos de interfaz en un Array para manejarlos secuencialmente
@@ -109,5 +107,7 @@ func _on_boton_siguiente_pressed():
 			"res://scenes/menu/ModoAventura.tscn")
 		2: Engine.get_main_loop().change_scene_to_file(
 			"res://scenes/menu/ModoAventura2.tscn")
+		3: Engine.get_main_loop().change_scene_to_file(
+			"res://scenes/menu/ModoLibre.tscn")
 		_: Engine.get_main_loop().change_scene_to_file(
 			"res://scenes/menu/SelectorMundos.tscn")

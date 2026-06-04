@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://d183hrcd7cthk" path="res://assets/ui/fonts/BridgeParapet.ttf" id="2_mcvr8"]
 [ext_resource type="Texture2D" uid="uid://cdbpedrp0k6k8" path="res://assets/ui/crear_perfil-Photoroom.png" id="4_037ec"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="4_y1o0p"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgdb"]
+[ext_resource type="Texture2D" uid="uid://b4pq3wtlehu7b" path="res://assets/ui/PERFILES-Photoroom.png" id="5_3y2rt"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="6_t0a87"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
 
@@ -99,6 +99,9 @@ theme_override_constants/separation = 24
 [node name="LabelBienvenida" type="Label" parent="ContenedorMenu" unique_id=1459043045]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88860947, 0.7621517, 0.34762368, 1)
+theme_override_constants/line_spacing = 4
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_y1o0p")
 theme_override_font_sizes/font_size = 52
 text = "Hola de nuevo!"
@@ -109,8 +112,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/h_separation = 1
-theme_override_fonts/font = ExtResource("4_y1o0p")
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 22
 text = "¿No eres tú? Haz clic aquí para cambiar usuario"
 flat = true
 alignment = 0
@@ -143,22 +145,22 @@ layout_mode = 2
 mouse_filter = 0
 text = "SALIR A ESCRITORIO"
 
-[node name="VentanaPerfiles" type="Panel" parent="." unique_id=239884790]
+[node name="VentanaPerfiles" type="TextureRect" parent="." unique_id=645203916]
 visible = false
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -249.375
-offset_top = -356.0
-offset_right = 249.375
-offset_bottom = 356.0
+offset_left = -413.49072
+offset_top = -387.25
+offset_right = 413.49072
+offset_bottom = 387.25
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_klgdb")
+texture = ExtResource("5_3y2rt")
+expand_mode = 1
 
 [node name="Titulo" type="Label" parent="VentanaPerfiles" unique_id=1710653568]
 layout_mode = 1
@@ -166,9 +168,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -216.0
+offset_top = 29.0
 offset_right = 216.0
-offset_bottom = 65.0
+offset_bottom = 94.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_y1o0p")
 theme_override_font_sizes/font_size = 47
 text = "Selecciona un usuario"
 horizontal_alignment = 1
@@ -180,12 +186,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -193.0
-offset_right = 130.0
-offset_bottom = 113.0
+offset_left = -185.0
+offset_top = -208.0
+offset_right = 181.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_t0a87")
+theme_override_font_sizes/font_size = 28
 icon_mode = 0
 
 [node name="CajaBotones" type="GridContainer" parent="VentanaPerfiles" unique_id=84327750]
@@ -195,35 +203,47 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -155.0
-offset_top = -194.0
-offset_right = 160.0
-offset_bottom = -79.0
+offset_left = -217.0
+offset_top = -257.25
+offset_right = 283.0
+offset_bottom = -72.25
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/h_separation = 15
+theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 15
 columns = 2
 
 [node name="BotonNuevo" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=856684522]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7076762, 0.96332914, 0.5247444, 1)
+theme_override_fonts/font = ExtResource("6_t0a87")
+theme_override_font_sizes/font_size = 30
 text = "Nuevo Perfil"
 
 [node name="BotonBorrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1913930430]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_t0a87")
+theme_override_font_sizes/font_size = 30
 text = "Borrar Perfil"
 
 [node name="BotonSeleccionar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=375787620]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.2287597, 1, 0.92215747, 1)
+theme_override_fonts/font = ExtResource("6_t0a87")
+theme_override_font_sizes/font_size = 30
 text = "Seleccionar"
 
 [node name="BotonCerrar" type="Button" parent="VentanaPerfiles/CajaBotones" unique_id=1215941046]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
-text = "Cancelar"
+theme_override_colors/font_color = Color(0.61776733, 0.9420931, 0.94895524, 1)
+theme_override_fonts/font = ExtResource("6_t0a87")
+theme_override_font_sizes/font_size = 30
+text = "VOLVER"
 
 [node name="VentanaNuevo" type="TextureRect" parent="." unique_id=121078825]
 visible = false
