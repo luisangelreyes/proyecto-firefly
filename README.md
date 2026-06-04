@@ -1,7 +1,10 @@
-Un juego de Coyote Studio: 
-
-Recolectores: Reordenando Resiudos
-
+# RECOLECTORES: RR
+<a href="https://gamejolt.com/games/RECOLECTORES_RR/1072725">
+	<picture>
+		<source media="(prefers-color-scheme: dark)" srcset="https://m.gjcdn.net/game-header/1500/1072725-crop0_81_1920_792-aabx7njj-v4.webp">
+		<img src="https://m.gjcdn.net/game-header/1500/1072725-crop0_81_1920_792-aabx7njj-v4.webp" alt="RECOLECTORES: RR" />
+	</picture>
+</a>
 
 <div align="center">
 
