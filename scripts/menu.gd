@@ -12,7 +12,6 @@ extends Control
 const DESCRIPCIONES = [
 	"Juega la historia de Liz y su abuelo Sergio.",
 	"Pon a prueba tus habilidades en los minijuegos sueltos.",
-	"Consulta tus logros y estadísticas.",
 	"Ajusta controles, audio y accesibilidad.",
 	"Salir al escritorio.",
 	"Cambia de perfil de Jugador"
@@ -26,14 +25,15 @@ var size_inactivo: int = 24
 
 var items: Array = []
 var indice_actual: int = 0
-var menu_bloqueado: bool = false  # true cuando una ventana flotante está abierta
+var menu_bloqueado: bool = false  
 var ultimo_movimiento: int = 0
+
 # ── INICIALIZACIÓN ────────────────────────────────────────────────────────────
 func _ready():
+	SesionGlobal.reproducir_musica_menu()
 	items = [
 		$ContenedorMenu/LabelModoAventura,
 		$ContenedorMenu/LabelArcade,
-		$ContenedorMenu/LabelLogros,
 		$ContenedorMenu/LabelOpciones,
 		$ContenedorMenu/LabelSalir,
 		$ContenedorMenu/BotonCambiar
@@ -164,9 +164,8 @@ func _confirmar_seleccion():
 	match indice_actual:
 		0: _iniciar_modo_aventura()
 		1: _iniciar_arcade()
-		2: get_tree().change_scene_to_file("res://scenes/logros/logros.tscn") 
-		3: get_tree().change_scene_to_file("res://scenes/opciones/opciones.tscn") 
-		4: get_tree().quit()
+		2: get_tree().change_scene_to_file("res://scenes/opciones/opciones.tscn") 
+		3: get_tree().quit()
 
 # ── ACCIONES DEL MENÚ ────────────────────────────────────────────────────────
 func _iniciar_modo_aventura():

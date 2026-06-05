@@ -73,6 +73,12 @@ grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
 
+[node name="LabelLogros" type="Label" parent="CajaBienvenida" unique_id=1700984155]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+text = "LOGROS"
+
 [node name="TextoNombre" type="Label" parent="CajaBienvenida" unique_id=276903915]
 visible = false
 layout_mode = 2
@@ -129,11 +135,6 @@ text = "MODO AVENTURA"
 layout_mode = 2
 mouse_filter = 0
 text = "MODO ARCADE"
-
-[node name="LabelLogros" type="Label" parent="ContenedorMenu" unique_id=1700984155]
-layout_mode = 2
-mouse_filter = 0
-text = "LOGROS"
 
 [node name="LabelOpciones" type="Label" parent="ContenedorMenu" unique_id=20191685]
 layout_mode = 2

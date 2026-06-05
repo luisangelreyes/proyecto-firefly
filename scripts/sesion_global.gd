@@ -7,7 +7,6 @@ var vidas: int = 3
 var combo: int = 1
 var recien_completado: bool = false
 var _musica_menu: AudioStreamPlayer
-# En sesion_global.gd, junto a las demás variables
 var modo_libre_config: Dictionary = {}
 var es_modo_libre: bool = false
 var mundo_actual: int = 1
@@ -31,10 +30,9 @@ const RUTAS_NIVELES: Dictionary = {
 	"2-3": "res://scenes/niveles/NivelCaida2_3.tscn",
 	"2-4": "res://scenes/niveles/nivel2.tscn",#top down 
 	"2-5": "res://scenes/niveles/NivelClasificacion2_5.tscn",
-	"2-6": "res://scenes/niveles/nivel2.tscn",
+	"2-6": "res://scenes/niveles/NIVEL_FINAL/NivelBoss.tscn",
 }
 
-# Ruta del archivo de guardado
 var ruta_guardado: String = "user://perfiles_recolectores.json"
 var ultimo_perfil_usado: String = ""
 var eventos_sesion: Array = []
@@ -42,6 +40,24 @@ var tiempo_inicio_sesion: float = 0.0
 var tiempo_ultimo_residuo: float = 0.0
 signal tipo_control_cambiado(es_mando: bool)
 var usando_mando: bool = false
+
+
+func _ready():
+	_musica_menu = AudioStreamPlayer.new()
+	#_musica_menu.stream = preload("res://assets/audio/music/MENU_FONDO.2mp3.mp3")
+	_musica_menu.volume_db = 0.0
+	_musica_menu.bus = "Master"
+	_musica_menu.autoplay = false
+	add_child(_musica_menu)
+
+func reproducir_musica_menu():
+	if is_instance_valid(_musica_menu) and not _musica_menu.playing:
+		_musica_menu.play()
+
+func detener_musica_menu():
+	if is_instance_valid(_musica_menu) and _musica_menu.playing:
+		_musica_menu.stop()
+		
 
 func _input(event):
 	var hubo_cambio = false
