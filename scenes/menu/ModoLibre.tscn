@@ -146,14 +146,13 @@ offset_top = 180.0
 offset_right = 1380.0
 offset_bottom = 600.0
 
-[node name="PreviewRect" type="ColorRect" parent="PanelPreview" unique_id=543077556]
+[node name="PreviewRect" type="TextureRect" parent="PanelPreview" unique_id=1751877848]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.101960786, 0.18039216, 0.101960786, 1)
 
 [node name="LabelNombrePreview" type="Label" parent="PanelPreview" unique_id=1121056561]
 layout_mode = 0

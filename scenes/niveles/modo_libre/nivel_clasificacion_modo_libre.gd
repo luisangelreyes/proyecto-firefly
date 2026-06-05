@@ -115,6 +115,8 @@ const CONFIG_BOTES = [
 const GRID_ORIGEN = Vector2(100, 320)
 
 func _ready():
+	SesionGlobal.detener_musica_menu()
+	$MusicaFondo.play()
 	SesionGlobal.vidas   = 3
 	SesionGlobal.puntaje = 0
 	popup.visible        = false
@@ -265,13 +267,13 @@ func _get_bote_en(pos: Vector2):
 
 # ── CORRECTO ──────────────────────────────────────────────────────────────
 func _correcto(_item):
+	$AudioAcierto.play()
 	clasificados += 1
 	racha_actual  += 1
 	if racha_actual > racha_maxima:
 		racha_maxima = racha_actual
 	SesionGlobal.puntaje += 10
 
-	# Recargar timer en modo infinito
 	if es_infinito:
 		timer_recargable = min(
 			timer_recargable + SEGUNDOS_POR_ACIERTO,
@@ -288,6 +290,7 @@ func _correcto(_item):
 
 # ── INCORRECTO ────────────────────────────────────────────────────────────
 func _incorrecto(item, tipo_correcto: String):
+	$AudioError.play()
 	fallos       += 1
 	racha_actual  = 0
 	juego_activo  = false
@@ -326,6 +329,7 @@ func _actualizar_hud():
 
 # ── GAME OVER / VICTORIA ──────────────────────────────────────────────────
 func _game_over(causa: String):
+	$MusicaFondo.stop()
 	juego_activo = false
 	timer_activo = false
 	lbl_timer.visible = false
@@ -347,6 +351,8 @@ func _victoria():
 	_mostrar_resultados()
 
 func _mostrar_resultados():
+	$MusicaFondo.stop()
+	$AudioVictoria.play()
 	$PantallaResultadosClasificacion.mostrar_resultados(
 		clasificados,
 		clasificados,   # primera vez — simplificado para modo libre

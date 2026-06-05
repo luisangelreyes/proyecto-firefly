@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="4_h6gas"]
 [ext_resource type="Texture2D" uid="uid://bqjdprdl4diy7" path="res://entities/basura/sprites/bote_metal-madera-vidrio.png" id="5_qysya"]
 [ext_resource type="PackedScene" uid="uid://ciu0dg8aan8aj" path="res://scenes/niveles/modo_libre/PantallaResultadosClasificacionML.tscn" id="7_h6gas"]
+[ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="11_81vm0"]
+[ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="12_8kp1w"]
+[ext_resource type="AudioStream" uid="uid://dpsdu7x02a4y3" path="res://assets/audio/music/Clasificacion1.ogg" id="13_1q2f1"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_2kdee"]
+[ext_resource type="AudioStream" uid="uid://b44u1lpv8eind" path="res://assets/audio/sfx/COMPLETO.ogg" id="15_81vm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8fps"]
 size = Vector2(231, 414.5)
@@ -337,5 +342,20 @@ visible = false
 [node name="PantallaResultadosClasificacion" parent="." unique_id=1841106445 instance=ExtResource("7_h6gas")]
 layer = 12
 visible = false
+
+[node name="AudioAcierto" type="AudioStreamPlayer" parent="." unique_id=833013866]
+stream = ExtResource("11_81vm0")
+
+[node name="AudioError" type="AudioStreamPlayer" parent="." unique_id=1903350404]
+stream = ExtResource("12_8kp1w")
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1644630351]
+stream = ExtResource("13_1q2f1")
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=723025971]
+stream = ExtResource("14_2kdee")
+
+[node name="AudioVictoria" type="AudioStreamPlayer" parent="." unique_id=1044186844]
+stream = ExtResource("15_81vm0")
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]

@@ -1,5 +1,6 @@
 extends Control
 
+
 const MECANICAS = [
 	{
 		"id":          "caida",
@@ -7,6 +8,7 @@ const MECANICAS = [
 		"descripcion": "Atrapa los residuos que caen y clasifícalos\nen el bote correcto antes de que toquen el suelo.",
 		"color":       Color("#1a2e1a"),
 		"escena":      "res://scenes/menu/OpcionesCaida.tscn",
+		"preview":     preload("res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000830.png"),
 	},
 	{
 		"id":          "clasificacion",
@@ -14,13 +16,15 @@ const MECANICAS = [
 		"descripcion": "Arrastra cada residuo al contenedor correcto\nantes de que se acabe el tiempo.",
 		"color":       Color("#1a1a2e"),
 		"escena":      "res://scenes/niveles/modo_libre/OpcionesClasificacion.tscn",
+		"preview":     preload("res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000418.png"),
 	},
 	{
 		"id":          "topdown",
 		"nombre":      "Exploración Top-Down",
 		"descripcion": "Recorre el escenario, recoge los residuos\ny clasifícalos con el bote correcto.",
 		"color":       Color("#2e1a1a"),
-		"escena":      "res://scenes/menu/OpcionesTopDown.tscn",
+		"escena":      "res://scenes/niveles/modo_libre/OpcionesTopDown.tscn",
+		"preview":     preload("res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000523.png"),
 	},
 ]
 
@@ -37,6 +41,7 @@ var items: Array = []
 @onready var lbl_desc_prev     = $PanelPreview/LabelDescPreview
 
 func _ready():
+	SesionGlobal.reproducir_musica_menu()
 	items = [
 		$ListaMecanicas/ItemCaida,
 		$ListaMecanicas/ItemClasificacion,
@@ -86,7 +91,9 @@ func _actualizar_seleccion():
 				fondo.color = COLOR_FONDO_INACTIVO
 
 	var m = MECANICAS[indice_actual]
-	preview_rect.color    = m["color"]
+	preview_rect.texture          = m["preview"]
+	preview_rect.expand_mode      = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	preview_rect.stretch_mode     = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	lbl_nombre_prev.text  = m["nombre"]
 	lbl_desc_prev.text    = m["descripcion"]
 
@@ -108,5 +115,6 @@ func _unhandled_input(event):
 		_actualizar_seleccion()
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		_confirmar_seleccion()
+
 	elif event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
