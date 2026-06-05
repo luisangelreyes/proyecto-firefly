@@ -5,12 +5,12 @@ var basura_actual    = null
 var tutorial_activo  = true
 var _intento_peligroso = 0
 var _fase_dialogo    = ""  # "intro" | "instruccion" | "error" | "final"
+var esperando_respuesta = false
 
 @onready var dialogo = $DialogoTutorial
 @onready var reproductor_musica = $MusicaFondo
 func _ready():
 	
-	# 2. Tu lógica normal para reproducir la música
 	if lista_canciones.size() > 0:
 		reproductor_musica.stream = lista_canciones[0] 
 		reproductor_musica.play()
@@ -52,7 +52,8 @@ func _iniciar_paso():
 	basura_actual = escena_basura.instantiate()
 	basura_actual.position = Vector2(720, 250)
 	add_child(basura_actual)
-
+	basura_actual.tree_exited.connect(_on_basura_destruida)
+	esperando_respuesta = true
 	var material = basura_actual.get_node("Sprite2D").material
 
 	# Congelar Barbara y basura mientras Don Sergio habla
@@ -115,6 +116,7 @@ func _on_dialogo_terminado():
 
 # ── EVALUACIÓN ────────────────────────────────────────────────────────────
 func _evaluar_resultado_jugador(acierto: bool):
+	esperando_respuesta = false
 	if not tutorial_activo:
 		return
 	if not acierto:
@@ -163,6 +165,7 @@ func _avanzar_tutorial():
 
 # ── REINTENTAR PASO ───────────────────────────────────────────────────────
 func lanzar_basura_tutorial():
+	esperando_respuesta = false
 	if is_instance_valid(basura_actual):
 		basura_actual.queue_free()
 		basura_actual = null
@@ -184,7 +187,21 @@ func _finalizar_tutorial():
 	tutorial_activo = false
 	if $Barbara.resultado_tutorial.is_connected(_evaluar_resultado_jugador):
 		$Barbara.resultado_tutorial.disconnect(_evaluar_resultado_jugador)
-	SesionGlobal.completar_nivel(1, 1)
+	SesionGlobal.completar_nivel(0, 1)
 	SesionGlobal.vidas = 3
 	$Barbara.actualizar_interfaz()
 	$Timer.start()
+# ── NUEVO: DETECTAR SI LA BASURA SE ESCAPA (TOCA EL SUELO) ──────────────────
+func _on_basura_destruida():
+	# Si la basura se destruyó y seguimos "esperando respuesta", significa que cayó al suelo
+	if tutorial_activo and esperando_respuesta:
+		esperando_respuesta = false
+
+		# En los pasos 0 y 1, dejarla caer es un error.
+		# (En el paso 2, dejarla caer es lo correcto, así que tu timer de esquive se encargará de avanzar).
+		if paso_tutorial < 2:
+			_fase_dialogo = "error"
+			dialogo.iniciar([
+				"¡Se te escapó el residuo!\nDebes atraparlo antes de que toque el suelo.",
+				"¡Muévete rápido con las flechas y atrápalo!"
+			])

@@ -6,12 +6,10 @@ var puntaje: int = 0
 var vidas: int = 3
 var combo: int = 1
 var recien_completado: bool = false
-
+var _musica_menu: AudioStreamPlayer
 # En sesion_global.gd, junto a las demás variables
 var modo_libre_config: Dictionary = {}
 var es_modo_libre: bool = false
-# ── ESTRUCTURA DE PROGRESO POR MUNDOS ────────────────────────────────────────
-# mundo_actual y nivel_actual indican dónde está el jugador ahora mismo
 var mundo_actual: int = 1
 var nivel_actual: int = 1
 
@@ -21,7 +19,6 @@ var niveles_desbloqueados: Dictionary = {
 	"2-4": false, "2-5": false, "2-6": false,
 }
 
-# Rutas de escena por nivel — se usa desde el menú para cargar la escena correcta
 const RUTAS_NIVELES: Dictionary = {
 	
 	"1-1": "res://scenes/niveles/NivelTutorial1.tscn",
