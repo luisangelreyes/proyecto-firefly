@@ -50,11 +50,33 @@ El error no es penalización — es **retroalimentación formativa**. Cada clasi
 ### Nivel 1 — Caída de Residuos
 Inspirado en los clásicos arcade de caída de objetos. Los residuos caen desde la parte superior de la pantalla y Liz debe atraparlos con el bote correcto (orgánico/inorgánico) o esquivarlos si son peligrosos. El nivel funciona por **oleadas definidas** no es infinito  y al terminar muestra una pantalla de resultados con cuántos residuos clasificaste, cuántos se escaparon y tu puntaje.
 
+
+<p align="center">
+<img src="https://m.gjcdn.net/game-screenshot/1200/50662493-hejixkfk-v4.webp" alt="proyecto" width="300" height="200" aling="center" >
+</p>
+
+
+
 ### Nivel 2 — Clasificación del Morral
 Los residuos recolectados durante la jornada salen uno por uno del morral de Liz. El jugador tiene **8 segundos** para arrastrar cada objeto al contenedor correcto (papel, vidrio, plástico). Si el tiempo se agota, pierde una vida pero puede intentarlo de nuevo con el mismo objeto. Los errores muestran una explicación educativa antes de continuar.
 
+
+<p align="center">
+<img src="https://m.gjcdn.net/game-screenshot/1200/50662487-r56crzy5-v4.webp" alt="proyecto" width="300" height="200" aling="center" >
+</p>
+
+
+
+
 ### Nivel 3 — Exploración  
 Vista cenital estilo *Hotline Miami* adaptada al contexto educativo. Liz recorre un parque recolectando residuos dispersos. si fallas, el nivel reinicia completamente. Una sola vida. La dificultad viene de identificar residuos reciclables y no reciclables.
+
+
+<p align="center">
+<img src="https://m.gjcdn.net/game-screenshot/1200/50662491-xuwrctzq-v4.webp" alt="proyecto" width="300" height="200" aling="center" >
+</p>
+
+
 
 ---
 
@@ -130,7 +152,7 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 |---|---|
 | Luis Ángel Reyes Mendoza | dirección, programación, diseño, Sonido|
 | Fabián Hernández José Manuel | Programación |
-| José Mateos De La Cruz |  Programación , feedback educativo |
+| José Mateos De La Cruz |  Programación , feedback educativo, Sprites |
 | César Eloy Trujillo Martínez | Sistemas de datos, analytics, Programación Opciones Accesibles |
 ---
 
@@ -147,4 +169,5 @@ El código fuente está disponible para fines de investigación en diseño de ju
 
 **Recolectores: RR tendrá una expansión de contenido próximamente**
 
+Disfrute de la deuda tecnica hecha juego
 </div>
