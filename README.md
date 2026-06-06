@@ -160,7 +160,9 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 ##  Mucho ojo 👀
 
 Este proyecto es desarrollado con fines **académicos y educativos no comerciales**.  
-Es posible que elementos del juego estén sujetas a derechos de autor. 
+
+Es posible que elementos del juego (Musica, Sonido) estén sujetas a derechos de autor. 
+
 El código fuente está disponible para fines de investigación en diseño de juegos serios.
 
 ---
