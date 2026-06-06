@@ -187,7 +187,7 @@ func _finalizar_tutorial():
 	tutorial_activo = false
 	if $Barbara.resultado_tutorial.is_connected(_evaluar_resultado_jugador):
 		$Barbara.resultado_tutorial.disconnect(_evaluar_resultado_jugador)
-	SesionGlobal.completar_nivel(0, 1)
+	SesionGlobal.completar_nivel(1, 1)
 	SesionGlobal.vidas = 3
 	$Barbara.actualizar_interfaz()
 	$Timer.start()

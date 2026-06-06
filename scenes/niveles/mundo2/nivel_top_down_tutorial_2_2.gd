@@ -2,8 +2,8 @@ extends "res://scripts/NivelTopDownBase.gd"
 
 # ── CONFIGURACIÓN TUTORIAL ────────────────────────────────────────────────
 const DURACION_OLEADA   = 20.0
-const RADIO_SPAWN_CERCA = 350.0   # residuos normales cerca de Eli
-const RADIO_SEGURO_PELI = 500.0   # peligrosos lejos de Eli
+const RADIO_SPAWN_CERCA = 550.0   # residuos normales cerca de Eli
+const RADIO_SEGURO_PELI = 700.0   # peligrosos lejos de Eli
 
 var oleada_actual_tut: int = 0
 var timer_oleada: float = 0.0
@@ -17,12 +17,12 @@ var _hint_peligroso_dado: bool = false
 @onready var lbl_oleada = $HUD/LabelOleada   
 
 func _ready():
+	#$MusicaFondo.play()
 	tiempo_limite       = 999.0   # sin límite real
 	cantidad_normales   = 0
 	cantidad_peligrosos = 0
 	escena_nivel_actual = \
         "res://scenes/niveles/Mundo2/NivelTopDownTutorial2_2.tscn"
-
 	sprite_sheet = preload(
         "res://entities/basura/sprites/basura_in_or_pelirgo.png"
 	)
@@ -225,19 +225,11 @@ func _on_residuo_correcto_tut(tipo: String):
 
 
 func _on_residuo_incorrecto_tut(tipo: String):
+	$AudioError.play()
 	racha_actual = 0
 	hit_counter.registrar_fallo()
-	
-	# FIX: Reducimos el total_residuos para que no se quede bloqueado el nivel
-	# si el jugador destruye un objeto por equivocarse de bote.
-	total_residuos -= 1
-	# Evitamos que el total baje de los que ya hemos recogido
-	if total_residuos < recogidos:
-		total_residuos = recogidos 
-		
-	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
 
-	# Diálogo de error
+	# 1. Mostramos el diálogo de error correspondiente
 	if tipo == "organico":
 		dialogo.iniciar([
 			"¡Ese era [color=#4fb87a]ORGÁNICO[/color]!\nNecesita el [color=#4fb87a]bote verde[/color]. ¡Inténtalo de nuevo!"
@@ -246,17 +238,42 @@ func _on_residuo_incorrecto_tut(tipo: String):
 		dialogo.iniciar([
 			"¡Ese era [color=#4a8fd4]INORGÁNICO[/color]!\nNecesita el [color=#4a8fd4]bote azul[/color]. ¡Inténtalo de nuevo!"
 		])
-		
-	_revisar_victoria_oleada()
+
+	# 2. Como la basura no se destruye, simplemente actualizamos el texto 
+	# para asegurarnos de que los números se mantengan firmes.
+	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
 	
+func _respawnear_residuo(tipo: String):
+	# Spawnear uno nuevo cerca de Eli del mismo tipo que falló
+	# para que total_residuos no cambie y el nivel no se pueda
+	# completar acumulando errores
+	var catalogo_f = catalogo_basura.filter(
+		func(i): return i["tipo"] == tipo
+	)
+	if catalogo_f.is_empty():
+		return
+
+	var angulo = randf_range(0, TAU)
+	var radio  = randf_range(150.0, RADIO_SPAWN_CERCA)
+	var punto  = eli.global_position + Vector2(
+		cos(angulo) * radio,
+		sin(angulo) * radio
+	)
+	# Fallback si el punto no es válido — usar posición desplazada simple
+	if not _punto_valido(punto):
+		punto = eli.global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+
+	var r = _crear_residuo(catalogo_f.pick_random(), punto)
+	if r:
+		_conectar_residuo(r)
 func _on_peligroso_tut():
+	
 	racha_actual = 0
 	hit_counter.registrar_fallo()
 	# Sin game over — solo mensaje y el residuo peligroso rebota
 	dialogo.iniciar([
         "[color=#d44a4a]¡Cuidado![/color] Los residuos peligrosos hacen daño.\n¡Mantente alejada de ellos!"
 	])
-
 func _terminar_oleada_exitosa():
 	match oleada_actual_tut:
 		0: dialogo.iniciar([
@@ -288,12 +305,14 @@ func _terminar_oleada_por_tiempo():
 	oleada_actual_tut += 1
 # ── FINALIZAR ─────────────────────────────────────────────────────────────
 func _finalizar_tutorial():
+	$MusicaFondo.stop()
+	_activar_iman_contencion()
 	tutorial_activo = false
 	_limpiar_residuos()
 	_mostrar_resultado(true)
-	SesionGlobal.completar_nivel(2, 2)
+	SesionGlobal.completar_nivel(0, 4)
 	SesionGlobal.guardar_sesion()
-	#Engine.get_main_loop().change_scene_to_file("res://scenes/menu/ModoAventura2.tscn")
+	Engine.get_main_loop().change_scene_to_file("res://scenes/niveles/DEMO/ModoAventura0.tscn")
 
 # ── UTILIDADES ────────────────────────────────────────────────────────────
 func _limpiar_residuos():
