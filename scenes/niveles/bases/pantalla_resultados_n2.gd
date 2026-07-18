@@ -60,13 +60,13 @@ func mostrar_resultados(
 	
 	# Diccionario de iconos temáticos para todos tus niveles
 	var iconos = {
-		"papel": "📄",
-		"vidrio": "🟢",
-		"plastico": "🔵",
-		"organico": "🍎",
-		"inorganico": "🥫",
-		"tela": "👕",
-		"metal": "⚙️",   
+		SesionGlobal.Categorias.PAPEL: "📄",
+		SesionGlobal.Categorias.VIDRIO: "🟢",
+		SesionGlobal.Categorias.PLASTICO: "🔵",
+		SesionGlobal.Categorias.ORGANICO: "🍎",
+		SesionGlobal.Categorias.INORGANICO: "🥫",
+		SesionGlobal.Categorias.TELA: "👕",
+		SesionGlobal.Categorias.METAL: "⚙️",   
 		"madera": "🪵"   
 	}
 	
@@ -82,7 +82,7 @@ func mostrar_resultados(
 			var cantidad = desglose[llave_cat]
 			var icono = iconos.get(llave_cat, "📦") # Icono genérico por si creas otra categoría
 			
-			# capitalize() cambia "organico" a "Organico"
+			# capitalize() cambia SesionGlobal.Categorias.ORGANICO a SesionGlobal.Categorias.ORGANICO
 			slots_labels[i].text = "  %s %s: %d" % [icono, llave_cat.capitalize(), cantidad]
 			slots_labels[i].visible = true
 

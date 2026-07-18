@@ -198,7 +198,7 @@ func _iniciar_victoria():
 	$MusicaFondo.stop()
 
 	# Limpiar toda la basura en pantalla
-	for b in get_tree().get_nodes_in_group("basura_caida"):
+	for b in get_tree().get_nodes_in_group(SesionGlobal.Grupos.RESIDUO_CAIDA):
 		b.queue_free()
 
 	# Cutscene: alien cae, Barbara celebra
@@ -224,7 +224,7 @@ func _on_residuo_spawneado(residuo):
 		residuo.tree_exited.connect(_on_residuo_salio)
 	if residuo.has_signal("residuo_escapado"):
 		residuo.residuo_escapado.connect(_on_residuo_escapado)
-	if residuo.categoria != "Peligroso":
+	if residuo.categoria != SesionGlobal.Categorias.PELIGROSO:
 		total_residuos += 1
 
 # ── HUD CARGADOR ──────────────────────────────────────────────────────────────

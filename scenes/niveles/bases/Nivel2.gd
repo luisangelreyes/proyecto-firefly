@@ -6,9 +6,9 @@ var item_agarrado = null
 var usando_mando: bool = false
 # ── CONFIGURACIÓN DE BOTES (sobreescribible por hijos) ───────────────────
 var config_botes: Array = [
-	{"nodo": "BotePAPEL",    "tipo": "papel",    "nombre": "Papel"},
-	{"nodo": "BoteVIDRIO",   "tipo": "vidrio",   "nombre": "Vidrio"},
-	{"nodo": "BotePLASTICO", "tipo": "plastico", "nombre": "Plástico"},
+	{"nodo": "BotePAPEL",    "tipo": SesionGlobal.Categorias.PAPEL,    "nombre": SesionGlobal.Categorias.PAPEL},
+	{"nodo": "BoteVIDRIO",   "tipo": SesionGlobal.Categorias.VIDRIO,   "nombre": SesionGlobal.Categorias.VIDRIO},
+	{"nodo": "BotePLASTICO", "tipo": SesionGlobal.Categorias.PLASTICO, "nombre": "Plástico"},
 ]
 
 # ── CATÁLOGO (sobreescribible por hijos) ──────────────────────────────────
@@ -21,39 +21,36 @@ const COLS = 9   # columnas del sheet
 const FILAS = 4  # filas del sheet
 
 
-# Cada entrada: frame (fila*9+columna), tipo, nombre, explicacion
-var OBJETOS = [
-	{"frame":0,  "tipo":"papel", "nombre":"Periódico",       "explicacion":"El periódico es papel reciclable, va en el contenedor de Papel."},
-	{"frame":1,  "tipo":"papel", "nombre":"Cuaderno",        "explicacion":"El cuaderno es papel, recíclalo en el contenedor de Papel."},
-	{"frame":2,  "tipo":"papel", "nombre":"Caja de cartón",  "explicacion":"El cartón se recicla junto con el papel."},
-	{"frame":3,  "tipo":"papel", "nombre":"Revista",         "explicacion":"Las revistas son papel reciclable."},
-	{"frame":4,  "tipo":"papel", "nombre":"Bolsa de papel",  "explicacion":"Las bolsas de papel van en el contenedor de Papel."},
-	{"frame":5,  "tipo":"papel", "nombre":"Tubo de cartón",  "explicacion":"Los tubos de cartón son reciclables como papel."},
-	{"frame":6,  "tipo":"papel", "nombre":"Caja de leche",   "explicacion":"Las cajas de leche de cartón van en Papel."},
-	{"frame":7,  "tipo":"papel", "nombre":"Periódicos",      "explicacion":"Los periódicos apilados son papel reciclable."},
-	{"frame":8,  "tipo":"papel", "nombre":"Cartón",          "explicacion":"El cartón corrugado va en el contenedor de Papel."},
-	# ── VIDRIO ──
-	{"frame":10, "tipo":"vidrio","nombre":"Botella de vidrio","explicacion":"Las botellas de vidrio van en el contenedor de Vidrio."},
-	{"frame":11, "tipo":"vidrio","nombre":"Frasco",           "explicacion":"Los frascos de vidrio se reciclan en el contenedor de Vidrio."},
-	{"frame":12, "tipo":"vidrio","nombre":"Botella acostada", "explicacion":"Toda botella de vidrio va en el contenedor de Vidrio."},
-	{"frame":13, "tipo":"vidrio","nombre":"Frasco con tapa",  "explicacion":"Los frascos de vidrio van en Vidrio, aunque tengan tapa."},
-	{"frame":14, "tipo":"vidrio","nombre":"Tubo de ensayo",   "explicacion":"El vidrio de laboratorio va en el contenedor de Vidrio."},
-	{"frame":15, "tipo":"vidrio","nombre":"Vaso de vidrio",   "explicacion":"Los vasos de vidrio se reciclan en el contenedor de Vidrio."},
-	{"frame":16, "tipo":"vidrio","nombre":"Vaso pequeño",     "explicacion":"Los vasos de vidrio van en el contenedor de Vidrio."},
-	{"frame":17, "tipo":"vidrio","nombre":"Botellita",        "explicacion":"Las botellitas de vidrio van en el contenedor de Vidrio."},
-	# ── PLÁSTICO ──
-	{"frame":22, "tipo":"plastico","nombre":"Botella aplastada","explicacion":"Las botellas de plástico van en el contenedor de Plástico."},
-	{"frame":23, "tipo":"plastico","nombre":"Yogur",            "explicacion":"Los envases de yogur son plástico reciclable."},
-	{"frame":24, "tipo":"plastico","nombre":"Tapa de plástico", "explicacion":"Las tapas de plástico van en el contenedor de Plástico."},
-	{"frame":25, "tipo":"plastico","nombre":"Caja reciclaje",   "explicacion":"Esta caja de plástico va en el contenedor de Plástico."},
-	{"frame":26, "tipo":"plastico","nombre":"Bolsa de plástico","explicacion":"Las bolsas de plástico van en el contenedor de Plástico."},
-	{"frame":27, "tipo":"plastico","nombre":"Tubo de plástico", "explicacion":"Los tubos de plástico van en el contenedor de Plástico."},
-	{"frame":31, "tipo":"plastico","nombre":"Popote",           "explicacion":"Los popotes son plástico, van en el contenedor de Plástico."},
-
-]
+var OBJETOS = []
 const ItemScene = preload("res://entities/basura/ItemMorral.tscn")
 
-# ── ESTADO DEL NIVEL ──────────────────────────────────────────────────────
+	# ── UI ACTUALIZACIÓN POR SEÑALES ──────────────────────────────────────────
+func _on_tiempo_actualizado(tiempo: float):
+	lbl_timer.text = "%d" % ceil(tiempo)
+	$BarraTiempo.value = tiempo
+	if tiempo <= 10:
+		$BarraTiempo.modulate = Color("#f87171")
+	elif tiempo <= 20:
+		$BarraTiempo.modulate = Color("#fbbf24")
+	else:
+		$BarraTiempo.modulate = Color("#86efac")
+
+func _on_puntos_actualizados(puntos: int):
+	lbl_puntos.text = "Puntos: %d" % puntos
+
+func _on_vidas_actualizadas(vidas: int):
+	lbl_vidas.text = "Vidas: %d" % vidas
+
+func _on_feedback_mostrado(texto: String, color: Color):
+	lbl_feedback.text = texto
+	lbl_feedback.modulate = color
+	lbl_feedback.visible = true
+	fb_timer = 2.0
+	var tween = create_tween()
+	lbl_feedback.scale = Vector2(0.5, 0.5)
+	tween.tween_property(lbl_feedback, "scale", Vector2(1, 1), 0.3).set_trans(Tween.TRANS_BOUNCE)
+
+# ── FUNCIONES AUXILIARES ──────────────────────────────────────────────────────
 var cola_objetos: Array = []      # objetos pendientes mezclados
 var objeto_actual = null          # el que está en pantalla ahora
 var clasificados: int = 0
@@ -71,21 +68,27 @@ var clasificados_primera: int = 0   # correctos sin fallar ni agotar tiempo
 var racha_maxima: int = 0
 var fallos: int = 0                 # mal clasificados + tiempos agotados
 var desglose: Dictionary = {
-	"papel":    0,
-	"vidrio":   0,
-	"plastico": 0,
-	"inorganico":0,
-	"organico":0,
-	"tela":0,
+	SesionGlobal.Categorias.PAPEL:    0,
+	SesionGlobal.Categorias.VIDRIO:   0,
+	SesionGlobal.Categorias.PLASTICO: 0,
+	SesionGlobal.Categorias.INORGANICO:0,
+	SesionGlobal.Categorias.ORGANICO:0,
+	SesionGlobal.Categorias.TELA:0,
 	"madera":0,
-	"metal":0
+	SesionGlobal.Categorias.METAL:0
 }
 var objeto_fallado: bool = false    # flag: este objeto ya tuvo un fallo/timeout
 
 # ── TEMPORIZADOR GENERAL ──────────────────────────────────────────────────
 var tiempo_limite: float = 30.0
 var tiempo_restante: float = 30.0
+signal tiempo_actualizado(tiempo: float)
+signal puntos_actualizados(puntos: int)
+signal vidas_actualizadas(vidas: int)
+signal feedback_mostrado(texto: String, color: Color)
+
 var timer_activo: bool = false
+var timer_juego: Timer
 
 @onready var bote_papel   = $BotePAPEL
 @onready var bote_vidrio  = $BoteVIDRIO
@@ -101,16 +104,31 @@ const GRID_ORIGEN = Vector2(150, 540)   # posición donde aparece el objeto
 
 
 func _ready():
-
+	OBJETOS = SesionGlobal.datos_residuos.get("nivel2_objetos", [])
 
 	call_deferred("_iniciar_nivel")
 	if catalogo_objetos.is_empty():
 		catalogo_objetos = OBJETOS.duplicate()
 
 	_preparar_cola()
-	_actualizar_hud()
+	
+	tiempo_actualizado.connect(_on_tiempo_actualizado)
+	puntos_actualizados.connect(_on_puntos_actualizados)
+	vidas_actualizadas.connect(_on_vidas_actualizadas)
+	feedback_mostrado.connect(_on_feedback_mostrado)
+	
+	puntos_actualizados.emit(SesionGlobal.puntaje)
+	vidas_actualizadas.emit(SesionGlobal.vidas)
+	
 	tiempo_restante = tiempo_limite
 	timer_activo = true
+	
+	timer_juego = Timer.new()
+	timer_juego.wait_time = 0.1
+	timer_juego.autostart = true
+	timer_juego.timeout.connect(_on_timer_tick)
+	add_child(timer_juego)
+
 	_siguiente_objeto()
 	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
 	$PantallaGameOver.menu_presionado.connect(_on_menu_gameover)
@@ -127,9 +145,11 @@ func _iniciar_nivel():
 	if catalogo_objetos.is_empty():
 		catalogo_objetos = OBJETOS.duplicate()
 	_preparar_cola()
-	_actualizar_hud()
+	puntos_actualizados.emit(SesionGlobal.puntaje)
 	tiempo_restante = tiempo_limite
 	timer_activo = true
+	if is_instance_valid(timer_juego):
+		timer_juego.start()
 	_siguiente_objeto()
 
 
@@ -177,26 +197,17 @@ func _process(delta):
 		if fb_timer <= 0:
 			lbl_feedback.visible = false
 	
-	if timer_activo and juego_activo:
-		tiempo_restante -= delta
-		tiempo_restante = max(0, tiempo_restante)
+func _on_timer_tick():
+	if not timer_activo or not juego_activo:
+		return
+	
+	tiempo_restante -= 0.1
+	tiempo_restante = max(0, tiempo_restante)
+	tiempo_actualizado.emit(tiempo_restante)
 
-		# Actualizar label numérico
-		lbl_timer.text = "%d" % ceil(tiempo_restante)
-
-		# Actualizar barra de progreso
-		$BarraTiempo.value = tiempo_restante
-
-		# Cambiar color de barra según urgencia
-		if tiempo_restante <= 10:
-			$BarraTiempo.modulate = Color("#f87171")  # rojo
-		elif tiempo_restante <= 20:
-			$BarraTiempo.modulate = Color("#fbbf24")  # amarillo
-		else:
-			$BarraTiempo.modulate = Color("#86efac")  # verde
-
-		if tiempo_restante <= 0:
-			_tiempo_agotado()
+	if tiempo_restante <= 0:
+		timer_juego.stop()
+		_tiempo_agotado()
 
 	# ── MANDO ─────────────────────────────────────────────────────────────────
 	var joy_x = Input.get_axis("ui_left", "ui_right")
@@ -291,6 +302,7 @@ func _correcto(_item):
 	print("El diccionario contiene: ", _item.tipo)
 	print("Intentando buscar la llave: inorganico")
 	SesionGlobal.puntaje += 10
+	puntos_actualizados.emit(SesionGlobal.puntaje)
 	$AudioAcierto.play()
 	clasificados += 1
 	hit_counter.registrar_acierto(racha_actual)
@@ -303,20 +315,14 @@ func _correcto(_item):
 		clasificados_primera += 1
 	objeto_fallado = false   # reset para el siguiente objeto
 
-	_actualizar_hud()
 	_feedback("¡Correcto! +10 pts", Color("#86efac"))
 	await get_tree().create_timer(0.6).timeout
 	if is_inside_tree() and juego_activo:
 		_siguiente_objeto()
 
-func _actualizar_hud():
-	lbl_puntos.text = "Puntos: %d" % SesionGlobal.puntaje
-	lbl_vidas.text  = "Vidas: %d" % SesionGlobal.vidas
-	if SesionGlobal.vidas <= 0:
-		_game_over()
-	
 func _incorrecto(item, tipo_correcto: String):
 	SesionGlobal.vidas -= 1
+	vidas_actualizadas.emit(SesionGlobal.vidas)
 	$AudioError.play()
 	timer_activo = false
 	# Métricas
@@ -343,18 +349,14 @@ func _incorrecto(item, tipo_correcto: String):
 		explicacion
 	]
 	popup.visible = true
-	_actualizar_hud()
 	if SesionGlobal.vidas <=0:
 		_game_over("clasificacion_incorrecta")
 
 
 
-func _feedback(msg: String, color: Color):
-	lbl_feedback.text = msg
-	lbl_feedback.add_theme_color_override("font_color", color)
-	lbl_feedback.visible = true
-	fb_timer = 2.0
-
+func _feedback(txt: String, color: Color = Color.WHITE):
+	feedback_mostrado.emit(txt, color)
+	
 func _victoria():
 	$MusicaFondo.stop()
 	$AudioVictoria.play()
@@ -391,7 +393,8 @@ func _on_reintentar():
 func _on_menu_gameover():
 	SesionGlobal.vidas   = 3
 	SesionGlobal.puntaje = 0
-	Engine.get_main_loop().change_scene_to_file("res://ui/menu/menu.tscn")
+	puntos_actualizados.emit(SesionGlobal.puntaje)
+	get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
 	
 
 func _on_popup_entendido_pressed():

@@ -12,9 +12,9 @@ var velocidad_rotacion = 0.0
 # Rangos de multiplicador de velocidad por categoría.
 # El nivel asigna velocidad_caida antes de add_child(); _ready() la escala.
 const VELOCIDAD_MULT = {
-	"Organico":   [0.80, 1.00],   # ligeros — caen un poco más despacio
-	"Inorganico": [1.00, 1.25],   # variado  — velocidad normal a rápida
-	"Peligroso":  [1.30, 1.70],   # pesados/urgentes — siempre más rápido
+	SesionGlobal.Categorias.ORGANICO:   [0.80, 1.00],   # ligeros — caen un poco más despacio
+	SesionGlobal.Categorias.INORGANICO: [1.00, 1.25],   # variado  — velocidad normal a rápida
+	SesionGlobal.Categorias.PELIGROSO:  [1.30, 1.70],   # pesados/urgentes — siempre más rápido
 }
 var mostrar_ayuda_visual = true
 var fue_atrapado = false
@@ -33,11 +33,11 @@ func _init():
 	# Este bucle recorre los números del 0 al 49
 	for i in range(50):
 		if i <= 19:
-			CATALOGO_NIVEL_1[i] = "Inorganico"
+			CATALOGO_NIVEL_1[i] = SesionGlobal.Categorias.INORGANICO
 		elif i <= 39:
-			CATALOGO_NIVEL_1[i] = "Organico"
+			CATALOGO_NIVEL_1[i] = SesionGlobal.Categorias.ORGANICO
 		else:
-			CATALOGO_NIVEL_1[i] = "Peligroso"
+			CATALOGO_NIVEL_1[i] = SesionGlobal.Categorias.PELIGROSO
 
 func _ready():
 	$Sprite2D.modulate = Color(1, 1, 1, 1)
@@ -67,11 +67,11 @@ func _ready():
 	mat.set_shader_parameter("activar_borde", mostrar_ayuda_visual)
 	
 	if mostrar_ayuda_visual:
-		if categoria == "Organico":
+		if categoria == SesionGlobal.Categorias.ORGANICO:
 			mat.set_shader_parameter("color_borde", Color(0.0, 1.0, 0.0, 1.0))
-		elif categoria == "Inorganico":
+		elif categoria == SesionGlobal.Categorias.INORGANICO:
 			mat.set_shader_parameter("color_borde", Color(0.0, 0.5, 1.0, 1.0))
-		elif categoria == "Peligroso":
+		elif categoria == SesionGlobal.Categorias.PELIGROSO:
 			mat.set_shader_parameter("color_borde", Color(1.0, 0.0, 0.0, 1.0))
 
 func _process(delta):

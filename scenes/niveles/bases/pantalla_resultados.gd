@@ -31,8 +31,8 @@ func mostrar_resultados(
 
 	# Desglose por tipo
 	$Fondo/LabelDesglose.text = "🌿 Orgánicos:    %d\n♻  Inorgánicos: %d\n⚠  Peligrosos esquivados: %d" % [
-		desglose.get("Organico", 0),
-		desglose.get("Inorganico", 0),
+		desglose.get(SesionGlobal.Categorias.ORGANICO, 0),
+		desglose.get(SesionGlobal.Categorias.INORGANICO, 0),
 		peligrosos_esquivados
 	]
 

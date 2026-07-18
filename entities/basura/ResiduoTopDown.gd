@@ -22,21 +22,21 @@ func _ready():
 		
 	# --- NUEVO: ASIGNAR VELOCIDAD SEGÚN EL TIPO ---
 	match tipo:
-		"organico":   velocidad_movimiento = 40.0  # Lentos y torpes
-		"inorganico": velocidad_movimiento = 60.0  # Velocidad normal
-		"peligroso":  velocidad_movimiento = 100.0 # ¡Peligrosos y rápidos!
+		SesionGlobal.Categorias.ORGANICO:   velocidad_movimiento = 40.0  # Lentos y torpes
+		SesionGlobal.Categorias.INORGANICO: velocidad_movimiento = 60.0  # Velocidad normal
+		SesionGlobal.Categorias.PELIGROSO:  velocidad_movimiento = 100.0 # ¡Peligrosos y rápidos!
 	
 	# Iniciamos el movimiento
 	_elegir_nueva_direccion()
 	timer_dir.timeout.connect(_elegir_nueva_direccion)
 	# ----------------------------------------------
 		
-	add_to_group("residuo_td")
+	add_to_group(SesionGlobal.Grupos.RESIDUO_TD)
 	body_entered.connect(_on_body_entered)
 	
 func mostrar_indicador(es_visible: bool):
 	# Evitamos mostrar el indicador si es peligroso
-	if tipo == "peligroso":
+	if tipo == SesionGlobal.Categorias.PELIGROSO:
 		indicador.visible = false
 	else:
 		indicador.visible = es_visible
@@ -48,23 +48,23 @@ func mostrar_indicador(es_visible: bool):
 
 func _on_body_entered(body):
 	# Si algo con físicas nos toca y somos peligrosos, explotamos/hacemos daño
-	if body.name == "Eli" and tipo == "peligroso":
+	if body.name == "Eli" and tipo == SesionGlobal.Categorias.PELIGROSO:
 		peligroso_tocado.emit()
 		_flash(Color("#d44a4a"))
 
 func intentar_recoger(bote: int):
 	match tipo:
-		"peligroso":
+		SesionGlobal.Categorias.PELIGROSO:
 			peligroso_tocado.emit()
 			_flash(Color("#d44a4a"))
-		"organico":
+		SesionGlobal.Categorias.ORGANICO:
 			if bote == 0:
 				recogido_correcto.emit(tipo)
 				queue_free()
 			else:
 				recogido_incorrecto.emit(tipo)
 				_flash(Color("#ffffff"))
-		"inorganico":
+		SesionGlobal.Categorias.INORGANICO:
 			if bote == 1:
 				recogido_correcto.emit(tipo)
 				queue_free()
@@ -77,9 +77,9 @@ func _flash(color: Color):
 	await get_tree().create_timer(0.15).timeout
 	if is_inside_tree():
 		match tipo:
-			"organico":   sprite.modulate = Color("#4fb87a")
-			"inorganico": sprite.modulate = Color("#4a8fd4")
-			"peligroso":  sprite.modulate = Color("#d44a4a")
+			SesionGlobal.Categorias.ORGANICO:   sprite.modulate = Color("#4fb87a")
+			SesionGlobal.Categorias.INORGANICO: sprite.modulate = Color("#4a8fd4")
+			SesionGlobal.Categorias.PELIGROSO:  sprite.modulate = Color("#d44a4a")
 			
 func _process(delta):
 	# 1. Apuntamos el sensor hacia donde estamos caminando (ej. 50 píxeles hacia adelante)

@@ -114,7 +114,7 @@ func _actualizar_indicador():
 	var menor_dist  = INF
 	
 	for r in residuos:
-		if not r.is_in_group("residuo_td"):
+		if not r.is_in_group(SesionGlobal.Grupos.RESIDUO_TD):
 			continue
 		var d = global_position.distance_to(r.global_position)
 		if d < menor_dist:

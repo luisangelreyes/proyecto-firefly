@@ -5,8 +5,8 @@ signal nivel_completado(atrapados: int, escapados: int, total: int, desglose: Di
 
 # Agrega estas variables junto a las métricas existentes
 var desglose_atrapados: Dictionary = {
-	"Organico":   0,
-	"Inorganico": 0,
+	SesionGlobal.Categorias.ORGANICO:   0,
+	SesionGlobal.Categorias.INORGANICO: 0,
 }
 var peligrosos_esquivados: int = 0
 @export var lista_canciones: Array[AudioStream] = [	
@@ -90,7 +90,7 @@ func _on_combo_actualizado(racha: int, multiplicador: int):
 		$TextoCombo.visible = false
 		
 func _on_residuo_clasificado(acierto: bool, tipo: String):
-	if tipo == "Peligroso":
+	if tipo == SesionGlobal.Categorias.PELIGROSO:
 		return  # los peligrosos no cuentan como clasificables
 	if acierto:
 		residuos_atrapados += 1
@@ -160,11 +160,11 @@ func lanzar_basura_normal():
 	basura.residuo_escapado.connect(_on_residuo_escapado)
 	add_child(basura)
 
-	if basura.categoria != "Peligroso":
+	if basura.categoria != SesionGlobal.Categorias.PELIGROSO:
 		total_residuos += 1
 
 	# ── Alerta visual si es peligroso y hay cupo ──────────────────────────────
-	if basura.categoria == "Peligroso" and _alertas_activas < MAX_ALERTAS:
+	if basura.categoria == SesionGlobal.Categorias.PELIGROSO and _alertas_activas < MAX_ALERTAS:
 		_mostrar_alerta_peligroso(nuevo_x, basura)
 
 # Muestra una sombra en el suelo indicando dónde caerá el peligroso.
@@ -193,7 +193,7 @@ func _mostrar_alerta_peligroso(x: float, basura_ref):
 	)
 # ── NUEVA: residuo que cayó al suelo sin ser tocado ──
 func _on_residuo_escapado(categoria: String):
-	if categoria == "Peligroso":
+	if categoria == SesionGlobal.Categorias.PELIGROSO:
 		peligrosos_esquivados += 1
 		return  # esquivar peligrosos no es un error
 	residuos_escapados += 1
@@ -320,7 +320,7 @@ func _on_oleada_terminada(oleada: int, _total: int):
 	tiempo_entre_residuos  = config[1]
 	probabilidad_peligroso = config[2]
 
-	for basura in get_tree().get_nodes_in_group("basura_caida"):
+	for basura in get_tree().get_nodes_in_group(SesionGlobal.Grupos.RESIDUO_CAIDA):
 		basura.velocidad_caida = config[0]
 
 	_mostrar_aviso_oleada(oleada + 1)

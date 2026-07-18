@@ -63,7 +63,7 @@ func _iniciar_paso():
 	_fase_dialogo = "instruccion"
 
 	if paso_tutorial == 0:
-		basura_actual.categoria = "Organico"
+		basura_actual.categoria = SesionGlobal.Categorias.ORGANICO
 		basura_actual.get_node("Sprite2D").frame = 30
 		material.set_shader_parameter("color_borde", Color(0, 1, 0, 1))
 		dialogo.iniciar([
@@ -73,7 +73,7 @@ func _iniciar_paso():
 		])
 
 	elif paso_tutorial == 1:
-		basura_actual.categoria = "Inorganico"
+		basura_actual.categoria = SesionGlobal.Categorias.INORGANICO
 		basura_actual.get_node("Sprite2D").frame = 3
 		material.set_shader_parameter("color_borde", Color(0, 0.5, 1, 1))
 		dialogo.iniciar([
@@ -83,7 +83,7 @@ func _iniciar_paso():
 		])
 
 	elif paso_tutorial == 2:
-		basura_actual.categoria = "Peligroso"
+		basura_actual.categoria = SesionGlobal.Categorias.PELIGROSO
 		basura_actual.get_node("Sprite2D").frame = 42
 		material.set_shader_parameter("color_borde", Color(1, 0, 0, 1))
 		dialogo.iniciar([

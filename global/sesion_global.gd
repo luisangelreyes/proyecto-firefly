@@ -2,6 +2,22 @@ extends Node
 
 # ── SESIÓN ACTIVA ─────────────────────────────────────────────────────────────
 var perfil_actual: String = ""
+
+const Grupos = {
+	RESIDUO_CAIDA = "basura_caida",
+	RESIDUO_TD = "residuo_td",
+}
+
+const Categorias = {
+	PELIGROSO = "peligroso",
+	ORGANICO = "organico",
+	INORGANICO = "inorganico",
+	PAPEL = "papel",
+	VIDRIO = "vidrio",
+	PLASTICO = "plastico",
+	METAL = "metal",
+	TELA = "tela"
+}
 var puntaje: int = 0
 var vidas: int = 3
 var combo: int = 1
@@ -11,6 +27,7 @@ var modo_libre_config: Dictionary = {}
 var es_modo_libre: bool = false
 var mundo_actual: int = 1
 var nivel_actual: int = 1
+var datos_residuos: Dictionary = {}
 
 var niveles_desbloqueados: Dictionary = {
 	"1-1": true,  "1-2": false, "1-3": false, "1-4": false,
@@ -49,6 +66,20 @@ func _ready():
 	_musica_menu.bus = "Master"
 	_musica_menu.autoplay = false
 	add_child(_musica_menu)
+	_cargar_datos_residuos()
+
+func _cargar_datos_residuos():
+	var file = FileAccess.open("res://global/datos_residuos.json", FileAccess.READ)
+	if file:
+		var text = file.get_as_text()
+		var json = JSON.new()
+		if json.parse(text) == OK:
+			datos_residuos = json.data
+		else:
+			push_error("Error al parsear datos_residuos.json")
+	else:
+		push_error("No se pudo abrir datos_residuos.json")
+
 
 func reproducir_musica_menu():
 	if is_instance_valid(_musica_menu) and not _musica_menu.playing:

@@ -27,30 +27,15 @@ func _ready():
         "res://entities/basura/sprites/basura_in_or_pelirgo.png"
 	)
 
-	catalogo_basura = [
-		{"tipo":"organico",  "nombre":"manzana",
-		 "region":Rect2(2400,2400,800,800)},
-		{"tipo":"organico",  "nombre":"platano",
-		 "region":Rect2(1600,3200,800,800)},
-		{"tipo":"organico",  "nombre":"elote",
-		 "region":Rect2(0,2400,800,800)},
-		{"tipo":"organico",  "nombre":"naranja",
-		 "region":Rect2(4800,2400,800,800)},
-		{"tipo":"inorganico","nombre":"lata_aplastada",
-		 "region":Rect2(0,0,800,800)},
-		{"tipo":"inorganico","nombre":"botella_plastico",
-		 "region":Rect2(800,0,800,800)},
-		{"tipo":"inorganico","nombre":"caja_carton",
-		 "region":Rect2(4800,0,800,800)},
-		{"tipo":"inorganico","nombre":"periodico",
-		 "region":Rect2(4000,0,800,800)},
-		{"tipo":"peligroso", "nombre":"jeringa",
-		 "region":Rect2(4800,4000,800,800)},
-		{"tipo":"peligroso", "nombre":"bateria",
-		 "region":Rect2(4000,4000,800,800)},
-		{"tipo":"peligroso", "nombre":"cigarro",
-		 "region":Rect2(0,4800,800,800)},
-	]
+	var base_catalogo = SesionGlobal.datos_residuos.get("topdown_catalogo", [])
+	catalogo_basura = []
+	for item in base_catalogo:
+		var rect = item["region"]
+		catalogo_basura.append({
+			"tipo": item["tipo"],
+			"nombre": item["nombre"],
+			"region": Rect2(rect[0], rect[1], rect[2], rect[3])
+		})
 
 	super()
 
@@ -93,25 +78,25 @@ func _iniciar_oleada(oleada: int):
 			if has_node("HUD/LabelOleada"):
 				lbl_oleada.text = "Práctica 1 — Orgánicos e Inorgánicos"
 				lbl_oleada.visible = true
-			_spawnear_cerca(4, "organico")
-			_spawnear_cerca(4, "inorganico")
+			_spawnear_cerca(4, SesionGlobal.Categorias.ORGANICO)
+			_spawnear_cerca(4, SesionGlobal.Categorias.INORGANICO)
 			
 		1:
 			if has_node("HUD/LabelOleada"):
 				lbl_oleada.text = "Práctica 2 — ¡Cuidado con los peligrosos!"
-			_spawnear_cerca(5, "organico")
-			_spawnear_cerca(5, "inorganico")
-			_spawnear_cerca(5, "peligroso") 
+			_spawnear_cerca(5, SesionGlobal.Categorias.ORGANICO)
+			_spawnear_cerca(5, SesionGlobal.Categorias.INORGANICO)
+			_spawnear_cerca(5, SesionGlobal.Categorias.PELIGROSO) 
 			
 		2:
 			if has_node("HUD/LabelOleada"):
 				lbl_oleada.text = "Práctica 3 — Examen Final"
-			_spawnear_cerca(3, "organico")
-			_spawnear_cerca(3, "inorganico")
-			_spawnear_cerca(3, "peligroso")
-			_spawnear_lejos(3, "organico")
-			_spawnear_lejos(3, "inorganico")
-			_spawnear_lejos(7, "peligroso")
+			_spawnear_cerca(3, SesionGlobal.Categorias.ORGANICO)
+			_spawnear_cerca(3, SesionGlobal.Categorias.INORGANICO)
+			_spawnear_cerca(3, SesionGlobal.Categorias.PELIGROSO)
+			_spawnear_lejos(3, SesionGlobal.Categorias.ORGANICO)
+			_spawnear_lejos(3, SesionGlobal.Categorias.INORGANICO)
+			_spawnear_lejos(7, SesionGlobal.Categorias.PELIGROSO)
 			
 		3:
 			_finalizar_tutorial()
@@ -122,7 +107,7 @@ func _iniciar_oleada(oleada: int):
 	# lograron aparecer con éxito en el contenedor. ¡Cero números hardcodeados!
 	total_residuos = 0
 	for r in contenedor_res.get_children():
-		if r.tipo != "peligroso":
+		if r.tipo != SesionGlobal.Categorias.PELIGROSO:
 			total_residuos += 1
 			
 	lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
@@ -230,7 +215,7 @@ func _on_residuo_incorrecto_tut(tipo: String):
 	hit_counter.registrar_fallo()
 
 	# 1. Mostramos el diálogo de error correspondiente
-	if tipo == "organico":
+	if tipo == SesionGlobal.Categorias.ORGANICO:
 		dialogo.iniciar([
 			"¡Ese era [color=#4fb87a]ORGÁNICO[/color]!\nNecesita el [color=#4fb87a]bote verde[/color]. ¡Inténtalo de nuevo!"
 		])
@@ -327,7 +312,7 @@ func _limpiar_residuos_peligrosos():
 		return
 	var centro = bote_no_reciclables.get_node("PuntoDeEntrada").global_position
 	for r in contenedor_res.get_children():
-		if is_instance_valid(r) and r.tipo == "peligroso":
+		if is_instance_valid(r) and r.tipo == SesionGlobal.Categorias.PELIGROSO:
 			r.ser_succionado(centro)
 func _revisar_victoria_oleada():
 	# Si ya recogimos todo lo que quedaba en pantalla (o si el total llegó a 0)

@@ -16,14 +16,16 @@ var total_residuos: int = 0
 var recogidos: int = 0
 var racha_actual: int = 0
 var racha_maxima: int = 0
+var timer_juego: Timer
+
+signal tiempo_actualizado(tiempo: float)
+signal bote_cambiado(bote_id: int)
+signal residuos_actualizados(recogidos: int, total: int)
+signal max_tiempo_configurado(tiempo_max: float)
 
 var escena_residuo: PackedScene = preload("res://entities/basura/ResiduoTopDown.tscn")
 
 @onready var eli               = $Mundo/Eli
-@onready var barra_tiempo      = $HUD/BarraTiempo
-@onready var lbl_tiempo        = $HUD/LabelTiempo
-@onready var lbl_bote          = $HUD/LabelBote
-@onready var lbl_residuos      = $HUD/LabelResiduos
 @onready var contenedor_res    = $Mundo/Residuos
 @onready var contenedor_zonas  = $Mundo/ZonasSpawn
 @onready var bote_no_reciclables = $BoteNoReciclables
@@ -37,16 +39,23 @@ func _ready():
 	SesionGlobal.vidas   = 1
 	SesionGlobal.puntaje = 0
 
-	tiempo_restante        = tiempo_limite
-	barra_tiempo.max_value = tiempo_limite
-	barra_tiempo.value     = tiempo_limite
+	var hud_script = load("res://ui/general/hud_topdown.gd")
+	$HUD.set_script(hud_script)
+	$HUD.setup()
+	self.tiempo_actualizado.connect($HUD._on_tiempo_actualizado)
+	self.bote_cambiado.connect($HUD._on_bote_cambiado)
+	self.residuos_actualizados.connect($HUD._on_residuos_actualizados)
+	self.max_tiempo_configurado.connect($HUD._on_max_tiempo_configurado)
+
+	tiempo_restante = tiempo_limite
+	max_tiempo_configurado.emit(tiempo_limite)
 
 	_generar_residuos_aleatorios(cantidad_normales, "normal")
-	_generar_residuos_aleatorios(cantidad_peligrosos, "peligroso")
+	_generar_residuos_aleatorios(cantidad_peligrosos, SesionGlobal.Categorias.PELIGROSO)
 
 	for residuo in contenedor_res.get_children():
-		if residuo.is_in_group("residuo_td"):
-			if residuo.tipo != "peligroso":
+		if residuo.is_in_group(SesionGlobal.Grupos.RESIDUO_TD):
+			if residuo.tipo != SesionGlobal.Categorias.PELIGROSO:
 				total_residuos += 1
 			residuo.recogido_correcto.connect(_on_residuo_correcto)
 			residuo.recogido_incorrecto.connect(_on_residuo_incorrecto)
@@ -59,38 +68,40 @@ func _ready():
 	$PantallaGameOver.reintentar_presionado.connect(_reiniciar)
 	$PantallaGameOver.menu_presionado.connect(_ir_menu)
 
-	lbl_residuos.text = "Residuos: 0 / %d" % total_residuos
+	residuos_actualizados.emit(0, total_residuos)
 	_actualizar_bote()
+	
+	timer_juego = Timer.new()
+	timer_juego.wait_time = 0.1
+	timer_juego.autostart = false
+	timer_juego.timeout.connect(_on_timer_tick)
+	add_child(timer_juego)
 
 	await get_tree().create_timer(0.5).timeout
 	if is_inside_tree():
 		juego_activo = true
 		timer_activo = true
+		timer_juego.start()
 
-func _process(delta):
+func _on_timer_tick():
 	if not juego_activo or not timer_activo:
 		return
-
-	tiempo_restante -= delta
-	tiempo_restante  = max(0, tiempo_restante)
-	barra_tiempo.value = tiempo_restante
-	lbl_tiempo.text    = "%d" % ceil(tiempo_restante)
-
-	if tiempo_restante <= 10:
-		barra_tiempo.modulate = Color("#f87171")
-	elif tiempo_restante <= 25:
-		barra_tiempo.modulate = Color("#fbbf24")
-	else:
-		barra_tiempo.modulate = Color("#86efac")
-
-	_actualizar_bote()
+	
+	tiempo_restante -= 0.1
+	tiempo_restante = max(0, tiempo_restante)
+	tiempo_actualizado.emit(tiempo_restante)
 
 	if tiempo_restante <= 0:
+		timer_juego.stop()
 		_tiempo_agotado()
 
+func _process(_delta):
+	if not juego_activo:
+		return
+	_actualizar_bote()
+
 func _actualizar_bote():
-	lbl_bote.text = "Bote: " + NOMBRES_BOTE[eli.bote_activo]
-	lbl_bote.add_theme_color_override("font_color", COLOR_BOTE[eli.bote_activo])
+	bote_cambiado.emit(eli.bote_activo)
 
 func _on_recogida_intentada(_tipo: String, _bote: int):
 	pass
@@ -101,7 +112,7 @@ func _on_residuo_correcto(_tipo: String):
 	if racha_actual > racha_maxima:
 		racha_maxima = racha_actual
 	SesionGlobal.puntaje += 10
-	lbl_residuos.text = "Residuos: %d / %d" % [recogidos, total_residuos]
+	residuos_actualizados.emit(recogidos, total_residuos)
 	hit_counter.registrar_acierto(racha_actual)
 	if recogidos >= total_residuos:
 		_victoria()
@@ -151,7 +162,7 @@ func _activar_iman_contencion():
 	tween.tween_property(camara, "global_position", centro, 0.8)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	for residuo in contenedor_res.get_children():
-		if residuo.tipo == "peligroso":
+		if residuo.tipo == SesionGlobal.Categorias.PELIGROSO:
 			residuo.ser_succionado(centro)
 	await get_tree().create_timer(1.6).timeout
 
@@ -180,8 +191,8 @@ func _generar_residuos_aleatorios(cantidad: int, filtro: String = "todos"):
 
 	var catalogo_filtrado = catalogo_basura.filter(func(item):
 		if filtro == "todos":        return true
-		if filtro == "peligroso":    return item["tipo"] == "peligroso"
-		if filtro == "normal":       return item["tipo"] != "peligroso"
+		if filtro == SesionGlobal.Categorias.PELIGROSO:    return item["tipo"] == SesionGlobal.Categorias.PELIGROSO
+		if filtro == "normal":       return item["tipo"] != SesionGlobal.Categorias.PELIGROSO
 		return true
 	)
 	if catalogo_filtrado.is_empty():

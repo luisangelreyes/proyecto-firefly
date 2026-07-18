@@ -6,20 +6,20 @@ const SHEET_N2     = preload("res://entities/basura/sprites/basura_nivel2.png")
 
 func _ready():
 	config_botes = [
-		{"nodo": "BotePAPEL",    "tipo": "metal",  "nombre": "Metal"},
+		{"nodo": "BotePAPEL",    "tipo": SesionGlobal.Categorias.METAL,  "nombre": SesionGlobal.Categorias.METAL},
 		{"nodo": "BoteVIDRIO",   "tipo": "madera", "nombre": "Madera"},
-		{"nodo": "BotePLASTICO", "tipo": "vidrio", "nombre": "Vidrio"},
+		{"nodo": "BotePLASTICO", "tipo": SesionGlobal.Categorias.VIDRIO, "nombre": SesionGlobal.Categorias.VIDRIO},
 	]
 
 	catalogo_objetos = [
 		{"frame":0, "sheet":SHEET_METAL,  "cols":4, "filas":4,"escala":1.5,
-		 "tipo":"metal",  "nombre":"Clavo",
+		 "tipo":SesionGlobal.Categorias.METAL,  "nombre":"Clavo",
 		 "explicacion":"Los metales van en el contenedor de Metal."},
 		{"frame":1, "sheet":SHEET_METAL,  "cols":4, "filas":4,"escala":1.5,
-		 "tipo":"metal",  "nombre":"Tubo",
+		 "tipo":SesionGlobal.Categorias.METAL,  "nombre":"Tubo",
 		 "explicacion":"Los tubos metálicos van en Metal."},
 		{"frame":2, "sheet":SHEET_METAL,  "cols":4, "filas":4,"escala":1.5,
-		 "tipo":"metal",  "nombre":"Pieza",
+		 "tipo":SesionGlobal.Categorias.METAL,  "nombre":"Pieza",
 		 "explicacion":"Las piezas de metal van en el contenedor de Metal."},
 		{"frame":0, "sheet":SHEET_MADERA, "cols":4, "filas":4,"escala":1.5,
 		 "tipo":"madera", "nombre":"Tabla",
@@ -28,10 +28,10 @@ func _ready():
 		 "tipo":"madera", "nombre":"Palo",
 		 "explicacion":"Los palos de madera van en Madera."},
 		{"frame":10, "sheet":SHEET_N2,    "cols":9, "filas":4,"escala":0.3,
-		 "tipo":"vidrio", "nombre":"Botella",
+		 "tipo":SesionGlobal.Categorias.VIDRIO, "nombre":"Botella",
 		 "explicacion":"Las botellas de vidrio van en Vidrio."},
 		{"frame":11, "sheet":SHEET_N2,    "cols":9, "filas":4,"escala":0.3,
-		 "tipo":"vidrio", "nombre":"Frasco",
+		 "tipo":SesionGlobal.Categorias.VIDRIO, "nombre":"Frasco",
 		 "explicacion":"Los frascos van en el contenedor de Vidrio."},
 	]
 

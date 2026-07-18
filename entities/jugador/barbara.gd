@@ -100,22 +100,22 @@ func _on_area_entered(area):
 	if nivel_terminado:
 		return
 		
-	if area.is_in_group("basura_caida"):
+	if area.is_in_group(SesionGlobal.Grupos.RESIDUO_CAIDA):
 		area.fue_atrapado = true
 		var tipo_que_cayo = area.categoria
 		
-		if tipo_que_cayo == "Peligroso":
+		if tipo_que_cayo == SesionGlobal.Categorias.PELIGROSO:
 			SesionGlobal.vidas -= 1
 			racha_actual = 0
 			SesionGlobal.combo = 1
 			combo_actualizado.emit(0, 1) 
 			Input.start_joy_vibration(0, 0.8, 0.0, 0.4)
 			resultado_tutorial.emit(false)
-			residuo_clasificado.emit(false, "Peligroso")
+			residuo_clasificado.emit(false, SesionGlobal.Categorias.PELIGROSO)
 			recibir_dano() # <--- Activamos la animación de falla
 		else:
 			var acierto = false
-			if (bote_activo == 0 and tipo_que_cayo == "Organico") or (bote_activo == 1 and tipo_que_cayo == "Inorganico"):
+			if (bote_activo == 0 and tipo_que_cayo == SesionGlobal.Categorias.ORGANICO) or (bote_activo == 1 and tipo_que_cayo == SesionGlobal.Categorias.INORGANICO):
 				acierto = true
 				
 			if acierto:

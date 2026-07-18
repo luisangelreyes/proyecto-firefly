@@ -9,61 +9,61 @@ const SPRITESHEET_INORG = preload("res://entities/basura/sprites/basura_in_or_pe
 # ── CATÁLOGO COMPLETO 6 TIPOS ─────────────────────────────────────────────
 const CATALOGO = [
 	# PAPEL
-	{"frame":0,  "tipo":"papel","escala":.35, "nombre":"Periódico",       "explicacion":"El periódico es papel reciclable, va en el contenedor de Papel."},
-	{"frame":1,  "tipo":"papel","escala":.35, "nombre":"Cuaderno",        "explicacion":"El cuaderno es papel, recíclalo en el contenedor de Papel."},
-	{"frame":2,  "tipo":"papel","escala":.35, "nombre":"Caja de cartón",  "explicacion":"El cartón se recicla junto con el papel."},
-	{"frame":3,  "tipo":"papel","escala":.35, "nombre":"Revista",         "explicacion":"Las revistas son papel reciclable."},
-	{"frame":4,  "tipo":"papel","escala":.35, "nombre":"Bolsa de papel",  "explicacion":"Las bolsas de papel van en el contenedor de Papel."},
-	{"frame":5,  "tipo":"papel","escala":.35, "nombre":"Tubo de cartón",  "explicacion":"Los tubos de cartón son reciclables como papel."},
-	{"frame":6,  "tipo":"papel","escala":.35, "nombre":"Caja de leche",   "explicacion":"Las cajas de leche de cartón van en Papel."},
-	{"frame":7,  "tipo":"papel","escala":.35, "nombre":"Periódicos",      "explicacion":"Los periódicos apilados son papel reciclable."},
-	{"frame":8,  "tipo":"papel","escala":.35, "nombre":"Cartón",          "explicacion":"El cartón corrugado va en el contenedor de Papel."},
+	{"frame":0,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Periódico",       "explicacion":"El periódico es papel reciclable, va en el contenedor de Papel."},
+	{"frame":1,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Cuaderno",        "explicacion":"El cuaderno es papel, recíclalo en el contenedor de Papel."},
+	{"frame":2,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Caja de cartón",  "explicacion":"El cartón se recicla junto con el papel."},
+	{"frame":3,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Revista",         "explicacion":"Las revistas son papel reciclable."},
+	{"frame":4,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Bolsa de papel",  "explicacion":"Las bolsas de papel van en el contenedor de Papel."},
+	{"frame":5,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Tubo de cartón",  "explicacion":"Los tubos de cartón son reciclables como papel."},
+	{"frame":6,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Caja de leche",   "explicacion":"Las cajas de leche de cartón van en Papel."},
+	{"frame":7,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Periódicos",      "explicacion":"Los periódicos apilados son papel reciclable."},
+	{"frame":8,  "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35, "nombre":"Cartón",          "explicacion":"El cartón corrugado va en el contenedor de Papel."},
 	# ── VIDRIO ──
-	{"frame":10, "tipo":"vidrio","escala":.35,"nombre":"Botella de vidrio","explicacion":"Las botellas de vidrio van en el contenedor de Vidrio."},
-	{"frame":11, "tipo":"vidrio","escala":.35,"nombre":"Frasco",           "explicacion":"Los frascos de vidrio se reciclan en el contenedor de Vidrio."},
-	{"frame":12, "tipo":"vidrio","escala":.35,"nombre":"Botella acostada", "explicacion":"Toda botella de vidrio va en el contenedor de Vidrio."},
-	{"frame":13, "tipo":"vidrio","escala":.35,"nombre":"Frasco con tapa",  "explicacion":"Los frascos de vidrio van en Vidrio, aunque tengan tapa."},
-	{"frame":14, "tipo":"vidrio","escala":.35,"nombre":"Tubo de ensayo",   "explicacion":"El vidrio de laboratorio va en el contenedor de Vidrio."},
-	{"frame":15, "tipo":"vidrio","escala":.35,"nombre":"Vaso de vidrio",   "explicacion":"Los vasos de vidrio se reciclan en el contenedor de Vidrio."},
-	{"frame":16, "tipo":"vidrio","escala":.35,"nombre":"Vaso pequeño",     "explicacion":"Los vasos de vidrio van en el contenedor de Vidrio."},
-	{"frame":17, "tipo":"vidrio","escala":.35,"nombre":"Botellita",        "explicacion":"Las botellitas de vidrio van en el contenedor de Vidrio."},
+	{"frame":10, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Botella de vidrio","explicacion":"Las botellas de vidrio van en el contenedor de Vidrio."},
+	{"frame":11, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Frasco",           "explicacion":"Los frascos de vidrio se reciclan en el contenedor de Vidrio."},
+	{"frame":12, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Botella acostada", "explicacion":"Toda botella de vidrio va en el contenedor de Vidrio."},
+	{"frame":13, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Frasco con tapa",  "explicacion":"Los frascos de vidrio van en Vidrio, aunque tengan tapa."},
+	{"frame":14, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Tubo de ensayo",   "explicacion":"El vidrio de laboratorio va en el contenedor de Vidrio."},
+	{"frame":15, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Vaso de vidrio",   "explicacion":"Los vasos de vidrio se reciclan en el contenedor de Vidrio."},
+	{"frame":16, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Vaso pequeño",     "explicacion":"Los vasos de vidrio van en el contenedor de Vidrio."},
+	{"frame":17, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,"nombre":"Botellita",        "explicacion":"Las botellitas de vidrio van en el contenedor de Vidrio."},
 	# ── PLÁSTICO ──
-	{"frame":22, "tipo":"plastico","escala":.35,"nombre":"Botella aplastada","explicacion":"Las botellas de plástico van en el contenedor de Plástico."},
-	{"frame":23, "tipo":"plastico","escala":.35,"nombre":"Yogur",            "explicacion":"Los envases de yogur son plástico reciclable."},
-	{"frame":24, "tipo":"plastico","escala":.35,"nombre":"Tapa de plástico", "explicacion":"Las tapas de plástico van en el contenedor de Plástico."},
-	{"frame":25, "tipo":"plastico","escala":.35,"nombre":"Caja reciclaje",   "explicacion":"Esta caja de plástico va en el contenedor de Plástico."},
-	{"frame":26, "tipo":"plastico","escala":.35,"nombre":"Bolsa de plástico","explicacion":"Las bolsas de plástico van en el contenedor de Plástico."},
-	{"frame":27, "tipo":"plastico","escala":.35,"nombre":"Tubo de plástico", "explicacion":"Los tubos de plástico van en el contenedor de Plástico."},
-	{"frame":31, "tipo":"plastico","escala":.35,"nombre":"Popote",           "explicacion":"Los popotes son plástico, van en el contenedor de Plástico."},
+	{"frame":22, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Botella aplastada","explicacion":"Las botellas de plástico van en el contenedor de Plástico."},
+	{"frame":23, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Yogur",            "explicacion":"Los envases de yogur son plástico reciclable."},
+	{"frame":24, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Tapa de plástico", "explicacion":"Las tapas de plástico van en el contenedor de Plástico."},
+	{"frame":25, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Caja reciclaje",   "explicacion":"Esta caja de plástico va en el contenedor de Plástico."},
+	{"frame":26, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Bolsa de plástico","explicacion":"Las bolsas de plástico van en el contenedor de Plástico."},
+	{"frame":27, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Tubo de plástico", "explicacion":"Los tubos de plástico van en el contenedor de Plástico."},
+	{"frame":31, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,"nombre":"Popote",           "explicacion":"Los popotes son plástico, van en el contenedor de Plástico."},
 	# ORGÁNICO
 	{"frame":26, "sheet":SPRITESHEET_INORG,"cols":7,"filas":6,
-	 "tipo":"organico","escala":.2, "nombre":"Restos comida",
+	 "tipo":SesionGlobal.Categorias.ORGANICO,"escala":.2, "nombre":"Restos comida",
 	 "explicacion":"Los restos de comida son orgánicos."},
 	{"frame":27, "sheet":SPRITESHEET_INORG,"cols":7,"filas":6,
-	 "tipo":"organico","escala":.2, "nombre":"Fruta",
+	 "tipo":SesionGlobal.Categorias.ORGANICO,"escala":.2, "nombre":"Fruta",
 	 "explicacion":"Las frutas son residuos orgánicos."},
 	{"frame":28, "sheet":SPRITESHEET_INORG,"cols":7,"filas":6,
-	 "tipo":"organico","escala":.2, "nombre":"Vegetal",
+	 "tipo":SesionGlobal.Categorias.ORGANICO,"escala":.2, "nombre":"Vegetal",
 	 "explicacion":"Los vegetales son residuos orgánicos."},
 	# METAL
 	{"frame":0, "sheet":SPRITESHEET_METAL,"cols":4,"filas":4,
-	 "tipo":"metal", "escala":1.5,   "nombre":"Clavo",
+	 "tipo":SesionGlobal.Categorias.METAL, "escala":1.5,   "nombre":"Clavo",
 	 "explicacion":"Los metales van en el contenedor de Metal."},
 	{"frame":1, "sheet":SPRITESHEET_METAL,"cols":4,"filas":4,
-	 "tipo":"metal","escala":1.5,    "nombre":"Tubo metal",
+	 "tipo":SesionGlobal.Categorias.METAL,"escala":1.5,    "nombre":"Tubo metal",
 	 "explicacion":"Los tubos metálicos van en Metal."},
 	{"frame":2, "sheet":SPRITESHEET_METAL,"cols":4,"filas":4,
-	 "tipo":"metal","escala":1.5,    "nombre":"Pieza metal",
+	 "tipo":SesionGlobal.Categorias.METAL,"escala":1.5,    "nombre":"Pieza metal",
 	 "explicacion":"Las piezas metálicas van en Metal."},
 	# TELA
 	{"frame":0, "sheet":SPRITESHEET_TELA, "cols":4,"filas":4,
-	 "tipo":"tela","escala":1.5,     "nombre":"Ropa",
+	 "tipo":SesionGlobal.Categorias.TELA,"escala":1.5,     "nombre":"Ropa",
 	 "explicacion":"La ropa va en el contenedor de Tela."},
 	{"frame":1, "sheet":SPRITESHEET_TELA, "cols":4,"filas":4,
-	 "tipo":"tela","escala":1.5,     "nombre":"Trapo",
+	 "tipo":SesionGlobal.Categorias.TELA,"escala":1.5,     "nombre":"Trapo",
 	 "explicacion":"Los trapos van en el contenedor de Tela."},
 	{"frame":2, "sheet":SPRITESHEET_TELA, "cols":4,"filas":4,
-	 "tipo":"tela","escala":1.5,     "nombre":"Retazo",
+	 "tipo":SesionGlobal.Categorias.TELA,"escala":1.5,     "nombre":"Retazo",
 	 "explicacion":"Los retazos de tela van en Tela."},
 ]
 
@@ -96,12 +96,12 @@ var timer_activo: bool     = false
 
 # ── BOTES ─────────────────────────────────────────────────────────────────
 const CONFIG_BOTES = [
-	{"nodo":"FilaBotes1/BotePAPEL",    "tipo":"papel",    "color":Color("#F4D03F")},
-	{"nodo":"FilaBotes1/BoteVIDRIO",   "tipo":"vidrio",   "color":Color("#2ECC71")},
-	{"nodo":"FilaBotes1/BotePLASTICO", "tipo":"plastico", "color":Color("#3498DB")},
-	{"nodo":"FilaBotes2/BoteORGANICO", "tipo":"organico", "color":Color("#4fb87a")},
-	{"nodo":"FilaBotes2/BoteMETAL",    "tipo":"metal",    "color":Color("#95A5A6")},
-	{"nodo":"FilaBotes2/BoteTELA",     "tipo":"tela",     "color":Color("#E74C3C")},
+	{"nodo":"FilaBotes1/BotePAPEL",    "tipo":SesionGlobal.Categorias.PAPEL,    "color":Color("#F4D03F")},
+	{"nodo":"FilaBotes1/BoteVIDRIO",   "tipo":SesionGlobal.Categorias.VIDRIO,   "color":Color("#2ECC71")},
+	{"nodo":"FilaBotes1/BotePLASTICO", "tipo":SesionGlobal.Categorias.PLASTICO, "color":Color("#3498DB")},
+	{"nodo":"FilaBotes2/BoteORGANICO", "tipo":SesionGlobal.Categorias.ORGANICO, "color":Color("#4fb87a")},
+	{"nodo":"FilaBotes2/BoteMETAL",    "tipo":SesionGlobal.Categorias.METAL,    "color":Color("#95A5A6")},
+	{"nodo":"FilaBotes2/BoteTELA",     "tipo":SesionGlobal.Categorias.TELA,     "color":Color("#E74C3C")},
 ]
 
 @onready var lbl_puntos    = $HUD/LabelPuntos
@@ -297,8 +297,8 @@ func _incorrecto(item, tipo_correcto: String):
 	item_pausado  = item
 
 	var nombres = {
-		"papel":"Papel","vidrio":"Vidrio","plastico":"Plástico",
-		"organico":"Orgánico","metal":"Metal","tela":"Tela"
+		SesionGlobal.Categorias.PAPEL:SesionGlobal.Categorias.PAPEL,SesionGlobal.Categorias.VIDRIO:SesionGlobal.Categorias.VIDRIO,SesionGlobal.Categorias.PLASTICO:"Plástico",
+		SesionGlobal.Categorias.ORGANICO:"Orgánico",SesionGlobal.Categorias.METAL:SesionGlobal.Categorias.METAL,SesionGlobal.Categorias.TELA:SesionGlobal.Categorias.TELA
 	}
 	lbl_explic.text = "¡Casi! %s va en:\n%s\n\n%s" % [
 		item.nombre,

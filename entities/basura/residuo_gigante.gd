@@ -3,7 +3,7 @@ extends Area2D
 signal residuo_escapado(categoria: String)
 
 # Siempre peligroso — no clasificable
-var categoria: String  = "Peligroso"
+var categoria: String  = SesionGlobal.Categorias.PELIGROSO
 var velocidad_caida: float = 260.0   # más lento que uno normal (es grande e intimidante)
 var fue_atrapado: bool = false
 var prob_peligroso: float = 1.0      # por compatibilidad con NivelBoss

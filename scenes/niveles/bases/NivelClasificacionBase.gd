@@ -40,7 +40,7 @@ func _iniciar_nivel():
 	if catalogo_objetos.is_empty():
 		catalogo_objetos = OBJETOS.duplicate()
 	_preparar_cola()
-	_actualizar_hud()
+	puntos_actualizados.emit(SesionGlobal.puntaje)
 	tiempo_restante = tiempo_limite
 	timer_activo = true
 	_siguiente_objeto()

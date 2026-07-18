@@ -5,24 +5,24 @@ const SHEET_N2 = preload("res://entities/basura/sprites/basura_nivel2.png")
 func _ready():
 	# ── Botes ────────────────────────────────────────────────────────────
 	config_botes = [
-		{"nodo": "BotePAPEL",    "tipo": "papel",    "nombre": "Papel"},
-		{"nodo": "BoteVIDRIO",   "tipo": "vidrio",   "nombre": "Vidrio"},
-		{"nodo": "BotePLASTICO", "tipo": "plastico", "nombre": "Plástico"},
+		{"nodo": "BotePAPEL",    "tipo": SesionGlobal.Categorias.PAPEL,    "nombre": SesionGlobal.Categorias.PAPEL},
+		{"nodo": "BoteVIDRIO",   "tipo": SesionGlobal.Categorias.VIDRIO,   "nombre": SesionGlobal.Categorias.VIDRIO},
+		{"nodo": "BotePLASTICO", "tipo": SesionGlobal.Categorias.PLASTICO, "nombre": "Plástico"},
 	]
 
 	# ── Catálogo ─────────────────────────────────────────────────────────
 	catalogo_objetos = [
-		{"frame":0,  "sheet":SHEET_N2, "cols":9, "tipo":"papel","escala":.35,
+		{"frame":0,  "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35,
 		 "nombre":"Periódico",    "explicacion":"El periódico es papel reciclable."},
-		{"frame":2,  "sheet":SHEET_N2, "cols":9, "tipo":"papel","escala":.35,
+		{"frame":2,  "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.PAPEL,"escala":.35,
 		 "nombre":"Caja cartón",  "explicacion":"El cartón va en el contenedor de Papel."},
-		{"frame":10, "sheet":SHEET_N2, "cols":9, "tipo":"vidrio","escala":.35,
+		{"frame":10, "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,
 		 "nombre":"Botella",      "explicacion":"Las botellas de vidrio van en Vidrio."},
-		{"frame":11, "sheet":SHEET_N2, "cols":9, "tipo":"vidrio","escala":.35,
+		{"frame":11, "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.VIDRIO,"escala":.35,
 		 "nombre":"Frasco",       "explicacion":"Los frascos de vidrio van en Vidrio."},
-		{"frame":22, "sheet":SHEET_N2, "cols":9, "tipo":"plastico","escala":.35,
+		{"frame":22, "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,
 		 "nombre":"Botella PET",  "explicacion":"Las botellas de plástico van en Plástico."},
-		{"frame":23, "sheet":SHEET_N2, "cols":9, "tipo":"plastico","escala":.35,
+		{"frame":23, "sheet":SHEET_N2, "cols":9, "tipo":SesionGlobal.Categorias.PLASTICO,"escala":.35,
 		 "nombre":"Yogur",        "explicacion":"Los envases de yogur son plástico reciclable."},
 	]
 	
