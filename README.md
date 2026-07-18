@@ -12,7 +12,6 @@
 ![GDScript](https://img.shields.io/badge/GDScript-Language-478CBF?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Offline](https://img.shields.io/badge/Modo-100%25%20Offline-2ECC71?style=for-the-badge)
-![SEP](https://img.shields.io/badge/Alineado-SEP%20México-C0392B?style=for-the-badge)
 
 **Un juego serio educativo sobre clasificación de residuos sólidos urbanos, desarrollado para escuelas primarias.**
 
@@ -160,7 +159,9 @@ Guardado:        JSON local en user:// (sin nube, sin registro)
 ##  Mucho ojo 👀
 
 Este proyecto es desarrollado con fines **académicos y educativos no comerciales**.  
-Es posible que elementos del juego estén sujetas a derechos de autor. 
+
+Es posible que elementos del juego (Musica, Sonido) estén sujetas a derechos de autor. 
+
 El código fuente está disponible para fines de investigación en diseño de juegos serios.
 
 ---
