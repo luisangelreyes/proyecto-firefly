@@ -1,0 +1,537 @@
+[gd_scene format=3 uid="uid://heefgaptok3k"]
+
+[ext_resource type="Script" uid="uid://bek4s3rworhqi" path="res://scenes/niveles/bases/Nivel2.gd" id="1_qrsul"]
+[ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="2_fqim2"]
+[ext_resource type="Texture2D" uid="uid://d0icn37ol36tc" path="res://entities/fondos/fondo_nivel_2.png" id="2_iqwmd"]
+[ext_resource type="Texture2D" uid="uid://dkt4p2pgn471s" path="res://assets/ui/cursor.png" id="3_62nbq"]
+[ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scenes/niveles/bases/pantalla_resultados_n2.gd" id="3_vrnrg"]
+[ext_resource type="Texture2D" uid="uid://blpqlrjc7il0u" path="res://assets/ui/cuadro_de_texto-removebg-preview.png" id="5_j7nqj"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="5_tbdeb"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="6_xrm4e"]
+[ext_resource type="SpriteFrames" uid="uid://duavve81lrb35" path="res://entities/jugador/lis_nivel_1.tres" id="8_byvsu"]
+[ext_resource type="PackedScene" uid="uid://cksbfdmmh7m2o" path="res://ui/general/HitCounter.tscn" id="8_tbdeb"]
+[ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://ui/general/PantallaPausa.tscn" id="9_c6fl3"]
+[ext_resource type="PackedScene" uid="uid://cmsvqkygh1on8" path="res://ui/general/DialogoTutorial.tscn" id="10_vyjmu"]
+[ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="11_frlv3"]
+[ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="12_t3c3p"]
+[ext_resource type="AudioStream" uid="uid://biwkee6sh2fbe" path="res://assets/audio/sfx/Tee-Lopes-Big-Apple_-3-PM-_-TMNT_-Shredder_s-Revenge-Official-Soundtrack.ogg" id="13_ggm30"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_41671"]
+[ext_resource type="AudioStream" uid="uid://8axil6obvf53" path="res://assets/audio/sfx/Finish-Line-2nd-to-4th-Place-Mario-Kart-64-OST.ogg" id="15_41671"]
+[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://ui/general/PantallaGameOver.tscn" id="16_qj1c0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqwmd"]
+atlas = ExtResource("5_j7nqj")
+region = Rect2(138, 114.399994, 192, 164)
+margin = Rect2(0, 0, 2.985, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nen"]
+size = Vector2(297, 412.5)
+
+[node name="Nivel2" type="Node2D" unique_id=1972288213]
+process_mode = 1
+script = ExtResource("1_qrsul")
+
+[node name="PanelMorral" type="TextureRect" parent="." unique_id=653609551]
+custom_minimum_size = Vector2(20, 80)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_iqwmd")
+
+[node name="PanelMorral2" type="TextureRect" parent="." unique_id=1371072087]
+custom_minimum_size = Vector2(20, 80)
+offset_left = 25.0
+offset_top = 425.0
+offset_right = 269.0
+offset_bottom = 646.0
+texture = SubResource("AtlasTexture_iqwmd")
+
+[node name="LblTituloMorral" type="Label" parent="." unique_id=157226254]
+offset_left = 37.0
+offset_top = 374.0
+offset_right = 406.0
+offset_bottom = 470.0
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 50
+text = "Residuos"
+
+[node name="GridMorral" type="GridContainer" parent="." unique_id=1065731555]
+offset_left = 55.0
+offset_top = 280.0
+offset_right = 475.0
+offset_bottom = 880.0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
+
+[node name="BotePAPEL" type="Area2D" parent="." unique_id=622439365]
+position = Vector2(800, 611)
+metadata/tipo = "papel"
+
+[node name="FondoPAPEL" type="Sprite2D" parent="BotePAPEL" unique_id=943783097]
+position = Vector2(-68.000015, -17.00001)
+scale = Vector2(0.3366667, 0.35166666)
+texture = ExtResource("2_fqim2")
+hframes = 3
+frame = 1
+
+[node name="LabelPET" type="Label" parent="BotePAPEL" unique_id=1809294741]
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 68.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+metadata/_edit_use_anchors_ = true
+
+[node name="ContadorPET" type="Label" parent="BotePAPEL" unique_id=1915570623]
+offset_left = -70.0
+offset_top = -279.0
+offset_right = -30.0
+offset_bottom = -204.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BotePAPEL" unique_id=1009350023]
+position = Vector2(-75, -34)
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="BoteVIDRIO" type="Area2D" parent="." unique_id=193919060]
+position = Vector2(1100, 611)
+metadata/tipo = "vidrio"
+
+[node name="FondoVIDRIO" type="Sprite2D" parent="BoteVIDRIO" unique_id=1752869427]
+position = Vector2(-37.500023, -11.499998)
+scale = Vector2(0.35416675, 0.3408333)
+texture = ExtResource("2_fqim2")
+hframes = 3
+
+[node name="LabelALU" type="Label" parent="BoteVIDRIO" unique_id=1021679814]
+offset_left = -75.0
+offset_top = -150.0
+offset_right = 102.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+metadata/_edit_use_anchors_ = true
+
+[node name="ContadorALU" type="Label" parent="BoteVIDRIO" unique_id=1142876456]
+offset_left = -41.0
+offset_top = -285.0
+offset_right = -1.0
+offset_bottom = -210.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoteVIDRIO" unique_id=1527460319]
+position = Vector2(-40, -6.5)
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="BotePLASTICO" type="Area2D" parent="." unique_id=1069856128]
+position = Vector2(1400, 611)
+metadata/tipo = "plastico"
+
+[node name="FondoPLASTICO" type="Sprite2D" parent="BotePLASTICO" unique_id=1286513167]
+position = Vector2(-6.283795, -15.335934)
+scale = Vector2(0.3628602, 0.35610676)
+texture = ExtResource("2_fqim2")
+hframes = 3
+frame = 2
+
+[node name="LabelCARTON" type="Label" parent="BotePLASTICO" unique_id=10529352]
+offset_left = -115.0
+offset_top = -150.0
+offset_right = 68.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 22
+metadata/_edit_use_anchors_ = true
+
+[node name="ContadorCarton" type="Label" parent="BotePLASTICO" unique_id=672386663]
+offset_top = -296.0
+offset_right = 40.0
+offset_bottom = -221.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_font_sizes/font_size = 26
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BotePLASTICO" unique_id=1837932526]
+position = Vector2(-3, -28)
+shape = SubResource("RectangleShape2D_s6nen")
+
+[node name="Labelpuntos" type="Label" parent="." unique_id=930952704]
+offset_left = 700.0
+offset_top = 30.0
+offset_right = 944.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 40
+text = "Puntos: 0"
+
+[node name="LabelTimer" type="Label" parent="." unique_id=2119736961]
+offset_left = 1643.0
+offset_top = 944.0
+offset_right = 1830.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 95
+text = "Timer"
+horizontal_alignment = 1
+
+[node name="LabelVidas" type="Label" parent="." unique_id=170874925]
+offset_left = 1200.0
+offset_top = 30.0
+offset_right = 1475.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 40
+text = "❤️❤️❤️"
+
+[node name="LabelFeedBack" type="Label" parent="." unique_id=1406337311]
+offset_left = 743.0
+offset_top = 175.0
+offset_right = 1278.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("6_xrm4e")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="LabelZonaBotes" type="Label" parent="." unique_id=61205302]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 30.0
+offset_right = 417.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8901961)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = 4
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 46
+text = "ZONA DE CLASIFICACIÓN"
+horizontal_alignment = 1
+
+[node name="CursorMando" type="TextureRect" parent="." unique_id=1793456115]
+z_index = 20
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 97.99999
+offset_top = -188.0
+offset_right = 221.8097
+offset_bottom = -55.49994
+grow_vertical = 2
+scale = Vector2(0.8399986, 0.7999996)
+size_flags_horizontal = 4
+texture = ExtResource("3_62nbq")
+expand_mode = 1
+
+[node name="PantallaResultados" type="CanvasLayer" parent="." unique_id=2129659917]
+visible = false
+script = ExtResource("3_vrnrg")
+
+[node name="Fondo" type="ColorRect" parent="PantallaResultados" unique_id=1330703529]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 1)
+
+[node name="LabelTitulo" type="Label" parent="PantallaResultados/Fondo" unique_id=1274712600]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -197.0
+offset_top = 61.0
+offset_right = 246.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 66
+text = "Juego terminado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelClasificados" type="Label" parent="PantallaResultados/Fondo" unique_id=1056166693]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -348.0
+offset_right = 135.0
+offset_bottom = -293.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 48
+text = "Clasificados"
+horizontal_alignment = 1
+
+[node name="LabelFaltaron" type="Label" parent="PantallaResultados/Fondo" unique_id=1541508105]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0000"
+
+[node name="LabelPrimera" type="Label" parent="PantallaResultados/Fondo" unique_id=953865366]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1006.0
+offset_top = 60.0
+offset_right = -914.0
+offset_bottom = 83.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0000000000"
+
+[node name="LabelRacha" type="Label" parent="PantallaResultados/Fondo" unique_id=29246380]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -431.0
+offset_right = 117.0
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "00000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelFallos" type="Label" parent="PantallaResultados/Fondo" unique_id=1995467394]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -402.0
+offset_right = 195.0
+offset_bottom = -306.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "00000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separador" type="HSeparator" parent="PantallaResultados/Fondo" unique_id=527150987]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="LabelDesglose" type="Label" parent="PantallaResultados/Fondo" unique_id=877314535]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 10.0
+offset_right = 32.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0000000"
+
+[node name="LabelPapel" type="Label" parent="PantallaResultados/Fondo" unique_id=2002544100]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 437.0
+offset_right = 1108.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 30
+text = "0000000000"
+
+[node name="LabelVidrio" type="Label" parent="PantallaResultados/Fondo" unique_id=1564920483]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 394.0
+offset_right = 1108.0
+offset_bottom = 439.0
+theme_override_font_sizes/font_size = 30
+text = "0000000"
+vertical_alignment = 1
+
+[node name="LabelPlastico" type="Label" parent="PantallaResultados/Fondo" unique_id=900624778]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 354.0
+offset_right = 1108.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 30
+text = "000000000"
+
+[node name="Separador2" type="HSeparator" parent="PantallaResultados/Fondo" unique_id=286977674]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="LabelPuntos" type="Label" parent="PantallaResultados/Fondo" unique_id=1502096419]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 314.0
+offset_right = 1107.0
+offset_bottom = 359.0
+theme_override_font_sizes/font_size = 30
+text = "00000"
+
+[node name="BotonSiguiente" type="Button" parent="PantallaResultados/Fondo" unique_id=1097762413]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.5
+offset_top = -120.0
+offset_right = 115.5
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CONTINUAR"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PantallaResultados/Fondo" unique_id=1449434720]
+position = Vector2(444.5, 463.5)
+scale = Vector2(0.93781096, 0.88178295)
+sprite_frames = ExtResource("8_byvsu")
+animation = &"caminata_inorganico"
+
+[node name="BarraTiempo" type="ProgressBar" parent="." unique_id=815905070]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 944.0
+offset_right = 1615.0
+offset_bottom = 1038.0
+grow_vertical = 2
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="HitCounter" parent="." unique_id=794794625 instance=ExtResource("8_tbdeb")]
+offset = Vector2(0, 500)
+transform = Transform2D(1, 0, 0, 1, 0, 500)
+
+[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("9_c6fl3")]
+visible = false
+
+[node name="DialogoTutorial" parent="." unique_id=530390666 instance=ExtResource("10_vyjmu")]
+
+[node name="AudioAcierto" type="AudioStreamPlayer" parent="." unique_id=860217609]
+stream = ExtResource("11_frlv3")
+
+[node name="AudioError" type="AudioStreamPlayer" parent="." unique_id=1288895175]
+stream = ExtResource("12_t3c3p")
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1783638444]
+stream = ExtResource("13_ggm30")
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=882194140]
+stream = ExtResource("14_41671")
+
+[node name="AudioVictoria" type="AudioStreamPlayer" parent="." unique_id=46149894]
+stream = ExtResource("15_41671")
+
+[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("16_qj1c0")]
+visible = false
+
+[node name="InterfazUI" type="CanvasLayer" parent="." unique_id=490587826]
+layer = 0
+
+[node name="PopUpAyuda" type="TextureRect" parent="InterfazUI" unique_id=1273032175]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = -304.0
+offset_right = 399.0
+offset_bottom = 247.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = ExtResource("5_j7nqj")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="InterfazUI/PopUpAyuda" unique_id=1081135580]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_left = 281.0
+offset_top = 393.0
+offset_right = 513.0
+offset_bottom = 445.0
+theme_override_colors/font_color = Color(0.97802454, 0.84211916, 0.7863519, 1)
+text = "Entendido, sigamos
+
+
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfazUI/PopUpAyuda" unique_id=574668535]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 96.0
+offset_right = 642.0
+offset_bottom = 362.0
+theme_override_constants/separation = 31
+
+[node name="LabelTitulo" type="Label" parent="InterfazUI/PopUpAyuda/VBoxContainer" unique_id=1133712880]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/paragraph_spacing = 5
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 47
+text = "¡Cuidado!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LblExplicacion" type="Label" parent="InterfazUI/PopUpAyuda/VBoxContainer" unique_id=310644976]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02943489, 0.29942283, 0.36695606, 1)
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("5_tbdeb")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]

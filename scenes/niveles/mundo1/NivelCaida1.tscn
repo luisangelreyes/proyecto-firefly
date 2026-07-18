@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bg8yd543umsrx"]
+
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/bases/NivelBase.tscn" id="1_m2lys"]
+[ext_resource type="Script" uid="uid://dpmvpyujtcgrb" path="res://scenes/niveles/mundo1/NivelCaida1.gd" id="2_67hhv"]
+[ext_resource type="AudioStream" uid="uid://cpal5w03fgqfs" path="res://assets/audio/music/Hi-Spec Robo Go! - Hard Boiled Heavy Boss.mp3" id="3_1crth"]
+[ext_resource type="Texture2D" uid="uid://bmdq6lp0x2cid" path="res://entities/fondos/NIVEL_1-3.png" id="3_kv6qt"]
+
+[node name="Nivel" unique_id=784809779 instance=ExtResource("1_m2lys")]
+script = ExtResource("2_67hhv")
+lista_canciones = Array[AudioStream]([ExtResource("3_1crth")])
+
+[node name="Fondo" parent="." index="0" unique_id=1396352973]
+anchors_preset = 15
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 0.0
+offset_right = 1915.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("3_kv6qt")

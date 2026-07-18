@@ -1,4 +1,4 @@
-extends "res://scripts/nivel.gd"
+extends "res://scenes/niveles/bases/nivel.gd"
 
 enum EstadoBoss {
 	INTRO,

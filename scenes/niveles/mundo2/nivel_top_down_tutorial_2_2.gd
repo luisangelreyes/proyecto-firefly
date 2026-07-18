@@ -1,4 +1,4 @@
-extends "res://scripts/NivelTopDownBase.gd"
+extends "res://scenes/niveles/bases/NivelTopDownBase.gd"
 
 # ── CONFIGURACIÓN TUTORIAL ────────────────────────────────────────────────
 const DURACION_OLEADA   = 20.0
@@ -304,6 +304,7 @@ func _terminar_oleada_por_tiempo():
 		])
 	oleada_actual_tut += 1
 # ── FINALIZAR ─────────────────────────────────────────────────────────────
+	
 func _finalizar_tutorial():
 	$MusicaFondo.stop()
 	_activar_iman_contencion()
