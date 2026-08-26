@@ -25,15 +25,15 @@ const COLOR_SELECCION  = Color("#ffffff")
 var indice_actual: int = 0
 var items: Array = []
 
-@onready var lbl_descripcion = $LabelDescripcion
+@onready var lbl_descripcion = $ColorRectFooter/HBoxFooter/LabelDescripcion
 @onready var lbl_titulo      = $LabelTitulo
 
 func _ready():
 	lbl_titulo.text = "Selecciona un Mundo"
 
 	items = [
-		$Mundo1,
-		$Mundo2,
+		$CenterContainer/HBoxContainer/Mundo1,
+		$CenterContainer/HBoxContainer/Mundo2,
 	]
 
 	for i in range(items.size()):
@@ -41,8 +41,13 @@ func _ready():
 		btn.pressed.connect(_on_mundo_presionado.bind(i))
 		btn.focus_entered.connect(_on_mundo_enfocado.bind(i))
 		btn.mouse_entered.connect(_on_mundo_enfocado.bind(i))
+		# Hover animations
+		btn.mouse_entered.connect(_animar_hover.bind(i, true))
+		btn.mouse_exited.connect(_animar_hover.bind(i, false))
+		btn.focus_entered.connect(_animar_hover.bind(i, true))
+		btn.focus_exited.connect(_animar_hover.bind(i, false))
 
-	$BotonVolver.pressed.connect(_on_volver)
+	$ColorRectFooter/HBoxFooter/BotonVolver.pressed.connect(_on_volver)
 	_actualizar_mundos()
 	_seleccionar_primer_disponible()
 
@@ -50,7 +55,7 @@ func _actualizar_mundos():
 	for i in range(MUNDOS.size()):
 		var m      = MUNDOS[i]
 		var btn    = items[i].get_node("BtnMundo")
-		var lbl_n  = items[i].get_node("LabelNombre")
+		var lbl_n  = items[i].get_node("VBoxContainer/LabelNombre")
 		var disp   = SesionGlobal.nivel_disponible(m["id"], 1)
 
 		lbl_n.text = m["nombre"]
@@ -60,11 +65,19 @@ func _actualizar_mundos():
 			var ultimo_nivel = _ultimo_nivel_del_mundo(m["id"])
 			var completado   = SesionGlobal.nivel_disponible(m["id"] + 1, 1) or \
 							   SesionGlobal.nivel_actual > ultimo_nivel
-			btn.modulate = COLOR_COMPLETADO if completado else COLOR_DISPONIBLE
+			items[i].modulate = COLOR_COMPLETADO if completado else COLOR_DISPONIBLE
 			btn.disabled = false
 		else:
-			btn.modulate = COLOR_BLOQUEADO
+			items[i].modulate = COLOR_BLOQUEADO
 			btn.disabled = true
+
+func _animar_hover(indice: int, activado: bool):
+	if items[indice].get_node("BtnMundo").disabled:
+		return
+	
+	var target_scale = Vector2(1.05, 1.05) if activado else Vector2(1.0, 1.0)
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(items[indice], "scale", target_scale, 0.2)
 
 func _ultimo_nivel_del_mundo(mundo: int) -> int:
 	var ultimo = 0
@@ -119,6 +132,14 @@ func _unhandled_input(event):
 			indice_actual = nuevo
 			_on_mundo_enfocado(nuevo)
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-		_on_mundo_presionado(indice_actual)
+		var focus_owner = get_viewport().gui_get_focus_owner()
+		if focus_owner == $ColorRectFooter/HBoxFooter/BotonVolver:
+			get_viewport().set_input_as_handled()
+			_on_volver()
+		else:
+			if not items[indice_actual].get_node("BtnMundo").disabled:
+				get_viewport().set_input_as_handled()
+				_on_mundo_presionado(indice_actual)
 	elif event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
 		_on_volver()

@@ -46,9 +46,46 @@ func _ready():
 
 	$BotonVolver.pressed.connect(_on_volver)
 
+	_aplicar_estilos_labels()
+	_iniciar_animacion_cursor()
+	
 	_actualizar_mapa()
 	_seleccionar_nivel_activo()
 	_verificar_mundo_completado()
+
+func _aplicar_estilos_labels():
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.08, 0.1, 0.15, 0.85)
+	style.corner_radius_top_left = 10
+	style.corner_radius_top_right = 10
+	style.corner_radius_bottom_right = 10
+	style.corner_radius_bottom_left = 10
+	style.content_margin_left = 10
+	style.content_margin_right = 10
+	style.content_margin_top = 5
+	style.content_margin_bottom = 5
+	
+	# Apply to all node labels
+	for clave in CLAVES:
+		nodos[clave].get_node("LabelNombre").add_theme_stylebox_override("normal", style)
+	
+	# Header and Footer backgrounds
+	var header_style = style.duplicate()
+	header_style.bg_color = Color(0, 0, 0, 0.7)
+	lbl_mundo.add_theme_stylebox_override("normal", header_style)
+	lbl_descripcion.add_theme_stylebox_override("normal", header_style)
+
+var bounce_tween: Tween
+var move_tween: Tween
+
+func _iniciar_animacion_cursor():
+	if bounce_tween and bounce_tween.is_running():
+		bounce_tween.kill()
+		
+	var base_y = icono.position.y
+	bounce_tween = create_tween().set_loops()
+	bounce_tween.tween_property(icono, "position:y", base_y - 10.0, 1.0).set_trans(Tween.TRANS_SINE)
+	bounce_tween.tween_property(icono, "position:y", base_y, 1.0).set_trans(Tween.TRANS_SINE)
 
 func _verificar_mundo_completado():
 	# Solo transicionar si venimos de completar un nivel
@@ -136,10 +173,12 @@ func _actualizar_mapa():
 				btn.modulate   = COLOR_DISPONIBLE
 				lbl_n.text     = str(nivel)
 			btn.disabled = false
+			btn.focus_mode = Control.FOCUS_ALL
 		else:
 			btn.modulate   = COLOR_BLOQUEADO
 			lbl_n.text     = "🔒"
 			btn.disabled   = true
+			btn.focus_mode = Control.FOCUS_NONE
 
 
 
@@ -151,8 +190,14 @@ func _on_nodo_enfocado(indice: int):
 
 func _resaltar_nodo(indice: int):
 	for i in range(CLAVES.size()):
-		var btn = nodos[CLAVES[i]].get_node("BtnNodo")
+		var nodo_parent = nodos[CLAVES[i]]
+		var btn = nodo_parent.get_node("BtnNodo")
+		
+		# Reset all scales
+		nodo_parent.scale = Vector2(1.0, 1.0)
+		
 		if not btn.disabled:
+			nodo_parent.modulate = Color(1, 1, 1, 1) # Reset fade
 			var clave  = CLAVES[i]
 			var _mundo  = int(clave.split("-")[0])
 			var _nivel  = int(clave.split("-")[1])
@@ -164,6 +209,9 @@ func _resaltar_nodo(indice: int):
 					int(sig.split("-")[0]), int(sig.split("-")[1])
 				)
 			btn.modulate = COLOR_COMPLETADO if completado else COLOR_DISPONIBLE
+		else:
+			nodo_parent.modulate = Color(0.6, 0.6, 0.6, 0.8) # Fade out locked nodes completely
+		
 		if i == indice and not btn.disabled:
 			btn.modulate = COLOR_SELECCION
 
@@ -180,7 +228,7 @@ func _on_nivel_presionado(clave: String):
 	if ruta != "":
 		get_tree().change_scene_to_file(ruta)
 func _on_volver():
-	get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
+	get_tree().change_scene_to_file("res://ui/menu/SelectorMundos.tscn")
 
 func _unhandled_input(event):
 	if not (event is InputEventKey or event is InputEventJoypadButton or
@@ -191,14 +239,13 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
 		var nuevo = max(0, indice_actual - 1)
-		if nuevo != indice_actual:
+		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
 			indice_actual = nuevo
 			_on_nodo_enfocado(indice_actual)
-			_mover_icono_a(indice_actual)
 
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
 		var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
-		if nuevo != indice_actual:
+		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
 			indice_actual = nuevo
 			_on_nodo_enfocado(indice_actual)
 			_mover_icono_a(indice_actual)
@@ -209,4 +256,14 @@ func _unhandled_input(event):
 		
 func _mover_icono_a(indice: int):
 	var nodo_destino = nodos[CLAVES[indice]]
-	icono.position = nodo_destino.position - icono.size / 2 + Vector2(40, -50)
+	var pos_destino = nodo_destino.position - icono.size / 2 + Vector2(40, -50)
+	
+	if move_tween and move_tween.is_running():
+		move_tween.kill()
+	if bounce_tween and bounce_tween.is_running():
+		bounce_tween.kill()
+	
+	move_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	move_tween.tween_property(icono, "position", pos_destino, 0.4)
+	move_tween.finished.connect(_iniciar_animacion_cursor)
+
