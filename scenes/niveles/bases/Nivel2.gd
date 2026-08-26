@@ -218,8 +218,8 @@ func _on_timer_tick():
 		cursor_visual.visible = true
 	
 	if usando_mando:
-		cursor_pos.x += joy_x * cursor_spd * delta
-		cursor_pos.y += joy_y * cursor_spd * delta
+		#cursor_pos.x += joy_x * cursor_spd * delta
+		#cursor_pos.y += joy_y * cursor_spd * delta
 		cursor_pos.x = clamp(cursor_pos.x, 0, 1440)
 		cursor_pos.y = clamp(cursor_pos.y, 0, 1080)
 		cursor_visual.global_position = cursor_pos - cursor_visual.size / 2

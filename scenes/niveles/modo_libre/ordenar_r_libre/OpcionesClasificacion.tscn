@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dtc3jukj0vnyp"]
 
-[ext_resource type="Script" uid="uid://b8cmdkqh6i3uo" path="res://scenes/niveles/modo_libre/ordenar_r_libre/opciones_clasificacion.gd" id="1_we4m2"]
-[ext_resource type="Texture2D" uid="uid://du08mdsga8nn8" path="res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000418.png" id="2_q3y5u"]
+[ext_resource type="Script" uid="uid://b8cmdkqh6i3uo" path="res://scenes/niveles/modo_libre/ordenar_r_libre/opciones_clasificacion.gd" id="1_cvslr"]
+[ext_resource type="Texture2D" uid="uid://du08mdsga8nn8" path="res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000418.png" id="2_sp8pb"]
 
 [node name="OpcionesClasificacion" type="Control" unique_id=336580805]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_we4m2")
+script = ExtResource("1_cvslr")
 
 [node name="Fondo" type="ColorRect" parent="." unique_id=361876670]
 custom_minimum_size = Vector2(1920, 1080)
@@ -21,7 +21,7 @@ offset_left = 766.0
 offset_top = 178.0
 offset_right = 1753.0
 offset_bottom = 728.0
-texture = ExtResource("2_q3y5u")
+texture = ExtResource("2_sp8pb")
 expand_mode = 1
 
 [node name="LabelTitulo" type="Label" parent="." unique_id=1481510201]

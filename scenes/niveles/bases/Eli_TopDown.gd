@@ -114,7 +114,7 @@ func _actualizar_indicador():
 	var menor_dist  = INF
 	
 	for r in residuos:
-		if not r.is_in_group(SesionGlobal.Grupos.RESIDUO_TD):
+		if not r.is_in_group("residuo_td"):
 			continue
 		var d = global_position.distance_to(r.global_position)
 		if d < menor_dist:
@@ -132,13 +132,11 @@ func _actualizar_indicador():
 			residuo_enfocado.mostrar_indicador(true)
 
 func _intentar_recoger():
-	# Ahora solo interactuamos con el que ya tenemos enfocado
 	if residuo_enfocado and is_instance_valid(residuo_enfocado):
 		recogida_intentada.emit(residuo_enfocado.tipo, bote_activo)
 		residuo_enfocado.intentar_recoger(bote_activo)
 func _actualizar_color_bote():
-	
-	
+	#$AudioCambiarBote.play()
 	var animacion_actual = anim.animation
 	var frame_actual = anim.frame
 	var progreso_actual = anim.frame_progress

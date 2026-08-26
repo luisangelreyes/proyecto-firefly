@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ciu0dg8aan8aj"]
 
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="1_iymf1"]
-[ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scenes/niveles/bases/pantalla_resultados_n2.gd" id="1_xfdiq"]
+[ext_resource type="Script" uid="uid://b4h0r1a1c62q4" path="res://scripts/pantalla_resultados_n2.gd" id="1_xfdiq"]
 [ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="2_xfdiq"]
 [ext_resource type="SpriteFrames" uid="uid://duavve81lrb35" path="res://entities/jugador/lis_nivel_1.tres" id="4_uki1s"]
 

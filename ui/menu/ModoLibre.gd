@@ -15,7 +15,7 @@ const MECANICAS = [
 		"nombre":      "Clasificación",
 		"descripcion": "Arrastra cada residuo al contenedor correcto\nantes de que se acabe el tiempo.",
 		"color":       Color("#1a1a2e"),
-		"escena":      "res://scenes/niveles/modo_libre/OpcionesClasificacion.tscn",
+		"escena":      "res://scenes/niveles/modo_libre/ordenar_r_libre/OpcionesClasificacion.tscn",
 		"preview":     preload("res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000418.png"),
 	},
 	{
@@ -23,7 +23,7 @@ const MECANICAS = [
 		"nombre":      "Exploración Top-Down",
 		"descripcion": "Recorre el escenario, recoge los residuos\ny clasifícalos con el bote correcto.",
 		"color":       Color("#2e1a1a"),
-		"escena":      "res://scenes/niveles/modo_libre/OpcionesTopDown.tscn",
+		"escena":      "res://scenes/niveles/modo_libre/explorar_r_libre/OpcionesTopDown.tscn",
 		"preview":     preload("res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000523.png"),
 	},
 ]
@@ -118,3 +118,7 @@ func _unhandled_input(event):
 
 	elif event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
+
+
+func _on_boton_volver_pressed() -> void:
+	get_tree().change_scene_to_file("res://ui/menu/menu.tscn")

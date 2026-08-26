@@ -90,8 +90,8 @@ func _process(delta):
 			_terminar_por_tiempo()
 
 # ── SPAWN INFINITO ────────────────────────────────────────────────────────
-var _spawn_timer: float = 0.0
-var _intervalo_spawn: float = 0.5
+var _spawn_timer: float = 0.2
+var _intervalo_spawn: float = 0.8
 
 func _manejar_spawn_infinito(delta):
 	_spawn_timer += delta

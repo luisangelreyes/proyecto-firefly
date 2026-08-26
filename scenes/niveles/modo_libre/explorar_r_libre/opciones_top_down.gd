@@ -74,7 +74,7 @@ func _on_jugar():
 		"densidad":      densidad,
 	}
 	get_tree().change_scene_to_file(
-        "res://scenes/niveles/modo_libre/NivelTopDownModoLibre.tscn"
+       "res://scenes/niveles/modo_libre/explorar_r_libre/NivelTopDownModoLibre.tscn"
 		
 	)
 

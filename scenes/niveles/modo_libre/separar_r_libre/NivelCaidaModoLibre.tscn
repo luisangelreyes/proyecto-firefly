@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dcha3d86d7aqb"]
 
-[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/bases/NivelBase.tscn" id="1_mte3l"]
-[ext_resource type="Script" uid="uid://dvdlvtp5g1sv2" path="res://scenes/niveles/modo_libre/NivelCaidaModoLibre.gd" id="2_yfekr"]
+[ext_resource type="PackedScene" uid="uid://c601praiasd6j" path="res://scenes/niveles/NivelBase.tscn" id="1_mte3l"]
+[ext_resource type="Script" uid="uid://dvdlvtp5g1sv2" path="res://scenes/niveles/NivelCaidaModoLibre.gd" id="2_yfekr"]
+[ext_resource type="AudioStream" uid="uid://dmpgdda83txwn" path="res://assets/audio/music/musica_6.ogg" id="3_2arvc"]
 [ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_8g8o4"]
 
 [node name="Nivel" unique_id=784809779 instance=ExtResource("1_mte3l")]
 script = ExtResource("2_yfekr")
-lista_canciones = Array[AudioStream]([])
+lista_canciones = Array[AudioStream]([ExtResource("3_2arvc")])
 
 [node name="LabelTimerSesion" type="Label" parent="." index="13" unique_id=1592708039]
 visible = false

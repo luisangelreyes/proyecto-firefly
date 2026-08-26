@@ -33,6 +33,12 @@ func _ready():
 	aplicar_tamaño_actual()
 	_crear_overlay()
 	aplicar_filtro_actual()
+	get_tree().node_added.connect(_on_node_added)
+
+func _on_node_added(node: Node):
+	if node is Control:
+		# Call deferred to ensure the node has completed its setup
+		call_deferred("_escalar_nodo_control", node)
 
 func set_tamaño_fuente(nuevo_tamaño: int):
 	tamaño_actual = nuevo_tamaño
@@ -58,7 +64,46 @@ func get_nombre_tamaño() -> String:
 func aplicar_tamaño_actual():
 	var valores = TAMAÑOS[tamaño_actual]
 	emit_signal("tamaño_cambiado", get_nombre_tamaño(), valores["activo"], valores["inactivo"])
+	_escalar_fuentes_escena()
 
+func get_factor_tamaño() -> float:
+	match tamaño_actual:
+		TamañoFuente.NORMAL: return 1.0
+		TamañoFuente.MEDIANO: return 1.25
+		TamañoFuente.GRANDE: return 1.5
+	return 1.0
+
+func _escalar_fuentes_escena():
+	var root = get_tree().root
+	_aplicar_escala_recursiva(root)
+
+func _aplicar_escala_recursiva(nodo: Node):
+	if nodo is Control:
+		_escalar_nodo_control(nodo)
+	for hijo in nodo.get_children():
+		_aplicar_escala_recursiva(hijo)
+
+func _escalar_nodo_control(control: Control):
+	# Evitar afectar los labels que ya usan LabelConfigurable.gd para evitar doble escalado
+	if control.has_method("_on_cambio_tamaño") and control.get_script() != null and "LabelConfigurable" in control.get_script().resource_path:
+		return
+
+	var propiedades_fuente = [
+		"font_size", "normal_font_size", "bold_font_size", 
+		"italics_font_size", "bold_italics_font_size", "mono_font_size"
+	]
+	
+	for prop in propiedades_fuente:
+		var meta_name = "original_" + prop
+		if control.has_meta(meta_name):
+			var original = control.get_meta(meta_name)
+			control.add_theme_font_size_override(prop, int(original * get_factor_tamaño()))
+		else:
+			# Extrae el tamaño por defecto si no tiene override y lo guarda como original
+			var size = control.get_theme_font_size(prop)
+			if size > 0: # Solo si la fuente está configurada
+				control.set_meta(meta_name, size)
+				control.add_theme_font_size_override(prop, int(size * get_factor_tamaño()))
 func set_filtro_color(nuevo_filtro: int):
 	filtro_actual = nuevo_filtro
 	guardar_configuracion()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pi2ja1cfr0u7"]
 
-[ext_resource type="Script" uid="uid://d3jjvoekr37yy" path="res://scenes/niveles/modo_libre/explorar_r_libre/opciones_top_down.gd" id="1_ogrox"]
-[ext_resource type="Texture2D" uid="uid://cm46gqeuebnlc" path="res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000523.png" id="2_xjuom"]
+[ext_resource type="Script" uid="uid://d3jjvoekr37yy" path="res://scenes/niveles/modo_libre/opciones_top_down.gd" id="1_ogrox"]
+[ext_resource type="Texture2D" uid="uid://b3w1e3mdvkqoo" path="res://entities/fondos/CAPTURAS/Captura de pantalla 2026-05-26 000523.png" id="2_xjuom"]
 
 [node name="OpcionesTopDown" type="Control" unique_id=1772429214]
 layout_mode = 3

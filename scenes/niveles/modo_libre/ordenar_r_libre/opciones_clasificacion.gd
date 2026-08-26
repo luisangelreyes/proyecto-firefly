@@ -87,7 +87,7 @@ func _on_jugar():
 		"timer_minutos": timer_minutos,
 	}
 	get_tree().change_scene_to_file(
-        "res://scenes/niveles/modo_libre/NivelClasificacionModoLibre.tscn"
+        "res://scenes/niveles/modo_libre/ordenar_r_libre/NivelClasificacionModoLibre.tscn"
 	)
 
 func _on_volver():

@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://te6etfar30rp"]
 
-[ext_resource type="Script" uid="uid://c3v3u3v2xp2pu" path="res://scenes/niveles/modo_libre/ordenar_r_libre/nivel_clasificacion_modo_libre.gd" id="1_w43wd"]
-[ext_resource type="Texture2D" uid="uid://cxd4a1g3a7vbl" path="res://scenes/niveles/modo_libre/ordenar_r_libre/FONDO_LIBREm.png" id="2_14b6u"]
-[ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="3_8300j"]
-[ext_resource type="Texture2D" uid="uid://mbrxmxs5gxrw" path="res://entities/basura/sprites/bote_tela-organico-inorganico.png" id="4_tawft"]
-[ext_resource type="Texture2D" uid="uid://bqjdprdl4diy7" path="res://entities/basura/sprites/bote_metal-madera-vidrio.png" id="5_n4e6i"]
-[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="6_vukwj"]
-[ext_resource type="Texture2D" uid="uid://blpqlrjc7il0u" path="res://assets/ui/cuadro_de_texto-removebg-preview.png" id="7_0x143"]
-[ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://ui/general/PantallaPausa.tscn" id="8_53ir4"]
-[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://ui/general/PantallaGameOver.tscn" id="9_cpnui"]
-[ext_resource type="PackedScene" uid="uid://ciu0dg8aan8aj" path="res://scenes/niveles/modo_libre/ordenar_r_libre/PantallaResultadosClasificacionML.tscn" id="10_n6ud4"]
-[ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="11_1l23q"]
-[ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="12_w5nyo"]
-[ext_resource type="AudioStream" uid="uid://dpsdu7x02a4y3" path="res://assets/audio/music/Clasificacion1.ogg" id="13_fbs3x"]
-[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_nvfbh"]
-[ext_resource type="AudioStream" uid="uid://b44u1lpv8eind" path="res://assets/audio/sfx/COMPLETO.ogg" id="15_qwn04"]
+[ext_resource type="Script" uid="uid://c3v3u3v2xp2pu" path="res://scenes/niveles/modo_libre/nivel_clasificacion_modo_libre.gd" id="1_rqine"]
+[ext_resource type="Texture2D" uid="uid://be31uwkdctbqe" path="res://entities/jugador/sprites/bote_papel-vidrio-plastico.png" id="2_ejmd8"]
+[ext_resource type="Texture2D" uid="uid://cxd4a1g3a7vbl" path="res://scenes/niveles/modo_libre/FONDO_LIBREm.png" id="2_i8fps"]
+[ext_resource type="Texture2D" uid="uid://blpqlrjc7il0u" path="res://assets/ui/cuadro_de_texto-removebg-preview.png" id="2_rteiy"]
+[ext_resource type="PackedScene" uid="uid://btt4ojnnu2aka" path="res://scenes/ui/PantallaPausa.tscn" id="3_ejmd8"]
+[ext_resource type="FontFile" uid="uid://c4640gxb5iv6g" path="res://assets/ui/fonts/street-of-Rage.ttf" id="3_h6gas"]
+[ext_resource type="Texture2D" uid="uid://mbrxmxs5gxrw" path="res://entities/basura/sprites/bote_tela-organico-inorganico.png" id="4_dnoka"]
+[ext_resource type="PackedScene" uid="uid://clusukjgh2v1m" path="res://scenes/ui/PantallaGameOver.tscn" id="4_h6gas"]
+[ext_resource type="Texture2D" uid="uid://bqjdprdl4diy7" path="res://entities/basura/sprites/bote_metal-madera-vidrio.png" id="5_qysya"]
+[ext_resource type="PackedScene" uid="uid://ciu0dg8aan8aj" path="res://scenes/niveles/modo_libre/PantallaResultadosClasificacionML.tscn" id="7_h6gas"]
+[ext_resource type="AudioStream" uid="uid://cv2r1sectgcir" path="res://assets/audio/sfx/acierto.wav" id="11_81vm0"]
+[ext_resource type="AudioStream" uid="uid://cx88arupppd3e" path="res://assets/audio/sfx/fallo.wav" id="12_8kp1w"]
+[ext_resource type="AudioStream" uid="uid://dpsdu7x02a4y3" path="res://assets/audio/music/Clasificacion1.ogg" id="13_1q2f1"]
+[ext_resource type="AudioStream" uid="uid://d3nejxon2brao" path="res://assets/audio/sfx/22. 5th-8th Place Results.mp3" id="14_2kdee"]
+[ext_resource type="AudioStream" uid="uid://b44u1lpv8eind" path="res://assets/audio/sfx/COMPLETO.ogg" id="15_81vm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8fps"]
 size = Vector2(231, 414.5)
 
 [node name="NivelClasificacionModoLibre" type="Node2D" unique_id=1287961652]
-script = ExtResource("1_w43wd")
+script = ExtResource("1_rqine")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=1514647520]
 modulate = Color(0.5673677, 0.56736773, 0.56736773, 1)
@@ -28,7 +28,7 @@ offset_left = 5.0
 offset_top = -3.0
 offset_right = 1925.0
 offset_bottom = 1077.0
-texture = ExtResource("2_14b6u")
+texture = ExtResource("2_i8fps")
 
 [node name="AreaObjeto" type="Control" parent="." unique_id=743334084]
 layout_mode = 3
@@ -102,7 +102,7 @@ metadata/tipo = "papel"
 [node name="FondoPAPEL" type="Sprite2D" parent="FilaBotes1/BotePAPEL" unique_id=1301681079]
 position = Vector2(1493.9999, 215.00002)
 scale = Vector2(0.28666672, 0.29943895)
-texture = ExtResource("3_8300j")
+texture = ExtResource("2_ejmd8")
 hframes = 3
 frame = 1
 
@@ -117,7 +117,7 @@ metadata/tipo = "vidrio"
 [node name="FondoVIDRIO" type="Sprite2D" parent="FilaBotes1/BoteVIDRIO" unique_id=516889152]
 position = Vector2(418.99997, 279)
 scale = Vector2(0.29250002, 0.30553216)
-texture = ExtResource("3_8300j")
+texture = ExtResource("2_ejmd8")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FilaBotes1/BoteVIDRIO" unique_id=639069846]
@@ -131,7 +131,7 @@ metadata/tipo = "plastico"
 [node name="FondoPLASTICO" type="Sprite2D" parent="FilaBotes1/BotePLASTICO" unique_id=1324889423]
 position = Vector2(1079, 158.99998)
 scale = Vector2(0.29333335, 0.3064026)
-texture = ExtResource("3_8300j")
+texture = ExtResource("2_ejmd8")
 hframes = 3
 frame = 2
 
@@ -155,7 +155,7 @@ metadata/tipo = "organico"
 [node name="FondoORGANICO" type="Sprite2D" parent="FilaBotes2/BoteORGANICO" unique_id=575691096]
 position = Vector2(1490.9999, 218.00002)
 scale = Vector2(0.28666672, 0.29943895)
-texture = ExtResource("4_tawft")
+texture = ExtResource("4_dnoka")
 hframes = 3
 frame = 1
 
@@ -170,7 +170,7 @@ metadata/tipo = "metal"
 [node name="FondoMETAL" type="Sprite2D" parent="FilaBotes2/BoteMETAL" unique_id=137018596]
 position = Vector2(423.99997, 270.99997)
 scale = Vector2(0.29250002, 0.30553216)
-texture = ExtResource("5_n4e6i")
+texture = ExtResource("5_qysya")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FilaBotes2/BoteMETAL" unique_id=294668056]
@@ -184,7 +184,7 @@ metadata/tipo = "tela"
 [node name="FondoTELA" type="Sprite2D" parent="FilaBotes2/BoteTELA" unique_id=19847595]
 position = Vector2(1079, 151.99998)
 scale = Vector2(0.29333335, 0.3064026)
-texture = ExtResource("4_tawft")
+texture = ExtResource("4_dnoka")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FilaBotes2/BoteTELA" unique_id=812411456]
@@ -200,7 +200,7 @@ offset_top = 943.0
 offset_right = 1871.0
 offset_bottom = 1045.0
 theme_override_colors/font_color = Color(0.9843137, 0.7490196, 0.14117648, 1)
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 95
 text = "Timer"
 horizontal_alignment = 1
@@ -223,7 +223,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = -5
 theme_override_constants/outline_size = 9
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 
@@ -252,7 +252,7 @@ offset_left = 852.0
 offset_top = 148.0
 offset_right = 852.24
 offset_bottom = 148.07999
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 30
 metadata/_edit_use_anchors_ = true
 
@@ -266,7 +266,7 @@ offset_right = 522.0
 offset_bottom = 463.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 30
 metadata/_edit_use_anchors_ = true
 
@@ -286,7 +286,7 @@ offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-texture = ExtResource("7_0x143")
+texture = ExtResource("2_rteiy")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="InterfazUI/PopUpAyuda" unique_id=24810522]
@@ -317,7 +317,7 @@ theme_override_constants/paragraph_spacing = 5
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/outline_size = 14
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 47
 text = "¡Cuidado!"
 horizontal_alignment = 1
@@ -328,34 +328,34 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.02943489, 0.29942283, 0.36695606, 1)
 theme_override_constants/line_spacing = 3
-theme_override_fonts/font = ExtResource("6_vukwj")
+theme_override_fonts/font = ExtResource("3_h6gas")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("8_53ir4")]
+[node name="PantallaPausa" parent="." unique_id=1921388617 instance=ExtResource("3_ejmd8")]
 visible = false
 
-[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("9_cpnui")]
+[node name="PantallaGameOver" parent="." unique_id=1478625898 instance=ExtResource("4_h6gas")]
 visible = false
 
-[node name="PantallaResultadosClasificacion" parent="." unique_id=1841106445 instance=ExtResource("10_n6ud4")]
+[node name="PantallaResultadosClasificacion" parent="." unique_id=1841106445 instance=ExtResource("7_h6gas")]
 layer = 12
 visible = false
 
 [node name="AudioAcierto" type="AudioStreamPlayer" parent="." unique_id=833013866]
-stream = ExtResource("11_1l23q")
+stream = ExtResource("11_81vm0")
 
 [node name="AudioError" type="AudioStreamPlayer" parent="." unique_id=1903350404]
-stream = ExtResource("12_w5nyo")
+stream = ExtResource("12_8kp1w")
 
 [node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1644630351]
-stream = ExtResource("13_fbs3x")
+stream = ExtResource("13_1q2f1")
 
 [node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=723025971]
-stream = ExtResource("14_nvfbh")
+stream = ExtResource("14_2kdee")
 
 [node name="AudioVictoria" type="AudioStreamPlayer" parent="." unique_id=1044186844]
-stream = ExtResource("15_qwn04")
+stream = ExtResource("15_81vm0")
 
 [connection signal="pressed" from="InterfazUI/PopUpAyuda/Button" to="." method="_on_popup_entendido_pressed"]
