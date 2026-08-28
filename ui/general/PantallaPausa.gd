@@ -22,6 +22,17 @@ var ultimo_movimiento: int = 0
 func _ready():
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_aplicar_opacidad()
+	Configuracion.connect("opacidad_interfaz_cambiada", Callable(self, "_aplicar_opacidad_desde_config"))
+
+func _aplicar_opacidad_desde_config(valor: int):
+	_aplicar_opacidad()
+
+func _aplicar_opacidad():
+	var overlay = get_node_or_null("Overlay")
+	if overlay:
+		var alpha = clamp(float(Configuracion.opacidad_interfaz) / 10.0, 0.2, 1.0)
+		overlay.color = Color(0, 0, 0, alpha * 0.8)
 
 	items = [
 		$LabelReanudar,

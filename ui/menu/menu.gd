@@ -47,6 +47,13 @@ func _ready():
 	
 	# 2. Aplicamos visualmente al menú principal
 	_actualizar_seleccion()
+	_aplicar_opacidad()
+
+func _aplicar_opacidad():
+	var overlay = get_node_or_null("Overlay")
+	if overlay:
+		var alpha = clamp(float(Configuracion.opacidad_interfaz) / 10.0, 0.2, 1.0)
+		overlay.color = Color(0, 0, 0, alpha * 0.8)
 	
 	# 3. Tu lógica de arranque que ya tenías
 	inicializar_sistema()

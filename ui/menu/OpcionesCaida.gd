@@ -23,6 +23,7 @@ var timer_minutos: int = 0   # 0 = sin límite
 @onready var check_inf    = $ContenedorOpciones/FilaInfinito/CheckInfinito
 
 func _ready():
+	_aplicar_opacidad()
 	$BtnJugar.pressed.connect(_on_jugar)
 	$BtnVolver.pressed.connect(_on_volver)
 	$ContenedorOpciones/FilaInfinito/CheckInfinito.toggled.connect(_on_infinito_toggled)
@@ -92,3 +93,9 @@ func _on_infinito_toggled(activo: bool):
 	if activo:
 		timer_minutos = 0  # sin límite cuando es infinito
 	_actualizar_botones()
+
+func _aplicar_opacidad():
+	var fondo = get_node_or_null("Fondo")
+	if fondo:
+		var alpha = clamp(float(Configuracion.opacidad_interfaz) / 10.0, 0.2, 1.0)
+		fondo.color = Color(0, 0, 0, alpha * 0.8)
