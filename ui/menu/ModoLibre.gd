@@ -100,6 +100,8 @@ func _actualizar_seleccion():
 func _confirmar_seleccion():
 	get_tree().change_scene_to_file(MECANICAS[indice_actual]["escena"])
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
 	if not (event is InputEventKey or event is InputEventJoypadButton or
 			event is InputEventJoypadMotion):
@@ -107,16 +109,22 @@ func _unhandled_input(event):
 	if event.is_echo():
 		return
 
+	var tiempo_actual = Time.get_ticks_msec()
+
 	if event.is_action_pressed("mover_arriba") or event.is_action_pressed("ui_up"):
-		indice_actual = max(0, indice_actual - 1)
-		_actualizar_seleccion()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_actual = max(0, indice_actual - 1)
+			_actualizar_seleccion()
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("mover_abajo") or event.is_action_pressed("ui_down"):
-		indice_actual = min(items.size() - 1, indice_actual + 1)
-		_actualizar_seleccion()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_actual = min(items.size() - 1, indice_actual + 1)
+			_actualizar_seleccion()
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		_confirmar_seleccion()
 
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 		get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
 
 

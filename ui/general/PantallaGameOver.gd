@@ -83,6 +83,8 @@ func _on_click(event: InputEvent, indice: int):
 		indice_opcion = indice
 		_confirmar()
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
 	if not visible:
 		return
@@ -92,15 +94,21 @@ func _unhandled_input(event):
 	if event.is_echo():
 		return
 
+	var tiempo_actual = Time.get_ticks_msec()
+
 	if event.is_action_pressed("mover_arriba") or event.is_action_pressed("ui_up"):
-		indice_opcion = max(0, indice_opcion - 1)
-		_actualizar_seleccion()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_opcion = max(0, indice_opcion - 1)
+			_actualizar_seleccion()
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("mover_abajo") or event.is_action_pressed("ui_down"):
-		indice_opcion = min(opciones.size() - 1, indice_opcion + 1)
-		_actualizar_seleccion()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_opcion = min(opciones.size() - 1, indice_opcion + 1)
+			_actualizar_seleccion()
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		_confirmar()
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 		indice_opcion = 1
 		_confirmar()
 

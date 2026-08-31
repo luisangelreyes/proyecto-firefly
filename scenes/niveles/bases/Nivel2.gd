@@ -1,7 +1,7 @@
 extends Node2D
 # ── CURSOR VIRTUAL PARA MANDO ─────────────────────────────────────────────
 var cursor_pos: Vector2 = Vector2(720, 540)
-var cursor_spd: float = 900.0
+var cursor_spd: float = 600.0
 var item_agarrado = null
 var usando_mando: bool = false
 # ── CONFIGURACIÓN DE BOTES (sobreescribible por hijos) ───────────────────
@@ -196,7 +196,35 @@ func _process(delta):
 		fb_timer -= delta
 		if fb_timer <= 0:
 			lbl_feedback.visible = false
+
+	if not juego_activo:
+		return
+
+	# ── MANDO ─────────────────────────────────────────────────────────────────
+	var joy_x = Input.get_axis("ui_left", "ui_right")
+	var joy_y = Input.get_axis("ui_up", "ui_down")
+
+	if (abs(joy_x) > 0.15) or (abs(joy_y) > 0.15):
+		usando_mando = true
+		cursor_visual.visible = true
 	
+	if usando_mando:
+		cursor_pos.x += joy_x * cursor_spd * delta
+		cursor_pos.y += joy_y * cursor_spd * delta
+		cursor_pos.x = clamp(cursor_pos.x, 0, 1440)
+		cursor_pos.y = clamp(cursor_pos.y, 0, 1080)
+		cursor_visual.global_position = cursor_pos - cursor_visual.size / 2
+
+		if item_agarrado and is_instance_valid(item_agarrado):
+			item_agarrado.mover_a(cursor_pos)
+
+	# Ocultar cursor si mueve el mouse
+	if Input.get_last_mouse_velocity().length() > 10:
+		usando_mando = false
+		cursor_visual.visible = false
+		if item_agarrado:
+			item_agarrado.soltar()
+			item_agarrado = null
 func _on_timer_tick():
 	if not timer_activo or not juego_activo:
 		return
@@ -209,31 +237,7 @@ func _on_timer_tick():
 		timer_juego.stop()
 		_tiempo_agotado()
 
-	# ── MANDO ─────────────────────────────────────────────────────────────────
-	var joy_x = Input.get_axis("ui_left", "ui_right")
-	var joy_y = Input.get_axis("ui_up", "ui_down")
 
-	if (abs(joy_x) > 0.15) or (abs(joy_y) > 0.15):
-		usando_mando = true
-		cursor_visual.visible = true
-	
-	if usando_mando:
-		#cursor_pos.x += joy_x * cursor_spd * delta
-		#cursor_pos.y += joy_y * cursor_spd * delta
-		cursor_pos.x = clamp(cursor_pos.x, 0, 1440)
-		cursor_pos.y = clamp(cursor_pos.y, 0, 1080)
-		cursor_visual.global_position = cursor_pos - cursor_visual.size / 2
-
-		if item_agarrado and is_instance_valid(item_agarrado):
-			item_agarrado.mover_a(cursor_pos)
-
-# Ocultar cursor si mueve el mouse
-	if Input.get_last_mouse_velocity().length() > 10:
-		usando_mando = false
-		cursor_visual.visible = false
-		if item_agarrado:
-			item_agarrado.soltar()
-			item_agarrado = null
 
 func _tiempo_agotado():
 	timer_activo = false
@@ -349,6 +353,7 @@ func _incorrecto(item, tipo_correcto: String):
 		explicacion
 	]
 	popup.visible = true
+	$InterfazUI/PopUpAyuda/Button.grab_focus()
 	if SesionGlobal.vidas <=0:
 		_game_over("clasificacion_incorrecta")
 

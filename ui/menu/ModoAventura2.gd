@@ -253,28 +253,36 @@ func _on_volver():
 	get_tree().change_scene_to_file("res://ui/menu/SelectorMundos.tscn")
 
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
-	if not (event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion):
+	if not (event is InputEventKey or event is InputEventJoypadButton or
+			event is InputEventJoypadMotion):
 		return
-	if event.is_echo() or not event.is_pressed():
+	if event.is_echo():
 		return
 
 	var foco = get_viewport().gui_get_focus_owner()
+	var tiempo_actual = Time.get_ticks_msec()
 
 	# 1. Movimiento Izquierda
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
-		var nuevo = max(0, indice_actual - 1)
-		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
-			indice_actual = nuevo
-			_on_nodo_enfocado(indice_actual)
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = max(0, indice_actual - 1)
+			if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
+				indice_actual = nuevo
+				_on_nodo_enfocado(indice_actual)
+			ultimo_movimiento = tiempo_actual
 		get_viewport().set_input_as_handled()
 
 	# 2. Movimiento Derecha
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
-		var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
-		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
-			indice_actual = nuevo
-			_on_nodo_enfocado(indice_actual)
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
+			if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
+				indice_actual = nuevo
+				_on_nodo_enfocado(indice_actual)
+			ultimo_movimiento = tiempo_actual
 		get_viewport().set_input_as_handled()
 
 

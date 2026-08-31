@@ -62,6 +62,7 @@ func _aplicar_opacidad():
 	$VentanaPerfiles/CajaBotones/BotonNuevo.pressed.connect(abrir_ventana_nuevo)
 	$VentanaPerfiles/CajaBotones/BotonCerrar.pressed.connect(cerrar_ventanas)
 	$VentanaPerfiles/CajaBotones/BotonBorrar.pressed.connect(_on_borrar_perfil)
+	lista_perfiles.item_activated.connect(func(_idx): _on_seleccionar_perfil())
 
 	# Conectar ventana nuevo perfil (igual que antes)
 	$VentanaNuevo/CajaBotones/BotonAceptar.pressed.connect(_on_crear_nuevo_perfil)
@@ -119,41 +120,19 @@ func _unhandled_input(event):
 			if get_viewport() != null:
 				get_viewport().set_input_as_handled()
 		return
-# 2. Navegación dentro de VentanaPerfiles
+	# 2. Navegación dentro de VentanaPerfiles (Ahora manejado por el motor de Godot, solo gestionamos salir)
 	if ventana_perfiles.visible:
-		if event.is_action_pressed("mover_arriba") or event.is_action_pressed("ui_up"):
-			if tiempo_actual - ultimo_movimiento > 200:
-				var idx = lista_perfiles.get_selected_items()
-				var nuevo = (idx[0] - 1) if idx.size() > 0 else 0
-				lista_perfiles.select(max(0, nuevo))
-				ultimo_movimiento = tiempo_actual
-				get_viewport().set_input_as_handled()
-
-		elif event.is_action_pressed("mover_abajo") or event.is_action_pressed("ui_down"):
-			if tiempo_actual - ultimo_movimiento > 200:
-				var idx = lista_perfiles.get_selected_items()
-				var nuevo = (idx[0] + 1) if idx.size() > 0 else 0
-				lista_perfiles.select(min(lista_perfiles.item_count - 1, nuevo))
-				ultimo_movimiento = tiempo_actual
-				get_viewport().set_input_as_handled()
-
-		elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-			_on_seleccionar_perfil()
-			get_viewport().set_input_as_handled()
-
-		elif event.is_action_pressed("ui_cancel"):
+		if event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 			cerrar_ventanas()
 			get_viewport().set_input_as_handled()
+		return
 
-	# 3. Navegación dentro de VentanaNuevo (Solo confirmación)
+	# 3. Navegación dentro de VentanaNuevo (Ahora manejado por el motor de Godot)
 	if ventana_nuevo.visible:
-		if event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-			if not entrada_nombre.has_focus():
-				_on_crear_nuevo_perfil()
-				get_viewport().set_input_as_handled()
-		elif event.is_action_pressed("ui_cancel"):
+		if event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 			abrir_ventana_perfiles()
 			get_viewport().set_input_as_handled()
+		return
 func _actualizar_seleccion():
 	for i in range(items.size()):
 		if i == indice_actual:
@@ -220,7 +199,9 @@ func abrir_ventana_perfiles():
 	# Seleccionar el primero automáticamente
 	if lista_perfiles.item_count > 0:
 		lista_perfiles.select(0)
-	$VentanaPerfiles/CajaBotones/BotonSeleccionar.grab_focus()
+		lista_perfiles.grab_focus()
+	else:
+		$VentanaPerfiles/CajaBotones/BotonNuevo.grab_focus()
 
 func abrir_ventana_nuevo():
 	menu_bloqueado = true

@@ -43,9 +43,9 @@ const RUTAS_NIVELES: Dictionary = {
 	"1-4": "res://scenes/niveles/mundo1/NivelClasificacion1_4.tscn",
 
 	"2-1": "res://scenes/niveles/mundo2/NivelCaida2_1.tscn",
-	"2-2": "res://scenes/niveles/mundo2/NivelTopDownTutorial2_2.tscn",
-	"2-3": "res://scenes/niveles/mundo2/NivelCaida2_3.tscn",
-	"2-4": "res://scenes/niveles/bases/nivel2.tscn",
+	"2-2": "res://scenes/niveles/mundo2/NivelClasificacion2_2.tscn",
+	"2-3": "res://scenes/niveles/mundo2/nivel_top_down_tutorial_2_2.tscn",
+	"2-4": "res://scenes/niveles/mundo2/NivelCaida2_3.tscn",
 	"2-5": "res://scenes/niveles/mundo2/NivelClasificacion2_5.tscn",
 	"2-6": "res://scenes/niveles/NIVEL_FINAL/NivelBoss.tscn",
 }

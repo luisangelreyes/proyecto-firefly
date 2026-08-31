@@ -230,6 +230,8 @@ func _on_nivel_presionado(clave: String):
 func _on_volver():
 	get_tree().change_scene_to_file("res://ui/menu/SelectorMundos.tscn")
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
 	if not (event is InputEventKey or event is InputEventJoypadButton or
 			event is InputEventJoypadMotion):
@@ -237,22 +239,29 @@ func _unhandled_input(event):
 	if event.is_echo():
 		return
 
+	var tiempo_actual = Time.get_ticks_msec()
+
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
-		var nuevo = max(0, indice_actual - 1)
-		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
-			indice_actual = nuevo
-			_on_nodo_enfocado(indice_actual)
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = max(0, indice_actual - 1)
+			if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
+				indice_actual = nuevo
+				_on_nodo_enfocado(indice_actual)
+			ultimo_movimiento = tiempo_actual
 
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
-		var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
-		if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
-			indice_actual = nuevo
-			_on_nodo_enfocado(indice_actual)
-			_mover_icono_a(indice_actual)
-		elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
-			_on_nivel_presionado(CLAVES[indice_actual])
-		elif event.is_action_pressed("ui_cancel"):
-			_on_volver()
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = min(CLAVES.size() - 1, indice_actual + 1)
+			if nuevo != indice_actual and not nodos[CLAVES[nuevo]].get_node("BtnNodo").disabled:
+				indice_actual = nuevo
+				_on_nodo_enfocado(indice_actual)
+				_mover_icono_a(indice_actual)
+			ultimo_movimiento = tiempo_actual
+
+	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
+		_on_nivel_presionado(CLAVES[indice_actual])
+	elif event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
+		_on_volver()
 		
 func _mover_icono_a(indice: int):
 	var nodo_destino = nodos[CLAVES[indice]]

@@ -47,7 +47,7 @@ func _ready():
 
 func _configurar_buses_audio():
 	# Crear buses de música y sfx si no existen
-	var idx_master = AudioServer.get_bus_index("Master")
+	var _idx_master = AudioServer.get_bus_index("Master")
 	
 	if AudioServer.get_bus_index("Musica") == -1:
 		AudioServer.add_bus()

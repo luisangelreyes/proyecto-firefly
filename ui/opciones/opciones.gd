@@ -257,29 +257,41 @@ func _construir_interfaz():
 	nav_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	footer.add_child(nav_label)
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
 	if not (event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion):
 		return
 	if event.is_echo():
 		return
 		
+	var tiempo_actual = Time.get_ticks_msec()
+		
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("mover_abajo"):
-		indice_enfocado = min(indice_enfocado + 1, fila_nodos.size() - 1)
-		_actualizar_ui()
-		_actualizar_descripcion()
-		get_viewport().set_input_as_handled()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_enfocado = min(indice_enfocado + 1, fila_nodos.size() - 1)
+			_actualizar_ui()
+			_actualizar_descripcion()
+			ultimo_movimiento = tiempo_actual
+			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_up") or event.is_action_pressed("mover_arriba"):
-		indice_enfocado = max(indice_enfocado - 1, 0)
-		_actualizar_ui()
-		_actualizar_descripcion()
-		get_viewport().set_input_as_handled()
+		if tiempo_actual - ultimo_movimiento > 200:
+			indice_enfocado = max(indice_enfocado - 1, 0)
+			_actualizar_ui()
+			_actualizar_descripcion()
+			ultimo_movimiento = tiempo_actual
+			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_left") or event.is_action_pressed("mover_izquierda"):
-		_cambiar_valor(-1)
-		get_viewport().set_input_as_handled()
+		if tiempo_actual - ultimo_movimiento > 200:
+			_cambiar_valor(-1)
+			ultimo_movimiento = tiempo_actual
+			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_right") or event.is_action_pressed("mover_derecha"):
-		_cambiar_valor(1)
-		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("pausar"):
+		if tiempo_actual - ultimo_movimiento > 200:
+			_cambiar_valor(1)
+			ultimo_movimiento = tiempo_actual
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("pausar") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 		get_viewport().set_input_as_handled()
 		get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
 

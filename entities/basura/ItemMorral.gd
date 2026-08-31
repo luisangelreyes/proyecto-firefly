@@ -45,7 +45,7 @@ func inicializar(datos: Dictionary, ref_nivel):
 	var cell_w   = sheet.get_width()  / float(cols)
 	var cell_h   = sheet.get_height() / float(sheet.get_height() / cell_w)
 	# Calcular filas automáticamente
-	var filas    = int(sheet.get_height() / cell_w) \
+	var _filas    = int(sheet.get_height() / cell_w) \
 		if cell_w == (sheet.get_height() / (sheet.get_height() / cell_w)) \
 		else sheet.get_height() / (sheet.get_width() / cols)
 	cell_h       = sheet.get_height() / float(int(sheet.get_height() / (sheet.get_width() / cols)))

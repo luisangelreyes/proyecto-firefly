@@ -25,7 +25,7 @@ func _ready():
 	_aplicar_opacidad()
 	Configuracion.connect("opacidad_interfaz_cambiada", Callable(self, "_aplicar_opacidad_desde_config"))
 
-func _aplicar_opacidad_desde_config(valor: int):
+func _aplicar_opacidad_desde_config(_valor: int):
 	_aplicar_opacidad()
 
 func _aplicar_opacidad():
@@ -130,6 +130,7 @@ func _ejecutar(indice: int):
 			get_tree().paused = false
 			visible = false
 			pausado = false
+			reanudar_presionado.emit()
 		1: # Reiniciar
 			# 1. Quitamos la pausa para que el juego vuelva a correr
 			get_tree().paused = false
@@ -137,6 +138,7 @@ func _ejecutar(indice: int):
 			SesionGlobal.reiniciar_estadisticas_nivel()
 			# 3. Recargamos la escena actual (esto reinicia automáticamente tiempos y colas)
 			get_tree().reload_current_scene()
+			reiniciar_presionado.emit()
 			
 		2: # Regresar al Menú Principal
 			# 1. Quitamos la pausa

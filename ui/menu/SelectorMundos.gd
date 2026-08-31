@@ -114,6 +114,8 @@ func _on_mundo_presionado(indice: int):
 func _on_volver():
 	get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
 
+var ultimo_movimiento: int = 0
+
 func _unhandled_input(event):
 	if not (event is InputEventKey or event is InputEventJoypadButton or
 			event is InputEventJoypadMotion):
@@ -121,16 +123,22 @@ func _unhandled_input(event):
 	if event.is_echo():
 		return
 
+	var tiempo_actual = Time.get_ticks_msec()
+
 	if event.is_action_pressed("mover_izquierda") or event.is_action_pressed("ui_left"):
-		var nuevo = max(0, indice_actual - 1)
-		if nuevo != indice_actual:
-			indice_actual = nuevo
-			_on_mundo_enfocado(nuevo)
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = max(0, indice_actual - 1)
+			if nuevo != indice_actual:
+				indice_actual = nuevo
+				_on_mundo_enfocado(nuevo)
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("mover_derecha") or event.is_action_pressed("ui_right"):
-		var nuevo = min(items.size() - 1, indice_actual + 1)
-		if nuevo != indice_actual:
-			indice_actual = nuevo
-			_on_mundo_enfocado(nuevo)
+		if tiempo_actual - ultimo_movimiento > 200:
+			var nuevo = min(items.size() - 1, indice_actual + 1)
+			if nuevo != indice_actual:
+				indice_actual = nuevo
+				_on_mundo_enfocado(nuevo)
+			ultimo_movimiento = tiempo_actual
 	elif event.is_action_pressed("confirmar") or event.is_action_pressed("ui_accept"):
 		var focus_owner = get_viewport().gui_get_focus_owner()
 		if focus_owner == $ColorRectFooter/HBoxFooter/BotonVolver:
@@ -140,6 +148,6 @@ func _unhandled_input(event):
 			if not items[indice_actual].get_node("BtnMundo").disabled:
 				get_viewport().set_input_as_handled()
 				_on_mundo_presionado(indice_actual)
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 		get_viewport().set_input_as_handled()
 		_on_volver()
