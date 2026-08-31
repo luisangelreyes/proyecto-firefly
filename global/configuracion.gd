@@ -7,6 +7,7 @@ signal movimiento_reducido_cambiado(valor: bool)
 signal velocidad_cambiado(valor: int)
 signal alto_contraste_cambiado(valor: bool)
 signal opacidad_interfaz_cambiada(valor: int)
+signal sensibilidad_mando_cambiada(valor: int)
 
 enum TamañoFuente { NORMAL, GRANDE }
 enum FiltroColor { NINGUNO, DEUTERANOPIA, PROTANOPIA, TRITANOPIA }
@@ -32,6 +33,12 @@ var vibracion_mando: bool = true
 
 var alto_contraste: bool = false
 var opacidad_interfaz: int = 10 # Default to 10 (100%)
+var sensibilidad_mando: int = 1  # 0=Baja(400), 1=Normal(600), 2=Alta(900)
+
+const SENSIBILIDAD_VALORES = [600.0, 950.0, 1400.0]
+
+func get_cursor_speed() -> float:
+	return SENSIBILIDAD_VALORES[sensibilidad_mando]
 
 var _overlay_layer: CanvasLayer
 var _overlay_rect: ColorRect
@@ -196,6 +203,7 @@ func guardar_configuracion():
 	config.set_value("audio", "volumen_musica", volumen_musica)
 	config.set_value("audio", "volumen_sfx", volumen_sfx)
 	config.set_value("controles", "vibracion_mando", vibracion_mando)
+	config.set_value("controles", "sensibilidad_mando", sensibilidad_mando)
 	
 	config.save("user://configuracion.cfg")
 
@@ -213,6 +221,7 @@ func cargar_configuracion():
 		volumen_musica = config.get_value("audio", "volumen_musica", 10)
 		volumen_sfx = config.get_value("audio", "volumen_sfx", 10)
 		vibracion_mando = config.get_value("controles", "vibracion_mando", true)
+		sensibilidad_mando = config.get_value("controles", "sensibilidad_mando", 1)
 		
 	Engine.time_scale = velocidad_actual / 100.0
 	
@@ -252,6 +261,11 @@ func set_vibracion_mando(valor: bool):
 	if valor:
 		# Vibrar un poco de prueba
 		Input.start_joy_vibration(0, 0.5, 0.5, 0.2)
+
+func set_sensibilidad_mando(valor: int):
+	sensibilidad_mando = clamp(valor, 0, 2)
+	guardar_configuracion()
+	emit_signal("sensibilidad_mando_cambiada", valor)
 
 func set_alto_contraste(valor: bool):
 	alto_contraste = valor

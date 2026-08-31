@@ -2,7 +2,7 @@ extends "res://scenes/niveles/bases/NivelClasificacionBase.gd"
 
 const SHEET_N2 = preload("res://entities/basura/sprites/basura_nivel2.png")
 
-func _ready():
+func _init():
 	# ── Botes ────────────────────────────────────────────────────────────
 	config_botes = [
 		{"nodo": "BotePAPEL",    "tipo": SesionGlobal.Categorias.PAPEL,    "nombre": SesionGlobal.Categorias.PAPEL},
@@ -34,5 +34,3 @@ func _ready():
 	"Tienes %d segundos para clasificar cada objeto\nantes de que se acabe el tiempo. ¡Vamos!" % int(tiempo_limite),
 	"¿Listo? ¡Vamos a limpiar esto!",
 ]
-
-	super()

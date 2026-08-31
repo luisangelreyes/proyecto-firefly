@@ -193,6 +193,8 @@ func _finalizar_tutorial():
 	$Timer.start()
 # ── NUEVO: DETECTAR SI LA BASURA SE ESCAPA (TOCA EL SUELO) ──────────────────
 func _on_basura_destruida():
+	if not is_inside_tree():
+		return
 	# Si la basura se destruyó y seguimos "esperando respuesta", significa que cayó al suelo
 	if tutorial_activo and esperando_respuesta:
 		esperando_respuesta = false

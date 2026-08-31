@@ -63,6 +63,13 @@ func _aplicar_opacidad():
 	$VentanaPerfiles/CajaBotones/BotonCerrar.pressed.connect(cerrar_ventanas)
 	$VentanaPerfiles/CajaBotones/BotonBorrar.pressed.connect(_on_borrar_perfil)
 	lista_perfiles.item_activated.connect(func(_idx): _on_seleccionar_perfil())
+	lista_perfiles.gui_input.connect(_on_lista_perfiles_gui_input)
+	
+	# Explicitly link buttons back up to the list
+	var btn_nuevo = $VentanaPerfiles/CajaBotones/BotonNuevo
+	var btn_borrar = $VentanaPerfiles/CajaBotones/BotonBorrar
+	btn_nuevo.focus_neighbor_top = btn_nuevo.get_path_to(lista_perfiles)
+	btn_borrar.focus_neighbor_top = btn_borrar.get_path_to(lista_perfiles)
 
 	# Conectar ventana nuevo perfil (igual que antes)
 	$VentanaNuevo/CajaBotones/BotonAceptar.pressed.connect(_on_crear_nuevo_perfil)
@@ -77,6 +84,35 @@ func _aplicar_opacidad():
 		# Necesitamos pasar el índice al closure
 		label.mouse_entered.connect(_on_label_hover.bind(i))
 		label.gui_input.connect(_on_label_click.bind(i))
+
+func _on_lista_perfiles_gui_input(event: InputEvent):
+	if event.is_action_pressed("ui_down") or event.is_action_pressed("mover_abajo"):
+		var tiempo_actual = Time.get_ticks_msec()
+		if tiempo_actual - ultimo_movimiento > 200:
+			ultimo_movimiento = tiempo_actual
+			if lista_perfiles.item_count > 0:
+				var seleccionados = lista_perfiles.get_selected_items()
+				var seleccionado = seleccionados[0] if seleccionados.size() > 0 else -1
+				
+				if seleccionado == lista_perfiles.item_count - 1:
+					$VentanaPerfiles/CajaBotones/BotonNuevo.grab_focus()
+				else:
+					lista_perfiles.select(seleccionado + 1)
+					lista_perfiles.ensure_current_is_visible()
+		get_viewport().set_input_as_handled()
+
+	elif event.is_action_pressed("ui_up") or event.is_action_pressed("mover_arriba"):
+		var tiempo_actual = Time.get_ticks_msec()
+		if tiempo_actual - ultimo_movimiento > 200:
+			ultimo_movimiento = tiempo_actual
+			if lista_perfiles.item_count > 0:
+				var seleccionados = lista_perfiles.get_selected_items()
+				var seleccionado = seleccionados[0] if seleccionados.size() > 0 else 0
+				
+				if seleccionado > 0:
+					lista_perfiles.select(seleccionado - 1)
+					lista_perfiles.ensure_current_is_visible()
+		get_viewport().set_input_as_handled()
 
 func _on_label_hover(indice: int):
 	if menu_bloqueado:
@@ -125,6 +161,17 @@ func _unhandled_input(event):
 		if event.is_action_pressed("ui_cancel") or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B):
 			cerrar_ventanas()
 			get_viewport().set_input_as_handled()
+		elif event is InputEventJoypadButton and event.pressed:
+			match event.button_index:
+				JOY_BUTTON_X:
+					_on_borrar_perfil()
+					get_viewport().set_input_as_handled()
+				JOY_BUTTON_Y:
+					abrir_ventana_nuevo()
+					get_viewport().set_input_as_handled()
+				JOY_BUTTON_A:
+					_on_seleccionar_perfil()
+					get_viewport().set_input_as_handled()
 		return
 
 	# 3. Navegación dentro de VentanaNuevo (Ahora manejado por el motor de Godot)
@@ -152,6 +199,7 @@ func _confirmar_seleccion():
 		1: _iniciar_arcade()
 		2: get_tree().change_scene_to_file("res://ui/opciones/opciones.tscn") 
 		3: get_tree().quit()
+		4: abrir_ventana_perfiles()
 
 # ── ACCIONES DEL MENÚ ────────────────────────────────────────────────────────
 func _iniciar_modo_aventura():

@@ -2,6 +2,7 @@ extends Node2D
 # ── CURSOR VIRTUAL PARA MANDO ─────────────────────────────────────────────
 var cursor_pos: Vector2 = Vector2(720, 540)
 var cursor_spd: float = 600.0
+var cursor_vel: Vector2 = Vector2.ZERO  # velocidad suavizada del cursor
 var item_agarrado = null
 var usando_mando: bool = false
 # ── CONFIGURACIÓN DE BOTES (sobreescribible por hijos) ───────────────────
@@ -26,7 +27,7 @@ const ItemScene = preload("res://entities/basura/ItemMorral.tscn")
 
 	# ── UI ACTUALIZACIÓN POR SEÑALES ──────────────────────────────────────────
 func _on_tiempo_actualizado(tiempo: float):
-	lbl_timer.text = "%d" % ceil(tiempo)
+	lbl_timer.text = str(int(ceil(tiempo)))
 	$BarraTiempo.value = tiempo
 	if tiempo <= 10:
 		$BarraTiempo.modulate = Color("#f87171")
@@ -105,6 +106,7 @@ const GRID_ORIGEN = Vector2(150, 540)   # posición donde aparece el objeto
 
 func _ready():
 	OBJETOS = SesionGlobal.datos_residuos.get("nivel2_objetos", [])
+	cursor_spd = Configuracion.get_cursor_speed()
 
 	call_deferred("_iniciar_nivel")
 	if catalogo_objetos.is_empty():
@@ -122,12 +124,6 @@ func _ready():
 	
 	tiempo_restante = tiempo_limite
 	timer_activo = true
-	
-	timer_juego = Timer.new()
-	timer_juego.wait_time = 0.1
-	timer_juego.autostart = true
-	timer_juego.timeout.connect(_on_timer_tick)
-	add_child(timer_juego)
 
 	_siguiente_objeto()
 	$PantallaGameOver.reintentar_presionado.connect(_on_reintentar)
@@ -200,17 +196,52 @@ func _process(delta):
 	if not juego_activo:
 		return
 
-	# ── MANDO ─────────────────────────────────────────────────────────────────
-	var joy_x = Input.get_axis("ui_left", "ui_right")
-	var joy_y = Input.get_axis("ui_up", "ui_down")
+	# Lógica del temporizador manual
+	if timer_activo:
+		tiempo_restante -= delta
+		tiempo_restante = max(0, tiempo_restante)
+		tiempo_actualizado.emit(tiempo_restante)
+		
+		if tiempo_restante <= 0:
+			timer_activo = false
+			_tiempo_agotado()
 
-	if (abs(joy_x) > 0.15) or (abs(joy_y) > 0.15):
+	# ── MANDO ─────────────────────────────────────────────────────────────────
+	# Leer stick analógico directamente para movimiento suave y circular
+	var stick_x = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var stick_y = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+	
+	# Fallback: si no hay input analógico, usar teclado/D-pad
+	if abs(stick_x) < 0.1 and abs(stick_y) < 0.1:
+		stick_x = Input.get_axis("ui_left", "ui_right")
+		stick_y = Input.get_axis("ui_up", "ui_down")
+	
+	var raw_input = Vector2(stick_x, stick_y)
+	var magnitud = raw_input.length()
+	
+	# Zona muerta circular (evita drift)
+	const DEADZONE = 0.15
+	var velocidad_objetivo = Vector2.ZERO
+	
+	if magnitud > DEADZONE:
 		usando_mando = true
 		cursor_visual.visible = true
+		
+		# Remapear magnitud: 0 en el borde de la zona muerta, 1 al máximo
+		var mag_ef = clamp((magnitud - DEADZONE) / (1.0 - DEADZONE), 0.0, 1.0)
+		
+		# Curva suave para precisión fina sin perder velocidad máxima
+		mag_ef = mag_ef * mag_ef
+		
+		# Dirección normalizada × magnitud = círculos perfectos
+		velocidad_objetivo = raw_input.normalized() * mag_ef * cursor_spd
+	
+	# Suavizado entre frames para transiciones fluidas
+	var suavizado = 12.0
+	cursor_vel = cursor_vel.lerp(velocidad_objetivo, clamp(suavizado * delta, 0.0, 1.0))
 	
 	if usando_mando:
-		cursor_pos.x += joy_x * cursor_spd * delta
-		cursor_pos.y += joy_y * cursor_spd * delta
+		cursor_pos += cursor_vel * delta
 		cursor_pos.x = clamp(cursor_pos.x, 0, 1440)
 		cursor_pos.y = clamp(cursor_pos.y, 0, 1080)
 		cursor_visual.global_position = cursor_pos - cursor_visual.size / 2
@@ -222,23 +253,11 @@ func _process(delta):
 	if Input.get_last_mouse_velocity().length() > 10:
 		usando_mando = false
 		cursor_visual.visible = false
+		cursor_vel = Vector2.ZERO
 		if item_agarrado:
 			item_agarrado.soltar()
 			item_agarrado = null
-func _on_timer_tick():
-	if not timer_activo or not juego_activo:
-		return
-	
-	tiempo_restante -= 0.1
-	tiempo_restante = max(0, tiempo_restante)
-	tiempo_actualizado.emit(tiempo_restante)
-
-	if tiempo_restante <= 0:
-		timer_juego.stop()
-		_tiempo_agotado()
-
-
-
+			
 func _tiempo_agotado():
 	timer_activo = false
 	juego_activo = false
@@ -423,7 +442,7 @@ func _input(event: InputEvent):
 	if $PantallaResultados.visible:
 		if event is InputEventJoypadButton and event.pressed:
 			if event.button_index == JOY_BUTTON_A:
-				$PantallaResultados._on_boton_siguiente()
+				$PantallaResultados._on_boton_siguiente_pressed()
 func _unhandled_input(event):
 	if not juego_activo or not usando_mando:
 		return

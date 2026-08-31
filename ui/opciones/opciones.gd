@@ -82,6 +82,13 @@ var opciones = [
 		"valores": ["Apagado", "Encendido"],
 		"indice": 1,
 		"desc": "Activa o desactiva la respuesta háptica (vibración) del control al clasificar residuos correctamente o cometer errores."
+	},
+	{
+		"id": "sensibilidad",
+		"nombre": "SENSIBILIDAD DEL PUNTERO",
+		"valores": ["Baja", "Normal", "Alta"],
+		"indice": 1,
+		"desc": "Ajusta la velocidad del puntero virtual del mando en los niveles de clasificación. Baja es más preciso, Alta es más rápido."
 	}
 ]
 
@@ -107,6 +114,7 @@ func _ready():
 	_set_indice_opcion("vol_musica", Configuracion.volumen_musica)
 	_set_indice_opcion("vol_sfx", Configuracion.volumen_sfx)
 	_set_indice_opcion("vibracion", 1 if Configuracion.vibracion_mando else 0)
+	_set_indice_opcion("sensibilidad", Configuracion.sensibilidad_mando)
 	
 	_construir_interfaz()
 	_actualizar_ui()
@@ -329,6 +337,8 @@ func _aplicar_cambio_configuracion(id: String, indice: int):
 			Configuracion.set_volumen_sfx(indice)
 		"vibracion":
 			Configuracion.set_vibracion_mando(indice == 1)
+		"sensibilidad":
+			Configuracion.set_sensibilidad_mando(indice)
 
 func _actualizar_ui():
 	for i in range(fila_nodos.size()):

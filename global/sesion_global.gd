@@ -1,5 +1,15 @@
 extends Node
 
+var _ventana_enfocada: bool = true
+
+func _notification(what):
+	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		_ventana_enfocada = true
+	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		_ventana_enfocada = false
+
+
+
 # ── SESIÓN ACTIVA ─────────────────────────────────────────────────────────────
 var perfil_actual: String = ""
 
@@ -91,6 +101,11 @@ func detener_musica_menu():
 		
 
 func _input(event):
+	if not _ventana_enfocada:
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			get_viewport().set_input_as_handled()
+			return
+
 	var hubo_cambio = false
 	
 	# Detectar Teclado o Ratón

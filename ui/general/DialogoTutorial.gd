@@ -21,6 +21,8 @@ func _ready():
 	lbl_continuar.visible = false
 	lbl_nombre.text = "Don Sergio"
 func iniciar(lista_mensajes: Array):
+	if not is_inside_tree():
+		return
 	mensajes      = lista_mensajes
 	indice_actual = 0
 	visible       = true
