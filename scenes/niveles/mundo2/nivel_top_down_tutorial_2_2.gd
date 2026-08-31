@@ -296,7 +296,7 @@ func _finalizar_tutorial():
 	tutorial_activo = false
 	_limpiar_residuos()
 	_mostrar_resultado(true)
-	SesionGlobal.completar_nivel(0, 4)
+	SesionGlobal.completar_nivel(SesionGlobal.mundo_actual, SesionGlobal.nivel_actual)
 	SesionGlobal.guardar_sesion()
 	Engine.get_main_loop().change_scene_to_file("res://scenes/niveles/DEMO/ModoAventura0.tscn")
 

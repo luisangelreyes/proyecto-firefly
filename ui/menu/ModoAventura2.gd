@@ -99,22 +99,9 @@ func _verificar_mundo_completado():
 	if not SesionGlobal.recien_completado:
 		return
 	SesionGlobal.recien_completado = false  # resetear inmediatamente
-	var todos_completados = true
-	for i in range(CLAVES.size() - 1):
-		var sig = CLAVES[i + 1]
-		if not SesionGlobal.nivel_disponible(
-			int(sig.split("-")[0]), int(sig.split("-")[1])
-		):
-			todos_completados = false
-			break
-
-	var ultima = CLAVES[-1]
-	if todos_completados and SesionGlobal.nivel_disponible(
-		int(ultima.split("-")[0]), int(ultima.split("-")[1])
-	):
-		await get_tree().create_timer(1.5).timeout
-		if is_inside_tree():
-			get_tree().change_scene_to_file("res://ui/menu/SelectorMundos.tscn")
+	
+	# Eliminamos la transición automática al selector de mundos para que 
+	# el jugador pueda quedarse en el mapa viendo su progreso.
 	
 
 func _actualizar_mapa():
@@ -233,6 +220,8 @@ func _on_nivel_presionado(clave: String):
 		int(clave.split("-")[1])
 	)
 	if ruta != "":
+		SesionGlobal.mundo_actual = int(clave.split("-")[0])
+		SesionGlobal.nivel_actual = int(clave.split("-")[1])
 		get_tree().change_scene_to_file(ruta)
 
 func _mover_icono_a(indice: int):

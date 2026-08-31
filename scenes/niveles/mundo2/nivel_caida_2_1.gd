@@ -25,7 +25,7 @@ func _mostrar_pantalla_crash():
 	nivel_activo = false
 	$Timer.stop()
 	$MusicaFondo.stop()
-	SesionGlobal.completar_nivel(2, 1)
+	SesionGlobal.completar_nivel(SesionGlobal.mundo_actual, SesionGlobal.nivel_actual)
 
 	SesionGlobal.guardar_sesion()
 	nivel_completado.emit(        residuos_atrapados,

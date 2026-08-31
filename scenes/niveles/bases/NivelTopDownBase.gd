@@ -147,7 +147,7 @@ func _victoria():
 	timer_activo = false
 	SesionGlobal.completar_nivel(
 		SesionGlobal.mundo_actual,
-		SesionGlobal.nivel_actual - 1
+		SesionGlobal.nivel_actual
 	)
 	SesionGlobal.guardar_sesion()
 	_activar_iman_contencion()

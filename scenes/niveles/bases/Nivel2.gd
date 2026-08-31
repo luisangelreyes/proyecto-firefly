@@ -278,7 +278,7 @@ func _tiempo_agotado():
 	if not is_inside_tree():
 		return
 
-	SesionGlobal.completar_nivel(1, 4)
+	SesionGlobal.completar_nivel(SesionGlobal.mundo_actual, SesionGlobal.nivel_actual)
 	
 	$PantallaResultados.mostrar_resultados(
 		clasificados,
@@ -386,7 +386,7 @@ func _victoria():
 	$AudioVictoria.play()
 	juego_activo = false
 	timer_activo = false
-	SesionGlobal.completar_nivel(1, 4)
+	SesionGlobal.completar_nivel(SesionGlobal.mundo_actual, SesionGlobal.nivel_actual)
 	$PantallaResultados.mostrar_resultados(
 		clasificados,
 		clasificados_primera,

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://heefgaptok3k" path="res://scenes/niveles/bases/nivel2.tscn" id="1_qcklg"]
 [ext_resource type="Script" uid="uid://hgsma0q0jn24" path="res://scenes/niveles/mundo2/NivelClasificacion2_2.gd" id="2_h3qxt"]
 [ext_resource type="Texture2D" uid="uid://mbrxmxs5gxrw" path="res://entities/basura/sprites/bote_tela-organico-inorganico.png" id="3_pidto"]
+[ext_resource type="FontFile" uid="uid://k53kq3j5u36q" path="res://assets/ui/fonts/Stacked pixel.ttf" id="4_5ibo4"]
 [ext_resource type="AudioStream" uid="uid://b5bps4yul8c2q" path="res://assets/audio/sfx/VICKY.ogg" id="4_nqxs7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqxs7"]
@@ -24,8 +25,48 @@ position = Vector2(-18.999956, -20.999994)
 scale = Vector2(0.37305707, 0.3954452)
 texture = SubResource("AtlasTexture_nqxs7")
 
-[node name="LabelFeedBack" parent="." index="10" unique_id=746849514]
+[node name="Labelpuntos" parent="." index="7" unique_id=930952704]
+offset_left = 73.0
+offset_top = 154.0
+offset_right = 317.0
+offset_bottom = 209.0
+
+[node name="LabelVidas" parent="." index="9" unique_id=170874925]
+offset_left = 67.0
+offset_top = 84.0
+offset_right = 342.0
+offset_bottom = 139.0
+text = "VIDAS:3"
+
+[node name="LabelFeedBack" parent="." index="10" unique_id=1406337311]
 visible = false
+
+[node name="LabelFaltaron" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="2" unique_id=1541508105]
+offset_left = -31.0
+offset_top = -36.0
+offset_right = 9.0
+offset_bottom = -13.0
+theme_override_fonts/font = ExtResource("4_5ibo4")
+theme_override_font_sizes/font_size = 26
+
+[node name="LabelPrimera" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="3" unique_id=953865366]
+theme_override_fonts/font = ExtResource("4_5ibo4")
+theme_override_font_sizes/font_size = 26
+
+[node name="LabelDesglose" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="7" unique_id=877314535]
+offset_left = -61.0
+offset_top = 17.0
+offset_right = 30.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_5ibo4")
+theme_override_font_sizes/font_size = 26
+
+[node name="LabelPapel" parent="PantallaResultados/Fondo" parent_id_path=PackedInt32Array(1330703529) index="8" unique_id=2002544100]
+offset_left = 861.0
+offset_top = 447.0
+offset_right = 1106.0
+offset_bottom = 492.0
+theme_override_fonts/font = ExtResource("4_5ibo4")
 
 [node name="AudioVictoria" parent="." index="23" unique_id=46149894]
 stream = ExtResource("4_nqxs7")
